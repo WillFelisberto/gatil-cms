@@ -15,6 +15,7 @@ const Cats: CollectionConfig = {
       ({ data }) => {
         if (data.adotado) {
           data.disponivelParaApadrinhamento = false;
+          data.show = false;
         }
         return data;
       },
@@ -137,6 +138,15 @@ const Cats: CollectionConfig = {
       label: "Adotado",
       type: "checkbox",
       defaultValue: false,
+    },
+    {
+      name: "show",
+      label: "Exibir na página de adoção",
+      type: "checkbox",
+      defaultValue: true,
+      admin: {
+        condition: (_, siblingData) => !siblingData?.adotado,
+      },
     },
     {
       name: "disponivelParaApadrinhamento",

@@ -161,6 +161,7 @@ export interface Cat {
   dataEntrada?: string | null;
   observacoesSaude?: string | null;
   adotado?: boolean | null;
+  show?: boolean | null;
   disponivelParaApadrinhamento?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -231,7 +232,8 @@ export interface Guardian {
   id: string;
   nome: string;
   email: string;
-  telefone?: string | null;
+  telefone: string;
+  document?: string | null;
   endereco?: string | null;
   whatsapp?: string | null;
   updatedAt: string;
@@ -266,9 +268,15 @@ export interface Sponsorship {
   id: string;
   gato: string | Cat;
   padrinho: string | Guardian;
-  valorMensal: number;
-  dataInicio?: string | null;
+  formaPagamento?: ('Pix' | 'Cartão' | 'Dinheiro') | null;
+  valorMensal: 'R$ 29,90 (Básico)' | 'R$ 59,90 (Premium)' | 'R$ 99,90 (Master)';
+  certificadoDigital?: boolean | null;
+  visitas?: boolean | null;
+  aceitaTermos: boolean;
+  dataAtualizacao?: string | null;
+  proximaAtualizacao?: string | null;
   ativo?: boolean | null;
+  whatsapp?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -413,6 +421,7 @@ export interface CatsSelect<T extends boolean = true> {
   dataEntrada?: T;
   observacoesSaude?: T;
   adotado?: T;
+  show?: T;
   disponivelParaApadrinhamento?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -456,6 +465,7 @@ export interface GuardiansSelect<T extends boolean = true> {
   nome?: T;
   email?: T;
   telefone?: T;
+  document?: T;
   endereco?: T;
   whatsapp?: T;
   updatedAt?: T;
@@ -520,9 +530,15 @@ export interface MediaSelect<T extends boolean = true> {
 export interface SponsorshipsSelect<T extends boolean = true> {
   gato?: T;
   padrinho?: T;
+  formaPagamento?: T;
   valorMensal?: T;
-  dataInicio?: T;
+  certificadoDigital?: T;
+  visitas?: T;
+  aceitaTermos?: T;
+  dataAtualizacao?: T;
+  proximaAtualizacao?: T;
   ativo?: T;
+  whatsapp?: T;
   updatedAt?: T;
   createdAt?: T;
 }

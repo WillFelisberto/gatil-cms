@@ -30,6 +30,12 @@ const Users: CollectionConfig = {
       name: "telefone",
       label: "Telefone",
       type: "text",
+      admin: {
+        components: {
+          Field: "app/(payload)/components/fields/MaskedPhoneField",
+          Cell: "app/(payload)/components/fields/PhoneCell",
+        },
+      },
     },
     {
       name: "photo",

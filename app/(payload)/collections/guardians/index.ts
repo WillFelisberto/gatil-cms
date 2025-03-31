@@ -28,7 +28,25 @@ const Guardians: CollectionConfig = {
     {
       name: "telefone",
       label: "Telefone",
+      required: true,
       type: "text",
+      admin: {
+        components: {
+          Field: "app/(payload)/components/fields/MaskedPhoneField",
+          Cell: "app/(payload)/components/fields/PhoneCell",
+        },
+      },
+    },
+    {
+      name: "document",
+      label: "CPF ou CNPJ",
+      type: "text",
+      admin: {
+        components: {
+          Field: "app/(payload)/components/fields/MaskedCpfField",
+          Cell: "app/(payload)/components/fields/CPFCell",
+        },
+      },
     },
     {
       name: "endereco",
