@@ -18,8 +18,10 @@
     "types": ["@testing-library/jest-dom"],
     "paths": {
       "@/components/*": ["components/*"],
+      "@/*": ["./src/*"],
       "@/pages/*": ["pages/*"],
-      "@/styles/*": ["styles/*"]
+      "@/styles/*": ["styles/*"],
+      "@payload-config": ["./payload.config.ts"]
     },
     "plugins": [
       {
