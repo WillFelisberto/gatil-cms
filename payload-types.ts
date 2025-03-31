@@ -73,6 +73,7 @@ export interface Config {
     guardians: Guardian;
     media: Media;
     sponsorships: Sponsorship;
+    cronLogs: CronLog;
     'activity-log': ActivityLog;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     guardians: GuardiansSelect<false> | GuardiansSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     sponsorships: SponsorshipsSelect<false> | SponsorshipsSelect<true>;
+    cronLogs: CronLogsSelect<false> | CronLogsSelect<true>;
     'activity-log': ActivityLogSelect<false> | ActivityLogSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -130,7 +132,7 @@ export interface UserAuthOperations {
 export interface Cat {
   id: string;
   nome: string;
-  idade?: number | null;
+  idade?: string | null;
   descricao?: string | null;
   foto?: (string | null) | Media;
   galeria?:
@@ -266,7 +268,8 @@ export interface User {
  */
 export interface Sponsorship {
   id: string;
-  gato: string | Cat;
+  gato?: (string | null) | Cat;
+  apadrinhaProjeto?: boolean | null;
   padrinho: string | Guardian;
   formaPagamento?: ('Pix' | 'Cartão' | 'Dinheiro') | null;
   valorMensal: 'R$ 29,90 (Básico)' | 'R$ 59,90 (Premium)' | 'R$ 99,90 (Master)';
@@ -277,6 +280,19 @@ export interface Sponsorship {
   proximaAtualizacao?: string | null;
   ativo?: boolean | null;
   whatsapp?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cronLogs".
+ */
+export interface CronLog {
+  id: string;
+  executadoEm?: string | null;
+  totalVencidos?: number | null;
+  emailEnviado?: boolean | null;
+  mensagem?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -337,6 +353,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'sponsorships';
         value: string | Sponsorship;
+      } | null)
+    | ({
+        relationTo: 'cronLogs';
+        value: string | CronLog;
       } | null)
     | ({
         relationTo: 'activity-log';
@@ -529,6 +549,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface SponsorshipsSelect<T extends boolean = true> {
   gato?: T;
+  apadrinhaProjeto?: T;
   padrinho?: T;
   formaPagamento?: T;
   valorMensal?: T;
@@ -539,6 +560,18 @@ export interface SponsorshipsSelect<T extends boolean = true> {
   proximaAtualizacao?: T;
   ativo?: T;
   whatsapp?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cronLogs_select".
+ */
+export interface CronLogsSelect<T extends boolean = true> {
+  executadoEm?: T;
+  totalVencidos?: T;
+  emailEnviado?: T;
+  mensagem?: T;
   updatedAt?: T;
   createdAt?: T;
 }

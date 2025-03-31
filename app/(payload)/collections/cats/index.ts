@@ -30,8 +30,11 @@ const Cats: CollectionConfig = {
     },
     {
       name: "idade",
-      label: "Idade (em anos)",
-      type: "number",
+      label: "Idade",
+      type: "text",
+      admin: {
+        placeholder: "Ex: 2 meses, 1 ano e meio, 45 dias...",
+      },
     },
     {
       name: "descricao",

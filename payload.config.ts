@@ -10,6 +10,8 @@ import Sponsorships from "app/(payload)/collections/sponsorships";
 import { pt } from "@payloadcms/translations/languages/pt";
 import { activityLogPlugin } from "@payload-bites/activity-log";
 import Users from "app/(payload)/collections/users";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
+import CronLogs from "app/(payload)/collections/cronLogs";
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -17,7 +19,15 @@ export default buildConfig({
     user: Users.slug,
   },
 
-  collections: [Cats, Adoptions, Users, Guardians, Media, Sponsorships],
+  collections: [
+    Cats,
+    Adoptions,
+    Users,
+    Guardians,
+    Media,
+    Sponsorships,
+    CronLogs,
+  ],
   i18n: {
     fallbackLanguage: "pt",
     supportedLanguages: {
@@ -34,6 +44,22 @@ export default buildConfig({
 
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || "",
+  }),
+
+  ...(process.env.PAYLOAD_SMTP_USER && {
+    email: nodemailerAdapter({
+      defaultFromAddress: "no-reply@gatildosresgatados.com.br",
+      defaultFromName: "Sistema do Gatil dos Resgatados",
+      // Nodemailer transportOptions
+      transportOptions: {
+        host: process.env.PAYLOAD_SMTP_HOST,
+        port: process.env.PAYLOAD_SMTP_PORT,
+        auth: {
+          user: process.env.PAYLOAD_SMTP_USER,
+          pass: process.env.PAYLOAD_SMTP_PASS,
+        },
+      },
+    }),
   }),
   plugins: [
     activityLogPlugin({

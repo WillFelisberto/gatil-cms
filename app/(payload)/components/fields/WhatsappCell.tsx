@@ -13,7 +13,6 @@ const WhatsappCell = async ({
       collection: "guardians",
       id: rowData.padrinho,
     });
-    console.log("🚀 ~ findUser:", userFound);
     numero = userFound.telefone.replace(/\D/g, "");
   } else {
     numero = rowData.telefone.replace(/\D/g, "");

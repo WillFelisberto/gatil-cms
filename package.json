@@ -13,6 +13,7 @@
     "@nouance/payload-better-fields-plugin": "^1.4.1",
     "@payload-bites/activity-log": "^1.0.1",
     "@payloadcms/db-mongodb": "^3.31.0",
+    "@payloadcms/email-nodemailer": "^3.31.0",
     "@payloadcms/next": "^3.31.0",
     "@payloadcms/richtext-lexical": "^3.31.0",
     "@payloadcms/translations": "^3.31.0",

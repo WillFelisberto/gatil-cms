@@ -27,7 +27,25 @@ const Sponsorships: CollectionConfig = {
       label: "Gatinho apadrinhado(a)",
       type: "relationship",
       relationTo: "cats",
-      required: true,
+      required: false, // <-- Agora controlado por validate
+      validate: (value: any, { siblingData }: any) => {
+        if (!siblingData?.apadrinhaProjeto && !value) {
+          return "Selecione um gato ou marque como 'Apadrinha o projeto inteiro'.";
+        }
+        return true;
+      },
+      admin: {
+        condition: (_, siblingData) => siblingData?.apadrinhaProjeto !== true,
+        components: {
+          Cell: "app/(payload)/components/fields/GatoCell",
+        },
+      },
+    },
+    {
+      name: "apadrinhaProjeto",
+      label: "Apadrinha o projeto inteiro?",
+      type: "checkbox",
+      defaultValue: false,
     },
     {
       name: "padrinho",
@@ -36,6 +54,7 @@ const Sponsorships: CollectionConfig = {
       relationTo: "guardians",
       required: true,
     },
+
     {
       name: "formaPagamento",
       label: "Forma de pagamento",

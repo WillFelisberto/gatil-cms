@@ -6,7 +6,6 @@ import { ClientField, DefaultServerCellComponentProps } from "payload";
 
 const MoneyCell = (props: DefaultServerCellComponentProps) => {
   const { cellData } = props;
-  console.log("🚀 ~ MoneyCell ~ cellData:", cellData);
 
   const formatCurrency = (val: unknown) => {
     if (typeof val === "number") {
