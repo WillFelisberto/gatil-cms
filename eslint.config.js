@@ -7,38 +7,10 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-  // 🔹 Ignora paths indesejados
+  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
+  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'], languageOptions: { globals: globals.browser } },
+  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'], plugins: { js }, extends: ['js/recommended'] },
   {
-    ignores: [
-      '**/node_modules/**',
-      'coverage/**',
-      '**/dist/**',
-      '**/build/**',
-      '**/.next/**',
-      'app/\\(payload\\)/**',
-      'payload.config.ts',
-      'prettier.config.js',
-      'babel.config.cjs',
-      'eslint.config.js',
-      'vitest.setup.ts',
-      '.storybook/**',
-      'next.config.mjs',
-      'tailwind.config.js',
-      'vitest.config.ts',
-      '_templates/**'
-    ]
-  },
-
-  // 🔹 Regras gerais para arquivos TS/JS
-  {
-    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
-    languageOptions: {
-      globals: globals.browser
-    },
-    plugins: {
-      js,
-      'simple-import-sort': simpleImportSort
-    },
     settings: {
       react: {
         version: 'detect'
@@ -52,28 +24,46 @@ export default defineConfig([
           extensions: ['.js', '.jsx', '.ts', '.tsx']
         }
       }
-    },
+    }
+  },
+  {
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/coverage/',
+      '**/.jest/',
+      '**/build/**',
+      '**/.next/**',
+      'app/\\(payload\\)/**',
+      'payload.config.ts',
+      'prettier.config.js',
+      'babel.config.cjs',
+      'eslint.config.js',
+      'vitest.setup.ts',
+      'jest.setup.js',
+      '.storybook/**',
+      'next.config.mjs',
+      'tailwind.config.js',
+      'vitest.config.ts',
+      '_templates/**'
+    ]
+  },
+  {
     rules: {
       'no-console': 'warn',
       'no-debugger': 'warn',
       'no-alert': 'warn',
-      'react/react-in-jsx-scope': 'off',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error'
     }
   },
-
-  // 🔹 Regras específicas para arquivos de teste
   {
-    files: ['**/*.test.{ts,tsx,js,jsx}'],
-    rules: {
-      '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^React$' }]
+    plugins: {
+      'simple-import-sort': simpleImportSort
     }
   },
-
-  // 🔹 Extensões base da linguagem + React + Import
+  importPlugin.flatConfigs.recommended,
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  pluginReact.configs.flat['jsx-runtime'],
-  importPlugin.flatConfigs.recommended
+  pluginReact.configs.flat['jsx-runtime']
 ]);
