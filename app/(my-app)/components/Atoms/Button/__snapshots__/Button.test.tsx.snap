@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> Should renders with default props 1`] = `
+<div>
+  <button
+    class="flex items-center justify-center gap-2 cursor-pointer px-6 py-2 rounded-full font-bold transition-colors duration-200 text-sm md:text-base bg-blue-950 text-white hover:bg-blue-950/90"
+    type="button"
+  >
+    <span>
+      Click me
+    </span>
+  </button>
+</div>
+`;

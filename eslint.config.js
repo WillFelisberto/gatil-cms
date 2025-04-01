@@ -21,7 +21,7 @@ export default defineConfig([
           project: './tsconfig.json'
         },
         node: {
-          extensions: ['.js', '.jsx', '.ts', '.tsx']
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.svg', '.json', '.css', '.scss', '.less']
         }
       }
     }
