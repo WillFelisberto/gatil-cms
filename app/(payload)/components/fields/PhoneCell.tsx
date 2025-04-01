@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { DefaultCell } from "@payloadcms/ui";
-import { ClientField, DefaultServerCellComponentProps } from "payload";
-import React from "react";
+import { DefaultCell } from '@payloadcms/ui';
+import { ClientField, DefaultServerCellComponentProps } from 'payload';
+import React from 'react';
 
 const PhoneCell = (props: DefaultServerCellComponentProps) => {
   const { cellData } = props;
   const formatPhone = (value?: string) => {
-    if (!value) return "";
+    if (!value) return '';
 
-    const digits = value.replace(/\D/g, "");
+    const digits = value.replace(/\D/g, '');
 
     if (digits.length === 11) {
       return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
@@ -24,7 +24,7 @@ const PhoneCell = (props: DefaultServerCellComponentProps) => {
     <DefaultCell
       {...props}
       field={props.field as unknown as ClientField}
-      cellData={formatPhone(typeof cellData === "string" ? cellData : "")}
+      cellData={formatPhone(typeof cellData === 'string' ? cellData : '')}
     />
   );
 };

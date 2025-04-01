@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useField } from "@payloadcms/ui";
-import { IMaskInput } from "react-imask";
+import React from 'react';
+import { useField } from '@payloadcms/ui';
+import { IMaskInput } from 'react-imask';
 
 type FieldProps = {
   field: {
@@ -16,34 +16,29 @@ type FieldProps = {
   readOnly: boolean;
 };
 
-const MaskedCpfField: React.FC<FieldProps> = ({
-  path,
-  field,
-  permissions,
-  readOnly,
-}) => {
+const MaskedCpfField: React.FC<FieldProps> = ({ path, field, permissions, readOnly }) => {
   const { value, setValue, errorMessage } = useField<string>({ path });
 
   const handleAccept = (value: string, mask: any) => {
     setValue(mask.unmaskedValue);
   };
-  const mask = "000.000.000-00";
+  const mask = '000.000.000-00';
 
   return (
     <div className="field-type text">
       {field.label && (
         <label htmlFor={path}>
           {field.label}
-          {field.required && " *"}
+          {field.required && ' *'}
         </label>
       )}
 
       <IMaskInput
         id={path}
         name={path}
-        className={`field-input ${errorMessage ? "error" : ""}`}
+        className={`field-input ${errorMessage ? 'error' : ''}`}
         placeholder="CPF  "
-        value={value || ""}
+        value={value || ''}
         onAccept={handleAccept}
         lazy={false}
         overwrite
@@ -51,7 +46,7 @@ const MaskedCpfField: React.FC<FieldProps> = ({
         inputMode="numeric"
         required={field.required}
         definitions={{
-          "#": /[0-9]/,
+          '#': /[0-9]/
         }}
       />
 

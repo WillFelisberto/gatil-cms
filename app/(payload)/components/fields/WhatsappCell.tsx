@@ -1,30 +1,30 @@
-import { DefaultServerCellComponentProps } from "payload";
+import { DefaultServerCellComponentProps } from 'payload';
 
 const WhatsappCell = async ({
   cellData,
   rowData,
   collectionSlug,
-  payload,
+  payload
 }: DefaultServerCellComponentProps) => {
-  let numero = "";
+  let numero = '';
 
-  if (collectionSlug === "sponsorships") {
+  if (collectionSlug === 'sponsorships') {
     const userFound = await payload.findByID({
-      collection: "guardians",
-      id: rowData.padrinho,
+      collection: 'guardians',
+      id: rowData.padrinho
     });
-    numero = userFound.telefone.replace(/\D/g, "");
+    numero = userFound.telefone.replace(/\D/g, '');
   } else {
-    numero = rowData.telefone.replace(/\D/g, "");
+    numero = rowData.telefone.replace(/\D/g, '');
   }
   const whatsappLink = `https://wa.me/55${numero}`;
 
   return (
     <div
       style={{
-        display: "flex",
-        gap: "0.5rem",
-        alignItems: "center",
+        display: 'flex',
+        gap: '0.5rem',
+        alignItems: 'center'
       }}
     >
       {/* Botão de WhatsApp */}
@@ -35,10 +35,10 @@ const WhatsappCell = async ({
           rel="noopener noreferrer"
           title="Enviar mensagem via WhatsApp"
           style={{
-            fontSize: "0.9rem",
-            color: "#25D366",
-            textDecoration: "none",
-            fontWeight: 500,
+            fontSize: '0.9rem',
+            color: '#25D366',
+            textDecoration: 'none',
+            fontWeight: 500
           }}
         >
           <svg

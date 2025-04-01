@@ -1,70 +1,62 @@
-import sharp from "sharp";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import { mongooseAdapter } from "@payloadcms/db-mongodb";
-import { buildConfig } from "payload";
-import Cats from "app/(payload)/collections/cats";
-import Adoptions from "app/(payload)/collections/adoptions";
-import Guardians from "app/(payload)/collections/guardians";
-import { Media } from "app/(payload)/collections/media";
-import Sponsorships from "app/(payload)/collections/sponsorships";
-import { pt } from "@payloadcms/translations/languages/pt";
-import { activityLogPlugin } from "@payload-bites/activity-log";
-import Users from "app/(payload)/collections/users";
-import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
-import CronLogs from "app/(payload)/collections/cronLogs";
+import sharp from 'sharp';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
+import { buildConfig } from 'payload';
+import Cats from 'app/(payload)/collections/cats';
+import Adoptions from 'app/(payload)/collections/adoptions';
+import Guardians from 'app/(payload)/collections/guardians';
+import { Media } from 'app/(payload)/collections/media';
+import Sponsorships from 'app/(payload)/collections/sponsorships';
+import { pt } from '@payloadcms/translations/languages/pt';
+import { activityLogPlugin } from '@payload-bites/activity-log';
+import Users from 'app/(payload)/collections/users';
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
+import CronLogs from 'app/(payload)/collections/cronLogs';
 
 export default buildConfig({
   editor: lexicalEditor(),
   admin: {
-    user: Users.slug,
+    user: Users.slug
   },
 
-  collections: [
-    Cats,
-    Adoptions,
-    Users,
-    Guardians,
-    Media,
-    Sponsorships,
-    CronLogs,
-  ],
+  collections: [Cats, Adoptions, Users, Guardians, Media, Sponsorships, CronLogs],
   i18n: {
-    fallbackLanguage: "pt",
+    fallbackLanguage: 'pt',
     supportedLanguages: {
-      pt,
-    },
+      pt
+    }
   },
 
   localization: {
-    defaultLocale: "pt",
-    locales: ["pt"],
+    defaultLocale: 'pt',
+    locales: ['pt']
   },
 
-  secret: process.env.PAYLOAD_SECRET || "",
+  secret: process.env.PAYLOAD_SECRET || '',
 
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || "",
+    url: process.env.DATABASE_URI || ''
   }),
 
   ...(process.env.PAYLOAD_SMTP_USER && {
     email: nodemailerAdapter({
-      defaultFromAddress: "no-reply@gatildosresgatados.com.br",
-      defaultFromName: "Sistema do Gatil dos Resgatados",
+      defaultFromAddress: 'no-reply@gatildosresgatados.com.br',
+      defaultFromName: 'Sistema do Gatil dos Resgatados',
       // Nodemailer transportOptions
       transportOptions: {
         host: process.env.PAYLOAD_SMTP_HOST,
         port: process.env.PAYLOAD_SMTP_PORT,
         auth: {
           user: process.env.PAYLOAD_SMTP_USER,
-          pass: process.env.PAYLOAD_SMTP_PASS,
-        },
-      },
-    }),
+          pass: process.env.PAYLOAD_SMTP_PASS
+        }
+      }
+    })
   }),
   plugins: [
     activityLogPlugin({
       access: {
-        read: (args) => args.req.user?.role === "admin",
+        read: (args) => args.req.user?.role === 'admin'
       },
       collections: {
         cats: {
@@ -72,34 +64,34 @@ export default buildConfig({
           enableDeleteLogging: true,
           enableDeviceInfoLogging: true,
           enableIpAddressLogging: true,
-          enableUpdateLogging: true,
+          enableUpdateLogging: true
         },
         adoptions: {
           enableCreateLogging: true,
           enableDeleteLogging: true,
           enableDeviceInfoLogging: true,
           enableIpAddressLogging: true,
-          enableUpdateLogging: true,
+          enableUpdateLogging: true
         },
         guardians: {
           enableCreateLogging: true,
           enableDeleteLogging: true,
           enableDeviceInfoLogging: true,
           enableIpAddressLogging: true,
-          enableUpdateLogging: true,
+          enableUpdateLogging: true
         },
         sponsorships: {
           enableCreateLogging: true,
           enableDeleteLogging: true,
           enableDeviceInfoLogging: true,
           enableIpAddressLogging: true,
-          enableUpdateLogging: true,
-        },
+          enableUpdateLogging: true
+        }
       },
       globals: {
-        footer: {},
-      },
-    }),
+        footer: {}
+      }
+    })
   ],
-  sharp,
+  sharp
 });

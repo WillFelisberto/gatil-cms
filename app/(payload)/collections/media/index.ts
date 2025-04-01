@@ -1,46 +1,46 @@
-import type { CollectionConfig } from "payload";
+import type { CollectionConfig } from 'payload';
 
 export const Media: CollectionConfig = {
-  slug: "media",
+  slug: 'media',
   labels: {
-    plural: "Mídias",
-    singular: "Mídia",
+    plural: 'Mídias',
+    singular: 'Mídia'
   },
   access: {
-    read: () => true,
+    read: () => true
   },
   admin: {
-    group: "Conteúdo",
+    group: 'Conteúdo'
   },
   upload: {
-    staticDir: "media",
+    staticDir: 'media',
     imageSizes: [
       {
-        name: "thumbnail",
+        name: 'thumbnail',
         width: 400,
         height: 300,
-        position: "centre",
+        position: 'centre'
       },
       {
-        name: "card",
+        name: 'card',
         width: 768,
         height: 1024,
-        position: "centre",
+        position: 'centre'
       },
       {
-        name: "tablet",
+        name: 'tablet',
         width: 1024,
         height: undefined,
-        position: "centre",
-      },
+        position: 'centre'
+      }
     ],
-    adminThumbnail: "thumbnail",
-    mimeTypes: ["image/*"],
+    adminThumbnail: 'thumbnail',
+    mimeTypes: ['image/*']
   },
   fields: [
     {
-      name: "alt",
-      type: "text",
-    },
-  ],
+      name: 'alt',
+      type: 'text'
+    }
+  ]
 };

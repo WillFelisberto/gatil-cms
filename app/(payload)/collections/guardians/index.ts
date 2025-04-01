@@ -1,73 +1,73 @@
-import WhatsappCell from "app/(payload)/components/fields/WhatsappCell";
-import { CollectionConfig } from "payload";
+import WhatsappCell from 'app/(payload)/components/fields/WhatsappCell';
+import { CollectionConfig } from 'payload';
 
 const Guardians: CollectionConfig = {
-  slug: "guardians",
+  slug: 'guardians',
   labels: {
-    singular: "Tutor",
-    plural: "Tutores",
+    singular: 'Tutor',
+    plural: 'Tutores'
   },
   admin: {
-    useAsTitle: "nome",
-    group: "Conteúdo",
-    defaultColumns: ["nome", "telefone", "whatsapp"],
+    useAsTitle: 'nome',
+    group: 'Conteúdo',
+    defaultColumns: ['nome', 'telefone', 'whatsapp']
   },
   fields: [
     {
-      name: "nome",
-      label: "Nome completo",
-      type: "text",
-      required: true,
+      name: 'nome',
+      label: 'Nome completo',
+      type: 'text',
+      required: true
     },
     {
-      name: "email",
-      label: "E-mail",
-      type: "email",
-      required: true,
+      name: 'email',
+      label: 'E-mail',
+      type: 'email',
+      required: true
     },
     {
-      name: "telefone",
-      label: "Telefone",
+      name: 'telefone',
+      label: 'Telefone',
       required: true,
-      type: "text",
+      type: 'text',
       admin: {
         components: {
-          Field: "app/(payload)/components/fields/MaskedPhoneField",
-          Cell: "app/(payload)/components/fields/PhoneCell",
-        },
-      },
+          Field: 'app/(payload)/components/fields/MaskedPhoneField',
+          Cell: 'app/(payload)/components/fields/PhoneCell'
+        }
+      }
     },
     {
-      name: "document",
-      label: "CPF ou CNPJ",
-      type: "text",
+      name: 'document',
+      label: 'CPF ou CNPJ',
+      type: 'text',
       admin: {
         components: {
-          Field: "app/(payload)/components/fields/MaskedCpfField",
-          Cell: "app/(payload)/components/fields/CPFCell",
-        },
-      },
+          Field: 'app/(payload)/components/fields/MaskedCpfField',
+          Cell: 'app/(payload)/components/fields/CPFCell'
+        }
+      }
     },
     {
-      name: "endereco",
-      label: "Endereço",
-      type: "text",
+      name: 'endereco',
+      label: 'Endereço',
+      type: 'text'
     },
     {
-      name: "whatsapp",
-      label: "Contato rápido",
-      type: "text",
+      name: 'whatsapp',
+      label: 'Contato rápido',
+      type: 'text',
       admin: {
         components: {
-          Cell: "app/(payload)/components/fields/WhatsappCell",
-        },
+          Cell: 'app/(payload)/components/fields/WhatsappCell'
+        }
       },
       access: {
         create: () => false,
-        update: () => false,
-      },
-    },
-  ],
+        update: () => false
+      }
+    }
+  ]
 };
 
 export default Guardians;

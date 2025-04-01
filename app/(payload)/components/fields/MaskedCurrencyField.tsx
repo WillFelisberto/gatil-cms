@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useField } from "@payloadcms/ui";
-import { IMaskInput } from "react-imask";
+import React from 'react';
+import { useField } from '@payloadcms/ui';
+import { IMaskInput } from 'react-imask';
 
 type FieldProps = {
   field: {
@@ -20,19 +20,19 @@ const MaskedCurrencyField: React.FC<FieldProps> = ({ path, field }) => {
   const { value, setValue, errorMessage } = useField<number>({ path });
 
   const formattedValue =
-    typeof value === "number"
-      ? value.toLocaleString("pt-BR", {
+    typeof value === 'number'
+      ? value.toLocaleString('pt-BR', {
           minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
+          maximumFractionDigits: 2
         })
-      : "";
+      : '';
 
   return (
     <div className="field-type text">
       {field.label && (
         <label htmlFor={path}>
           {field.label}
-          {field.required && " *"}
+          {field.required && ' *'}
         </label>
       )}
 
@@ -43,7 +43,7 @@ const MaskedCurrencyField: React.FC<FieldProps> = ({ path, field }) => {
         placeholder="R$ 0,00"
         mask={Number}
         radix=","
-        mapToRadix={["."]}
+        mapToRadix={['.']}
         thousandsSeparator="."
         scale={2}
         normalizeZeros
@@ -51,10 +51,10 @@ const MaskedCurrencyField: React.FC<FieldProps> = ({ path, field }) => {
         overwrite
         defaultValue={formattedValue}
         onAccept={(val: any) => {
-          if (typeof val === "number") {
+          if (typeof val === 'number') {
             setValue(val);
-          } else if (typeof val === "string") {
-            const clean = val.replace(/\./g, "").replace(",", ".");
+          } else if (typeof val === 'string') {
+            const clean = val.replace(/\./g, '').replace(',', '.');
             const parsed = parseFloat(clean);
             if (!isNaN(parsed)) {
               setValue(parsed);

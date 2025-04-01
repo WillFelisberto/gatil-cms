@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useField } from "@payloadcms/ui";
-import React from "react";
-import { IMaskInput } from "react-imask";
+import { useField } from '@payloadcms/ui';
+import React from 'react';
+import { IMaskInput } from 'react-imask';
 
 type FieldProps = {
   field: {
@@ -20,7 +20,7 @@ const MaskedPhoneField: React.FC<FieldProps> = (props) => {
   const { path, field } = props;
 
   const { value, setValue, errorMessage } = useField<string>({
-    path,
+    path
   });
 
   return (
@@ -28,7 +28,7 @@ const MaskedPhoneField: React.FC<FieldProps> = (props) => {
       {field.label && (
         <label htmlFor={path}>
           {field.label}
-          {field.required && " *"}
+          {field.required && ' *'}
         </label>
       )}
 
@@ -38,7 +38,7 @@ const MaskedPhoneField: React.FC<FieldProps> = (props) => {
         mask="(00) 00000-0000"
         overwrite
         lazy={false} // força a exibir a máscara logo de cara
-        value={value || ""}
+        value={value || ''}
         onAccept={(val: string) => setValue(val)}
         className="field-input"
       />
