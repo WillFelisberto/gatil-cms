@@ -5,8 +5,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { <%= h.changeCase.pascal(name) %> } from './<%= h.changeCase.pascal(name) %>';
 
 const meta: Meta<typeof <%= h.changeCase.pascal(name) %>> = {
-  title: <%= h.changeCase.pascal(componentType) %>/<%= h.changeCase.pascal(name) %>, 
+  title: '<%= h.changeCase.pascal(componentType) %>/<%= h.changeCase.pascal(name) %>', 
   component: <%= h.changeCase.pascal(name) %>,
+   tags: ['autodocs']
 };
 
 export default meta;
