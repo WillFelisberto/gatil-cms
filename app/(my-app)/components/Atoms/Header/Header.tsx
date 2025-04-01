@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { Menu } from 'lucide-react';
+import { useState } from 'react';
 
 const links = [
   { label: 'Início', href: '#', active: true },
@@ -12,7 +12,6 @@ const links = [
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const teste = 0;
   return (
     <header className="bg-[#013274] text-white" role="banner" data-testid="header">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-16 md:h-[91px]">
