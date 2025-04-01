@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> Should render the logo with correct alt text 1`] = `
+<header
+  class="bg-[#013274] text-white"
+  data-testid="header"
+  role="banner"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16 md:h-[91px]"
+  >
+    <a
+      aria-label="Ir para a página inicial"
+      class="flex items-center space-x-2"
+      href="/"
+    >
+      <img
+        alt="Gatil dos Resgatados - Logo"
+        class="w-[230px] h-auto"
+        data-testid="logo"
+        fetchpriority="high"
+        loading="eager"
+        src="/logo-gatil.webp"
+      />
+    </a>
+    <nav
+      aria-label="Menu principal"
+      class="hidden md:flex w-full justify-around text-sm font-semibold"
+      role="navigation"
+    >
+      <a
+        aria-current="page"
+        aria-label="Ir para Início"
+        class="relative text-center pt-2 w-full text-base group"
+        data-testid="nav-link-início"
+        href="#"
+      >
+        <span
+          class="transition-colors duration-300 text-blue-300"
+        >
+          Início
+        </span>
+        <span
+          class="absolute left-0 top-0 h-[2px] bg-blue-300 transition-all duration-300 origin-left scale-x-0 group-hover:scale-x-100 scale-x-100"
+          style="width: 100%;"
+        />
+      </a>
+      <a
+        aria-label="Ir para Apadrinhe"
+        class="relative text-center pt-2 w-full text-base group"
+        data-testid="nav-link-apadrinhe"
+        href="#"
+      >
+        <span
+          class="transition-colors duration-300 text-white group-hover:text-blue-300"
+        >
+          Apadrinhe
+        </span>
+        <span
+          class="absolute left-0 top-0 h-[2px] bg-blue-300 transition-all duration-300 origin-left scale-x-0 group-hover:scale-x-100 "
+          style="width: 100%;"
+        />
+      </a>
+      <a
+        aria-label="Ir para Colabore"
+        class="relative text-center pt-2 w-full text-base group"
+        data-testid="nav-link-colabore"
+        href="#"
+      >
+        <span
+          class="transition-colors duration-300 text-white group-hover:text-blue-300"
+        >
+          Colabore
+        </span>
+        <span
+          class="absolute left-0 top-0 h-[2px] bg-blue-300 transition-all duration-300 origin-left scale-x-0 group-hover:scale-x-100 "
+          style="width: 100%;"
+        />
+      </a>
+      <a
+        aria-label="Ir para Contato"
+        class="relative text-center pt-2 w-full text-base group"
+        data-testid="nav-link-contato"
+        href="#"
+      >
+        <span
+          class="transition-colors duration-300 text-white group-hover:text-blue-300"
+        >
+          Contato
+        </span>
+        <span
+          class="absolute left-0 top-0 h-[2px] bg-blue-300 transition-all duration-300 origin-left scale-x-0 group-hover:scale-x-100 "
+          style="width: 100%;"
+        />
+      </a>
+      <a
+        aria-label="Ir para Projeto"
+        class="relative text-center pt-2 w-full text-base group"
+        data-testid="nav-link-projeto"
+        href="#"
+      >
+        <span
+          class="transition-colors duration-300 text-white group-hover:text-blue-300"
+        >
+          Projeto
+        </span>
+        <span
+          class="absolute left-0 top-0 h-[2px] bg-blue-300 transition-all duration-300 origin-left scale-x-0 group-hover:scale-x-100 "
+          style="width: 100%;"
+        />
+      </a>
+      <a
+        aria-label="Ir para Adote"
+        class="relative text-center pt-2 w-full text-base group"
+        data-testid="nav-link-adote"
+        href="#"
+      >
+        <span
+          class="transition-colors duration-300 text-white group-hover:text-blue-300"
+        >
+          Adote
+        </span>
+        <span
+          class="absolute left-0 top-0 h-[2px] bg-blue-300 transition-all duration-300 origin-left scale-x-0 group-hover:scale-x-100 "
+          style="width: 100%;"
+        />
+      </a>
+    </nav>
+    <button
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Abrir menu"
+      class="md:hidden"
+      data-testid="menu-button"
+    >
+      <svg
+        class="lucide lucide-menu h-6 w-6 text-white"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="4"
+          x2="20"
+          y1="12"
+          y2="12"
+        />
+        <line
+          x1="4"
+          x2="20"
+          y1="6"
+          y2="6"
+        />
+        <line
+          x1="4"
+          x2="20"
+          y1="18"
+          y2="18"
+        />
+      </svg>
+    </button>
+  </div>
+</header>
+`;

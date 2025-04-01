@@ -21,7 +21,8 @@
       "@/*": ["./src/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
-      "@payload-config": ["./payload.config.ts"]
+      "@payload-config": ["./payload.config.ts"],
+      "@/tests/*": ["./.jest/*"]
     },
     "plugins": [
       {

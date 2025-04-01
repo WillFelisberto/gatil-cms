@@ -6,7 +6,7 @@ import { <%= h.changeCase.pascal(name) %> } from './<%= h.changeCase.pascal(name
 
 describe('<%= h.changeCase.pascal(name) %>', () => {
   it('renders correctly', () => {
-    render(<%= h.changeCase.pascal(name) %> {});
+    render(< <%= h.changeCase.pascal(name) %> />);
     expect(screen.getByText('<%= h.changeCase.pascal(name) %> component')).toBeInTheDocument();
   });
 });
