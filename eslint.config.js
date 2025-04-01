@@ -7,17 +7,15 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
-  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'], languageOptions: { globals: globals.browser } },
-  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'], plugins: { js }, extends: ['js/recommended'] },
+  // 🔹 Ignora paths indesejados
   {
     ignores: [
       '**/node_modules/**',
+      'coverage/**',
       '**/dist/**',
       '**/build/**',
       '**/.next/**',
       'app/\\(payload\\)/**',
-      'app/[(]payload[)]/**',
       'payload.config.ts',
       'prettier.config.js',
       'babel.config.cjs',
@@ -30,7 +28,17 @@ export default defineConfig([
       '_templates/**'
     ]
   },
+
+  // 🔹 Regras gerais para arquivos TS/JS
   {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    languageOptions: {
+      globals: globals.browser
+    },
+    plugins: {
+      js,
+      'simple-import-sort': simpleImportSort
+    },
     settings: {
       react: {
         version: 'detect'
@@ -44,25 +52,28 @@ export default defineConfig([
           extensions: ['.js', '.jsx', '.ts', '.tsx']
         }
       }
-    }
-  },
-  {
+    },
     rules: {
-      'react/react-in-jsx-scope': 'off',
       'no-console': 'warn',
       'no-debugger': 'warn',
       'no-alert': 'warn',
+      'react/react-in-jsx-scope': 'off',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error'
     }
   },
+
+  // 🔹 Regras específicas para arquivos de teste
   {
-    plugins: {
-      'simple-import-sort': simpleImportSort
+    files: ['**/*.test.{ts,tsx,js,jsx}'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^React$' }]
     }
   },
+
+  // 🔹 Extensões base da linguagem + React + Import
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  pluginReact.configs.flat['jsx-runtime'], // Add this if you are using React 17+
+  pluginReact.configs.flat['jsx-runtime'],
   importPlugin.flatConfigs.recommended
 ]);
