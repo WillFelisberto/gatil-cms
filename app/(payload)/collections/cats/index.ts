@@ -42,6 +42,22 @@ const Cats: CollectionConfig = {
       type: 'textarea'
     },
     {
+      name: 'sexo',
+      label: 'Sexo',
+      type: 'select',
+      required: true,
+      options: [
+        {
+          label: 'Macho',
+          value: 'M'
+        },
+        {
+          label: 'Fêmea',
+          value: 'F'
+        }
+      ]
+    },
+    {
       name: 'foto',
       label: 'Foto principal',
       type: 'upload',

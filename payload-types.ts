@@ -89,9 +89,7 @@ export interface Config {
     sponsorships: SponsorshipsSelect<false> | SponsorshipsSelect<true>;
     cronLogs: CronLogsSelect<false> | CronLogsSelect<true>;
     'activity-log': ActivityLogSelect<false> | ActivityLogSelect<true>;
-    'payload-locked-documents':
-      | PayloadLockedDocumentsSelect<false>
-      | PayloadLockedDocumentsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
@@ -136,6 +134,7 @@ export interface Cat {
   nome: string;
   idade?: string | null;
   descricao?: string | null;
+  sexo: 'M' | 'F';
   foto?: (string | null) | Media;
   galeria?:
     | {
@@ -414,6 +413,7 @@ export interface CatsSelect<T extends boolean = true> {
   nome?: T;
   idade?: T;
   descricao?: T;
+  sexo?: T;
   foto?: T;
   galeria?:
     | T
@@ -631,6 +631,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Auth {
   [k: string]: unknown;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}
