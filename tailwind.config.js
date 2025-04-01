@@ -2,6 +2,12 @@
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ['var(--font-poppins)', 'sans-serif']
+      },
+      colors: {
+        primaryBlue: '#013274'
+      },
       animation: {
         'fade-slide-down': 'fadeSlideDown 300ms ease-out'
       },

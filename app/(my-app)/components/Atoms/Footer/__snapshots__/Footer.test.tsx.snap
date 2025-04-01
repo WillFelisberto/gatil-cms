@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> should render the footer container 1`] = `
+<div>
+  <footer
+    class="flex flex-col border-t border-gray-200 bg-white"
+    data-testid="footer"
+    role="contentinfo"
+  >
+    <div
+      class="w-full flex justify-center"
+    >
+      <div
+        class="w-full max-w-7xl px-6 py-10 flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left gap-10 md:gap-20"
+        data-testid="footer-container"
+      >
+        <div
+          class="flex-1 justify-center"
+          data-testid="footer-social"
+        >
+          <div
+            class="flex justify-center mb-4"
+          >
+            <img
+              alt="Logo do Gatil dos Resgatados"
+              class="w-20 h-20 object-contain"
+              src="/logo-rodape.webp"
+            />
+          </div>
+          <p
+            class="text-base text-gray-700 max-w-md mx-auto text-center font-poppins"
+          >
+            Siga-nos nas redes sociais e acompanhe de perto as histórias dos nossos gatinhos resgatados, eventos e novidades! Junte-se à nossa comunidade e ajude a espalhar essa causa
+          </p>
+          <div
+            aria-label="Redes sociais"
+            class="flex justify-center gap-4 mt-4 text-blue-950 text-xl"
+          >
+            <a
+              class="hover:text-blue-600 hover:scale-110 active:text-blue-700 transition-colors duration-200"
+              data-testid="footer-social-link-0"
+              href="https://facebook.com"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="lucide lucide-facebook"
+                fill="none"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                />
+              </svg>
+            </a>
+            <a
+              class="hover:text-blue-600 hover:scale-110 active:text-blue-700 transition-colors duration-200"
+              data-testid="footer-social-link-1"
+              href="https://instagram.com"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="lucide lucide-instagram"
+                fill="none"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="20"
+                  rx="5"
+                  ry="5"
+                  width="20"
+                  x="2"
+                  y="2"
+                />
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                />
+                <line
+                  x1="17.5"
+                  x2="17.51"
+                  y1="6.5"
+                  y2="6.5"
+                />
+              </svg>
+            </a>
+            <a
+              class="hover:text-blue-600 hover:scale-110 active:text-blue-700 transition-colors duration-200"
+              data-testid="footer-social-link-2"
+              href="https://twitter.com"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="lucide lucide-twitter"
+                fill="none"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <nav
+          aria-label="Menu Rápido"
+          class="flex-1 justify-center text-center"
+          data-testid="footer-menu"
+        >
+          <h4
+            class="font-semibold text-base mb-4 text-blue-950"
+          >
+            Menu Rápido
+          </h4>
+          <ul
+            class="space-y-2 text-sm text-gray-800"
+          >
+            <li>
+              <a
+                class="transition-colors duration-200 hover:text-blue-600 hover:font-bold text-primary-blue font-semibold underline"
+                data-testid="footer-menu-link-0"
+                href="/"
+              >
+                Início
+              </a>
+            </li>
+            <li>
+              <a
+                class="transition-colors duration-200 hover:text-blue-600 hover:font-bold "
+                data-testid="footer-menu-link-1"
+                href="/apadrinhe"
+              >
+                Apadrinhe
+              </a>
+            </li>
+            <li>
+              <a
+                class="transition-colors duration-200 hover:text-blue-600 hover:font-bold "
+                data-testid="footer-menu-link-2"
+                href="/contato"
+              >
+                Contato
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div
+      class="bg-blue-950 text-white text-center py-4 w-full text-sm"
+    >
+      Feito com 🐈 por Gatil dos Resgatados
+    </div>
+  </footer>
+</div>
+`;
