@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const payload = await getPayload({ config });
-  const global = await payload.findGlobal({ slug: 'social-links' });
+  const global = await payload.findGlobal({ slug: 'site-config' });
   const socialLinks = global?.links || [];
 
   const menuItems = [

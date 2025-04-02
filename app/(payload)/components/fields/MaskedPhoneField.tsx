@@ -10,6 +10,7 @@ type FieldProps = {
     label: string;
     type: string;
     required?: boolean;
+    description?: string;
   };
   path: string;
   permissions: { read: boolean };
@@ -31,6 +32,8 @@ const MaskedPhoneField: React.FC<FieldProps> = (props) => {
           {field.required && ' *'}
         </label>
       )}
+
+      {field.description && <div className="field-description">{field.description}</div>}
 
       <IMaskInput
         id={path}

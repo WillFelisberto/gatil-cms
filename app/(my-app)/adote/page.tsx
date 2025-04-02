@@ -26,14 +26,12 @@ export const metadata = {
 };
 
 type AdotePageProps = {
-  searchParams: {
-    page?: string;
-  };
+  searchParams: Promise<{ page?: string }>;
 };
 
-export default async function AdotePage(props: AdotePageProps) {
-  const searchParams = props.searchParams;
-  const page = parseInt(searchParams?.page || '1', 10);
+export default async function AdotePage({ searchParams }: AdotePageProps) {
+  const resolvedSearchParams = await searchParams;
+  const page = parseInt(resolvedSearchParams.page || '1', 10);
 
   const payload = await getPayload({ config });
 
@@ -47,8 +45,11 @@ export default async function AdotePage(props: AdotePageProps) {
     page
   });
 
+  const global = await payload.findGlobal({ slug: 'site-config' });
+  const whatsapp = global?.whatsapp || '';
+
   return (
-    <main className="max-w-[1300px] mx-auto px-4 py-12">
+    <div className="max-w-[1300px] mx-auto px-4 py-12">
       <section className="mb-12 text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-[#013274] mb-6">
           Encontre um Amigo Para Sempre
@@ -90,7 +91,10 @@ export default async function AdotePage(props: AdotePageProps) {
             <div className="flex flex-wrap justify-center gap-8">
               {cats.map((cat) => (
                 <div key={cat.id} className="flex-grow max-w-sm min-w-[300px] flex justify-center">
-                  <CatCard cat={{ ...cat, foto: (cat.foto as Media).url || null }} />
+                  <CatCard
+                    whatsappNumber={whatsapp}
+                    cat={{ ...cat, foto: (cat.foto as Media).url || null }}
+                  />
                 </div>
               ))}
             </div>
@@ -102,6 +106,6 @@ export default async function AdotePage(props: AdotePageProps) {
           </>
         )}
       </section>
-    </main>
+    </div>
   );
 }

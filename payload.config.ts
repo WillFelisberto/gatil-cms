@@ -12,8 +12,8 @@ import { activityLogPlugin } from '@payload-bites/activity-log';
 import Users from 'app/(payload)/collections/users';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import CronLogs from 'app/(payload)/collections/cronLogs';
-import SocialLinks from 'app/(payload)/collections/socialLinks';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+import SiteConfig from 'app/(payload)/globals/siteConfig';
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -33,7 +33,7 @@ export default buildConfig({
   },
 
   collections: [Cats, Adoptions, Users, Guardians, Media, Sponsorships, CronLogs],
-  globals: [SocialLinks],
+  globals: [SiteConfig],
   i18n: {
     fallbackLanguage: 'pt',
     supportedLanguages: {
@@ -121,7 +121,7 @@ export default buildConfig({
         }
       },
       globals: {
-        'social-links': {
+        'site-config': {
           enableDeviceInfoLogging: true,
           enableIpAddressLogging: true
         }

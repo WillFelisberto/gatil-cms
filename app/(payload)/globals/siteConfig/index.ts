@@ -3,25 +3,49 @@ import { GlobalConfig } from 'payload';
 const SiteConfig: GlobalConfig = {
   slug: 'site-config',
   label: 'Configurações do Site',
+  admin: {
+    group: 'Site'
+  },
   fields: [
     {
-      name: 'tituloSite',
-      label: 'Título do site',
-      type: 'text',
-      defaultValue: 'Gatil dos Resgatados'
+      name: 'whatsapp',
+      label: 'WhatsApp para contato',
+      admin: {
+        description: 'Número do WhatsApp utilizado no site para adoção/contato no geral',
+        components: {
+          Field: 'app/(payload)/components/fields/MaskedPhoneField',
+          Cell: 'app/(payload)/components/fields/PhoneCell'
+        }
+      },
+      type: 'text'
     },
     {
-      name: 'emailContato',
-      label: 'Email de contato',
-      type: 'email'
-    },
-    {
-      name: 'redesSociais',
-      label: 'Redes sociais',
+      name: 'links',
+      label: 'Redes Sociais',
       type: 'array',
+      labels: {
+        singular: 'Rede Social',
+        plural: 'Redes Sociais'
+      },
+      minRows: 1,
       fields: [
-        { name: 'nome', label: 'Nome da rede', type: 'text' },
-        { name: 'url', label: 'URL da rede', type: 'text' }
+        {
+          name: 'type',
+          label: 'Tipo',
+          type: 'select',
+          required: true,
+          options: [
+            { label: 'Instagram', value: 'instagram' },
+            { label: 'Facebook', value: 'facebook' },
+            { label: 'TikTok', value: 'tiktok' }
+          ]
+        },
+        {
+          name: 'url',
+          label: 'URL',
+          type: 'text',
+          required: true
+        }
       ]
     }
   ]

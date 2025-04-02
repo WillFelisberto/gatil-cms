@@ -34,9 +34,10 @@ export type Cat = {
 
 type Props = {
   cat: Cat;
+  whatsappNumber: string;
 };
 
-export const CatCard = ({ cat }: Props) => {
+export const CatCard = ({ cat, whatsappNumber }: Props) => {
   const {
     nome,
     idade,
@@ -60,7 +61,7 @@ export const CatCard = ({ cat }: Props) => {
   const whatsappMessage = encodeURIComponent(
     `Olá! Tenho interesse em adotar ${sexo === 'F' ? 'a' : 'o'} ${nome}. Poderia me passar mais informações?`
   );
-  const whatsappLink = `https://wa.me/5599999999999?text=${whatsappMessage}`; //  TODO:   <- Substituir com o número da ONG
+  const whatsappLink = `https://wa.me/55${whatsappNumber.replace(/\D/g, '')}?text=${whatsappMessage}`;
 
   return (
     <article role="article" className="h-full w-full max-w-96" data-testid={`cat-card-${cat.id}`}>

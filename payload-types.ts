@@ -97,10 +97,10 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
-    'social-links': SocialLink;
+    'site-config': SiteConfig;
   };
   globalsSelect: {
-    'social-links': SocialLinksSelect<false> | SocialLinksSelect<true>;
+    'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
   };
   locale: 'pt';
   user: User & {
@@ -630,10 +630,14 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "social-links".
+ * via the `definition` "site-config".
  */
-export interface SocialLink {
+export interface SiteConfig {
   id: string;
+  /**
+   * Número do WhatsApp utilizado no site para adoção/contato no geral
+   */
+  whatsapp?: string | null;
   links?:
     | {
         type: 'instagram' | 'facebook' | 'tiktok';
@@ -646,9 +650,10 @@ export interface SocialLink {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "social-links_select".
+ * via the `definition` "site-config_select".
  */
-export interface SocialLinksSelect<T extends boolean = true> {
+export interface SiteConfigSelect<T extends boolean = true> {
+  whatsapp?: T;
   links?:
     | T
     | {

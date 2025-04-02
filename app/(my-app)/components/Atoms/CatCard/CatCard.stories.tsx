@@ -11,8 +11,11 @@ const meta: Meta<typeof CatCard> = {
 export default meta;
 type Story = StoryObj<typeof CatCard>;
 
+const whatsappNumber = '(11) 91234-5678';
+
 export const Default: Story = {
   args: {
+    whatsappNumber,
     cat: {
       id: 'gato-1',
       nome: 'Luna',
@@ -31,6 +34,7 @@ export const Default: Story = {
 
 export const SemVacinaOuVermifugo: Story = {
   args: {
+    whatsappNumber,
     cat: {
       id: 'gato-2',
       nome: 'Biscoito',
@@ -49,11 +53,11 @@ export const SemVacinaOuVermifugo: Story = {
 
 export const ComDoencas: Story = {
   args: {
+    whatsappNumber,
     cat: {
       id: 'gato-3',
       nome: 'Tigrinho',
       sexo: 'M',
-
       idade: '1 ano e meio',
       descricao: 'Agitado, curioso e precisa de atenção veterinária contínua.',
       foto: '/gato.jpg',
@@ -68,12 +72,12 @@ export const ComDoencas: Story = {
 
 export const SemFoto: Story = {
   args: {
+    whatsappNumber,
     cat: {
       id: 'gato-4',
       nome: 'Noir',
       idade: '6 meses',
       sexo: 'M',
-
       descricao: 'Ainda sem foto cadastrada, mas muito fofo!',
       vacinas: [],
       vermifugacoes: [],
@@ -86,6 +90,7 @@ export const SemFoto: Story = {
 
 export const ApenasComNome: Story = {
   args: {
+    whatsappNumber,
     cat: {
       id: 'gato-5',
       nome: 'Fantasma',

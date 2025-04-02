@@ -9,8 +9,10 @@ describe('<CatCard />', () => {
     sexo: 'M' as const
   };
 
+  const whatsappNumber = '(11) 99999-9999';
+
   it('renders correctly with required props', () => {
-    const { container } = render(<CatCard cat={baseCat} />);
+    const { container } = render(<CatCard cat={baseCat} whatsappNumber={whatsappNumber} />);
 
     expect(screen.getByTestId('cat-name')).toHaveTextContent('Gato Teste');
     expect(screen.getByTestId('contact-badge')).toBeInTheDocument();
@@ -20,13 +22,13 @@ describe('<CatCard />', () => {
   });
 
   it('displays male icon for male cats', () => {
-    render(<CatCard cat={baseCat} />);
+    render(<CatCard cat={baseCat} whatsappNumber={whatsappNumber} />);
     expect(screen.getByTitle('Macho')).toBeInTheDocument();
   });
 
   it('displays female icon for female cats', () => {
     const femaleCat = { ...baseCat, sexo: 'F' as const };
-    render(<CatCard cat={femaleCat} />);
+    render(<CatCard cat={femaleCat} whatsappNumber={whatsappNumber} />);
     expect(screen.getByTitle('Fêmea')).toBeInTheDocument();
   });
 
@@ -43,7 +45,7 @@ describe('<CatCard />', () => {
       observacoesSaude: 'Saudável'
     };
 
-    render(<CatCard cat={completeCat} />);
+    render(<CatCard cat={completeCat} whatsappNumber={whatsappNumber} />);
 
     expect(screen.getByText('🎂 2 anos')).toBeInTheDocument();
     expect(screen.getByText('Gato muito brincalhão')).toBeInTheDocument();
@@ -58,30 +60,32 @@ describe('<CatCard />', () => {
     const stringPhotoCat = { ...baseCat, foto: '/string-photo.jpg' };
     const objectPhotoCat = { ...baseCat, foto: { url: '/object-photo.jpg', alt: 'Alt texto' } };
 
-    const { rerender } = render(<CatCard cat={stringPhotoCat} />);
+    const { rerender } = render(<CatCard cat={stringPhotoCat} whatsappNumber={whatsappNumber} />);
     expect(screen.getByTestId('cat-image').getAttribute('src')).toContain('string-photo.jpg');
 
-    rerender(<CatCard cat={objectPhotoCat} />);
+    rerender(<CatCard cat={objectPhotoCat} whatsappNumber={whatsappNumber} />);
     expect(screen.getByTestId('cat-image').getAttribute('src')).toContain('object-photo.jpg');
-
     expect(screen.getByTestId('cat-image')).toHaveAttribute('alt', 'Alt texto');
   });
 
   it('uses fallback image when no photo provided', () => {
-    render(<CatCard cat={baseCat} />);
+    render(<CatCard cat={baseCat} whatsappNumber={whatsappNumber} />);
     expect(screen.getByTestId('cat-image').getAttribute('src')).toContain('no-image.jpg');
-
     expect(screen.getByTestId('cat-image')).toHaveAttribute('alt', 'Foto de Gato Teste');
   });
 
   it('generates correct WhatsApp link', () => {
-    render(<CatCard cat={baseCat} />);
+    render(<CatCard cat={baseCat} whatsappNumber={whatsappNumber} />);
     const expectedMessage = encodeURIComponent(
-      `Olá! Tenho interesse em adotar o ${baseCat.nome}. Poderia me passar mais informações?`
+      `Olá! Tenho interesse em adotar o Gato Teste. Poderia me passar mais informações?`
     );
     expect(screen.getByRole('link')).toHaveAttribute(
       'href',
       expect.stringContaining(expectedMessage)
+    );
+    expect(screen.getByRole('link')).toHaveAttribute(
+      'href',
+      expect.stringContaining('https://wa.me/5511999999999')
     );
   });
 
@@ -93,16 +97,18 @@ describe('<CatCard />', () => {
       vacinas: [{ nome: 'Raiva' }]
     };
 
-    const { rerender } = render(<CatCard cat={femaleCat} />);
+    const { rerender } = render(<CatCard cat={femaleCat} whatsappNumber={whatsappNumber} />);
     expect(screen.getByText('✂️ Castrada')).toBeInTheDocument();
     expect(screen.getByText('💉 Vacinada')).toBeInTheDocument();
 
-    rerender(<CatCard cat={{ ...femaleCat, vermifugacoes: [{}] }} />);
+    rerender(
+      <CatCard cat={{ ...femaleCat, vermifugacoes: [{}] }} whatsappNumber={whatsappNumber} />
+    );
     expect(screen.getByText('🪱 Vermifugada')).toBeInTheDocument();
   });
 
   it('does not render optional fields when not provided', () => {
-    render(<CatCard cat={baseCat} />);
+    render(<CatCard cat={baseCat} whatsappNumber={whatsappNumber} />);
 
     expect(screen.queryByTestId('cat-description')).not.toBeInTheDocument();
     expect(screen.queryByText('🎂')).not.toBeInTheDocument();
@@ -120,7 +126,7 @@ describe('<CatCard />', () => {
       vermifugacoes: []
     };
 
-    render(<CatCard cat={catWithEmptyArrays} />);
+    render(<CatCard cat={catWithEmptyArrays} whatsappNumber={whatsappNumber} />);
 
     expect(screen.queryByText('💉 Vacinado')).not.toBeInTheDocument();
     expect(screen.queryByText('🪱 Vermifugado')).not.toBeInTheDocument();
