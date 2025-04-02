@@ -5,6 +5,20 @@ import { Media } from 'payload-types';
 import { CatCard } from '../components/Atoms/CatCard';
 import { Pagination } from '../components/Molecules/Pagination';
 
+export const dynamic = 'force-dynamic';
+
+export async function generateStaticParams() {
+  const payload = await getPayload({ config });
+  const { totalPages } = await payload.find({
+    collection: 'cats',
+    limit: 1
+  });
+
+  return Array.from({ length: totalPages }, (_, i) => ({
+    page: (i + 1).toString()
+  }));
+}
+
 export const metadata = {
   title: 'Adote um Gatinho | Gatil dos Resgatados',
   description:
@@ -17,9 +31,11 @@ type AdotePageProps = {
   };
 };
 
-export default async function AdotePage({ searchParams }: AdotePageProps) {
+export default async function AdotePage(props: AdotePageProps) {
+  const searchParams = props.searchParams;
+  const page = parseInt(searchParams?.page || '1', 10);
+
   const payload = await getPayload({ config });
-  const page = parseInt(searchParams.page || '1', 10);
 
   const { docs: cats, totalPages } = await payload.find({
     collection: 'cats',

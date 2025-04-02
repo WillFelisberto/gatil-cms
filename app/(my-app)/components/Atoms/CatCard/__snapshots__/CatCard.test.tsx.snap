@@ -3,7 +3,7 @@
 exports[`<CatCard /> renders correctly with required props 1`] = `
 <div>
   <article
-    class="h-full w-full"
+    class="h-full w-full max-w-96"
     data-testid="cat-card-1"
     role="article"
   >
