@@ -1,5 +1,3 @@
-import { Facebook, Instagram, Twitter } from 'lucide-react';
-
 import { render, screen } from '@/tests/test-utils';
 
 import { Footer } from './Footer';
@@ -11,10 +9,10 @@ jest.mock('next/navigation', () => ({
 import { usePathname } from 'next/navigation';
 
 describe('<Footer />', () => {
-  const mockSocialLinks = [
-    { icon: Facebook, url: 'https://facebook.com' },
-    { icon: Instagram, url: 'https://instagram.com' },
-    { icon: Twitter, url: 'https://twitter.com' }
+  const mockSocialLinks: { type: 'facebook' | 'instagram' | 'tiktok'; url: string }[] = [
+    { type: 'facebook', url: 'https://facebook.com' },
+    { type: 'instagram', url: 'https://instagram.com' },
+    { type: 'tiktok', url: 'https://tiktok.com' }
   ];
 
   const mockMenuItems = [

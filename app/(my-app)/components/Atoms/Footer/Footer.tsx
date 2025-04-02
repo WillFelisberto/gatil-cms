@@ -1,10 +1,15 @@
 'use client';
 
-import { LucideIcon } from 'lucide-react';
+import { Facebook, Instagram, Music2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
+const iconMap = {
+  facebook: Facebook,
+  instagram: Instagram,
+  tiktok: Music2
+};
 type SocialLink = {
-  icon: LucideIcon;
+  type: 'facebook' | 'instagram' | 'tiktok';
   url: string;
 };
 
@@ -50,18 +55,22 @@ export const Footer = ({ socialLinks, menuItems }: FooterProps) => {
               className="flex justify-center gap-4 mt-4 text-blue-950 text-xl"
               aria-label="Redes sociais"
             >
-              {socialLinks.map(({ icon: Icon, url }, index) => (
-                <a
-                  href={url}
-                  key={index}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-blue-600 hover:scale-110 active:text-blue-700 transition-colors duration-200"
-                  data-testid={`footer-social-link-${index}`}
-                >
-                  <Icon size={20} />
-                </a>
-              ))}
+              {socialLinks.map(({ type, url }, index) => {
+                const Icon = iconMap[type];
+
+                return (
+                  <a
+                    href={url}
+                    key={index}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-600 hover:scale-110 active:text-blue-700 transition-colors duration-200"
+                    data-testid={`footer-social-link-${index}`}
+                  >
+                    <Icon size={20} />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
