@@ -9,12 +9,12 @@ exports[`<SectionCat /> Should renders correctly with default label and light th
         flex items-center
         overflow-hidden
         bg-bottom bg-no-repeat bg-contain
-        bg-white text-blue-950
+        bg-white text-[#013274]
       "
     data-testid="section-cat-background"
     id="adoptable-cats-section"
     role="region"
-    style="background-image: url(/gatoazulrodape.webp); background-repeat: no-repeat; background-position: bottom center; background-size: inherit; height: 64vh;"
+    style="background-image: url(/gatoazulrodape.webp); background-repeat: no-repeat; background-position: bottom center; background-size: inherit; height: 80vh;"
   >
     <div
       class="w-full max-w-6xl mx-auto px-6 py-12"

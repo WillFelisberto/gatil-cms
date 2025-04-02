@@ -29,7 +29,7 @@ describe('<SectionCat />', () => {
     );
 
     const section = screen.getByTestId('section-cat-background');
-    expect(section.className).toMatch(/bg-blue-950/);
+    expect(section.className.replace(/\s+/g, ' ')).toMatch(/bg-\[#013274\]/);
     expect(screen.getByText('Dark cat')).toBeInTheDocument();
   });
 

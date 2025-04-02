@@ -1,12 +1,13 @@
 // tailwind.config.js
-module.exports = {
+export default {
+  content: ['./app/**/*.{js,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
         poppins: ['var(--font-poppins)', 'sans-serif']
       },
       colors: {
-        primaryBlue: '#013274'
+        'gatil-blue': '#013274'
       },
       animation: {
         'fade-slide-down': 'fadeSlideDown 300ms ease-out'

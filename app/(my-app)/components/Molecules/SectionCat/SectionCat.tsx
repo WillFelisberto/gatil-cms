@@ -27,14 +27,14 @@ export const SectionCat = ({ dark = false, children, label }: SectionCatProps) =
         flex items-center
         overflow-hidden
         bg-bottom bg-no-repeat bg-contain
-        ${dark ? 'bg-blue-950 text-white' : 'bg-white text-blue-950'}
+        ${dark ? 'bg-[#013274] text-white' : 'bg-white text-[#013274]'}
       `}
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'bottom center',
         backgroundSize: 'inherit',
-        height: isMobile ? '100vh' : '64vh'
+        height: isMobile ? '100vh' : '80vh'
       }}
     >
       <div className="w-full max-w-6xl mx-auto px-6 py-12">{children}</div>
