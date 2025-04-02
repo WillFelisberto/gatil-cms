@@ -3,11 +3,7 @@
 exports[`<VolunteerCard /> should render the photo, name, and phone correctly 1`] = `
 <div>
   <div
-    class="
- flex flex-col items-center text-center
- rounded-2xl shadow-lg p-4 bg-white
- transition-all duration-300 transform hover:scale-105 hover:shadow-xl
- "
+    class=" flex flex-col items-center text-center rounded-2xl shadow-lg p-4 bg-white transition-all duration-300 transform hover:scale-105 hover:shadow-xl "
     data-testid="volunteer-card"
   >
     <img
