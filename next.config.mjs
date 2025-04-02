@@ -5,7 +5,7 @@ const nextConfig = {
   // Your Next.js config here
   experimental: {
     reactCompiler: false
-  },
+  }
   // webpack(config) {
   //   // Remove o loader padrão de SVG
   //   const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
