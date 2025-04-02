@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SectionCat /> Should renders correctly with default label and light theme 1`] = `
+<div>
+  <section
+    aria-label="Seção com informações sobre gatos disponíveis para adoção"
+    class="
+        relative w-full
+        flex items-center
+        overflow-hidden
+        bg-bottom bg-no-repeat bg-contain
+        bg-white text-blue-950
+      "
+    data-testid="section-cat-background"
+    id="adoptable-cats-section"
+    role="region"
+    style="background-image: url(/gatoazulrodape.webp); background-repeat: no-repeat; background-position: bottom center; background-size: inherit; height: 64vh;"
+  >
+    <div
+      class="w-full max-w-6xl mx-auto px-6 py-12"
+    >
+      <p>
+        Meow content
+      </p>
+    </div>
+  </section>
+</div>
+`;
