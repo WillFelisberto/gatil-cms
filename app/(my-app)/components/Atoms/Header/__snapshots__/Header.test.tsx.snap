@@ -33,7 +33,7 @@ exports[`<Header /> Should render the logo with correct alt text 1`] = `
         aria-label="Ir para Início"
         class="relative text-center pt-2 w-full text-base group"
         data-testid="nav-link-início"
-        href="#"
+        href="/"
       >
         <span
           class="transition-colors duration-300 text-blue-300"
@@ -49,7 +49,7 @@ exports[`<Header /> Should render the logo with correct alt text 1`] = `
         aria-label="Ir para Apadrinhe"
         class="relative text-center pt-2 w-full text-base group"
         data-testid="nav-link-apadrinhe"
-        href="#"
+        href="/apadrinhe"
       >
         <span
           class="transition-colors duration-300 text-white group-hover:text-blue-300"
@@ -65,7 +65,7 @@ exports[`<Header /> Should render the logo with correct alt text 1`] = `
         aria-label="Ir para Colabore"
         class="relative text-center pt-2 w-full text-base group"
         data-testid="nav-link-colabore"
-        href="#"
+        href="/colabore"
       >
         <span
           class="transition-colors duration-300 text-white group-hover:text-blue-300"
@@ -81,7 +81,7 @@ exports[`<Header /> Should render the logo with correct alt text 1`] = `
         aria-label="Ir para Contato"
         class="relative text-center pt-2 w-full text-base group"
         data-testid="nav-link-contato"
-        href="#"
+        href="/contato"
       >
         <span
           class="transition-colors duration-300 text-white group-hover:text-blue-300"
@@ -97,7 +97,7 @@ exports[`<Header /> Should render the logo with correct alt text 1`] = `
         aria-label="Ir para Projeto"
         class="relative text-center pt-2 w-full text-base group"
         data-testid="nav-link-projeto"
-        href="#"
+        href="/projeto"
       >
         <span
           class="transition-colors duration-300 text-white group-hover:text-blue-300"
@@ -113,7 +113,7 @@ exports[`<Header /> Should render the logo with correct alt text 1`] = `
         aria-label="Ir para Adote"
         class="relative text-center pt-2 w-full text-base group"
         data-testid="nav-link-adote"
-        href="#"
+        href="/adote"
       >
         <span
           class="transition-colors duration-300 text-white group-hover:text-blue-300"

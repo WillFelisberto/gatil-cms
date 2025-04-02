@@ -1,10 +1,30 @@
+import { usePathname } from 'next/navigation';
+
 import { fireEvent, render, screen } from '@/tests/test-utils';
 
 import { Header } from './Header';
 
+// 🧪 Mock do hook usePathname para simular path atual
+jest.mock('next/navigation', () => ({
+  ...jest.requireActual('next/navigation'),
+  usePathname: jest.fn()
+}));
+
+const mockPathname = '/'; // Simula que está na home
+
+const menuItems = [
+  { label: 'Início', href: '/' },
+  { label: 'Apadrinhe', href: '/apadrinhe' },
+  { label: 'Colabore', href: '/colabore' },
+  { label: 'Contato', href: '/contato' },
+  { label: 'Projeto', href: '/projeto' },
+  { label: 'Adote', href: '/adote' }
+];
+
 describe('<Header />', () => {
   beforeEach(() => {
-    render(<Header />);
+    (usePathname as jest.Mock).mockReturnValue(mockPathname);
+    render(<Header menuItems={menuItems} />);
   });
 
   it('Should render the logo with correct alt text', () => {
@@ -12,16 +32,14 @@ describe('<Header />', () => {
     const header = screen.getByTestId('header');
     expect(logo).toBeInTheDocument();
     expect(logo).toHaveAttribute('alt', 'Gatil dos Resgatados - Logo');
-
     expect(header).toMatchSnapshot();
   });
 
   it('Should render all desktop navigation links', () => {
-    const labels = ['Início', 'Apadrinhe', 'Colabore', 'Contato', 'Projeto', 'Adote'];
-    labels.forEach((label) => {
-      const link = screen.getByTestId(`nav-link-${label.toLowerCase()}`);
+    menuItems.forEach((item) => {
+      const link = screen.getByTestId(`nav-link-${item.label.toLowerCase()}`);
       expect(link).toBeInTheDocument();
-      expect(link).toHaveTextContent(label);
+      expect(link).toHaveTextContent(item.label);
     });
   });
 
@@ -49,11 +67,11 @@ describe('<Header />', () => {
   it('Should close the mobile menu when the button is clicked again', () => {
     const menuButton = screen.getByTestId('menu-button');
 
-    fireEvent.click(menuButton); // open the mobile menu
-    expect(screen.getByRole('menu')).toBeInTheDocument(); // menu is visible
+    fireEvent.click(menuButton); // open
+    expect(screen.getByRole('menu')).toBeInTheDocument();
 
-    fireEvent.click(menuButton); // close the mobile menu
-    expect(screen.queryByRole('menu')).not.toBeInTheDocument(); // menu is gone
+    fireEvent.click(menuButton); // close
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
 
     expect(menuButton).toHaveAttribute('aria-expanded', 'false');
     expect(menuButton).toHaveAttribute('aria-label', 'Abrir menu');
