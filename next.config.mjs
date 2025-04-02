@@ -6,22 +6,22 @@ const nextConfig = {
   experimental: {
     reactCompiler: false
   },
-  webpack(config) {
-    // Remove o loader padrão de SVG
-    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
-    if (fileLoaderRule) {
-      fileLoaderRule.exclude = /\.svg$/i;
-    }
+  // webpack(config) {
+  //   // Remove o loader padrão de SVG
+  //   const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
+  //   if (fileLoaderRule) {
+  //     fileLoaderRule.exclude = /\.svg$/i;
+  //   }
 
-    // Adiciona o SVGR
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: ['@svgr/webpack']
-    });
+  //   // Adiciona o SVGR
+  //   config.module.rules.push({
+  //     test: /\.svg$/i,
+  //     issuer: /\.[jt]sx?$/,
+  //     use: ['@svgr/webpack']
+  //   });
 
-    return config;
-  }
+  //   return config;
+  // }
 };
 
 // Make sure you wrap your `nextConfig`

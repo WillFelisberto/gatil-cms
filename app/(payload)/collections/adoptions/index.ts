@@ -8,7 +8,8 @@ const Adoptions: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'gato',
-    group: 'Conteúdo'
+    group: 'Conteúdo',
+    hideAPIURL: true
   },
   fields: [
     {

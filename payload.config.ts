@@ -12,14 +12,27 @@ import { activityLogPlugin } from '@payload-bites/activity-log';
 import Users from 'app/(payload)/collections/users';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import CronLogs from 'app/(payload)/collections/cronLogs';
+import SocialLinks from 'app/(payload)/collections/socialLinks';
 
 export default buildConfig({
   editor: lexicalEditor(),
   admin: {
-    user: Users.slug
+    user: Users.slug,
+    meta: {
+      titleSuffix: ' - Gatil dos Resgatados',
+      description: 'Sistema do Gatil dos Resgatados',
+      icons: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          url: '/public/favicon.ico'
+        }
+      ]
+    }
   },
 
   collections: [Cats, Adoptions, Users, Guardians, Media, Sponsorships, CronLogs],
+  globals: [SocialLinks],
   i18n: {
     fallbackLanguage: 'pt',
     supportedLanguages: {
@@ -86,10 +99,20 @@ export default buildConfig({
           enableDeviceInfoLogging: true,
           enableIpAddressLogging: true,
           enableUpdateLogging: true
+        },
+        users: {
+          enableCreateLogging: true,
+          enableDeleteLogging: true,
+          enableDeviceInfoLogging: true,
+          enableIpAddressLogging: true,
+          enableUpdateLogging: true
         }
       },
       globals: {
-        footer: {}
+        'social-links': {
+          enableDeviceInfoLogging: true,
+          enableIpAddressLogging: true
+        }
       }
     })
   ],

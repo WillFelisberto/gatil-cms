@@ -5,11 +5,16 @@ import { DefaultCell } from '@payloadcms/ui';
 import type { DefaultCellComponentProps } from 'payload';
 
 const GatoCell = (props: DefaultCellComponentProps) => {
+  console.log('🚀 ~ GatoCell ~ props:', props);
   const { rowData } = props;
   const isProjetoInteiro = rowData?.apadrinhaProjeto === true;
 
   if (isProjetoInteiro) {
-    return <div style={{ padding: '0.25rem 0.5rem' }}>🐾 Projeto Inteiro</div>;
+    return (
+      <a href={`${process.env.NEXT_PUBLIC_SITE_URL}/admin/collections/sponsorships/${rowData.id}`}>
+        🐾 Projeto Inteiro
+      </a>
+    );
   }
 
   // ✅ Caso contrário, renderiza normalmente com o DefaultCell
