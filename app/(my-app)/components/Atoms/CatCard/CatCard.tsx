@@ -63,13 +63,13 @@ export const CatCard = ({ cat }: Props) => {
   const whatsappLink = `https://wa.me/5599999999999?text=${whatsappMessage}`; //  TODO:   <- Substituir com o número da ONG
 
   return (
-    <article role="article" className="flex flex-col h-full" data-testid={`cat-card-${cat.id}`}>
+    <article role="article" className="h-full w-full max-w-96" data-testid={`cat-card-${cat.id}`}>
       <Link
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Saber mais sobre ${nome}`}
-        className="bg-stone-50 rounded-2xl shadow-md overflow-hidden flex flex-col w-full max-w-sm border border-gray-200 hover:shadow-lg transition-all duration-200 group relative"
+        className="bg-stone-50 h-full flex flex-col justify-between rounded-2xl shadow-md overflow-hidden w-full border border-gray-200 hover:shadow-lg transition-all duration-200 group relative"
       >
         <span
           className="absolute top-2 left-2 bg-green-100 text-green-900 text-xs font-semibold px-2 py-1 rounded-full shadow-sm z-10 group-hover:scale-105 transition"
@@ -78,7 +78,7 @@ export const CatCard = ({ cat }: Props) => {
           Clique aqui para saber mais 🐾
         </span>
 
-        <div className="relative h-60 w-full">
+        <div className="relative h-60 w-full shrink-0">
           <Image
             src={imageUrl || '/no-image.jpg'}
             alt={altText}
@@ -90,9 +90,9 @@ export const CatCard = ({ cat }: Props) => {
           />
         </div>
 
-        <div className="p-4 flex flex-col gap-2">
+        <div className="p-4 h-full flex flex-col gap-2">
           <h2
-            className="text-xl font-bold text-blue-950 flex items-center gap-2"
+            className={`text-xl font-bold  flex items-center gap-2 ${sexo === 'M' ? 'text-blue-700' : 'text-pink-600'}`}
             data-testid="cat-name"
           >
             {sexo === 'M' ? (
@@ -120,7 +120,7 @@ export const CatCard = ({ cat }: Props) => {
             {castrado && <p>{renderCastrado}</p>}
             {vermifugacoes && vermifugacoes.length > 0 && <p>{renderVermifugo}</p>}
             {doencas && <p>⚠️ Doenças: {doencas}</p>}
-            {observacoesSaude && <p>🩺 {observacoesSaude}</p>}
+            {observacoesSaude && <p>📝 {observacoesSaude}</p>}
           </div>
         </div>
       </Link>

@@ -51,7 +51,7 @@ describe('<CatCard />', () => {
     expect(screen.getByText('✂️ Castrado')).toBeInTheDocument();
     expect(screen.getByText('🪱 Vermifugado')).toBeInTheDocument();
     expect(screen.getByText('⚠️ Doenças: Nenhuma')).toBeInTheDocument();
-    expect(screen.getByText('🩺 Saudável')).toBeInTheDocument();
+    expect(screen.getByText('📝 Saudável')).toBeInTheDocument();
   });
 
   it('handles different image types correctly', () => {
@@ -110,7 +110,7 @@ describe('<CatCard />', () => {
     expect(screen.queryByText('✂️ Castrado')).not.toBeInTheDocument();
     expect(screen.queryByText('🪱 Vermifugado')).not.toBeInTheDocument();
     expect(screen.queryByText('⚠️ Doenças:')).not.toBeInTheDocument();
-    expect(screen.queryByText('🩺')).not.toBeInTheDocument();
+    expect(screen.queryByText('📝')).not.toBeInTheDocument();
   });
 
   it('handles empty vaccine and deworming arrays', () => {

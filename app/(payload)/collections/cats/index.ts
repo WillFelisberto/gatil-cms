@@ -111,6 +111,10 @@ const Cats: CollectionConfig = {
     {
       name: 'vermifugacoes',
       label: 'Vermífugos aplicados',
+      labels: {
+        singular: 'Vermífugo',
+        plural: 'Vermífugos'
+      },
       type: 'array',
       fields: [
         {

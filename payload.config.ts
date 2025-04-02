@@ -13,6 +13,7 @@ import Users from 'app/(payload)/collections/users';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import CronLogs from 'app/(payload)/collections/cronLogs';
 import SocialLinks from 'app/(payload)/collections/socialLinks';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -66,7 +67,18 @@ export default buildConfig({
       }
     })
   }),
+
   plugins: [
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            collections: {
+              [Media.slug]: true
+            },
+            token: process.env.BLOB_READ_WRITE_TOKEN
+          })
+        ]
+      : []),
     activityLogPlugin({
       access: {
         read: (args) => args.req.user?.role === 'admin'
