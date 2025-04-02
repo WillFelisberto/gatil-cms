@@ -5,7 +5,6 @@ import { DefaultCell } from '@payloadcms/ui';
 import type { DefaultCellComponentProps } from 'payload';
 
 const GatoCell = (props: DefaultCellComponentProps) => {
-  console.log('🚀 ~ GatoCell ~ props:', props);
   const { rowData } = props;
   const isProjetoInteiro = rowData?.apadrinhaProjeto === true;
 
