@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Pagination /> should render pagination with correct buttons 1`] = `
+<div>
+  <nav
+    aria-label="Paginação de gatinhos"
+    class="flex gap-2 items-center flex-wrap justify-center mt-8"
+    data-testid="pagination"
+    role="navigation"
+  >
+    <button
+      aria-label="Página anterior"
+      class="p-2 rounded-full border border-[#013274] text-[#013274] hover:bg-[#013274]/10 disabled:opacity-30 transition"
+      data-testid="prev-button"
+    >
+      <svg
+        class="lucide lucide-arrow-left w-4 h-4"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m12 19-7-7 7-7"
+        />
+        <path
+          d="M19 12H5"
+        />
+      </svg>
+    </button>
+    <button
+      aria-label="Página 1"
+      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium border-[#013274] text-[#013274] hover:bg-[#013274]/10"
+      data-testid="page-button-1"
+    >
+      1
+    </button>
+    <button
+      aria-current="page"
+      aria-label="Página 2"
+      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium bg-[#013274] text-white border-[#013274] shadow-md"
+      data-testid="page-button-2"
+    >
+      2
+    </button>
+    <button
+      aria-label="Página 3"
+      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium border-[#013274] text-[#013274] hover:bg-[#013274]/10"
+      data-testid="page-button-3"
+    >
+      3
+    </button>
+    <button
+      aria-label="Página 4"
+      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium border-[#013274] text-[#013274] hover:bg-[#013274]/10"
+      data-testid="page-button-4"
+    >
+      4
+    </button>
+    <button
+      aria-label="Próxima página"
+      class="p-2 rounded-full border border-[#013274] text-[#013274] hover:bg-[#013274]/10 disabled:opacity-30 transition"
+      data-testid="next-button"
+    >
+      <svg
+        class="lucide lucide-arrow-right w-4 h-4"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5 12h14"
+        />
+        <path
+          d="m12 5 7 7-7 7"
+        />
+      </svg>
+    </button>
+  </nav>
+</div>
+`;
