@@ -3,6 +3,7 @@ import { getPayload } from 'payload';
 import { Media } from 'payload-types';
 
 import { CatCard } from '../components/Atoms/CatCard';
+import { RichTextComponent } from '../components/Atoms/RichText';
 import { Pagination } from '../components/Molecules/Pagination';
 
 export const dynamic = 'force-dynamic';
@@ -35,17 +36,20 @@ export default async function AdotePage({ searchParams }: AdotePageProps) {
 
   const payload = await getPayload({ config });
 
-  const { docs: cats, totalPages } = await payload.find({
-    collection: 'cats',
-    where: {
-      and: [{ adotado: { equals: false } }, { show: { equals: true } }]
-    },
-    sort: '-dataEntrada',
-    limit: 12,
-    page
-  });
+  const [adote, { docs: cats, totalPages }, global] = await Promise.all([
+    payload.findGlobal({ slug: 'adote' }),
+    payload.find({
+      collection: 'cats',
+      where: {
+        and: [{ adotado: { equals: false } }, { show: { equals: true } }]
+      },
+      sort: '-dataEntrada',
+      limit: 12,
+      page
+    }),
+    payload.findGlobal({ slug: 'site-config' })
+  ]);
 
-  const global = await payload.findGlobal({ slug: 'site-config' });
   const whatsapp = global?.whatsapp || '';
 
   return (
@@ -54,27 +58,12 @@ export default async function AdotePage({ searchParams }: AdotePageProps) {
         <h1 className="text-3xl md:text-4xl font-bold text-[#013274] mb-6">
           Encontre um Amigo Para Sempre
         </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-4 leading-relaxed">
-          Adotar um animal é um gesto de amor que transforma vidas — a deles e a sua! Aqui, você
-          encontrará nossos adoráveis resgatados, cada um com uma história única e uma imensa
-          vontade de fazer parte de uma família. Ao abrir as portas do seu lar para um deles, você
-          oferece uma nova chance, um futuro repleto de carinho e segurança.
-        </p>
-        <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed mb-2">
-          Explore as histórias, apaixone-se e faça parte dessa transformação. Seu novo melhor amigo
-          pode estar aqui, esperando por você. ❤️
-        </p>
-        <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed mb-2">
-          Pronto para adotar? Descubra como é fácil começar essa jornada abaixo!
-        </p>
-        <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed mb-2">
-          <a
-            href="/politica-de-adocao"
-            className="text-pink-600 underline hover:text-pink-800 transition"
-          >
-            Política de adoção
-          </a>
-        </p>
+
+        {adote.descricao && (
+          <div className="text-gray-600 max-w-2xl mx-auto mb-4 leading-relaxed">
+            <RichTextComponent lexicalData={adote.descricao!} />
+          </div>
+        )}
       </section>
 
       <section aria-labelledby="gatinhos-disponiveis" className="mt-12">
@@ -89,14 +78,17 @@ export default async function AdotePage({ searchParams }: AdotePageProps) {
         ) : (
           <>
             <div className="flex flex-wrap justify-center gap-8">
-              {cats.map((cat) => (
-                <div key={cat.id} className="flex-grow max-w-sm min-w-[300px] flex justify-center">
-                  <CatCard
-                    whatsappNumber={whatsapp}
-                    cat={{ ...cat, foto: (cat.foto as Media).url || null }}
-                  />
-                </div>
-              ))}
+              {cats.map((cat) => {
+                const foto = (cat.foto as Media)?.url || null;
+                return (
+                  <div
+                    key={cat.id}
+                    className="flex-grow max-w-sm min-w-[300px] flex justify-center"
+                  >
+                    <CatCard whatsappNumber={whatsapp} cat={{ ...cat, foto }} />
+                  </div>
+                );
+              })}
             </div>
             {totalPages > 1 && (
               <div className="mt-12 flex justify-center">

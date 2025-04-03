@@ -1,23 +1,41 @@
 import sharp from 'sharp';
+import { buildConfig } from 'payload';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
-import { buildConfig } from 'payload';
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+import { pt } from '@payloadcms/translations/languages/pt';
+import { activityLogPlugin } from '@payload-bites/activity-log';
+
+// Collections
 import Cats from 'app/(payload)/collections/cats';
 import Adoptions from 'app/(payload)/collections/adoptions';
 import Guardians from 'app/(payload)/collections/guardians';
+import Users from 'app/(payload)/collections/users';
 import { Media } from 'app/(payload)/collections/media';
 import Sponsorships from 'app/(payload)/collections/sponsorships';
-import { pt } from '@payloadcms/translations/languages/pt';
-import { activityLogPlugin } from '@payload-bites/activity-log';
-import Users from 'app/(payload)/collections/users';
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import CronLogs from 'app/(payload)/collections/cronLogs';
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+
+// Globals
 import SiteConfig from 'app/(payload)/globals/siteConfig';
 import Sobre from './app/(payload)/globals/sobre';
+import Adote from './app/(payload)/globals/adote';
+
+// Util: configurações padrão de logging
+const defaultLogging = {
+  enableCreateLogging: true,
+  enableDeleteLogging: true,
+  enableDeviceInfoLogging: true,
+  enableIpAddressLogging: true,
+  enableUpdateLogging: true
+};
+
+const collectionsToLog = ['cats', 'adoptions', 'guardians', 'sponsorships', 'users'];
+const globalsToLog = ['site-config', 'sobre', 'adote'];
 
 export default buildConfig({
   editor: lexicalEditor(),
+
   admin: {
     user: Users.slug,
     meta: {
@@ -34,12 +52,11 @@ export default buildConfig({
   },
 
   collections: [Cats, Adoptions, Users, Guardians, Media, Sponsorships, CronLogs],
-  globals: [SiteConfig, Sobre],
+  globals: [SiteConfig, Sobre, Adote],
+
   i18n: {
     fallbackLanguage: 'pt',
-    supportedLanguages: {
-      pt
-    }
+    supportedLanguages: { pt }
   },
 
   localization: {
@@ -57,7 +74,6 @@ export default buildConfig({
     email: nodemailerAdapter({
       defaultFromAddress: 'no-reply@gatildosresgatados.com.br',
       defaultFromName: 'Sistema do Gatil dos Resgatados',
-      // Nodemailer transportOptions
       transportOptions: {
         host: process.env.PAYLOAD_SMTP_HOST,
         port: process.env.PAYLOAD_SMTP_PORT,
@@ -80,58 +96,23 @@ export default buildConfig({
           })
         ]
       : []),
+
     activityLogPlugin({
       access: {
-        read: (args) => args.req.user?.role === 'admin'
+        read: ({ req }) => req.user?.role === 'admin'
       },
-      collections: {
-        cats: {
-          enableCreateLogging: true,
-          enableDeleteLogging: true,
-          enableDeviceInfoLogging: true,
-          enableIpAddressLogging: true,
-          enableUpdateLogging: true
-        },
-        adoptions: {
-          enableCreateLogging: true,
-          enableDeleteLogging: true,
-          enableDeviceInfoLogging: true,
-          enableIpAddressLogging: true,
-          enableUpdateLogging: true
-        },
-        guardians: {
-          enableCreateLogging: true,
-          enableDeleteLogging: true,
-          enableDeviceInfoLogging: true,
-          enableIpAddressLogging: true,
-          enableUpdateLogging: true
-        },
-        sponsorships: {
-          enableCreateLogging: true,
-          enableDeleteLogging: true,
-          enableDeviceInfoLogging: true,
-          enableIpAddressLogging: true,
-          enableUpdateLogging: true
-        },
-        users: {
-          enableCreateLogging: true,
-          enableDeleteLogging: true,
-          enableDeviceInfoLogging: true,
-          enableIpAddressLogging: true,
-          enableUpdateLogging: true
-        }
-      },
-      globals: {
-        'site-config': {
-          enableDeviceInfoLogging: true,
-          enableIpAddressLogging: true
-        },
-        sobre: {
-          enableDeviceInfoLogging: true,
-          enableIpAddressLogging: true
-        }
-      }
+      collections: Object.fromEntries(collectionsToLog.map((name) => [name, defaultLogging])),
+      globals: Object.fromEntries(
+        globalsToLog.map((name) => [
+          name,
+          {
+            enableDeviceInfoLogging: true,
+            enableIpAddressLogging: true
+          }
+        ])
+      )
     })
   ],
+
   sharp
 });

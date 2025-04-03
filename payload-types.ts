@@ -99,10 +99,12 @@ export interface Config {
   globals: {
     'site-config': SiteConfig;
     sobre: Sobre;
+    adote: Adote;
   };
   globalsSelect: {
     'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
     sobre: SobreSelect<false> | SobreSelect<true>;
+    adote: AdoteSelect<false> | AdoteSelect<true>;
   };
   locale: 'pt';
   user: User & {
@@ -681,6 +683,30 @@ export interface Sobre {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "adote".
+ */
+export interface Adote {
+  id: string;
+  descricao?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-config_select".
  */
 export interface SiteConfigSelect<T extends boolean = true> {
@@ -702,6 +728,16 @@ export interface SiteConfigSelect<T extends boolean = true> {
  */
 export interface SobreSelect<T extends boolean = true> {
   imagem?: T;
+  descricao?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "adote_select".
+ */
+export interface AdoteSelect<T extends boolean = true> {
   descricao?: T;
   updatedAt?: T;
   createdAt?: T;
