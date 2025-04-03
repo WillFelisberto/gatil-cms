@@ -1,5 +1,7 @@
 import { FaWhatsapp } from 'react-icons/fa';
 
+import { formatPhoneNumber } from '@/utils/phoneFormatter';
+
 interface VolunteerCardProps {
   photo: string;
   name: string;
@@ -10,10 +12,7 @@ export const VolunteerCard = ({ photo, name, phone }: VolunteerCardProps) => {
   return (
     <div
       className="
-        flex flex-col items-center text-center
-        rounded-2xl shadow-lg p-4 bg-white
-        transition-all duration-300 transform hover:scale-105 hover:shadow-xl
-      "
+        flex flex-col items-center text-center rounded-2xl shadow-lg p-4 bg-white transition-all duration-300 transform hover:scale-105 hover:shadow-xl w-full max-w-[180px] sm:w-[180px] justify-between"
       data-testid="volunteer-card"
     >
       <img
@@ -28,10 +27,10 @@ export const VolunteerCard = ({ photo, name, phone }: VolunteerCardProps) => {
           href={`https://wa.me/55${phone.replace(/\D/g, '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 font-medium text-sm text-blue-950  mt-1 hover:underline"
+          className="flex items-center gap-2 font-medium text-sm text-blue-950  mt-1 hover:underline whitespace-nowrap"
         >
           <FaWhatsapp className="text-lg text-green-600" />
-          {phone}
+          {formatPhoneNumber(phone)}
         </a>
       )}
     </div>

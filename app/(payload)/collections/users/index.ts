@@ -26,16 +26,33 @@ const Users: CollectionConfig = {
       type: 'email',
       required: true
     },
+
     {
-      name: 'telefone',
-      label: 'Telefone',
-      type: 'text',
-      admin: {
-        components: {
-          Field: 'app/(payload)/components/fields/MaskedPhoneField',
-          Cell: 'app/(payload)/components/fields/PhoneCell'
+      type: 'row', // required
+      fields: [
+        {
+          name: 'telefone',
+          label: 'Telefone',
+          type: 'text',
+          admin: {
+            components: {
+              Field: 'app/(payload)/components/fields/MaskedPhoneField',
+              Cell: 'app/(payload)/components/fields/PhoneCell'
+            }
+          }
+        },
+        {
+          name: 'showPhone',
+          label: 'Exibir telefone na página de sobre',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            style: {
+              justifyContent: 'center'
+            }
+          }
         }
-      }
+      ]
     },
     {
       name: 'photo',
@@ -59,6 +76,12 @@ const Users: CollectionConfig = {
         { label: 'Voluntário', value: 'voluntario' }
       ],
       defaultValue: 'voluntario'
+    },
+    {
+      name: 'show',
+      label: 'Exibir na página de sobre o projeto',
+      type: 'checkbox',
+      defaultValue: true
     }
   ]
 };

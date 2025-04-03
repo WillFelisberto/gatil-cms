@@ -58,7 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     { label: 'Apadrinhe', href: '/apadrinhe' },
     { label: 'Colabore', href: '/colabore' },
     { label: 'Contato', href: '/contato' },
-    { label: 'Sobre o Projeto', href: '/sobre' },
+    { label: 'Sobre o Projeto', href: '/sobre-o-projeto' },
     { label: 'Adote', href: '/adote' }
   ];
 

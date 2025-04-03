@@ -17,9 +17,10 @@
     "baseUrl": ".",
     "types": ["@testing-library/jest-dom"],
     "paths": {
+      "@/*": ["./*"],
       "@/public/*": ["public/*"],
+      "@/utils/*": ["utils/*"],
       "@/assets/*": ["assets/*"],
-      "@/*": ["./src/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
       "@payload-config": ["./payload.config.ts"],

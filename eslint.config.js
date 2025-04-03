@@ -54,15 +54,16 @@ export default defineConfig([
       'no-debugger': 'warn',
       'no-alert': 'warn',
       'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error'
+      'simple-import-sort/exports': 'error',
+      ...importPlugin.configs.recommended.rules // <-- substitui o flatConfig para aplicar as regras corretamente
     }
   },
   {
     plugins: {
-      'simple-import-sort': simpleImportSort
+      'simple-import-sort': simpleImportSort,
+      import: importPlugin // <-- registra o plugin manualmente
     }
   },
-  importPlugin.flatConfigs.recommended,
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   pluginReact.configs.flat['jsx-runtime']

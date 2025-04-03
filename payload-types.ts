@@ -89,7 +89,9 @@ export interface Config {
     sponsorships: SponsorshipsSelect<false> | SponsorshipsSelect<true>;
     cronLogs: CronLogsSelect<false> | CronLogsSelect<true>;
     'activity-log': ActivityLogSelect<false> | ActivityLogSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-locked-documents':
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
@@ -254,8 +256,10 @@ export interface User {
   id: string;
   name: string;
   telefone?: string | null;
+  showPhone?: boolean | null;
   photo?: (string | null) | Media;
   role: 'admin' | 'voluntario';
+  show?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -471,8 +475,10 @@ export interface AdoptionsSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
   telefone?: T;
+  showPhone?: T;
   photo?: T;
   role?: T;
+  show?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -672,7 +678,6 @@ export interface SiteConfigSelect<T extends boolean = true> {
 export interface Auth {
   [k: string]: unknown;
 }
-
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

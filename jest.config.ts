@@ -8,10 +8,12 @@ const config: Config = {
     '<rootDir>/app/[(]my-app[)]/hooks/',
     '<rootDir>/app/[(]my-app[)]/context/',
     '<rootDir>/app/[(]my-app[)]/lib/*',
-    '<rootDir>/.jest/' // ← Adicione aqui também
+    '<rootDir>/.jest/',
+    '<rootDir>/utils/'
   ],
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
+    '<rootDir>/utils/',
     '<rootDir>/.jest/',
     '<rootDir>/node_modules/',
     '<rootDir>/app/[(]my-app[)]/hooks/*',
@@ -29,7 +31,7 @@ const config: Config = {
   },
   moduleNameMapper: {
     '^@/tests/(.*)$': '<rootDir>/.jest/$1',
-    '^@/(.*)$': '<rootDir>/app/(my-app)/$1' // Adicione seus aliases do Next.js
+    '^@/(.*)$': '<rootDir>/$1'
   },
   moduleDirectories: ['node_modules', '<rootDir>'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
