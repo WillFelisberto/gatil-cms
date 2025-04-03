@@ -14,6 +14,7 @@ import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import CronLogs from 'app/(payload)/collections/cronLogs';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import SiteConfig from 'app/(payload)/globals/siteConfig';
+import Sobre from './app/(payload)/globals/sobre';
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -33,7 +34,7 @@ export default buildConfig({
   },
 
   collections: [Cats, Adoptions, Users, Guardians, Media, Sponsorships, CronLogs],
-  globals: [SiteConfig],
+  globals: [SiteConfig, Sobre],
   i18n: {
     fallbackLanguage: 'pt',
     supportedLanguages: {
@@ -122,6 +123,10 @@ export default buildConfig({
       },
       globals: {
         'site-config': {
+          enableDeviceInfoLogging: true,
+          enableIpAddressLogging: true
+        },
+        sobre: {
           enableDeviceInfoLogging: true,
           enableIpAddressLogging: true
         }

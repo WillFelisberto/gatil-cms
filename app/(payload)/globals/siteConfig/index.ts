@@ -1,10 +1,19 @@
 import { GlobalConfig } from 'payload';
+import { checkRole } from '../../access/utils';
 
 const SiteConfig: GlobalConfig = {
   slug: 'site-config',
   label: 'Configurações do Site',
   admin: {
     group: 'Site'
+  },
+  access: {
+    read: ({ req: { user } }) => {
+      return user ? checkRole('admin', user) : false;
+    },
+    update: ({ req: { user } }) => {
+      return user ? checkRole('admin', user) : false;
+    }
   },
   fields: [
     {

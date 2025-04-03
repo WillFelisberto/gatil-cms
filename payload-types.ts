@@ -98,9 +98,11 @@ export interface Config {
   };
   globals: {
     'site-config': SiteConfig;
+    sobre: Sobre;
   };
   globalsSelect: {
     'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
+    sobre: SobreSelect<false> | SobreSelect<true>;
   };
   locale: 'pt';
   user: User & {
@@ -654,6 +656,31 @@ export interface SiteConfig {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sobre".
+ */
+export interface Sobre {
+  id: string;
+  imagem?: (string | null) | Media;
+  descricao?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-config_select".
  */
 export interface SiteConfigSelect<T extends boolean = true> {
@@ -665,6 +692,17 @@ export interface SiteConfigSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sobre_select".
+ */
+export interface SobreSelect<T extends boolean = true> {
+  imagem?: T;
+  descricao?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

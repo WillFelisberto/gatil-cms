@@ -6,9 +6,10 @@ interface VolunteerCardProps {
   photo: string;
   name: string;
   phone?: string;
+  showPhone?: boolean;
 }
 
-export const VolunteerCard = ({ photo, name, phone }: VolunteerCardProps) => {
+export const VolunteerCard = ({ photo, name, phone, showPhone }: VolunteerCardProps) => {
   return (
     <div
       className="
@@ -22,7 +23,7 @@ export const VolunteerCard = ({ photo, name, phone }: VolunteerCardProps) => {
       />
       <h3 className="text-lg font-semibold text-zinc-800">{name}</h3>
 
-      {phone && (
+      {phone && showPhone && (
         <a
           href={`https://wa.me/55${phone.replace(/\D/g, '')}`}
           target="_blank"
