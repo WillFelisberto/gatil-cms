@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FAQAccordion /> should render all questions 1`] = `
+<div>
+  <dl
+    class="max-w-4xl mx-auto mt-10 border border-gray-300 rounded overflow-hidden divide-y divide-gray-200"
+    data-testid="faq-accordion"
+  >
+    <div>
+      <dt>
+        <button
+          aria-controls="faq-answer-0"
+          aria-expanded="false"
+          class="w-full flex justify-between items-center text-left px-6 py-4 hover:bg-gray-50 transition group cursor-pointer"
+          data-testid="faq-question-0"
+          id="faq-question-0"
+        >
+          <span
+            class="font-medium text-[#013274] group-hover:underline"
+          >
+            O que é apadrinhamento?
+          </span>
+          <svg
+            class="lucide lucide-chevron-down w-5 h-5 text-[#013274]"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </dt>
+      <dd
+        aria-labelledby="faq-question-0"
+        class="transition-all duration-300 overflow-hidden px-6 max-h-0 pb-0"
+        data-testid="faq-answer-0"
+        id="faq-answer-0"
+        role="region"
+      >
+        <p
+          class="text-gray-700 text-sm leading-relaxed"
+        >
+          É uma forma de ajudar financeiramente um gatinho.
+        </p>
+      </dd>
+    </div>
+    <div>
+      <dt>
+        <button
+          aria-controls="faq-answer-1"
+          aria-expanded="false"
+          class="w-full flex justify-between items-center text-left px-6 py-4 hover:bg-gray-50 transition group cursor-pointer"
+          data-testid="faq-question-1"
+          id="faq-question-1"
+        >
+          <span
+            class="font-medium text-[#013274] group-hover:underline"
+          >
+            Posso apadrinhar mais de um gato?
+          </span>
+          <svg
+            class="lucide lucide-chevron-down w-5 h-5 text-[#013274]"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </dt>
+      <dd
+        aria-labelledby="faq-question-1"
+        class="transition-all duration-300 overflow-hidden px-6 max-h-0 pb-0"
+        data-testid="faq-answer-1"
+        id="faq-answer-1"
+        role="region"
+      >
+        <p
+          class="text-gray-700 text-sm leading-relaxed"
+        >
+          Sim! Você pode apadrinhar quantos gatos quiser.
+        </p>
+      </dd>
+    </div>
+  </dl>
+</div>
+`;
