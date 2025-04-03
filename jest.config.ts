@@ -29,6 +29,7 @@ const config: Config = {
       }
     ]
   },
+  transformIgnorePatterns: ['/node_modules/(?!(.*@payloadcms/richtext-lexical.*)/)'],
   moduleNameMapper: {
     '^@/tests/(.*)$': '<rootDir>/.jest/$1',
     '^@/(.*)$': '<rootDir>/$1'
