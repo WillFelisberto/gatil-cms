@@ -9,7 +9,7 @@ import { VolunteerCard } from '../components/Atoms/VolunteerCard';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Sobre o Gatil dos Resgatados | Resgate, Adoção e Amor',
+    title: 'Sobre o Gatil dos Resgatados | Gatil dos Resgatados',
     description:
       'Conheça o Gatil dos Resgatados: um projeto que há mais de 8 anos resgata e cuida de gatos em situação de vulnerabilidade em Santa Catarina. Faça parte dessa transformação!',
     openGraph: {

@@ -101,12 +101,14 @@ export interface Config {
     sobre: Sobre;
     adote: Adote;
     contato: Contato;
+    colabore: Colabore;
   };
   globalsSelect: {
     'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
     sobre: SobreSelect<false> | SobreSelect<true>;
     adote: AdoteSelect<false> | AdoteSelect<true>;
     contato: ContatoSelect<false> | ContatoSelect<true>;
+    colabore: ColaboreSelect<false> | ColaboreSelect<true>;
   };
   locale: 'pt';
   user: User & {
@@ -740,6 +742,33 @@ export interface Contato {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "colabore".
+ */
+export interface Colabore {
+  id: string;
+  imagem: string | Media;
+  descricao: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  logobanco: string | Media;
+  qrcode: string | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-config_select".
  */
 export interface SiteConfigSelect<T extends boolean = true> {
@@ -789,6 +818,19 @@ export interface ContatoSelect<T extends boolean = true> {
         resposta?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "colabore_select".
+ */
+export interface ColaboreSelect<T extends boolean = true> {
+  imagem?: T;
+  descricao?: T;
+  logobanco?: T;
+  qrcode?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

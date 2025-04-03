@@ -29,15 +29,15 @@ export default async function AboutPage() {
 
   return (
     <article className="px-4 py-8 max-w-4xl mx-auto">
-      <header className="mb-6 pt-2 text-justify">
+      <section className="mb-6 pt-2 text-justify">
         <h1 className="text-3xl md:text-4xl font-bold text-[#013274] mb-6">Perguntas frequentes</h1>
 
         {contato?.descricao && (
-          <div className="text-gray-600 max-w-3xl mx-auto mb-4 leading-relaxed">
+          <div className="text-gray-600 max-w-3xl   mb-4 leading-relaxed">
             <RichTextComponent lexicalData={contato.descricao} />
           </div>
         )}
-      </header>
+      </section>
 
       {contato?.faq && (
         <section className="mb-12 text-center" aria-labelledby="faq-section">
