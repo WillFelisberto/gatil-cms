@@ -36,6 +36,7 @@ export default defineConfig([
       '**/.next/**',
       'app/\\(payload\\)/**',
       'payload.config.ts',
+      'payload-types.ts',
       'prettier.config.js',
       'babel.config.cjs',
       'eslint.config.js',
