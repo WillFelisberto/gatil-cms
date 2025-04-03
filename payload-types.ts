@@ -100,11 +100,13 @@ export interface Config {
     'site-config': SiteConfig;
     sobre: Sobre;
     adote: Adote;
+    contato: Contato;
   };
   globalsSelect: {
     'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
     sobre: SobreSelect<false> | SobreSelect<true>;
     adote: AdoteSelect<false> | AdoteSelect<true>;
+    contato: ContatoSelect<false> | ContatoSelect<true>;
   };
   locale: 'pt';
   user: User & {
@@ -707,6 +709,37 @@ export interface Adote {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contato".
+ */
+export interface Contato {
+  id: string;
+  descricao: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  faq?:
+    | {
+        pergunta: string;
+        resposta: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-config_select".
  */
 export interface SiteConfigSelect<T extends boolean = true> {
@@ -739,6 +772,23 @@ export interface SobreSelect<T extends boolean = true> {
  */
 export interface AdoteSelect<T extends boolean = true> {
   descricao?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contato_select".
+ */
+export interface ContatoSelect<T extends boolean = true> {
+  descricao?: T;
+  faq?:
+    | T
+    | {
+        pergunta?: T;
+        resposta?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
