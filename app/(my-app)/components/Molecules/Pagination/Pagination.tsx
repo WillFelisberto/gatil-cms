@@ -22,6 +22,10 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
     router.push(`?${params.toString()}`);
   };
 
+  const baseButtonClasses =
+    'p-2 rounded-full border border-[#013274] text-[#013274] transition disabled:opacity-30';
+  const interactiveClasses = 'hover:bg-[#013274]/10 cursor-pointer';
+
   return (
     <nav
       className="flex gap-2 items-center flex-wrap justify-center mt-8"
@@ -32,7 +36,7 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
       <button
         disabled={currentPage === 1}
         onClick={() => goToPage(currentPage - 1)}
-        className="p-2 rounded-full border border-[#013274] text-[#013274] hover:bg-[#013274]/10 disabled:opacity-30 transition"
+        className={`${baseButtonClasses} ${currentPage !== 1 ? interactiveClasses : ''}`}
         aria-label="Página anterior"
         data-testid="prev-button"
       >
@@ -46,7 +50,7 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
           className={`w-9 h-9 rounded-full border flex items-center justify-center transition font-medium ${
             page === currentPage
               ? 'bg-[#013274] text-white border-[#013274] shadow-md'
-              : 'border-[#013274] text-[#013274] hover:bg-[#013274]/10'
+              : 'border-[#013274] text-[#013274] hover:bg-[#013274]/10 cursor-pointer'
           }`}
           aria-current={page === currentPage ? 'page' : undefined}
           aria-label={`Página ${page}`}
@@ -59,7 +63,7 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
       <button
         disabled={currentPage === totalPages}
         onClick={() => goToPage(currentPage + 1)}
-        className="p-2 rounded-full border border-[#013274] text-[#013274] hover:bg-[#013274]/10 disabled:opacity-30 transition"
+        className={`${baseButtonClasses} ${currentPage !== totalPages ? interactiveClasses : ''}`}
         aria-label="Próxima página"
         data-testid="next-button"
       >

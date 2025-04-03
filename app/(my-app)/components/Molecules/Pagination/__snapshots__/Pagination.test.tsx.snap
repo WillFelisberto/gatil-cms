@@ -10,7 +10,7 @@ exports[`<Pagination /> should render pagination with correct buttons 1`] = `
   >
     <button
       aria-label="Página anterior"
-      class="p-2 rounded-full border border-[#013274] text-[#013274] hover:bg-[#013274]/10 disabled:opacity-30 transition"
+      class="p-2 rounded-full border border-[#013274] text-[#013274] transition disabled:opacity-30 hover:bg-[#013274]/10 cursor-pointer"
       data-testid="prev-button"
     >
       <svg
@@ -35,7 +35,7 @@ exports[`<Pagination /> should render pagination with correct buttons 1`] = `
     </button>
     <button
       aria-label="Página 1"
-      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium border-[#013274] text-[#013274] hover:bg-[#013274]/10"
+      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium border-[#013274] text-[#013274] hover:bg-[#013274]/10 cursor-pointer"
       data-testid="page-button-1"
     >
       1
@@ -50,21 +50,21 @@ exports[`<Pagination /> should render pagination with correct buttons 1`] = `
     </button>
     <button
       aria-label="Página 3"
-      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium border-[#013274] text-[#013274] hover:bg-[#013274]/10"
+      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium border-[#013274] text-[#013274] hover:bg-[#013274]/10 cursor-pointer"
       data-testid="page-button-3"
     >
       3
     </button>
     <button
       aria-label="Página 4"
-      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium border-[#013274] text-[#013274] hover:bg-[#013274]/10"
+      class="w-9 h-9 rounded-full border flex items-center justify-center transition font-medium border-[#013274] text-[#013274] hover:bg-[#013274]/10 cursor-pointer"
       data-testid="page-button-4"
     >
       4
     </button>
     <button
       aria-label="Próxima página"
-      class="p-2 rounded-full border border-[#013274] text-[#013274] hover:bg-[#013274]/10 disabled:opacity-30 transition"
+      class="p-2 rounded-full border border-[#013274] text-[#013274] transition disabled:opacity-30 hover:bg-[#013274]/10 cursor-pointer"
       data-testid="next-button"
     >
       <svg
