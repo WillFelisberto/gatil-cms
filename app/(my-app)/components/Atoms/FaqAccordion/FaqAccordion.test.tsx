@@ -4,12 +4,12 @@ import { FAQAccordion } from './FaqAccordion';
 
 const mockFaqs = [
   {
-    question: 'O que é apadrinhamento?',
-    answer: 'É uma forma de ajudar financeiramente um gatinho.'
+    pergunta: 'O que é apadrinhamento?',
+    resposta: 'É uma forma de ajudar financeiramente um gatinho.'
   },
   {
-    question: 'Posso apadrinhar mais de um gato?',
-    answer: 'Sim! Você pode apadrinhar quantos gatos quiser.'
+    pergunta: 'Posso apadrinhar mais de um gato?',
+    resposta: 'Sim! Você pode apadrinhar quantos gatos quiser.'
   }
 ];
 
@@ -18,7 +18,7 @@ describe('<FAQAccordion />', () => {
     const { container } = render(<FAQAccordion faqs={mockFaqs} />);
 
     mockFaqs.forEach((faq, index) => {
-      expect(screen.getByTestId(`faq-question-${index}`)).toHaveTextContent(faq.question);
+      expect(screen.getByTestId(`faq-question-${index}`)).toHaveTextContent(faq.pergunta);
     });
 
     expect(container).toMatchSnapshot();
@@ -31,7 +31,7 @@ describe('<FAQAccordion />', () => {
     fireEvent.click(question);
 
     const answer = screen.getByTestId('faq-answer-0');
-    expect(answer).toHaveTextContent(mockFaqs[0].answer);
+    expect(answer).toHaveTextContent(mockFaqs[0].resposta);
     expect(question).toHaveAttribute('aria-expanded', 'true');
   });
 
@@ -42,7 +42,7 @@ describe('<FAQAccordion />', () => {
     const answer = screen.getByTestId('faq-answer-0');
 
     fireEvent.click(question);
-    expect(answer).toHaveTextContent(mockFaqs[0].answer);
+    expect(answer).toHaveTextContent(mockFaqs[0].resposta);
     expect(question).toHaveAttribute('aria-expanded', 'true');
 
     fireEvent.click(question);
@@ -59,11 +59,11 @@ describe('<FAQAccordion />', () => {
     const secondAnswer = screen.getByTestId('faq-answer-1');
 
     fireEvent.click(firstQuestion);
-    expect(firstAnswer).toHaveTextContent(mockFaqs[0].answer);
+    expect(firstAnswer).toHaveTextContent(mockFaqs[0].resposta);
     expect(firstAnswer.className).toMatch(/max-h-40/);
 
     fireEvent.click(secondQuestion);
-    expect(secondAnswer).toHaveTextContent(mockFaqs[1].answer);
+    expect(secondAnswer).toHaveTextContent(mockFaqs[1].resposta);
     expect(secondAnswer.className).toMatch(/max-h-40/);
     expect(firstAnswer.className).toMatch(/max-h-0/);
   });

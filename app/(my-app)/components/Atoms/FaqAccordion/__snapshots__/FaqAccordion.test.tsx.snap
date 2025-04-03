@@ -16,7 +16,7 @@ exports[`<FAQAccordion /> should render all questions 1`] = `
           id="faq-question-0"
         >
           <span
-            class="font-medium text-[#013274] group-hover:underline"
+            class="font-medium text-base text-[#013274] group-hover:underline"
           >
             O que é apadrinhamento?
           </span>
@@ -46,7 +46,7 @@ exports[`<FAQAccordion /> should render all questions 1`] = `
         role="region"
       >
         <p
-          class="text-gray-700 text-sm leading-relaxed"
+          class="text-gray-700 text-base text-justify leading-relaxed"
         >
           É uma forma de ajudar financeiramente um gatinho.
         </p>
@@ -62,7 +62,7 @@ exports[`<FAQAccordion /> should render all questions 1`] = `
           id="faq-question-1"
         >
           <span
-            class="font-medium text-[#013274] group-hover:underline"
+            class="font-medium text-base text-[#013274] group-hover:underline"
           >
             Posso apadrinhar mais de um gato?
           </span>
@@ -92,7 +92,7 @@ exports[`<FAQAccordion /> should render all questions 1`] = `
         role="region"
       >
         <p
-          class="text-gray-700 text-sm leading-relaxed"
+          class="text-gray-700 text-base text-justify leading-relaxed"
         >
           Sim! Você pode apadrinhar quantos gatos quiser.
         </p>

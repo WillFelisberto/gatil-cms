@@ -15,18 +15,18 @@ export const Default: Story = {
   args: {
     faqs: [
       {
-        question: 'O que é o apadrinhamento de gatos?',
-        answer:
+        pergunta: 'O que é o apadrinhamento de gatos?',
+        resposta:
           'É uma forma de contribuir com os cuidados e o bem-estar de um gatinho resgatado, ajudando com os custos.'
       },
       {
-        question: 'Posso apadrinhar mais de um gato?',
-        answer:
+        pergunta: 'Posso apadrinhar mais de um gato?',
+        resposta:
           'Sim! Você pode adotar ou apadrinhar quantos gatos desejar, desde que consiga suprir suas necessidades com responsabilidade e carinho.'
       },
       {
-        question: 'Como funciona o apadrinhamento?',
-        answer:
+        pergunta: 'Como funciona o apadrinhamento?',
+        resposta:
           'Você escolhe um gatinho e contribui mensalmente com uma quantia para ajudar nos cuidados dele.'
       }
     ]

@@ -4,8 +4,8 @@ import { ChevronDown, Minus } from 'lucide-react';
 import { useState } from 'react';
 
 type FAQ = {
-  question: string;
-  answer: string;
+  pergunta: string;
+  resposta: string;
 };
 
 type FAQAccordionProps = {
@@ -40,8 +40,8 @@ export const FAQAccordion = ({ faqs }: FAQAccordionProps) => {
                 id={questionId}
                 data-testid={`faq-question-${index}`}
               >
-                <span className="font-medium text-[#013274] group-hover:underline">
-                  {faq.question}
+                <span className="font-medium text-base text-[#013274] group-hover:underline">
+                  {faq.pergunta}
                 </span>
                 {isOpen ? (
                   <Minus className="w-5 h-5 text-[#013274]" />
@@ -59,7 +59,7 @@ export const FAQAccordion = ({ faqs }: FAQAccordionProps) => {
               }`}
               data-testid={`faq-answer-${index}`}
             >
-              <p className="text-gray-700 text-sm leading-relaxed">{faq.answer}</p>
+              <p className="text-gray-700 text-base text-justify leading-relaxed">{faq.resposta}</p>
             </dd>
           </div>
         );
