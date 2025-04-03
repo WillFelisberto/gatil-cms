@@ -33,7 +33,7 @@ export default async function AboutPage() {
         <h1 className="text-3xl md:text-4xl font-bold text-[#013274] mb-6">Perguntas frequentes</h1>
 
         {contato?.descricao && (
-          <div className="text-gray-600 max-w-2xl mx-auto mb-4 leading-relaxed">
+          <div className="text-gray-600 max-w-3xl mx-auto mb-4 leading-relaxed">
             <RichTextComponent lexicalData={contato.descricao} />
           </div>
         )}
