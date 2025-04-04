@@ -29,7 +29,7 @@ jobs:
         run: pnpm install
       - name: Run prettier check
         run: |
-          pnpm prettier:check || (
+          pnpm exec prettier --check . || (
             echo "Prettier check failed, running format..." &&
             pnpm prettier:format
           )
@@ -53,10 +53,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run eslint check
-        run: pnpm eslint:format
+        run: pnpm lint
 
-  jest-check:
-    name: Tests - jest
+  test-check:
+    name: Tests - Jest
     needs: [prettier-check, eslint-check]
     runs-on: ubuntu-latest
     env:
@@ -80,8 +80,8 @@ jobs:
           CI: true
 
   nextjs-build-check:
-    name: Build nextjs application
-    needs: [jest-check]
+    name: Build Next.js application
+    needs: [test-check]
     runs-on: ubuntu-latest
     env:
       SKIP_ENV_VALIDATION: ${{ secrets.SKIP_ENV_VALIDATION }}
@@ -98,14 +98,14 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: pnpm install
-      - name: Build nextjs
+      - name: Build Next.js
         run: pnpm build
         env:
           CI: true
 
   storybook-build-check:
-    name: Build storybook application
-    needs: [jest-check]
+    name: Build Storybook
+    needs: [test-check]
     runs-on: ubuntu-latest
     env:
       SKIP_ENV_VALIDATION: ${{ secrets.SKIP_ENV_VALIDATION }}
@@ -122,7 +122,7 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: pnpm install
-      - name: Build storybook
-        run: pnpm storybook:build
+      - name: Build Storybook
+        run: pnpm build-storybook
         env:
           CI: true
