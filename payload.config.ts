@@ -7,6 +7,8 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { pt } from '@payloadcms/translations/languages/pt';
 import { activityLogPlugin } from '@payload-bites/activity-log';
 
+import { resendAdapter } from '@payloadcms/email-resend';
+
 // Collections
 import Cats from 'app/(payload)/collections/cats';
 import Adoptions from 'app/(payload)/collections/adoptions';
@@ -75,7 +77,7 @@ export default buildConfig({
 
   ...(process.env.PAYLOAD_SMTP_USER && {
     email: nodemailerAdapter({
-      defaultFromAddress: 'no-reply@gatildosresgatados.com.br',
+      defaultFromAddress: 'no-reply@gatildosresgatados.com',
       defaultFromName: 'Sistema do Gatil dos Resgatados',
       transportOptions: {
         host: process.env.PAYLOAD_SMTP_HOST,
