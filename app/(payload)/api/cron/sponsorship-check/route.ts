@@ -69,11 +69,23 @@ export async function GET(req: NextRequest) {
       <ul style="padding-left: 1.2rem;">${padrinhos}</ul>
     `;
 
-    await payload.sendEmail({
-      to: 'willianaru@gmail.com', //TODO: mudar para o email do admin com flag
-      subject: '⚠️ Gatil dos Resgatados - Apadrinhamentos vencidos',
-      html
+    const { docs: users } = await payload.find({
+      collection: 'users',
+      where: {
+        emailUpdates: {
+          equals: true
+        }
+      }
     });
+
+    const emails = users.map((user) => user.email).filter(Boolean);
+    if (emails.length > 0) {
+      await payload.sendEmail({
+        to: emails,
+        subject: '⚠️ Gatil dos Resgatados - Apadrinhamentos vencidos',
+        html
+      });
+    }
   }
   await payload.create({
     collection: 'cronLogs',

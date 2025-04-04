@@ -82,6 +82,12 @@ const Users: CollectionConfig = {
       label: 'Exibir na página de sobre o projeto',
       type: 'checkbox',
       defaultValue: true
+    },
+    {
+      name: 'emailUpdates',
+      label: 'Enviar e-mails sobre novos apadrinhamentos e atualizações',
+      type: 'checkbox',
+      defaultValue: false
     }
   ]
 };

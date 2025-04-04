@@ -110,14 +110,26 @@ export const createSponsorships: PayloadHandler = async (req): Promise<Response>
           ✏️ Editar apadrinhamento
         </a>
       </p>
-    </div>
-  `;
+    </div>`;
 
-    await payload.sendEmail({
-      to: 'willianaru@gmail.com', //TODO: mudar para o email do admin com flag ativa
-      subject: '🐾 Novo apadrinhamento via site!',
-      html
+    const { docs: users } = await payload.find({
+      collection: 'users',
+      where: {
+        emailUpdates: {
+          equals: true
+        }
+      }
     });
+
+    const emails = users.map((user) => user.email).filter(Boolean);
+
+    if (emails.length > 0) {
+      await payload.sendEmail({
+        to: emails,
+        subject: '🐾 Novo apadrinhamento via site!',
+        html
+      });
+    }
 
     return Response.json({ success: true, id: novo.id });
   } catch (err: any) {
