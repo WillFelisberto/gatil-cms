@@ -27,6 +27,7 @@ const Sponsorships: CollectionConfig = {
       label: 'Gatinho apadrinhado(a)',
       type: 'relationship',
       relationTo: 'cats',
+      hasMany: true,
       required: false, // <-- Agora controlado por validate
       validate: (value: any, { siblingData }: any) => {
         if (!siblingData?.apadrinhaProjeto && !value) {

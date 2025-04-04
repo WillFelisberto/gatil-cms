@@ -24,14 +24,14 @@ exports[`<CatCard /> renders correctly with required props 1`] = `
         class="relative h-60 w-full shrink-0"
       >
         <img
-          alt="Foto de Gato Teste"
+          alt="Will"
           class="object-cover"
           data-nimg="fill"
           data-testid="cat-image"
           decoding="async"
           sizes="(max-width: 768px) 100vw, 384px"
-          src="/_next/image?url=%2Fno-image.jpg&w=3840&q=75"
-          srcset="/_next/image?url=%2Fno-image.jpg&w=640&q=75 640w, /_next/image?url=%2Fno-image.jpg&w=750&q=75 750w, /_next/image?url=%2Fno-image.jpg&w=828&q=75 828w, /_next/image?url=%2Fno-image.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fno-image.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fno-image.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fno-image.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fno-image.jpg&w=3840&q=75 3840w"
+          src="/_next/image?url=%2Fapi%2Fmedia%2Ffile%2Fgato3.png&w=3840&q=75"
+          srcset="/_next/image?url=%2Fapi%2Fmedia%2Ffile%2Fgato3.png&w=640&q=75 640w, /_next/image?url=%2Fapi%2Fmedia%2Ffile%2Fgato3.png&w=750&q=75 750w, /_next/image?url=%2Fapi%2Fmedia%2Ffile%2Fgato3.png&w=828&q=75 828w, /_next/image?url=%2Fapi%2Fmedia%2Ffile%2Fgato3.png&w=1080&q=75 1080w, /_next/image?url=%2Fapi%2Fmedia%2Ffile%2Fgato3.png&w=1200&q=75 1200w, /_next/image?url=%2Fapi%2Fmedia%2Ffile%2Fgato3.png&w=1920&q=75 1920w, /_next/image?url=%2Fapi%2Fmedia%2Ffile%2Fgato3.png&w=2048&q=75 2048w, /_next/image?url=%2Fapi%2Fmedia%2Ffile%2Fgato3.png&w=3840&q=75 3840w"
           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
         />
       </div>
@@ -39,7 +39,7 @@ exports[`<CatCard /> renders correctly with required props 1`] = `
         class="p-4 h-full flex flex-col gap-2"
       >
         <h2
-          class="text-xl font-bold  flex items-center gap-2 text-blue-700"
+          class="text-xl font-bold flex items-center gap-2 text-blue-700"
           data-testid="cat-name"
         >
           <svg
@@ -62,10 +62,26 @@ exports[`<CatCard /> renders correctly with required props 1`] = `
           </svg>
           Gato Teste
         </h2>
+        <p
+          class="text-sm font-medium font-poppins text-gray-600"
+          data-testid="cat-description"
+        >
+          maluca doidinha
+        </p>
         <div
           class="mt-2 space-y-1 text-sm font-medium text-gray-600"
           data-testid="cat-details"
-        />
+        >
+          <p
+            class="text-sm text-gray-700"
+          >
+            🎂 
+            1 ano
+          </p>
+          <p>
+            ✂️ Castrado
+          </p>
+        </div>
       </div>
     </a>
   </article>

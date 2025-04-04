@@ -102,6 +102,7 @@ export interface Config {
     adote: Adote;
     contato: Contato;
     colabore: Colabore;
+    apadrinhe: Apadrinhe;
   };
   globalsSelect: {
     'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
@@ -109,6 +110,7 @@ export interface Config {
     adote: AdoteSelect<false> | AdoteSelect<true>;
     contato: ContatoSelect<false> | ContatoSelect<true>;
     colabore: ColaboreSelect<false> | ColaboreSelect<true>;
+    apadrinhe: ApadrinheSelect<false> | ApadrinheSelect<true>;
   };
   locale: 'pt';
   user: User & {
@@ -283,7 +285,7 @@ export interface User {
  */
 export interface Sponsorship {
   id: string;
-  gato?: (string | null) | Cat;
+  gato?: (string | Cat)[] | null;
   apadrinhaProjeto?: boolean | null;
   padrinho: string | Guardian;
   formaPagamento?: ('Pix' | 'Cartão' | 'Dinheiro') | null;
@@ -769,6 +771,30 @@ export interface Colabore {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "apadrinhe".
+ */
+export interface Apadrinhe {
+  id: string;
+  descricao: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-config_select".
  */
 export interface SiteConfigSelect<T extends boolean = true> {
@@ -831,6 +857,16 @@ export interface ColaboreSelect<T extends boolean = true> {
   descricao?: T;
   logobanco?: T;
   qrcode?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "apadrinhe_select".
+ */
+export interface ApadrinheSelect<T extends boolean = true> {
+  descricao?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
