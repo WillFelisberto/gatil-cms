@@ -234,7 +234,18 @@ exports[`<SponsorModal /> renders correctly with image and description 1`] = `
               name="aceitaTermos"
               type="checkbox"
             />
-            Li e aceito os termos de apadrinhamento
+            <span>
+              Li e aceito os
+               
+              <a
+                class="underline text-[#013274] hover:text-[#012050]"
+                href="/termos-de-apadrinhamento"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                termos de apadrinhamento
+              </a>
+            </span>
           </label>
         </div>
         <button
