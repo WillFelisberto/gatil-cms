@@ -102,6 +102,10 @@ jobs:
         run: pnpm build
         env:
           CI: true
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+          DATABASE_URI: ${{ secrets.DATABASE_URI }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
 
   storybook-build-check:
     name: Build Storybook
