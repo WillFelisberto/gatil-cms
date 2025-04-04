@@ -221,7 +221,17 @@ export const SponsorForm = ({ cat, onSuccess }: SponsorFormProps) => {
             aria-invalid={!!errors.aceitaTermos}
             data-testid="checkbox-termos"
           />
-          Li e aceito os termos de apadrinhamento
+          <span>
+            Li e aceito os{' '}
+            <a
+              href="/termos-de-apadrinhamento"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-[#013274] hover:text-[#012050]"
+            >
+              termos de apadrinhamento
+            </a>
+          </span>
         </label>
         {errors.aceitaTermos && (
           <p className="text-red-500 text-sm mt-1">É necessário aceitar os termos</p>
