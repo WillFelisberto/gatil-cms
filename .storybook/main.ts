@@ -17,9 +17,19 @@ const config: StorybookConfig = {
     config.plugins = [
       ...(config.plugins || []),
       svgr({
-        svgrOptions: { icon: true } // 👈 example of a valid property
+        svgrOptions: { icon: true }
       })
     ];
+
+    // 👇 Ignora alterações no backend
+    config.server = {
+      ...config.server,
+      watch: {
+        ...(config.server?.watch || {}),
+        ignored: ['./app/[(]payload[)]/**', './coverage/**']
+      }
+    };
+
     return config;
   },
   staticDirs: ['../public']

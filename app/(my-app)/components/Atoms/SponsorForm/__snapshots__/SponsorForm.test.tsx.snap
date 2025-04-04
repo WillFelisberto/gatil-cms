@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SponsorForm /> should render all required fields 1`] = `
+<div>
+  <form
+    aria-label="Formulário de apadrinhamento"
+    class="space-y-6 bg-white w-full mx-auto"
+    data-testid="sponsor-form"
+  >
+    <div>
+      <label
+        class="block mb-1 font-semibold text-gray-800"
+        for="padrinhoNome"
+      >
+        Seu nome
+      </label>
+      <input
+        aria-invalid="false"
+        class="w-full p-2 border rounded-md focus:ring-2 focus:outline-none border-gray-300"
+        data-testid="input-nome"
+        id="padrinhoNome"
+        name="padrinhoNome"
+        placeholder="Ex: João Vítor"
+        type="text"
+      />
+    </div>
+    <div>
+      <label
+        class="block mb-1 font-semibold text-gray-800"
+        for="whatsapp"
+      >
+        WhatsApp
+      </label>
+      <input
+        aria-invalid="false"
+        class="w-full p-2 border rounded-md focus:ring-2 focus:outline-none border-gray-300"
+        data-testid="input-whatsapp"
+        id="whatsapp"
+        name="whatsapp"
+        placeholder="(00) 00000-0000"
+        value=""
+      />
+    </div>
+    <div>
+      <label
+        class="block mb-1 font-semibold text-gray-800"
+        for="padrinhoEmail"
+      >
+        Seu email
+      </label>
+      <input
+        aria-invalid="false"
+        class="w-full p-2 border rounded-md focus:ring-2 focus:outline-none border-gray-300"
+        data-testid="input-email"
+        id="padrinhoEmail"
+        name="padrinhoEmail"
+        placeholder="seuemail@exemplo.com"
+        type="email"
+      />
+    </div>
+    <div
+      class="flex flex-col sm:flex-row sm:items-start sm:gap-4"
+    >
+      <label
+        class="font-semibold text-gray-800 min-w-[180px]"
+        for="valorMensal"
+      >
+        Plano de contribuição
+      </label>
+      <div
+        class="flex flex-col flex-1"
+      >
+        <select
+          aria-invalid="false"
+          class="p-2 border rounded-md focus:ring-2 focus:outline-none border-gray-300"
+          data-testid="select-plano"
+          id="valorMensal"
+          name="valorMensal"
+        >
+          <option
+            value=""
+          >
+            Selecione um plano
+          </option>
+          <option
+            value="R$ 29,90 (Básico)"
+          >
+            R$ 29,90 (Básico)
+          </option>
+          <option
+            value="R$ 59,90 (Premium)"
+          >
+            R$ 59,90 (Premium)
+          </option>
+          <option
+            value="R$ 99,90 (Master)"
+          >
+            R$ 99,90 (Master)
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="flex flex-col sm:flex-row sm:items-start sm:gap-4"
+    >
+      <label
+        class="font-semibold text-gray-800 min-w-[180px]"
+        for="formaPagamento"
+      >
+        Forma de pagamento
+      </label>
+      <div
+        class="flex flex-col flex-1"
+      >
+        <select
+          aria-invalid="false"
+          class="p-2 border rounded-md focus:ring-2 focus:outline-none border-gray-300"
+          data-testid="select-pagamento"
+          id="formaPagamento"
+          name="formaPagamento"
+        >
+          <option
+            value=""
+          >
+            Selecione
+          </option>
+          <option
+            value="Pix"
+          >
+            Pix
+          </option>
+          <option
+            value="Dinheiro"
+          >
+            Dinheiro
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="space-y-3"
+    >
+      <label
+        class="flex items-center gap-2 text-gray-700"
+      >
+        <input
+          data-testid="checkbox-certificado"
+          name="certificadoDigital"
+          type="checkbox"
+        />
+        Deseja receber certificado digital?
+      </label>
+      <label
+        class="flex items-center gap-2 text-gray-700"
+      >
+        <input
+          data-testid="checkbox-visitas"
+          name="visitas"
+          type="checkbox"
+        />
+        Gostaria de participar de eventos ou visitas?
+      </label>
+      <label
+        class="flex items-center gap-2 text-gray-700"
+      >
+        <input
+          aria-invalid="false"
+          data-testid="checkbox-termos"
+          name="aceitaTermos"
+          type="checkbox"
+        />
+        Li e aceito os termos de apadrinhamento
+      </label>
+    </div>
+    <button
+      class="w-full bg-[#013274] text-white font-semibold py-2 rounded-md hover:bg-[#012050] transition"
+      data-testid="submit-button"
+      type="submit"
+    >
+      Apadrinhar agora
+    </button>
+  </form>
+</div>
+`;

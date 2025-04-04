@@ -295,6 +295,9 @@ export interface Sponsorship {
   aceitaTermos: boolean;
   dataAtualizacao?: string | null;
   proximaAtualizacao?: string | null;
+  /**
+   * Marque para confirmar o pagamento.
+   */
   ativo?: boolean | null;
   whatsapp?: string | null;
   updatedAt: string;

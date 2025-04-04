@@ -203,7 +203,7 @@ describe('<CatCard />', () => {
   });
 
   it('uses fallback image when no photo provided', () => {
-    render(<CatCard cat={baseCat} whatsappNumber={whatsappNumber} />);
+    render(<CatCard cat={{ ...baseCat, foto: null }} whatsappNumber={whatsappNumber} />);
     expect(screen.getByTestId('cat-image').getAttribute('src')).toContain('no-image.jpg');
     expect(screen.getByTestId('cat-image')).toHaveAttribute('alt', 'Foto de Gato Teste');
   });
@@ -242,7 +242,12 @@ describe('<CatCard />', () => {
   });
 
   it('does not render optional fields when not provided', () => {
-    render(<CatCard cat={baseCat} whatsappNumber={whatsappNumber} />);
+    render(
+      <CatCard
+        cat={{ ...baseCat, descricao: null, vacinas: null, vermifugacoes: null, castrado: null }}
+        whatsappNumber={whatsappNumber}
+      />
+    );
 
     expect(screen.queryByTestId('cat-description')).not.toBeInTheDocument();
     expect(screen.queryByText('🎂')).not.toBeInTheDocument();

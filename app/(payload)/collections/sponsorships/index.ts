@@ -117,9 +117,11 @@ const Sponsorships: CollectionConfig = {
       name: 'ativo',
       label: 'Apadrinhamento ativo?',
       type: 'checkbox',
-      defaultValue: true
+      defaultValue: true,
+      admin: {
+        description: 'Marque para confirmar o pagamento.'
+      }
     },
-
     {
       name: 'whatsapp',
       label: 'Iniciar conversa',

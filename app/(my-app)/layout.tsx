@@ -4,6 +4,7 @@ import config from '@payload-config';
 import { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import { getPayload } from 'payload';
+import { ToastContainer } from 'react-toastify';
 
 import { Footer } from './components/Atoms/Footer';
 import { Header } from './components/Atoms/Header';
@@ -66,8 +67,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="pt-BR" className={poppins.variable}>
       <body>
         <Header menuItems={menuItems} />
-        <main className="min-h-screen">{children}</main>
+        <main>{children}</main>
         <Footer menuItems={menuItems} socialLinks={socialLinks} />
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </body>
     </html>
   );

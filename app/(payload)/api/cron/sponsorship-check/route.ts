@@ -70,7 +70,7 @@ export async function GET(req: NextRequest) {
     `;
 
     await payload.sendEmail({
-      to: 'willianaru@gmail.com',
+      to: 'willianaru@gmail.com', //TODO: mudar para o email do admin com flag
       subject: '⚠️ Gatil dos Resgatados - Apadrinhamentos vencidos',
       html
     });
