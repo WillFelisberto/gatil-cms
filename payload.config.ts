@@ -6,6 +6,7 @@ import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { pt } from '@payloadcms/translations/languages/pt';
 import { activityLogPlugin } from '@payload-bites/activity-log';
+import { importExportPlugin } from '@payloadcms/plugin-import-export';
 
 // Collections
 import Cats from 'app/(payload)/collections/cats';
@@ -40,6 +41,7 @@ export default buildConfig({
   editor: lexicalEditor(),
 
   admin: {
+    // Removed invalid webpack property as it is not supported in the admin object
     user: Users.slug,
     components: {
       graphics: {
@@ -106,6 +108,10 @@ export default buildConfig({
         ]
       : []),
 
+    importExportPlugin({
+      collections: ['cats', 'adoptions', 'guardians', 'sponsorships'],
+      disableJobsQueue: true
+    }),
     activityLogPlugin({
       access: {
         read: ({ req }) => req.user?.role === 'admin'

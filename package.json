@@ -31,6 +31,7 @@
     "@payloadcms/email-nodemailer": "^3.31.0",
     "@payloadcms/email-resend": "^3.32.0",
     "@payloadcms/next": "^3.31.0",
+    "@payloadcms/plugin-import-export": "^3.33.0",
     "@payloadcms/richtext-lexical": "^3.31.0",
     "@payloadcms/storage-vercel-blob": "^3.32.0",
     "@payloadcms/translations": "^3.31.0",
