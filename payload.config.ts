@@ -7,8 +7,6 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { pt } from '@payloadcms/translations/languages/pt';
 import { activityLogPlugin } from '@payload-bites/activity-log';
 
-import { resendAdapter } from '@payloadcms/email-resend';
-
 // Collections
 import Cats from 'app/(payload)/collections/cats';
 import Adoptions from 'app/(payload)/collections/adoptions';
@@ -43,6 +41,12 @@ export default buildConfig({
 
   admin: {
     user: Users.slug,
+    components: {
+      graphics: {
+        Icon: './app/(payload)/components/graphics/Icon',
+        Logo: './app/(payload)/components/graphics/Logo'
+      }
+    },
     meta: {
       titleSuffix: ' - Gatil dos Resgatados',
       description: 'Sistema do Gatil dos Resgatados',
@@ -50,7 +54,7 @@ export default buildConfig({
         {
           rel: 'icon',
           type: 'image/png',
-          url: '/public/favicon.ico'
+          url: '/favicon.ico'
         }
       ]
     }
