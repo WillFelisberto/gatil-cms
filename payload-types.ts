@@ -107,6 +107,7 @@ export interface Config {
     contato: Contato;
     colabore: Colabore;
     apadrinhe: Apadrinhe;
+    politicaAdocao: PoliticaAdocao;
   };
   globalsSelect: {
     'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
@@ -115,6 +116,7 @@ export interface Config {
     contato: ContatoSelect<false> | ContatoSelect<true>;
     colabore: ColaboreSelect<false> | ColaboreSelect<true>;
     apadrinhe: ApadrinheSelect<false> | ApadrinheSelect<true>;
+    politicaAdocao: PoliticaAdocaoSelect<false> | PoliticaAdocaoSelect<true>;
   };
   locale: 'pt';
   user: User & {
@@ -1004,6 +1006,30 @@ export interface Apadrinhe {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "politicaAdocao".
+ */
+export interface PoliticaAdocao {
+  id: string;
+  descricao?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-config_select".
  */
 export interface SiteConfigSelect<T extends boolean = true> {
@@ -1075,6 +1101,16 @@ export interface ColaboreSelect<T extends boolean = true> {
  * via the `definition` "apadrinhe_select".
  */
 export interface ApadrinheSelect<T extends boolean = true> {
+  descricao?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "politicaAdocao_select".
+ */
+export interface PoliticaAdocaoSelect<T extends boolean = true> {
   descricao?: T;
   updatedAt?: T;
   createdAt?: T;

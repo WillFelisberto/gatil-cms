@@ -24,6 +24,7 @@ import Adote from './app/(payload)/globals/adote';
 import Contato from './app/(payload)/globals/contato';
 import Colabore from './app/(payload)/globals/colabore';
 import Apadrinhe from './app/(payload)/globals/apadrinhe';
+import PoliticaAdocao from './app/(payload)/globals/politica';
 
 // Util: configurações padrão de logging
 const defaultLogging = {
@@ -35,7 +36,15 @@ const defaultLogging = {
 };
 
 const collectionsToLog = ['cats', 'adoptions', 'guardians', 'sponsorships', 'users'];
-const globalsToLog = ['site-config', 'sobre', 'adote', 'contato', 'colabore', 'apadrinhe'];
+const globalsToLog = [
+  'site-config',
+  'sobre',
+  'adote',
+  'contato',
+  'colabore',
+  'apadrinhe',
+  'politicaAdocao'
+];
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -63,7 +72,7 @@ export default buildConfig({
   },
 
   collections: [Cats, Adoptions, Users, Guardians, Media, Sponsorships, CronLogs],
-  globals: [SiteConfig, Sobre, Adote, Contato, Colabore, Apadrinhe],
+  globals: [SiteConfig, Sobre, Adote, Contato, Colabore, Apadrinhe, PoliticaAdocao],
 
   i18n: {
     fallbackLanguage: 'pt',
