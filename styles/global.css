@@ -45,3 +45,15 @@ code {
     Courier New,
     monospace;
 }
+
+.list-number li {
+  list-style: auto;
+  margin-left: 1rem;
+}
+.list-bullet li {
+  list-style: inside;
+}
+
+.nestedListItem {
+  margin-left: 2rem;
+}
