@@ -9,7 +9,8 @@ const Cats: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'nome',
-    group: 'Conteúdo'
+    group: 'Conteúdo',
+    defaultColumns: ['nome', 'sexo', 'descricao', 'observacoesSaude']
   },
   hooks: {
     beforeChange: [
@@ -31,11 +32,36 @@ const Cats: CollectionConfig = {
       required: true
     },
     {
+      name: 'birthDate',
+      label: 'Data de Nascimento',
+      type: 'date',
+      admin: {
+        date: {
+          pickerAppearance: 'dayOnly',
+          displayFormat: 'dd/MM/yyyy' // <- aqui
+        },
+        condition: (_, siblingData) => !siblingData?.idade // desativa se idade estiver preenchido
+      }
+    },
+    {
+      name: 'idadeEstimada',
+      label: 'Idade Estimada (baseada na data)',
+      type: 'ui',
+      admin: {
+        components: {
+          Field: 'app/(payload)/components/fields/GetPreviewField',
+          Cell: 'app/(payload)/components/fields/AgeCell'
+        },
+        condition: (_, siblingData) => Boolean(siblingData?.birthDate)
+      }
+    },
+    {
       name: 'idade',
-      label: 'Idade',
+      label: 'Idade (se não souber a data)',
       type: 'text',
       admin: {
-        placeholder: 'Ex: 2 meses, 1 ano e meio, 45 dias...'
+        placeholder: 'Ex: 2 meses, 1 ano e meio, 45 dias...',
+        condition: (_, siblingData) => !siblingData?.birthDate // desativa se birthDate estiver preenchido
       }
     },
     {

@@ -158,6 +158,7 @@ export interface UserAuthOperations {
 export interface Cat {
   id: string;
   nome: string;
+  birthDate?: string | null;
   idade?: string | null;
   descricao?: string | null;
   sexo: 'M' | 'F';
@@ -579,6 +580,7 @@ export interface PayloadMigration {
  */
 export interface CatsSelect<T extends boolean = true> {
   nome?: T;
+  birthDate?: T;
   idade?: T;
   descricao?: T;
   sexo?: T;

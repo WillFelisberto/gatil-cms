@@ -17,6 +17,12 @@ export const shouldTriggerDeploy = async ({
   newDoc: Record<string, any>;
   previousDoc?: Record<string, any>;
 }) => {
+  // Impede o trigger em ambiente de desenvolvimento
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Ambiente de desenvolvimento detectado. Deploy não será disparado.');
+    return;
+  }
+
   const cleanNew = removeIgnoredFields(newDoc);
   const cleanPrev = removeIgnoredFields(previousDoc || {});
 
