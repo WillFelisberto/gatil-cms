@@ -170,6 +170,30 @@ describe('<CatCard />', () => {
     expect(screen.getByText('📝 Saudável')).toBeInTheDocument();
   });
 
+  it('displays birthDate correctly when provided and hides idade', () => {
+    const catWithBirthDate = {
+      ...baseCat,
+      idade: null,
+      birthDate: '2024-03-05'
+    };
+
+    render(<CatCard cat={catWithBirthDate} whatsappNumber={whatsappNumber} />);
+
+    expect(screen.getByText(/🎂 Nascido em/)).toBeInTheDocument();
+    expect(screen.queryByText('🎂 1 ano')).not.toBeInTheDocument();
+  });
+
+  it('displays idade when birthDate is not provided', () => {
+    const catWithIdade = {
+      ...baseCat,
+      idade: '3 anos',
+      birthDate: null
+    };
+
+    render(<CatCard cat={catWithIdade} whatsappNumber={whatsappNumber} />);
+    expect(screen.getByText('🎂 3 anos')).toBeInTheDocument();
+  });
+
   it('handles different image types correctly', () => {
     const stringPhotoCat = { ...baseCat, foto: '/string-photo.jpg' };
     const objectPhotoCat = {

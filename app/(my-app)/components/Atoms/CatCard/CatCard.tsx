@@ -1,5 +1,7 @@
 'use client';
 
+import { format, formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaMars, FaVenus } from 'react-icons/fa';
@@ -24,7 +26,8 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
     castrado,
     doencas,
     observacoesSaude,
-    sexo
+    sexo,
+    birthDate
   } = cat;
 
   const imageUrl = typeof foto === 'string' ? foto : foto?.url;
@@ -82,7 +85,18 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
         )}
 
         <div className="mt-2 space-y-1 text-sm font-medium text-gray-600" data-testid="cat-details">
-          {idade && <p className="text-sm text-gray-700">🎂 {idade}</p>}
+          {!birthDate && idade && <p className="text-sm text-gray-700">🎂 {idade}</p>}
+          {birthDate && (
+            <p className="text-sm text-gray-700">
+              🎂 Nascido em{' '}
+              {format(new Date(birthDate), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })} (
+              {formatDistanceToNow(new Date(birthDate), {
+                locale: ptBR,
+                addSuffix: true
+              })}
+              )
+            </p>
+          )}
           {vacinas && vacinas.length > 0 && <p>{renderVacina}</p>}
           {castrado && <p>{renderCastrado}</p>}
           {vermifugacoes && vermifugacoes.length > 0 && <p>{renderVermifugo}</p>}
