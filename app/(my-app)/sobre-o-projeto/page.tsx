@@ -80,7 +80,7 @@ export default async function AboutPage() {
                 key={user.id}
                 name={user.name}
                 showPhone={user.showPhone || false}
-                photo={(user.photo as Media)?.url || ''}
+                photo={(user.photo as Media)?.url || '/no-image.jpg'}
                 phone={user.telefone || ''}
               />
             ))}
