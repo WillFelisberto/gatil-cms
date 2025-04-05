@@ -1,5 +1,6 @@
 import { checkRole } from 'app/(payload)/access/utils';
 import { CollectionConfig } from 'payload';
+import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
 
 const CronLogs: CollectionConfig = {
   slug: 'cronLogs',

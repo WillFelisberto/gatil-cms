@@ -1,11 +1,15 @@
 import { GlobalConfig } from 'payload';
 import { checkRole } from '../../access/utils';
+import { GlobalTriggerVercelIfChanged } from '../../hooks/afterChange/globalTriggerVercelIfChanged';
 
 const Contato: GlobalConfig = {
   slug: 'contato',
   label: 'Página de contato',
   admin: {
     group: 'Site'
+  },
+  hooks: {
+    afterChange: [GlobalTriggerVercelIfChanged]
   },
   access: {
     read: ({ req: { user } }) => {

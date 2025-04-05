@@ -1,11 +1,15 @@
 import { GlobalConfig } from 'payload';
 import { checkRole } from '../../access/utils';
+import { GlobalTriggerVercelIfChanged } from '../../hooks/afterChange/globalTriggerVercelIfChanged';
 
 const Adote: GlobalConfig = {
   slug: 'adote',
   label: 'Página Adote',
   admin: {
     group: 'Site'
+  },
+  hooks: {
+    afterChange: [GlobalTriggerVercelIfChanged]
   },
   access: {
     read: ({ req: { user } }) => {

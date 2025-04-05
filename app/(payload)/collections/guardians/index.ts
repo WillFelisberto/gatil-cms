@@ -1,11 +1,14 @@
-import WhatsappCell from 'app/(payload)/components/fields/WhatsappCell';
 import { CollectionConfig } from 'payload';
+import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
 
 const Guardians: CollectionConfig = {
   slug: 'guardians',
   labels: {
     singular: 'Tutor',
     plural: 'Tutores'
+  },
+  hooks: {
+    afterChange: [CollectionTriggerVercelIfChanged]
   },
   admin: {
     useAsTitle: 'nome',

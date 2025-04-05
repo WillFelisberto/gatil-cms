@@ -1,5 +1,6 @@
 import { GlobalConfig } from 'payload';
 import { checkRole } from '../../access/utils';
+import { GlobalTriggerVercelIfChanged } from '../../hooks/afterChange/globalTriggerVercelIfChanged';
 
 const Sobre: GlobalConfig = {
   slug: 'sobre',
@@ -14,6 +15,9 @@ const Sobre: GlobalConfig = {
     update: ({ req: { user } }) => {
       return user ? checkRole('admin', user) : false;
     }
+  },
+  hooks: {
+    afterChange: [GlobalTriggerVercelIfChanged]
   },
   fields: [
     {

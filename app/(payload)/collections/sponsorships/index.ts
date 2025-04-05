@@ -1,5 +1,6 @@
 import { generateNextUpdateDate } from 'app/(payload)/hooks/generateNextUpdateDate';
 import type { CollectionConfig } from 'payload';
+import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
 
 const Sponsorships: CollectionConfig = {
   slug: 'sponsorships',
@@ -19,7 +20,8 @@ const Sponsorships: CollectionConfig = {
     ]
   },
   hooks: {
-    beforeChange: [generateNextUpdateDate]
+    beforeChange: [generateNextUpdateDate],
+    afterChange: [CollectionTriggerVercelIfChanged]
   },
   fields: [
     {

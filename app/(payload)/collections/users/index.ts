@@ -1,5 +1,6 @@
 import { checkRole } from 'app/(payload)/access/utils';
 import { CollectionConfig } from 'payload';
+import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -11,6 +12,9 @@ const Users: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     group: 'Conteúdo'
+  },
+  hooks: {
+    afterChange: [CollectionTriggerVercelIfChanged]
   },
   fields: [
     {

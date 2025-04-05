@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -8,6 +9,9 @@ export const Media: CollectionConfig = {
   },
   access: {
     read: () => true
+  },
+  hooks: {
+    afterChange: [CollectionTriggerVercelIfChanged]
   },
   admin: {
     group: 'Conteúdo'

@@ -1,11 +1,15 @@
 import { GlobalConfig } from 'payload';
 import { checkRole } from '../../access/utils';
+import { GlobalTriggerVercelIfChanged } from '../../hooks/afterChange/globalTriggerVercelIfChanged';
 
 const Apadrinhe: GlobalConfig = {
   slug: 'apadrinhe',
   label: 'Página Apadrinhe',
   admin: {
     group: 'Site'
+  },
+  hooks: {
+    afterChange: [GlobalTriggerVercelIfChanged]
   },
   access: {
     read: ({ req: { user } }) => {

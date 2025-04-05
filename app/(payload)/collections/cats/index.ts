@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload';
+import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
 
 const Cats: CollectionConfig = {
   slug: 'cats',
@@ -19,7 +20,8 @@ const Cats: CollectionConfig = {
         }
         return data;
       }
-    ]
+    ],
+    afterChange: [CollectionTriggerVercelIfChanged]
   },
   fields: [
     {

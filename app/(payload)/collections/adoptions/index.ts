@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload';
+import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
 
 const Adoptions: CollectionConfig = {
   slug: 'adoptions',
@@ -10,6 +11,9 @@ const Adoptions: CollectionConfig = {
     useAsTitle: 'gato',
     group: 'Conteúdo',
     hideAPIURL: true
+  },
+  hooks: {
+    afterChange: [CollectionTriggerVercelIfChanged]
   },
   fields: [
     {
