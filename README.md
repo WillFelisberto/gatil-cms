@@ -1,43 +1,103 @@
-# Next.js + Jest
+# 🐾 Gatil CMS
 
-This example shows how to configure Jest to work with Next.js.
+Este sistema permite que você gerencie facilmente o conteúdo do site de seu gatil, incluindo:
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript. This example also shows how to use Jest with the App Router and React Server Components.
+- Cadastro de animais para adoção  
+- Sistema de apadrinhamento  
+- Controle de usuários e tutores  
+- Gerenciamento de adoções  
+- Edição de textos institucionais do site  
 
-> **Note:** Since tests can be co-located alongside other files inside the App Router, we have placed those tests in `app/` to demonstrate this behavior (which is different than `pages/`). You can still place all tests in `__tests__` if you prefer.
+Tudo isso integrado com um CMS moderno e flexível utilizando **Payload CMS**, **Next.js** e tecnologias de ponta.
 
-## Deploy your own
+## 🚀 Tecnologias utilizadas
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-jest&project-name=with-jest&repository-name=with-jest)
+- **Next.js** com Turbopack  
+- **React 19**  
+- **Payload CMS 3**  
+- **Tailwind CSS 4**  
+- **MongoDB (via @payloadcms/db-mongodb)**  
+- **Storybook** para desenvolvimento de componentes isolados  
+- **Husky + lint-staged** para Git hooks e formatação automática  
+- **Jest + Testing Library + Vitest + Playwright** para testes  
+- **GraphQL**  
+- **Hygen** para geração de componentes  
 
-## How to Use
+### Plugins úteis
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+- `@payloadcms/plugin-import-export`  
+- `@payload-bites/activity-log`  
+- `@payloadcms/translations`  
+- `payload-mask-plugin`  
+- `@nouance/payload-better-fields-plugin`
 
-```bash
-npx create-next-app --example with-jest with-jest-app
-```
-
-```bash
-yarn create next-app --example with-jest with-jest-app
-```
-
-```bash
-pnpm create next-app --example with-jest with-jest-app
-```
-
-## Running Tests
-
-```bash
-npm test
-```
-
-```bash
-yarn test
-```
+## 📦 Instalação
 
 ```bash
-pnpm test
+git clone https://github.com/WillFelisberto/gatil-cms
+cd gatil-cms
+pnpm install
+cp .env.example .env.local
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+> Configure suas variáveis de ambiente no `.env.local`.
+
+## 💻 Scripts disponíveis
+
+| Comando                   | Descrição                                |
+| ------------------------- | ---------------------------------------- |
+| `pnpm dev`                | Inicia o ambiente de desenvolvimento     |
+| `pnpm build`              | Cria a versão de produção                |
+| `pnpm start`              | Inicia o app em modo produção            |
+| `pnpm test`               | Executa os testes com Jest               |
+| `pnpm test:watch`         | Executa testes em modo observador        |
+| `pnpm test:ci`            | Executa testes em ambiente CI            |
+| `pnpm lint`               | Verifica problemas com ESLint            |
+| `pnpm lint:fix`           | Corrige automaticamente os erros de lint |
+| `pnpm prettier:format`    | Formata o código com Prettier            |
+| `pnpm generate:types`     | Gera os tipos do Payload CMS             |
+| `pnpm generate:importmap` | Gera o importmap para o Payload          |
+| `pnpm storybook`          | Inicia o Storybook                       |
+| `pnpm build-storybook`    | Gera a build do Storybook                |
+| `pnpm generate`           | Gera novos componentes com Hygen         |
+| `pnpm prepare`            | Setup do Husky                           |
+
+## 📁 Estrutura de pastas
+
+```
+├── app/(my-app)              # Aplicação Next.js 
+├── app/(payload)             # Configurações do Payload CMS
+├── app/(my-app)/components/  # Componentes React reutilizáveis
+├── public/                   # Assets públicos
+├── styles/                   # Estilos (Tailwind)
+├── .env.example              # Arquivo de exemplo para variáveis
+├── .env.local                # (Você deve criar a partir do .env.example)
+├── package.json
+├── README.md
+```
+
+## 🧪 Testes
+
+- **Jest** para testes unitários  
+- **Testing Library** para testes de UI  
+- **Vitest** e **Playwright** para testes end-to-end e browser-based  
+- **Storybook Test** para testes visuais de componentes
+
+## ✅ Boas práticas
+
+- Utiliza **husky** e **lint-staged** para garantir qualidade nos commits  
+- Use `pnpm generate` para manter padrão nos componentes  
+- Rode `pnpm generate:types` após alterações no CMS
+
+## 📃 Licença
+
+Este projeto é de código aberto, mas **a revenda é proibida**.  
+Consulte o arquivo [LICENSE.md](./LICENSE.md) para mais detalhes.
+
+## 🙋 Contribuindo
+
+Contribuições são bem-vindas! Abra uma issue ou pull request com sugestões, correções ou novos recursos.
+
+---
+
+🐱 Feito com amor para nossos gatinhos. 💜
