@@ -10,6 +10,10 @@ Este sistema permite que você gerencie facilmente o conteúdo do site de seu ga
 
 Tudo isso integrado com um CMS moderno e flexível utilizando **Payload CMS**, **Next.js** e tecnologias de ponta.
 
+## 📚 Documentação
+
+Acesse a [Wiki do Gatil CMS](https://github.com/WillFelisberto/gatil-cms/wiki) para entender facilmente como gerenciar o conteúdo do seu site, incluindo adoções, apadrinhamentos, cadastro de animais, usuários, tutores e textos institucionais.
+
 ## 🚀 Tecnologias utilizadas
 
 - **Next.js** com Turbopack  
