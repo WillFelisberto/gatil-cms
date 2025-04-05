@@ -8,13 +8,23 @@ const Users: CollectionConfig = {
     plural: 'Usuários',
     singular: 'Usuário'
   },
-  auth: true, // 🔐 Ativa autenticação
+  auth: {
+    maxLoginAttempts: 0 // nunca bloqueia o usuário por erro de login
+  },
   admin: {
     useAsTitle: 'name',
     group: 'Conteúdo'
   },
   hooks: {
-    afterChange: [CollectionTriggerVercelIfChanged]
+    afterChange: [CollectionTriggerVercelIfChanged],
+    beforeChange: [
+      ({ data, operation }) => {
+        if (operation === 'create') {
+          data.locked = false;
+        }
+        return data;
+      }
+    ]
   },
   fields: [
     {
