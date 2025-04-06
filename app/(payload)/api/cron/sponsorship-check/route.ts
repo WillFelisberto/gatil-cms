@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
         const telefone = padrinho.telefone?.replace(/\D/g, '');
         const whatsappLink = telefone ? `https://wa.me/55${telefone}` : null;
 
-        const editLink = `${process.env.NEXT_PUBLIC_SITE_URL}/admin/collections/guardians/${padrinho.id}`;
+        const editLink = `${process.env.NEXT_PUBLIC_SITE_URL}/admin/collections/sponsorships/${doc.id}`;
 
         return `
           <li style="margin-bottom: 1rem;">
