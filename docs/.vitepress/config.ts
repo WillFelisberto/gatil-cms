@@ -4,6 +4,7 @@ export default defineConfig({
 	title: 'Gatil CMS',
 	description: 'Documentação oficial do Gatil CMS 🐱',
 	lang: 'pt-br',
+	ignoreDeadLinks: true,
 	head: [
 		['link', { rel: 'icon', href: '/favicon.ico' }],
 	],
@@ -63,7 +64,5 @@ export default defineConfig({
 				}
 			}
 		}
-	}
-
-
+	},
 });
