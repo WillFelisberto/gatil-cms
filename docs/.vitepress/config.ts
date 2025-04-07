@@ -18,11 +18,11 @@ export default defineConfig({
 				text: 'Funcionalidades',
 				collapsed: false,
 				items: [
-					{ text: 'Cadastrar tutores', link: '/Funcionalidades/cadastrar-tutores' },
-					{ text: 'Cadastrar um gatinho', link: '/Funcionalidades/cadastrar-um-gatinho' },
-					{ text: 'Gerenciar adoções', link: '/Funcionalidades/gerenciar-adoções' },
-					{ text: 'Gerenciar apadrinhamentos', link: '/Funcionalidades/gerenciar-apadrinhamentos' },
-					{ text: 'Gerenciar usuários', link: '/Funcionalidades/gerenciar-usuários' },
+					{ text: 'Cadastrar tutores', link: '/funcionalidades/cadastrar-tutores' },
+					{ text: 'Cadastrar um gatinho', link: '/funcionalidades/cadastrar-um-gatinho' },
+					{ text: 'Gerenciar adoções', link: '/funcionalidades/gerenciar-adoções' },
+					{ text: 'Gerenciar apadrinhamentos', link: '/funcionalidades/gerenciar-apadrinhamentos' },
+					{ text: 'Gerenciar usuários', link: '/funcionalidades/gerenciar-usuários' },
 				],
 			},
 			{

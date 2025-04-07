@@ -34,4 +34,4 @@ No menu lateral do painel, acesse a seção: `Conteúdo > Adoções`
 
 ---
 
-Se precisar de ajuda para cadastrar tutores, veja também a seção [Cadastrar tutores](Cadastrar-tutores)
+Se precisar de ajuda para cadastrar tutores, veja também a seção [Cadastrar tutores](cadastrar-tutores.md)
