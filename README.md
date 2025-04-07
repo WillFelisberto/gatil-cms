@@ -2,11 +2,11 @@
 
 Este sistema permite que você gerencie facilmente o conteúdo do site de seu gatil, incluindo:
 
-- Cadastro de animais para adoção  
-- Sistema de apadrinhamento  
-- Controle de usuários e tutores  
-- Gerenciamento de adoções  
-- Edição de textos institucionais do site  
+- Cadastro de animais para adoção
+- Sistema de apadrinhamento
+- Controle de usuários e tutores
+- Gerenciamento de adoções
+- Edição de textos institucionais do site
 
 Tudo isso integrado com um CMS moderno e flexível utilizando **Payload CMS**, **Next.js** e tecnologias de ponta.
 
@@ -16,23 +16,23 @@ Acesse a [Wiki do Gatil CMS](https://github.com/WillFelisberto/gatil-cms/wiki) p
 
 ## 🚀 Tecnologias utilizadas
 
-- **Next.js** com Turbopack  
-- **React 19**  
-- **Payload CMS 3**  
-- **Tailwind CSS 4**  
-- **MongoDB (via @payloadcms/db-mongodb)**  
-- **Storybook** para desenvolvimento de componentes isolados  
-- **Husky + lint-staged** para Git hooks e formatação automática  
-- **Jest + Testing Library + Vitest + Playwright** para testes  
-- **GraphQL**  
-- **Hygen** para geração de componentes  
+- **Next.js** com Turbopack
+- **React 19**
+- **Payload CMS 3**
+- **Tailwind CSS 4**
+- **MongoDB (via @payloadcms/db-mongodb)**
+- **Storybook** para desenvolvimento de componentes isolados
+- **Husky + lint-staged** para Git hooks e formatação automática
+- **Jest + Testing Library + Vitest + Playwright** para testes
+- **GraphQL**
+- **Hygen** para geração de componentes
 
 ### Plugins úteis
 
-- `@payloadcms/plugin-import-export`  
-- `@payload-bites/activity-log`  
-- `@payloadcms/translations`  
-- `payload-mask-plugin`  
+- `@payloadcms/plugin-import-export`
+- `@payload-bites/activity-log`
+- `@payloadcms/translations`
+- `payload-mask-plugin`
 - `@nouance/payload-better-fields-plugin`
 
 ## 📦 Instalação
@@ -69,7 +69,7 @@ cp .env.example .env.local
 ## 📁 Estrutura de pastas
 
 ```
-├── app/(my-app)              # Aplicação Next.js 
+├── app/(my-app)              # Aplicação Next.js
 ├── app/(payload)             # Configurações do Payload CMS
 ├── app/(my-app)/components/  # Componentes React reutilizáveis
 ├── public/                   # Assets públicos
@@ -82,15 +82,15 @@ cp .env.example .env.local
 
 ## 🧪 Testes
 
-- **Jest** para testes unitários  
-- **Testing Library** para testes de UI  
-- **Vitest** e **Playwright** para testes end-to-end e browser-based  
+- **Jest** para testes unitários
+- **Testing Library** para testes de UI
+- **Vitest** e **Playwright** para testes end-to-end e browser-based
 - **Storybook Test** para testes visuais de componentes
 
 ## ✅ Boas práticas
 
-- Utiliza **husky** e **lint-staged** para garantir qualidade nos commits  
-- Use `pnpm generate` para manter padrão nos componentes  
+- Utiliza **husky** e **lint-staged** para garantir qualidade nos commits
+- Use `pnpm generate` para manter padrão nos componentes
 - Rode `pnpm generate:types` após alterações no CMS
 
 ## 📃 Licença
