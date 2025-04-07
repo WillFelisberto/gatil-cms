@@ -2,7 +2,6 @@ import { defineConfig } from 'vitepress';
 
 export default defineConfig({
 	title: 'Gatil CMS',
-	outDir: '../docs/dist',
 	description: 'Documentação oficial do Gatil CMS 🐱',
 	lang: 'pt-br',
 	head: [
