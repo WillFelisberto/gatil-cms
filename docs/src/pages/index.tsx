@@ -46,31 +46,31 @@ export default function Home(): JSX.Element {
 
           <h2>🚀 Comece por aqui</h2>
           <ul>
-            <li><Link to="/docs/Como-acessar-o-painel">Como acessar o painel</Link></li>
-            <li><Link to="/docs/Funcionalidades/Cadastrar-um-gatinho">Cadastrar um novo gatinho</Link></li>
-            <li><Link to="/docs/Funcionalidades/Gerenciar-adoções">Gerenciar adoções</Link></li>
+            <li><Link to="/docs/como-acessar-o-painel">Como acessar o painel</Link></li>
+            <li><Link to="/docs/Funcionalidades/cadastrar-um-gatinho">Cadastrar um novo gatinho</Link></li>
+            <li><Link to="/docs/Funcionalidades/gerenciar-adoções">Gerenciar adoções</Link></li>
           </ul>
 
           <hr />
 
           <h2>🐱 Gatinhos</h2>
           <ul>
-            <li><Link to="/docs/Funcionalidades/Cadastrar-um-gatinho">Cadastrar um novo gatinho</Link></li>
+            <li><Link to="/docs/Funcionalidades/cadastrar-um-gatinho">Cadastrar um novo gatinho</Link></li>
           </ul>
 
           <h2>❤️ Apadrinhamentos</h2>
           <ul>
-            <li><Link to="/docs/Funcionalidades/Gerenciar-apadrinhamentos">Gerenciar apadrinhamentos</Link></li>
+            <li><Link to="/docs/Funcionalidades/gerenciar-apadrinhamentos">Gerenciar apadrinhamentos</Link></li>
           </ul>
 
           <h2>👨‍👩‍👧 Tutores</h2>
           <ul>
-            <li><Link to="/docs/Funcionalidades/Cadastrar-tutores">Gerenciar tutores</Link></li>
+            <li><Link to="/docs/Funcionalidades/cadastrar-tutores">Gerenciar tutores</Link></li>
           </ul>
 
           <h2>🧑‍💻 Usuários</h2>
           <ul>
-            <li><Link to="/docs/Funcionalidades/Gerenciar-Usuários">Gerenciar usuários</Link></li>
+            <li><Link to="/docs/Funcionalidades/gerenciar-usuários">Gerenciar usuários</Link></li>
           </ul>
 
           <hr />
@@ -83,12 +83,12 @@ export default function Home(): JSX.Element {
           <h4>Páginas editáveis:</h4>
           <ul>
             {/* <li><Link to="/docs/Site/Pagina-Home">Página Inic ial (Home)</Link></li> */}
-            <li><Link to="/docs/Site/Editar-Adote">Página Adote</Link></li>
-            <li><Link to="/docs/Site/Pagina-Apadrinhe">Página Apadrinhe</Link></li>
-            <li><Link to="/docs/Site/Pagina-Sobre-o-projeto">Página Sobre</Link></li>
-            <li><Link to="/docs/Site/Pagina-Colabore">Página Colabore</Link></li>
-            <li><Link to="/docs/Site/Pagina-Politicas-de-adocao">Página Políticas de Adoção</Link></li>
-            <li><Link to="/docs/Site/Pagina-Politicas-de-Apadrinhamento">Página Políticas de Apadrinhamento</Link></li>
+            <li><Link to="/docs/Site/editar-adote">Página Adote</Link></li>
+            <li><Link to="/docs/Site/pagina-apadrinhe">Página Apadrinhe</Link></li>
+            <li><Link to="/docs/Site/pagina-sobre-o-projeto">Página Sobre</Link></li>
+            <li><Link to="/docs/Site/pagina-colabore">Página Colabore</Link></li>
+            <li><Link to="/docs/Site/pagina-politicas-de-adocao">Página Políticas de Adoção</Link></li>
+            <li><Link to="/docs/Site/pagina-politicas-de-apadrinhamento">Página Políticas de Apadrinhamento</Link></li>
           </ul>
         </div>
       </main>

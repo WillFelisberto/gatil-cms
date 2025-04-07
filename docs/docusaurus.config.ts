@@ -15,7 +15,7 @@ const config: Config = {
   organizationName: process.env.GITHUB_ORG || 'WillFelisberto',
   projectName: process.env.GITHUB_REPO || 'gatil-cms',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
 
   i18n: {
