@@ -18,19 +18,17 @@ export default async function PoliticaAdocaoPage() {
   const politica = await payload.findGlobal({ slug: 'politicaAdocao' });
 
   return (
-    <main
-      className="flex justify-center px-4"
+    <article
+      className="mb-4 pt-12 w-full flex flex-col max-w-6xl text-center mx-auto px-4"
       aria-labelledby="politica-adocao"
       aria-describedby="descricao-politica"
     >
-      <article className="mb-4 pt-12 w-full flex flex-col max-w-6xl text-center">
-        <h1 id="politica-adocao" className="text-4xl md:text-4xl font-bold mb-6 text-[#013274]">
-          Nossa Política de Adoção
-        </h1>
-        <div id="descricao-politica" className="text-gray-600 leading-relaxed mb-5">
-          <RichTextComponent lexicalData={politica.descricao!} />
-        </div>
-      </article>
-    </main>
+      <h1 id="politica-adocao" className="text-4xl md:text-4xl font-bold mb-6 text-[#013274]">
+        Nossa Política de Adoção
+      </h1>
+      <div id="descricao-politica" className="text-gray-600 leading-relaxed mb-5">
+        <RichTextComponent lexicalData={politica.descricao!} />
+      </div>
+    </article>
   );
 }

@@ -25,6 +25,7 @@ import Contato from './app/(payload)/globals/contato';
 import Colabore from './app/(payload)/globals/colabore';
 import Apadrinhe from './app/(payload)/globals/apadrinhe';
 import PoliticaAdocao from './app/(payload)/globals/politica';
+import PoliticaApadrinhamento from './app/(payload)/globals/politicaApadrinhamento';
 
 // Util: configurações padrão de logging
 const defaultLogging = {
@@ -43,7 +44,8 @@ const globalsToLog = [
   'contato',
   'colabore',
   'apadrinhe',
-  'politicaAdocao'
+  'politicaAdocao',
+  'politicaApadrinhamento'
 ];
 
 export default buildConfig({
@@ -72,7 +74,16 @@ export default buildConfig({
   },
 
   collections: [Cats, Adoptions, Users, Guardians, Media, Sponsorships, CronLogs],
-  globals: [SiteConfig, Sobre, Adote, Contato, Colabore, Apadrinhe, PoliticaAdocao],
+  globals: [
+    SiteConfig,
+    Sobre,
+    Adote,
+    Contato,
+    Colabore,
+    Apadrinhe,
+    PoliticaAdocao,
+    PoliticaApadrinhamento
+  ],
 
   i18n: {
     fallbackLanguage: 'pt',
