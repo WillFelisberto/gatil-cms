@@ -6,3 +6,4 @@ coverage
 .gitkeep
 *.hbs
 payload-types.ts
+docs

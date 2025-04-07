@@ -31,6 +31,7 @@ export default defineConfig([
       '**/node_modules/**',
       '**/dist/**',
       '**/coverage/',
+      '**/docs/',
       '**/.jest/',
       '**/build/**',
       '**/.next/**',

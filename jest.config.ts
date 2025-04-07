@@ -9,11 +9,13 @@ const config: Config = {
     '<rootDir>/app/[(]my-app[)]/context/',
     '<rootDir>/app/[(]my-app[)]/lib/*',
     '<rootDir>/.jest/',
+    '<rootDir>/docs/',
     '<rootDir>/utils/'
   ],
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
     '<rootDir>/utils/',
+    '<rootDir>/docs/',
     '<rootDir>/.jest/',
     '<rootDir>/node_modules/',
     '<rootDir>/app/[(]my-app[)]/hooks/*',
