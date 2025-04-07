@@ -6,7 +6,7 @@ A página **Política de Adoção** tem como objetivo informar os visitantes sob
 
 ## 📍 Onde editar
 
-No painel administrativo do Payload, vá até: `Site > Página Política de Adoção`
+No painel administrativo, vá até: `Site > Página Política de Adoção`
 
 
 ---

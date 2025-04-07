@@ -6,7 +6,7 @@ A página **Política de Apadrinhamento** tem como objetivo informar os visitant
 
 ## 📍 Onde editar
 
-No painel administrativo do Payload, vá até: `Site > Página Política de Apadrinhamento`
+No painel administrativo, vá até: `Site > Página Política de Apadrinhamento`
 
 ---
 

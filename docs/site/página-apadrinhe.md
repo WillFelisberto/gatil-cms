@@ -6,7 +6,7 @@ A página **Apadrinhe** é usada para apresentar o programa de apadrinhamento ao
 
 ## 📍 Onde editar
 
-No painel administrativo do Payload, vá até: `Site > Página Apadrinhe`
+No painel administrativo, vá até: `Site > Página Apadrinhe`
 
  
 ---

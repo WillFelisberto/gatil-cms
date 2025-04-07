@@ -6,7 +6,7 @@ A página **Sobre o Projeto** apresenta informações institucionais do gatil, c
 
 ## 📍 Onde editar
 
-No painel administrativo do Payload, vá até: `Site > Página Sobre o Projeto`
+No painel administrativo, vá até: `Site > Página Sobre o Projeto`
 
 
 ---

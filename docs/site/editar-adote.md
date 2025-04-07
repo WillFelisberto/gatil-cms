@@ -6,7 +6,7 @@ A página **Adote** contém uma descrição institucional que aparece no topo da
 
 ## 📍 Onde editar
 
-No painel administrativo do Payload, vá até: `Site > Página Adote `
+No painel administrativo, vá até: `Site > Página Adote `
 
 
 ---

@@ -6,7 +6,7 @@ A página **Colabore** é destinada a incentivar e orientar as pessoas sobre com
 
 ## 📍 Onde editar
 
-No painel administrativo do Payload, vá até: `Site > Página Colabore`
+No painel administrativo, vá até: `Site > Página Colabore`
 
 
 ---

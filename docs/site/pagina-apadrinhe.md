@@ -6,7 +6,7 @@ A página **Apadrinhe** tem como objetivo apresentar aos visitantes a opção de
 
 ## 📍 Onde editar
 
-No painel administrativo do Payload, acesse: `Site > Página Apadrinhe`
+No painel administrativo, acesse: `Site > Página Apadrinhe`
 
 
 ---
