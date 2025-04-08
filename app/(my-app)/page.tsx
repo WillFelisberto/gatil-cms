@@ -78,7 +78,7 @@ export default function Page() {
     <>
       <SectionCat>
         <Content
-          title="Gatil dos Resgatados"
+          title="Gatil Dos Resgatados"
           text="Bem-vindo ao nosso Gatil! Aqui, cada gatinho tem uma história especial de resgate e superação. Nosso objetivo é proporcionar a eles uma nova chance de vida, e você pode fazer parte disso! Explore nossas histórias e descubra como apadrinhar ou adotar um amigo peludo."
           img="/pages/home/gato1.png"
           buttonText="Quem somos"
