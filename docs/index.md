@@ -9,7 +9,7 @@ Para gerenciar os dados do site (como cadastrar gatinhos, editar conteúdos, etc
 
 ### 🧭 URL de acesso
 
-O painel está disponível em: [/admin](https://gatildosresgatados.com/admin)  
+O painel está disponível em: [/admin](https://www.gatildosresgatados.com/admin)  
 
 ### 🔐 Login
 

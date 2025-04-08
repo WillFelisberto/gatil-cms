@@ -12,7 +12,7 @@ export default defineConfig({
 		logo: '/logo-rodape.webp',
 		nav: [
 			{ text: 'Início', link: '/' },
-			{ text: 'Site',  link: 'https://gatildosresgatados.com/' },
+			{ text: 'Site',  link: 'https://www.gatildosresgatados.com/' },
 		],
 		sidebar: [
 			{
