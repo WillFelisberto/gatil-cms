@@ -71,7 +71,7 @@ describe('<Footer />', () => {
   it('should render default copyright', () => {
     (usePathname as jest.Mock).mockReturnValue('/');
     render(<Footer socialLinks={mockSocialLinks} menuItems={mockMenuItems} />);
-    expect(screen.getByText(/feito com 🐈 por/i)).toBeInTheDocument();
+    expect(screen.getByText(/feito com 😻 por/i)).toBeInTheDocument();
   });
 
   it('should render correctly even with empty props', () => {
