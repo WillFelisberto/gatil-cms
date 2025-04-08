@@ -4,40 +4,44 @@ Os **tutores** são as pessoas responsáveis por adotar os gatos. Cada adoção 
 
 ---
 
-### 📌 Onde encontrar?
+## Passo a passo
 
-No painel de administração, acesse: `Conteúdo > Tutores`
-
-
----
-
-### ➕ Como cadastrar um tutor
-
-1. Clique em **"Criar Novo"**.
-2. Preencha os seguintes campos obrigatórios:
-
-   - **Nome completo**: nome da pessoa responsável.
-   - **E-mail**: contato por e-mail.
-   - **Telefone**: número principal para contato.
-
-3. Você também pode preencher os campos opcionais:
-
-   - **CPF ou CNPJ**: documento de identificação.
-   - **Endereço**: local de residência.
-
-⚠️ O campo **Contato rápido (WhatsApp)** será preenchido automaticamente com base no número de telefone e não pode ser alterado manualmente.
-
-4. Após preencher os dados, clique em **"Salvar"**.
+1. Acesse o painel de administração.
+2. No menu lateral, clique em **Tutores**.
+3. Clique no botão **Criar Novo**.
+4. Preencha os campos disponíveis conforme orientações abaixo.
 
 ---
 
-### 🔄 Edição de dados
+## 👤 Informações do Tutor
 
-Você pode editar os dados dos tutores a qualquer momento, exceto pelo campo de **WhatsApp**, que é protegido contra edição.
+| Campo                         | Descrição                                   | Obrigatório          |
+| ----------------------------- | ------------------------------------------- | -------------------- |
+| **Nome completo**             | Nome da pessoa responsável                  | ✅ Sim                |
+| **E-mail**                    | Contato por e-mail                          | ✅ Sim                |
+| **Telefone**                  | Número principal para contato               | ✅ Sim                |
+| **CPF ou CNPJ**               | Documento de identificação (opcional)       | ❌ Não                |
+| **Endereço**                  | Local de residência (opcional)              | ❌ Não                |
+| **Contato rápido (WhatsApp)** | Gerado automaticamente com base no telefone | 🔒 Sim (não editável) |
 
 ---
 
-### 🧩 Observação
+## ✔️ Salvando
+
+Depois de preencher todos os dados:
+
+1. Clique em **Salvar** no canto inferior direito.
+2. O tutor será incluído na lista de administração e poderá ser vinculado a uma adoção.
+
+---
+
+## ✏️ Edição
+
+- Você pode editar os dados dos tutores a qualquer momento.
+- O campo **WhatsApp** é gerado automaticamente e não pode ser alterado manualmente.
+
+---
+
+## 📌 Importante
 
 Certifique-se de cadastrar o tutor **antes** de registrar a adoção no sistema.
-

@@ -1,37 +1,53 @@
-# Gerenciar Adoções
+# Cadastrar uma Adoção
 
 No painel de administração, você pode registrar e acompanhar as **adoções** feitas por tutores. Essa seção serve para manter o histórico das adoções de cada gato e associar corretamente com o tutor responsável.
 
 ---
 
-### 📌 Onde encontrar?
+## Passo a passo
 
-No menu lateral do painel, acesse a seção: `Conteúdo > Adoções`
- 
-
-
-
----
-
-### ➕ Como cadastrar uma adoção
-
-1. Clique em **"Criar Novo"** ou **"Create New"**.
-2. Preencha os campos obrigatórios:
-
-   - **Gato adotado**: selecione o gato da lista.
-   - **Tutor**: selecione o responsável pela adoção.
-   - **Data da adoção**: informe a data em que a adoção foi concluída.
-   - **Observações** *(opcional)*: insira qualquer observação relevante (ex: termos assinados, retorno de acompanhamento, etc.).
-
-3. Clique em **"Salvar"** para registrar a adoção.
+1. Acesse o painel de administração.
+2. No menu lateral, clique em **Adoções**.
+3. Clique no botão **Criar Novo**.
+4. Preencha os campos disponíveis conforme orientações abaixo.
 
 ---
 
-### 📋 Observações
+## 🐱 Informações da Adoção
 
-- Ao cadastrar uma adoção, o campo `adotado` do gato será atualizado automaticamente, desmarcando a exibição pública e a opção de apadrinhamento.
-- As informações da adoção podem ser editadas a qualquer momento.
+| Campo              | Descrição                                                          | Obrigatório |
+| ------------------ | ------------------------------------------------------------------ | ----------- |
+| **Gato adotado**   | Selecione o gato da lista                                          | ✅ Sim       |
+| **Tutor**          | Selecione o responsável pela adoção                                | ✅ Sim       |
+| **Data da adoção** | Data em que a adoção foi concluída                                 | ✅ Sim       |
+| **Observações**    | Campo opcional para anotações extras (ex: termos, acompanhamentos) | ❌ Não       |
 
 ---
 
-Se precisar de ajuda para cadastrar tutores, veja também a seção [Cadastrar tutores](cadastrar-tutores.md)
+## ✔️ Salvando
+
+Depois de preencher todos os dados:
+
+1. Clique em **Salvar** no canto inferior direito.
+2. A adoção será registrada e associada ao gato e tutor escolhidos.
+
+---
+
+## ⚙️ Regras Automáticas
+
+- Ao cadastrar uma adoção, o campo `adotado` do gato será atualizado automaticamente.
+- Isso desativa:
+  - A exibição pública na página de adoção.
+  - A opção de apadrinhamento.
+
+---
+
+## ✏️ Edição
+
+As informações da adoção podem ser editadas a qualquer momento, acessando a entrada desejada na lista de adoções.
+
+---
+
+## 🔗 Dica
+
+Se precisar de ajuda para cadastrar tutores, veja também a seção [Cadastrar tutores](cadastrar-tutores.md).

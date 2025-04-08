@@ -1,51 +1,67 @@
-# Gerenciar Usuários
+# Cadastrar um Usuário
 
-A collection **Usuários** armazena os dados de login, exibição pública e permissões de acesso ao painel de administração.
-
----
-
-### 📌 Onde encontrar?
-
-No painel de administração: `Conteúdo > Usuários`
-
+Para cadastrar um novo usuário no sistema, siga os passos abaixo. Esse processo garante o acesso ao painel de administração e a exibição correta de informações na página institucional.
 
 ---
 
-### ➕ Como cadastrar um novo usuário
+## Passo a passo
 
-1. Clique em **"Criar Novo"**.
-2. Preencha os campos obrigatórios:
+1. Acesse o painel de administração.
+2. No menu lateral, clique em **Usuários**.
+3. Clique no botão **Criar Novo**.
+4. Preencha os campos disponíveis conforme orientações abaixo.
 
-#### 👤 Dados Pessoais
-- **Nome completo**
-- **E-mail** (também utilizado como login)
-- **Telefone** (com máscara automática)
-- **Exibir telefone na página de sobre**: define se o número será visível publicamente.
+---
 
-#### 🖼️ Foto
-- **Foto**: upload opcional, exibido na página "Sobre o projeto" se selecionado.
+## 👤 Informações do Usuário
 
-#### 🔐 Permissões
-- **Cargo**:
-  - **Admin**: acesso total ao painel.
+### 📇 Dados Pessoais
+
+| Campo                         | Descrição                                  | Obrigatório |
+| ----------------------------- | ------------------------------------------ | ----------- |
+| **Nome completo**             | Nome exibido no painel e no site           | ✅ Sim       |
+| **E-mail**                    | Usado como login de acesso                 | ✅ Sim       |
+| **Telefone**                  | Número de contato com máscara automática   | ❌ Não       |
+| **Exibir telefone na página** | Define se o telefone será mostrado no site | ❌ Não       |
+
+---
+
+### 🖼️ Foto de Perfil
+
+- **Foto**: upload opcional. Se marcada para exibição, aparecerá na página “Sobre o projeto”.
+
+---
+
+### 🔐 Permissões de Acesso
+
+- **Cargo**: define o nível de acesso ao painel.
+  - **Admin**: acesso total.
   - **Voluntário**: acesso restrito.
+
 > ⚠️ Apenas administradores podem alterar o cargo de um usuário.
 
-#### 🌐 Exibição pública
+---
+
+### 🌐 Visibilidade Pública
+
 - **Exibir na página de sobre o projeto**: mostra ou oculta o usuário no site institucional.
-- **Enviar e-mails sobre novos apadrinhamentos e atualizações**: ativa alertas automáticos para o usuário.
+- **Receber notificações por e-mail**: ativa alertas automáticos sobre novos apadrinhamentos e atualizações.
 
 ---
 
-### 🧠 Observações
+## ✔️ Salvando
 
-- Usuários são **autenticados** no Payload CMS (`auth: true`).
-- Alterações disparam o hook `CollectionTriggerVercelIfChanged`, que pode atualizar o frontend automaticamente.
+Depois de preencher todos os dados:
+
+1. Clique em **Salvar** no canto inferior direito.
+2. O usuário será incluído na lista de administração e, se visível, também aparecerá no site.
 
 ---
 
-### 🧑‍💻 Dica para Admins
+## ✏️ Edição e Exclusão
 
-- Para mudar o **cargo** de outro usuário, você precisa ter o perfil de **admin**.
-- O painel usa a **foto** e o campo **show** para montar automaticamente a seção "Sobre o projeto".
+- Para **editar**, clique no nome do usuário desejado na lista e altere os campos.
+- Para **excluir**, clique em **Excluir** no final da página de edição.
 
+
+ 

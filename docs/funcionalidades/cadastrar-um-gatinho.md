@@ -17,11 +17,11 @@ Para cadastrar um novo gatinho no sistema, siga os passos abaixo. Este processo 
 
 ### 🐾 Dados principais
 
-| Campo | Descrição | Obrigatório |
-|-------|-----------|-------------|
-| **Nome** | Nome do gato | ✅ Sim |
-| **Sexo** | Selecione entre Macho ou Fêmea | ✅ Sim |
-| **Foto principal** | Imagem de destaque do gato | ❌ Não |
+| Campo              | Descrição                                                | Obrigatório |
+| ------------------ | -------------------------------------------------------- | ----------- |
+| **Nome**           | Nome do gato                                             | ✅ Sim       |
+| **Sexo**           | Selecione entre Macho ou Fêmea                           | ✅ Sim       |
+| **Foto principal** | Imagem de destaque do gato (usada para exibição no site) | ❌ Não       |
 
 ---
 
