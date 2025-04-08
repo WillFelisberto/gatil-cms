@@ -56,7 +56,7 @@ export default async function AdotePage({ searchParams }: AdotePageProps) {
     <div className="max-w-[1300px] mx-auto px-4 py-12">
       <section className="mb-12 text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-[#013274] mb-6">
-          Encontre um Amigo Para Sempre
+          Encontre Um Amigo Para Sempre
         </h1>
 
         {adote.descricao && (
