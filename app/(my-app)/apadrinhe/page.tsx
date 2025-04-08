@@ -55,9 +55,9 @@ export default async function ApadrinhePage({ searchParams }: ApadrinhePageProps
         </h2>
 
         {cats.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg">
+          <div className="text-center text-gray-500 text-lg min-h-[300px] flex items-center justify-center">
             😿 Nenhum gatinho disponível para apadrinhamento no momento. Volte em breve!
-          </p>
+          </div>
         ) : (
           <>
             <CatCardList cats={cats} whatsapp={siteConfig.whatsapp || ''} />

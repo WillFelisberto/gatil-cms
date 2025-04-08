@@ -72,9 +72,9 @@ export default async function AdotePage({ searchParams }: AdotePageProps) {
         </h2>
 
         {cats.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg">
+          <div className="min-h-[300px] flex items-center justify-center text-center text-gray-500 text-lg">
             😿 Nenhum gatinho disponível para adoção no momento. Volte em breve!
-          </p>
+          </div>
         ) : (
           <>
             <div className="flex flex-wrap justify-center gap-8">
