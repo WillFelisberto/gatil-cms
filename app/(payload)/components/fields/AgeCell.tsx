@@ -9,7 +9,7 @@ import { DefaultCellComponentProps } from 'payload';
 
 const AgeCell = (props: DefaultCellComponentProps) => {
   const { rowData } = props;
-  console.log('🚀 ~ AgeCell ~ cellData:', rowData.birthDate);
+  if (!rowData) return;
   if (!rowData.birthDate) return <span>-</span>;
 
   const date = new Date(rowData.birthDate);

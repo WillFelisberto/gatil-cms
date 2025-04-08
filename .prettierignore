@@ -7,3 +7,4 @@ coverage
 *.hbs
 payload-types.ts
 docs
+app/(payload)/admin/importMap.js
