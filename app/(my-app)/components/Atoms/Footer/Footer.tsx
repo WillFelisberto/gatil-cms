@@ -105,7 +105,7 @@ export const Footer = ({ socialLinks, menuItems }: FooterProps) => {
       </div>
 
       <div className="bg-blue-950 text-white text-center py-4 w-full text-sm">
-        Feito com 🐈 por Gatil dos Resgatados
+        Feito com 😻 por Gatil dos Resgatados
       </div>
     </footer>
   );
