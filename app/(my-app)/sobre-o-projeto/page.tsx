@@ -7,16 +7,22 @@ import { Media, Sobre } from 'payload-types';
 import { RichTextComponent } from '../components/Atoms/RichText';
 import { VolunteerCard } from '../components/Atoms/VolunteerCard';
 
+export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
+
 export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config });
+
+  const sobrePage = await payload.findGlobal({ slug: 'sobre' });
+
   return {
-    title: 'Sobre o Gatil dos Resgatados | Gatil dos Resgatados',
-    description:
-      'Conheça o Gatil dos Resgatados: um projeto que há mais de 8 anos resgata e cuida de gatos em situação de vulnerabilidade em Santa Catarina. Faça parte dessa transformação!',
+    title: sobrePage?.meta?.title || undefined,
+    description: sobrePage?.meta?.description || undefined,
     openGraph: {
-      title: 'Sobre o Gatil dos Resgatados',
-      description:
-        'Projeto de resgate e adoção de gatos em SC. Descubra como ajudar e conhecer nossos voluntários!',
-      type: 'website'
+      title: sobrePage?.meta?.title || undefined,
+      description: sobrePage?.meta?.description || undefined,
+      images: (sobrePage?.meta?.image as Media)?.url
+        ? [{ url: (sobrePage?.meta?.image as Media).url! }]
+        : undefined
     }
   };
 }

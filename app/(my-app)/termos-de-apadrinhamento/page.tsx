@@ -2,15 +2,29 @@ import config from '@payload-config';
 import type { Metadata } from 'next';
 import { getPayload } from 'payload';
 
+import { Media } from '@/payload-types';
+
 import { RichTextComponent } from '../components/Atoms/RichText';
-export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
-  title: 'Política de Apadrinhamento | Gatil dos Resgatados',
-  description:
-    'Conheça os critérios, planos e benefícios do programa de apadrinhamento do Gatil dos Resgatados e ajude a transformar a vida de um gatinho.'
-};
+export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
 
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config });
+
+  const politicaApadrinhamentoPage = await payload.findGlobal({ slug: 'politicaApadrinhamento' });
+
+  return {
+    title: politicaApadrinhamentoPage?.meta?.title || undefined,
+    description: politicaApadrinhamentoPage?.meta?.description || undefined,
+    openGraph: {
+      title: politicaApadrinhamentoPage?.meta?.title || undefined,
+      description: politicaApadrinhamentoPage?.meta?.description || undefined,
+      images: (politicaApadrinhamentoPage?.meta?.image as Media)?.url
+        ? [{ url: (politicaApadrinhamentoPage?.meta?.image as Media).url! }]
+        : undefined
+    }
+  };
+}
 export default async function TermosDeApadrinhamentoPage() {
   const payload = await getPayload({ config });
   const politica = await payload.findGlobal({ slug: 'politicaApadrinhamento' });

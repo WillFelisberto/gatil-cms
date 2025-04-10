@@ -3,14 +3,30 @@ import { Metadata } from 'next';
 import { getPayload } from 'payload';
 import { FaWhatsapp } from 'react-icons/fa';
 
+import { Media } from '@/payload-types';
+
 import { FAQAccordion } from '../components/Atoms/FaqAccordion';
 import { RichTextComponent } from '../components/Atoms/RichText';
 
-export const metadata: Metadata = {
-  title: 'Perguntas Frequentes | Gatil dos Resgatados',
-  description:
-    'Tire suas dúvidas sobre o apadrinhamento de gatos, contribuições e como ajudar o Gatil dos Resgatados. Veja as perguntas frequentes respondidas.'
-};
+export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
+
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config });
+
+  const contatoPage = await payload.findGlobal({ slug: 'contato' });
+
+  return {
+    title: contatoPage?.meta?.title || undefined,
+    description: contatoPage?.meta?.description || undefined,
+    openGraph: {
+      title: contatoPage?.meta?.title || undefined,
+      description: contatoPage?.meta?.description || undefined,
+      images: (contatoPage?.meta?.image as Media)?.url
+        ? [{ url: (contatoPage?.meta?.image as Media).url! }]
+        : undefined
+    }
+  };
+}
 
 export default async function AboutPage() {
   const payload = await getPayload({ config });

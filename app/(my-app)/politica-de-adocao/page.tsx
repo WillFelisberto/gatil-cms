@@ -2,14 +2,27 @@ import config from '@payload-config';
 import type { Metadata } from 'next';
 import { getPayload } from 'payload';
 
+import { Media } from '@/payload-types';
+
 import { RichTextComponent } from '../components/Atoms/RichText';
-export const dynamic = 'force-static';
+
+export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
 
 export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config });
+
+  const politicaAdocaoPage = await payload.findGlobal({ slug: 'politicaAdocao' });
+
   return {
-    title: 'Política de Adoção | Gatil dos Resgatados',
-    description:
-      'Conheça os critérios, cuidados e responsabilidades envolvidos na adoção responsável de nossos animais.'
+    title: politicaAdocaoPage?.meta?.title || undefined,
+    description: politicaAdocaoPage?.meta?.description || undefined,
+    openGraph: {
+      title: politicaAdocaoPage?.meta?.title || undefined,
+      description: politicaAdocaoPage?.meta?.description || undefined,
+      images: (politicaAdocaoPage?.meta?.image as Media)?.url
+        ? [{ url: (politicaAdocaoPage?.meta?.image as Media).url! }]
+        : undefined
+    }
   };
 }
 

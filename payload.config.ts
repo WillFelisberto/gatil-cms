@@ -7,6 +7,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { pt } from '@payloadcms/translations/languages/pt';
 import { activityLogPlugin } from '@payload-bites/activity-log';
 import { importExportPlugin } from '@payloadcms/plugin-import-export';
+import { seoPlugin } from '@payloadcms/plugin-seo';
 
 // Collections
 import Cats from 'app/(payload)/collections/cats';
@@ -26,6 +27,7 @@ import Colabore from './app/(payload)/globals/colabore';
 import Apadrinhe from './app/(payload)/globals/apadrinhe';
 import PoliticaAdocao from './app/(payload)/globals/politica';
 import PoliticaApadrinhamento from './app/(payload)/globals/politicaApadrinhamento';
+import Homepage from './app/(payload)/globals/home';
 
 // Util: configurações padrão de logging
 const defaultLogging = {
@@ -45,8 +47,11 @@ const globalsToLog = [
   'colabore',
   'apadrinhe',
   'politicaAdocao',
+  'homepage',
   'politicaApadrinhamento'
 ];
+
+const globalsWithSeo = globalsToLog.filter((name) => name !== 'site-config');
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -82,7 +87,8 @@ export default buildConfig({
     Colabore,
     Apadrinhe,
     PoliticaAdocao,
-    PoliticaApadrinhamento
+    PoliticaApadrinhamento,
+    Homepage
   ],
 
   i18n: {
@@ -146,6 +152,11 @@ export default buildConfig({
           }
         ])
       )
+    }),
+    seoPlugin({
+      globals: globalsWithSeo,
+      uploadsCollection: 'media',
+      tabbedUI: true
     })
   ],
 

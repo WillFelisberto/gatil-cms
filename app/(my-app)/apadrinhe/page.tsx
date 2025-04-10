@@ -1,14 +1,37 @@
 import config from '@payload-config';
+import { Metadata } from 'next';
 import { getPayload } from 'payload';
 import { FaCat } from 'react-icons/fa';
+
+import { Media } from '@/payload-types';
 
 import { RichTextComponent } from '../components/Atoms/RichText';
 import { Pagination } from '../components/Molecules/Pagination';
 import { CatCardList } from './CatCardList';
+export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
 
 type ApadrinhePageProps = {
   searchParams: Promise<{ page?: string }>;
 };
+
+// 🔥 SEO dinâmico com o plugin de SEO
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config });
+
+  const apadrinhePage = await payload.findGlobal({ slug: 'apadrinhe' });
+
+  return {
+    title: apadrinhePage?.meta?.title || undefined,
+    description: apadrinhePage?.meta?.description || undefined,
+    openGraph: {
+      title: apadrinhePage?.meta?.title || undefined,
+      description: apadrinhePage?.meta?.description || undefined,
+      images: (apadrinhePage?.meta?.image as Media)?.url
+        ? [{ url: (apadrinhePage?.meta?.image as Media).url! }]
+        : undefined
+    }
+  };
+}
 
 export default async function ApadrinhePage({ searchParams }: ApadrinhePageProps) {
   const resolvedSearchParams = await searchParams;

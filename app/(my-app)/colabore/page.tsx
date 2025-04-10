@@ -7,11 +7,25 @@ import { Media } from '@/payload-types';
 
 import { RichTextComponent } from '../components/Atoms/RichText';
 
-export const metadata: Metadata = {
-  title: 'Colabore com o Gatil dos Resgatados | Gatil dos Resgatados',
-  description:
-    'Ajude os gatinhos resgatados com doações. Veja como contribuir por Pix, transferência ou QR Code. Sua ajuda faz toda a diferença!'
-};
+export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
+
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config });
+
+  const colaborePage = await payload.findGlobal({ slug: 'colabore' });
+
+  return {
+    title: colaborePage?.meta?.title || undefined,
+    description: colaborePage?.meta?.description || undefined,
+    openGraph: {
+      title: colaborePage?.meta?.title || undefined,
+      description: colaborePage?.meta?.description || undefined,
+      images: (colaborePage?.meta?.image as Media)?.url
+        ? [{ url: (colaborePage?.meta?.image as Media).url! }]
+        : undefined
+    }
+  };
+}
 
 export default async function AboutPage() {
   const payload = await getPayload({ config });

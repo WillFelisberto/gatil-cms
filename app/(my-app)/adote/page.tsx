@@ -1,4 +1,5 @@
 import config from '@payload-config';
+import { Metadata } from 'next';
 import { getPayload } from 'payload';
 import { Media } from 'payload-types';
 
@@ -20,11 +21,24 @@ export async function generateStaticParams() {
   }));
 }
 
-export const metadata = {
-  title: 'Adote um Gatinho | Gatil dos Resgatados',
-  description:
-    'Adote um gato resgatado e transforme vidas. Conheça nossos gatinhos disponíveis para adoção, suas histórias e saiba como dar um lar cheio de amor.'
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config });
+  const adote = await payload.findGlobal({ slug: 'adote' });
+
+  return {
+    title: adote?.meta?.title || 'Adote um Gatinho | Gatil dos Resgatados',
+    description:
+      adote?.meta?.description ||
+      'Adote um gato resgatado e transforme vidas. Conheça nossos gatinhos disponíveis para adoção, suas histórias e saiba como dar um lar cheio de amor.',
+    openGraph: {
+      title: adote?.meta?.title || undefined,
+      description: adote?.meta?.description || undefined,
+      images: (adote?.meta?.image as Media)?.url
+        ? [{ url: (adote?.meta?.image as Media).url! }]
+        : undefined
+    }
+  };
+}
 
 type AdotePageProps = {
   searchParams: Promise<{ page?: string }>;

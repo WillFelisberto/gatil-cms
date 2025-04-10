@@ -109,6 +109,7 @@ export interface Config {
     apadrinhe: Apadrinhe;
     politicaAdocao: PoliticaAdocao;
     politicaApadrinhamento: PoliticaApadrinhamento;
+    homepage: Homepage;
   };
   globalsSelect: {
     'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
@@ -119,6 +120,7 @@ export interface Config {
     apadrinhe: ApadrinheSelect<false> | ApadrinheSelect<true>;
     politicaAdocao: PoliticaAdocaoSelect<false> | PoliticaAdocaoSelect<true>;
     politicaApadrinhamento: PoliticaApadrinhamentoSelect<false> | PoliticaApadrinhamentoSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
   };
   locale: 'pt';
   user: User & {
@@ -895,6 +897,14 @@ export interface Sobre {
     };
     [k: string]: unknown;
   } | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -919,6 +929,14 @@ export interface Adote {
     };
     [k: string]: unknown;
   } | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -950,6 +968,14 @@ export interface Contato {
         id?: string | null;
       }[]
     | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -977,6 +1003,14 @@ export interface Colabore {
   };
   logobanco: string | Media;
   qrcode: string | Media;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1000,6 +1034,14 @@ export interface Apadrinhe {
       version: number;
     };
     [k: string]: unknown;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1025,6 +1067,14 @@ export interface PoliticaAdocao {
     };
     [k: string]: unknown;
   } | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1049,6 +1099,101 @@ export interface PoliticaApadrinhamento {
     };
     [k: string]: unknown;
   } | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: string;
+  layout: (
+    | {
+        title: string;
+        subtitle?: string | null;
+        backgroundImage?: (string | null) | Media;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'hero';
+      }
+    | {
+        images?:
+          | {
+              image: string | Media;
+              caption?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'gallery';
+      }
+    | {
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'textBlock';
+      }
+    | {
+        imagePosition?: ('left' | 'right') | null;
+        backgroundColor?: ('dark' | 'light') | null;
+        image: string | Media;
+        title?: string | null;
+        text?: string | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'imageWithText';
+      }
+    | {
+        members?:
+          | {
+              name: string;
+              role?: string | null;
+              photo?: (string | null) | Media;
+              bio?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'team';
+      }
+  )[];
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1076,6 +1221,13 @@ export interface SiteConfigSelect<T extends boolean = true> {
 export interface SobreSelect<T extends boolean = true> {
   imagem?: T;
   descricao?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1086,6 +1238,13 @@ export interface SobreSelect<T extends boolean = true> {
  */
 export interface AdoteSelect<T extends boolean = true> {
   descricao?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1103,6 +1262,13 @@ export interface ContatoSelect<T extends boolean = true> {
         resposta?: T;
         id?: T;
       };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1116,6 +1282,13 @@ export interface ColaboreSelect<T extends boolean = true> {
   descricao?: T;
   logobanco?: T;
   qrcode?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1126,6 +1299,13 @@ export interface ColaboreSelect<T extends boolean = true> {
  */
 export interface ApadrinheSelect<T extends boolean = true> {
   descricao?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1136,6 +1316,13 @@ export interface ApadrinheSelect<T extends boolean = true> {
  */
 export interface PoliticaAdocaoSelect<T extends boolean = true> {
   descricao?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1146,6 +1333,92 @@ export interface PoliticaAdocaoSelect<T extends boolean = true> {
  */
 export interface PoliticaApadrinhamentoSelect<T extends boolean = true> {
   descricao?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              backgroundImage?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        gallery?:
+          | T
+          | {
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        textBlock?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageWithText?:
+          | T
+          | {
+              imagePosition?: T;
+              backgroundColor?: T;
+              image?: T;
+              title?: T;
+              text?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        team?:
+          | T
+          | {
+              members?:
+                | T
+                | {
+                    name?: T;
+                    role?: T;
+                    photo?: T;
+                    bio?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
