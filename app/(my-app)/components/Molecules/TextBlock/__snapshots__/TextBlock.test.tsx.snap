@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextBlock /> Should renders the rich text content 1`] = `
+<div>
+  <div
+    class="text-gray-600 max-w-4xl mx-auto mb-4 leading-relaxed"
+  >
+    <div
+      class="payload-richtext"
+    >
+      <p>
+        Homepage
+      </p>
+    </div>
+  </div>
+</div>
+`;

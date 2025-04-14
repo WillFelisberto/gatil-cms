@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ImageWithTextBlock /> renders the section wrapper with test id 1`] = `
+<div>
+  <section
+    aria-label="Seção com informações sobre gatos disponíveis para adoção"
+    class="
+        relative w-full
+        flex items-center
+        overflow-hidden
+        bg-bottom bg-no-repeat bg-contain
+        bg-white text-[#013274]
+      "
+    data-testid="section-cat-background"
+    id="adoptable-cats-section"
+    role="region"
+    style="background-image: url(/gatoazulrodape.webp); background-repeat: no-repeat; background-position: bottom center; background-size: inherit; height: 80vh;"
+  >
+    <div
+      class="w-full max-w-6xl mx-auto px-6 py-12"
+    >
+      <section
+        aria-labelledby="image-with-text-title-adote-um-gatinho"
+        class="h-full flex flex-col-reverse md:flex-row md:flex-row-reverse items-center justify-center gap-8 px-4 py-12"
+        data-testid="image-with-text-block"
+      >
+        <div
+          class="md:w-1/2 text-center md:text-left"
+        >
+          <h2
+            class="text-3xl md:text-4xl font-bold mb-6"
+            data-testid="image-with-text-title"
+            id="image-with-text-title-adote-um-gatinho"
+          >
+            Adote um Gatinho
+          </h2>
+          <p
+            class="text-lg md:text-xl leading-relaxed mb-8"
+          >
+            Transforme a vida de um gatinho com amor.
+          </p>
+          <div
+            class="flex justify-center md:justify-end"
+          >
+            <a
+              aria-label="Adotar agora"
+              class="flex w-fit items-center gap-2 cursor-pointer px-6 py-2 rounded-full font-bold transition-colors duration-200 text-sm md:text-base bg-[#013274] text-white hover:bg-[#001f4c]"
+              data-testid="image-with-text-cta-link"
+              href="/adote"
+              role="button"
+            >
+              Adotar agora
+              <span
+                class="w-5 h-5"
+              >
+                <svg
+                  class="text-white"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M290.59 192c-20.18 0-106.82 1.98-162.59 85.95V192c0-52.94-43.06-96-96-96-17.67 0-32 14.33-32 32s14.33 32 32 32c17.64 0 32 14.36 32 32v256c0 35.3 28.7 64 64 64h176c8.84 0 16-7.16 16-16v-16c0-17.67-14.33-32-32-32h-32l128-96v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V289.86c-10.29 2.67-20.89 4.54-32 4.54-61.81 0-113.52-44.05-125.41-102.4zM448 96h-64l-64-64v134.4c0 53.02 42.98 96 96 96s96-42.98 96-96V32l-64 64zm-72 80c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zm80 0c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16z"
+                  />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          class="md:w-1/2 w-full flex justify-center"
+        >
+          <div
+            class="relative w-full h-64 md:h-96"
+          >
+            <img
+              alt="Gatinho fofo"
+              class="rounded-xl shadow-lg object-cover hover:scale-105 transition-all duration-300"
+              data-nimg="fill"
+              data-testid="image-with-text-image"
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              src="/_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=3840&q=75"
+              srcset="/_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=384&q=75 384w, /_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fplacekitten.com%2F800%2F600&w=3840&q=75 3840w"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>
+`;
