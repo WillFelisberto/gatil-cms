@@ -18,7 +18,7 @@ export const TitleBlock = (props: BlockProps<'title'>) => {
     <Tag
       id={id || undefined}
       data-testid="title-block"
-      className={`text-3xl md:text-4xl font-bold text-[#013274] mb-12 mt-12 flex items-center gap-2 ${alignmentClass}`}
+      className={`text-3xl md:text-4xl font-bold text-[#013274] mb-12 mt-6 flex items-center gap-2 ${alignmentClass}`}
     >
       {text}
       {showIcon && <FaCat data-testid="title-icon" />}

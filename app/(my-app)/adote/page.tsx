@@ -4,8 +4,8 @@ import { getPayload } from 'payload';
 import { Media } from 'payload-types';
 
 import { CatCard } from '../components/Atoms/CatCard';
-import { RichTextComponent } from '../components/Atoms/RichText';
 import { Pagination } from '../components/Molecules/Pagination';
+import { RenderBlocks } from '../utils/RenderBlocks';
 
 export const dynamic = 'force-dynamic';
 
@@ -68,23 +68,9 @@ export default async function AdotePage({ searchParams }: AdotePageProps) {
 
   return (
     <div className="max-w-[1300px] mx-auto px-4 py-12">
-      <section className="mb-12 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold text-[#013274] mb-6">
-          Encontre Um Amigo Para Sempre
-        </h1>
-
-        {adote.descricao && (
-          <div className="text-gray-600 max-w-2xl mx-auto mb-4 leading-relaxed">
-            <RichTextComponent lexicalData={adote.descricao!} />
-          </div>
-        )}
-      </section>
+      <RenderBlocks blocks={adote.layout} />
 
       <section aria-labelledby="gatinhos-disponiveis" className="mt-12">
-        <h2 id="gatinhos-disponiveis" className="sr-only">
-          Gatinhos disponíveis para adoção
-        </h2>
-
         {cats.length === 0 ? (
           <div className="min-h-[300px] flex items-center justify-center text-center text-gray-500 text-lg">
             😿 Nenhum gatinho disponível para adoção no momento. Volte em breve!

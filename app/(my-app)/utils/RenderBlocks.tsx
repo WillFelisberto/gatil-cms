@@ -29,7 +29,6 @@ export const RenderBlocks: React.FC<{
     <Fragment>
       {blocks.map((block, index) => {
         const { blockType } = block;
-        console.log('🚀 ~ {blocks.map ~ blockType:', blockType);
 
         if (blockType && blockType in blockComponents) {
           if (blockType in blockComponents) {

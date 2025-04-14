@@ -3,7 +3,7 @@
 exports[`<TitleBlock /> Should renders with default h2 tag and text 1`] = `
 <div>
   <h2
-    class="text-3xl md:text-4xl font-bold text-[#013274] mb-12 mt-12 flex items-center gap-2 text-left justify-start"
+    class="text-3xl md:text-4xl font-bold text-[#013274] mb-12 mt-6 flex items-center gap-2 text-left justify-start"
     data-testid="title-block"
   >
     Título Teste
