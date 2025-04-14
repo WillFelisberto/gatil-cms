@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductCard /> Should renders product name, description, price and button 1`] = `
+<div>
+  <div
+    class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col"
+    data-testid="product-card"
+  >
+    <div
+      class="relative w-full h-64"
+    >
+      <img
+        alt="Chaveiro solidário"
+        class="object-cover"
+        data-nimg="fill"
+        decoding="async"
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        src="/_next/image?url=%2Fchaveiro.jpg&w=3840&q=75"
+        srcset="/_next/image?url=%2Fchaveiro.jpg&w=256&q=75 256w, /_next/image?url=%2Fchaveiro.jpg&w=384&q=75 384w, /_next/image?url=%2Fchaveiro.jpg&w=640&q=75 640w, /_next/image?url=%2Fchaveiro.jpg&w=750&q=75 750w, /_next/image?url=%2Fchaveiro.jpg&w=828&q=75 828w, /_next/image?url=%2Fchaveiro.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fchaveiro.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fchaveiro.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fchaveiro.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fchaveiro.jpg&w=3840&q=75 3840w"
+        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+      />
+    </div>
+    <div
+      class="p-6 flex-1 flex flex-col justify-between gap-4"
+    >
+      <div>
+        <h3
+          class="text-xl font-semibold text-[#013274] mb-1"
+          data-testid="product-name"
+        >
+          Chaveiro Gatil
+        </h3>
+        <p
+          class="text-sm text-gray-700"
+          data-testid="product-description"
+        >
+          Produto solidário para apoiar o Gatil!
+        </p>
+      </div>
+      <div
+        class="flex flex-col gap-2"
+      >
+        <span
+          class="text-lg font-bold text-pink-600"
+          data-testid="product-price"
+        >
+          R$ 25,50
+        </span>
+        <a
+          class="inline-block text-center bg-pink-600 hover:bg-pink-700 text-white font-medium py-2 px-4 rounded-xl transition-all"
+          data-testid="product-cta"
+          href="https://www.mercadopago.com.br/chaveiro"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Comprar
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
