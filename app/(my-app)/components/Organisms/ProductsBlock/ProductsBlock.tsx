@@ -9,7 +9,7 @@ export const ProductsBlock = (props: BlockProps<'products'>) => {
   const { title, products } = props;
 
   return (
-    <section data-testid="products-block" className="w-full px-4 py-16 bg-gray-50">
+    <section data-testid="products-block" className="w-full px-4 py-16 bg-white">
       <div className="max-w-7xl mx-auto">
         <h2
           className="text-3xl md:text-4xl font-bold text-center text-[#013274] mb-12"

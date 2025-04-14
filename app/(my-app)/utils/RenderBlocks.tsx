@@ -2,10 +2,20 @@ import React, { Fragment } from 'react';
 
 import type { Homepage } from '@/payload-types';
 
+import { GalleryComponent } from '../components/Atoms/GalleryComponent';
+import { TitleBlock } from '../components/Atoms/TitleBlock';
+import { HeroComponent } from '../components/Molecules/HeroComponent';
 import { ImageWithTextBlock } from '../components/Molecules/ImageWithTextBlock';
+import { TextBlock } from '../components/Molecules/TextBlock';
+import { ProductsBlock } from '../components/Organisms/ProductsBlock';
 
 const blockComponents = {
-  imageWithText: ImageWithTextBlock
+  imageWithText: ImageWithTextBlock,
+  gallery: GalleryComponent,
+  title: TitleBlock,
+  textBlock: TextBlock,
+  hero: HeroComponent,
+  products: ProductsBlock
 };
 
 export const RenderBlocks: React.FC<{
@@ -19,6 +29,7 @@ export const RenderBlocks: React.FC<{
     <Fragment>
       {blocks.map((block, index) => {
         const { blockType } = block;
+        console.log('🚀 ~ {blocks.map ~ blockType:', blockType);
 
         if (blockType && blockType in blockComponents) {
           if (blockType in blockComponents) {

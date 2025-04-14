@@ -4,8 +4,8 @@ import { NumberField } from '@nouance/payload-better-fields-plugin/Number';
 export const ProductsBlock: Block = {
   slug: 'products',
   labels: {
-    singular: 'Produto solidário',
-    plural: 'Produtos solidários'
+    singular: 'Produto',
+    plural: 'Produtos'
   },
   fields: [
     {
@@ -39,8 +39,8 @@ export const ProductsBlock: Block = {
           },
           {
             prefix: 'R$ ',
-            thousandSeparator: '.',
-            decimalSeparator: ',',
+            thousandSeparator: ',',
+            decimalSeparator: '.',
             decimalScale: 2,
             fixedDecimalScale: true
           }
