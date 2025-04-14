@@ -4,7 +4,7 @@ import { getPayload } from 'payload';
 
 import { Media } from '@/payload-types';
 
-import { RichTextComponent } from '../components/Atoms/RichText';
+import { RenderBlocks } from '../utils/RenderBlocks';
 
 export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
 
@@ -36,12 +36,7 @@ export default async function PoliticaAdocaoPage() {
       aria-labelledby="politica-adocao"
       aria-describedby="descricao-politica"
     >
-      <h1 id="politica-adocao" className="text-4xl md:text-4xl font-bold mb-6 text-[#013274]">
-        Nossa Política de Adoção
-      </h1>
-      <div id="descricao-politica" className="text-gray-600 leading-relaxed mb-5">
-        <RichTextComponent lexicalData={politica.descricao!} />
-      </div>
+      <RenderBlocks blocks={politica.layout} />
     </article>
   );
 }

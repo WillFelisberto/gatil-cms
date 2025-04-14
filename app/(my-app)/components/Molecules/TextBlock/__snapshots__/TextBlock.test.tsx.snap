@@ -3,7 +3,7 @@
 exports[`<TextBlock /> Should renders the rich text content 1`] = `
 <div>
   <div
-    class="text-gray-600 max-w-4xl mx-auto mb-4 leading-relaxed"
+    class="text-gray-600 mb-4 leading-relaxed"
   >
     <div
       class="payload-richtext"
