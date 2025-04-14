@@ -13,7 +13,8 @@ type Story = StoryObj<typeof FAQAccordion>;
 
 export const Default: Story = {
   args: {
-    faqs: [
+    blockType: 'faq',
+    faq: [
       {
         pergunta: 'O que é o apadrinhamento de gatos?',
         resposta:

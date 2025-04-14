@@ -15,7 +15,7 @@ const mockFaqs = [
 
 describe('<FAQAccordion />', () => {
   it('should render all questions', () => {
-    const { container } = render(<FAQAccordion faqs={mockFaqs} />);
+    const { container } = render(<FAQAccordion blockType="faq" faq={mockFaqs} />);
 
     mockFaqs.forEach((faq, index) => {
       expect(screen.getByTestId(`faq-question-${index}`)).toHaveTextContent(faq.pergunta);
@@ -25,7 +25,7 @@ describe('<FAQAccordion />', () => {
   });
 
   it('should expand answer when a question is clicked', () => {
-    render(<FAQAccordion faqs={mockFaqs} />);
+    render(<FAQAccordion blockType="faq" faq={mockFaqs} />);
 
     const question = screen.getByTestId('faq-question-0');
     fireEvent.click(question);
@@ -36,7 +36,7 @@ describe('<FAQAccordion />', () => {
   });
 
   it('should collapse answer when the same question is clicked again', () => {
-    render(<FAQAccordion faqs={mockFaqs} />);
+    render(<FAQAccordion blockType="faq" faq={mockFaqs} />);
 
     const question = screen.getByTestId('faq-question-0');
     const answer = screen.getByTestId('faq-answer-0');
@@ -51,7 +51,7 @@ describe('<FAQAccordion />', () => {
   });
 
   it('should only show one answer at a time', () => {
-    render(<FAQAccordion faqs={mockFaqs} />);
+    render(<FAQAccordion blockType="faq" faq={mockFaqs} />);
 
     const firstQuestion = screen.getByTestId('faq-question-0');
     const secondQuestion = screen.getByTestId('faq-question-1');

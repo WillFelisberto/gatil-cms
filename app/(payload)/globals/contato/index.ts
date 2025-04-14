@@ -1,6 +1,7 @@
 import { GlobalConfig } from 'payload';
 import { checkRole } from '../../access/utils';
 import { GlobalTriggerVercelIfChanged } from '../../hooks/afterChange/globalTriggerVercelIfChanged';
+import { PageBlocks } from '../../blocks';
 
 const Contato: GlobalConfig = {
   slug: 'contato',
@@ -21,29 +22,10 @@ const Contato: GlobalConfig = {
   },
   fields: [
     {
-      name: 'descricao',
-      label: 'Descrição',
-      type: 'richText',
-      required: true
-    },
-    {
-      name: 'faq',
-      label: 'Perguntas frequentes',
-      type: 'array',
-      fields: [
-        {
-          name: 'pergunta',
-          label: 'Pergunta',
-          type: 'text',
-          required: true
-        },
-        {
-          name: 'resposta',
-          label: 'Resposta',
-          type: 'textarea',
-          required: true
-        }
-      ]
+      name: 'layout',
+      type: 'blocks',
+      required: true,
+      blocks: PageBlocks
     }
   ]
 };

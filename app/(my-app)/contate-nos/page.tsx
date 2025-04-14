@@ -5,8 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 import { Media } from '@/payload-types';
 
-import { FAQAccordion } from '../components/Atoms/FaqAccordion';
-import { RichTextComponent } from '../components/Atoms/RichText';
+import { RenderBlocks } from '../utils/RenderBlocks';
 
 export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
 
@@ -45,24 +44,7 @@ export default async function AboutPage() {
 
   return (
     <article className="px-4 py-8 max-w-4xl mx-auto">
-      <section className="mb-6 pt-2 text-justify">
-        <h1 className="text-3xl md:text-4xl font-bold text-[#013274] mb-6">Perguntas frequentes</h1>
-
-        {contato?.descricao && (
-          <div className="text-gray-600 max-w-3xl   mb-4 leading-relaxed">
-            <RichTextComponent lexicalData={contato.descricao} />
-          </div>
-        )}
-      </section>
-
-      {contato?.faq && (
-        <section className="mb-12 text-center" aria-labelledby="faq-section">
-          <h2 id="faq-section" className="sr-only">
-            Lista de perguntas e respostas frequentes
-          </h2>
-          <FAQAccordion faqs={contato.faq} />
-        </section>
-      )}
+      <RenderBlocks blocks={contato.layout} />
 
       {whatsapp && (
         <section className="mb-12 text-center">

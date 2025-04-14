@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 
 import type { Homepage } from '@/payload-types';
 
+import { FAQAccordion } from '../components/Atoms/FaqAccordion';
 import { GalleryComponent } from '../components/Atoms/GalleryComponent';
 import { TitleBlock } from '../components/Atoms/TitleBlock';
 import { HeroComponent } from '../components/Molecules/HeroComponent';
@@ -15,7 +16,8 @@ const blockComponents = {
   title: TitleBlock,
   textBlock: TextBlock,
   hero: HeroComponent,
-  products: ProductsBlock
+  products: ProductsBlock,
+  faq: FAQAccordion
 };
 
 export const RenderBlocks: React.FC<{
