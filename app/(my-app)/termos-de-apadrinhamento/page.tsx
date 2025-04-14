@@ -4,7 +4,7 @@ import { getPayload } from 'payload';
 
 import { Media } from '@/payload-types';
 
-import { RichTextComponent } from '../components/Atoms/RichText';
+import { RenderBlocks } from '../utils/RenderBlocks';
 
 export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
 
@@ -31,16 +31,11 @@ export default async function TermosDeApadrinhamentoPage() {
 
   return (
     <article
-      className="mb-4 pt-12 w-full flex flex-col max-w-6xl text-justify mx-auto px-4"
-      aria-labelledby="titulo-politica"
-      aria-describedby="descricao-politica"
+      className="mb-4 pt-12 w-full flex flex-col max-w-6xl mx-auto px-4"
+      aria-labelledby="politica-de-apadrinhamento"
+      aria-describedby="descricao-politica-apadrinhamento"
     >
-      <h1 id="titulo-politica" className="text-4xl md:text-4xl font-bold mb-6 text-[#013274]">
-        Nossa Política de Apadrinhamento
-      </h1>
-      <div id="descricao-politica" className="text-gray-600 leading-relaxed mb-5">
-        <RichTextComponent lexicalData={politica.descricao!} />
-      </div>
+      <RenderBlocks blocks={politica.layout} />
     </article>
   );
 }

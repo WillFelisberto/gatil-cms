@@ -1466,21 +1466,99 @@ export interface PoliticaAdocao {
  */
 export interface PoliticaApadrinhamento {
   id: string;
-  descricao?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  layout: (
+    | {
+        title: string;
+        subtitle?: string | null;
+        backgroundImage: string | Media;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'hero';
+      }
+    | {
+        images?:
+          | {
+              image: string | Media;
+              caption?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'gallery';
+      }
+    | {
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'textBlock';
+      }
+    | {
+        imagePosition?: ('left' | 'right') | null;
+        backgroundColor?: ('dark' | 'light') | null;
+        image: string | Media;
+        title?: string | null;
+        text?: string | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'imageWithText';
+      }
+    | {
+        text: string;
+        tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        alignment: 'left' | 'center' | 'right';
+        showIcon?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'title';
+      }
+    | {
+        title: string;
+        products?:
+          | {
+              name: string;
+              description?: string | null;
+              price: number;
+              image: string | Media;
+              buyLink: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'products';
+      }
+    | {
+        faq?:
+          | {
+              pergunta: string;
+              resposta: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faq';
+      }
+  )[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -2164,7 +2242,94 @@ export interface PoliticaAdocaoSelect<T extends boolean = true> {
  * via the `definition` "politicaApadrinhamento_select".
  */
 export interface PoliticaApadrinhamentoSelect<T extends boolean = true> {
-  descricao?: T;
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              backgroundImage?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        gallery?:
+          | T
+          | {
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        textBlock?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageWithText?:
+          | T
+          | {
+              imagePosition?: T;
+              backgroundColor?: T;
+              image?: T;
+              title?: T;
+              text?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        title?:
+          | T
+          | {
+              text?: T;
+              tag?: T;
+              alignment?: T;
+              showIcon?: T;
+              id?: T;
+              blockName?: T;
+            };
+        products?:
+          | T
+          | {
+              title?: T;
+              products?:
+                | T
+                | {
+                    name?: T;
+                    description?: T;
+                    price?: T;
+                    image?: T;
+                    buyLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              faq?:
+                | T
+                | {
+                    pergunta?: T;
+                    resposta?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
   meta?:
     | T
     | {
