@@ -1,6 +1,7 @@
 import { GlobalConfig } from 'payload';
 import { checkRole } from '../../access/utils';
 import { GlobalTriggerVercelIfChanged } from '../../hooks/afterChange/globalTriggerVercelIfChanged';
+import { PageBlocks } from '../../blocks';
 
 const Apadrinhe: GlobalConfig = {
   slug: 'apadrinhe',
@@ -21,10 +22,10 @@ const Apadrinhe: GlobalConfig = {
   },
   fields: [
     {
-      name: 'descricao',
-      label: 'Descrição',
-      type: 'richText',
-      required: true
+      name: 'layout',
+      type: 'blocks',
+      required: true,
+      blocks: PageBlocks
     }
   ]
 };

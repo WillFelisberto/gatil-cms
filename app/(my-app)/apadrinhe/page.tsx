@@ -1,12 +1,11 @@
 import config from '@payload-config';
 import { Metadata } from 'next';
 import { getPayload } from 'payload';
-import { FaCat } from 'react-icons/fa';
 
 import { Media } from '@/payload-types';
 
-import { RichTextComponent } from '../components/Atoms/RichText';
 import { Pagination } from '../components/Molecules/Pagination';
+import { RenderBlocks } from '../utils/RenderBlocks';
 import { CatCardList } from './CatCardList';
 export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
 
@@ -60,23 +59,9 @@ export default async function ApadrinhePage({ searchParams }: ApadrinhePageProps
 
   return (
     <div className="max-w-[1300px] mx-auto px-4 py-12">
-      <section className="mb-12 text-justify">
-        <h1 className="text-3xl md:text-4xl font-bold text-[#013274] mb-6 flex items-center gap-2">
-          Apadrinhe <FaCat />
-        </h1>
-
-        {apadrinhe?.descricao && (
-          <div className="text-gray-600 max-w-4xl mx-auto mb-4 leading-relaxed">
-            <RichTextComponent lexicalData={apadrinhe.descricao} />
-          </div>
-        )}
-      </section>
+      <RenderBlocks blocks={apadrinhe.layout} />
 
       <section aria-labelledby="gatinhos-disponiveis" className="mt-12">
-        <h2 id="gatinhos-disponiveis" className="sr-only">
-          Gatinhos disponíveis para apadrinhamento
-        </h2>
-
         {cats.length === 0 ? (
           <div className="text-center text-gray-500 text-lg min-h-[300px] flex items-center justify-center">
             😿 Nenhum gatinho disponível para apadrinhamento no momento. Volte em breve!
