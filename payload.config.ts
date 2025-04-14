@@ -8,6 +8,7 @@ import { pt } from '@payloadcms/translations/languages/pt';
 import { activityLogPlugin } from '@payload-bites/activity-log';
 import { importExportPlugin } from '@payloadcms/plugin-import-export';
 import { seoPlugin } from '@payloadcms/plugin-seo';
+import { iconPickerField } from '@innovixx/payload-icon-picker-field';
 
 // Collections
 import Cats from 'app/(payload)/collections/cats';

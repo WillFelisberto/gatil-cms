@@ -8,8 +8,8 @@ importers:
   .:
     dependencies:
       '@nouance/payload-better-fields-plugin':
-        specifier: ^1.4.1
-        version: 1.4.1(date-fns@4.1.0)(payload@3.32.0(graphql@16.10.0)(typescript@5.3.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^2.0.2
+        version: 2.0.2(colord@2.9.3)(date-fns-tz@2.0.1(date-fns@4.1.0))(payload@3.32.0(graphql@16.10.0)(typescript@5.3.3))(react-colorful@5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-number-format@5.4.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-phone-number-input@3.4.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(slug@10.0.0)
       '@payload-bites/activity-log':
         specifier: ^1.0.1
         version: 1.0.1(@payloadcms/translations@3.32.0)(@payloadcms/ui@3.32.0(@types/react@19.0.12)(monaco-editor@0.52.2)(next@15.2.4(@babel/core@7.26.10)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.32.0(graphql@16.10.0)(typescript@5.3.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.3.3))(payload@3.32.0(graphql@16.10.0)(typescript@5.3.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -158,6 +158,9 @@ importers:
       '@types/jest':
         specifier: 29.5.11
         version: 29.5.11
+      '@types/lodash':
+        specifier: ^4.17.16
+        version: 4.17.16
       '@types/react':
         specifier: 19.0.12
         version: 19.0.12
@@ -3367,13 +3370,20 @@ packages:
       }
     engines: { node: '>=12.4.0' }
 
-  '@nouance/payload-better-fields-plugin@1.4.1':
+  '@nouance/payload-better-fields-plugin@2.0.2':
     resolution:
       {
-        integrity: sha512-EZXXFnNocd46t9WXcgJjVR4LYVAzzuSyfrwKmFCo4t1xSlyfrK2EacqagvLWhOEpFOiF1fx0rPMh9VGI2seshg==
+        integrity: sha512-LMio+mqzArm8rT7DP/he9H96BBu1s16aWoh66NWaO50+bMWKnnQwa7XGt8Sixinv4yUn1FCTkvyz0GcjcxNHQw==
       }
+    engines: { node: ^18.20.2 || >=20.9.0 }
     peerDependencies:
-      payload: ^2.0.0
+      colord: ^2.9.3
+      date-fns-tz: ^2.0.1
+      payload: ^3.22.0
+      react-colorful: ^5.6.1
+      react-number-format: ^5.3.1
+      react-phone-number-input: ^3.3.7
+      slug: ^10.0.0
 
   '@payload-bites/activity-log@1.0.1':
     resolution:
@@ -9094,10 +9104,10 @@ packages:
         integrity: sha512-dLE3O1PZg0TlZxRQo9YDpjCjDUj8zluGyBO9MHdjo21qZmMUNrxQPeCRt8fn2s5l4HKYFQ1YNgl7k1pOJB/vZQ==
       }
 
-  lib0@0.2.102:
+  lib0@0.2.104:
     resolution:
       {
-        integrity: sha512-g70kydI0I1sZU0ChO8mBbhw0oUW/8U0GHzygpvEIx8k+jgOpqnTSb/E+70toYVqHxBhrERD21TwD5QcZJQ40ZQ==
+        integrity: sha512-1tqKRANSPTcjs/yjPoKh52oRM2u5AYdd8jie8sDiN8/5kpWWiQSHUGgtB4VEXLw1chVL3QPSPp8q9RWqzSn2FA==
       }
     engines: { node: '>=16' }
     hasBin: true
@@ -10812,10 +10822,10 @@ packages:
         integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
       }
 
-  react-number-format@5.4.3:
+  react-number-format@5.4.4:
     resolution:
       {
-        integrity: sha512-VCY5hFg/soBighAoGcdE+GagkJq0230qN6jcS5sp8wQX1qy1fYN/RX7/BXkrs0oyzzwqR8/+eSUrqXbGeywdUQ==
+        integrity: sha512-wOmoNZoOpvMminhifQYiYSTCLUDOiUbBunrMrMjA+dV52sY+vck1S4UhR6PkgnoCquvvMSeJjErXZ4qSaWCliA==
       }
     peerDependencies:
       react: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -11413,12 +11423,12 @@ packages:
       }
     engines: { node: '>=18' }
 
-  slugify@1.6.6:
+  slug@10.0.0:
     resolution:
       {
-        integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==
+        integrity: sha512-M8s2PWOUeSCdD4S1NH5lCzXg2zFV1fozrtfr0FSKl65x+EF1rUowj+/vyFlnHgxPxWzT+DL0VXKfYc1DHJoymg==
       }
-    engines: { node: '>=8.0.0' }
+    hasBin: true
 
   snake-case@2.1.0:
     resolution:
@@ -12544,12 +12554,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  validate-color@2.2.4:
-    resolution:
-      {
-        integrity: sha512-Znolz+b6CwW6eBXYld7MFM3O7funcdyRfjKC/X9hqYV/0VcC5LB/L45mff7m3dIn9wdGdNOAQ/fybNuD5P/HDw==
-      }
 
   validate-npm-package-license@3.0.4:
     resolution:
@@ -15300,20 +15304,15 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@nouance/payload-better-fields-plugin@1.4.1(date-fns@4.1.0)(payload@3.32.0(graphql@16.10.0)(typescript@5.3.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@nouance/payload-better-fields-plugin@2.0.2(colord@2.9.3)(date-fns-tz@2.0.1(date-fns@4.1.0))(payload@3.32.0(graphql@16.10.0)(typescript@5.3.3))(react-colorful@5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-number-format@5.4.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-phone-number-input@3.4.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(slug@10.0.0)':
     dependencies:
       colord: 2.9.3
       date-fns-tz: 2.0.1(date-fns@4.1.0)
       payload: 3.32.0(graphql@16.10.0)(typescript@5.3.3)
       react-colorful: 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react-number-format: 5.4.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-number-format: 5.4.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-phone-number-input: 3.4.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      slugify: 1.6.6
-      validate-color: 2.2.4
-    transitivePeerDependencies:
-      - date-fns
-      - react
-      - react-dom
+      slug: 10.0.0
 
   '@payload-bites/activity-log@1.0.1(@payloadcms/translations@3.32.0)(@payloadcms/ui@3.32.0(@types/react@19.0.12)(monaco-editor@0.52.2)(next@15.2.4(@babel/core@7.26.10)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.32.0(graphql@16.10.0)(typescript@5.3.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.3.3))(payload@3.32.0(graphql@16.10.0)(typescript@5.3.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -19500,7 +19499,7 @@ snapshots:
 
   lexical@0.28.0: {}
 
-  lib0@0.2.102:
+  lib0@0.2.104:
     dependencies:
       isomorphic.js: 0.2.5
 
@@ -20629,7 +20628,7 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-number-format@5.4.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  react-number-format@5.4.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -21061,7 +21060,7 @@ snapshots:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
 
-  slugify@1.6.6: {}
+  slug@10.0.0: {}
 
   snake-case@2.1.0:
     dependencies:
@@ -21730,8 +21729,6 @@ snapshots:
     optionalDependencies:
       typescript: 5.3.3
 
-  validate-color@2.2.4: {}
-
   validate-npm-package-license@3.0.4:
     dependencies:
       spdx-correct: 3.2.0
@@ -22074,7 +22071,7 @@ snapshots:
 
   yjs@13.6.24:
     dependencies:
-      lib0: 0.2.102
+      lib0: 0.2.104
 
   yn@3.1.1: {}
 

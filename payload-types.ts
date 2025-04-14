@@ -1120,7 +1120,7 @@ export interface Homepage {
     | {
         title: string;
         subtitle?: string | null;
-        backgroundImage?: (string | null) | Media;
+        backgroundImage: string | Media;
         ctaText?: string | null;
         ctaLink?: string | null;
         id?: string | null;
@@ -1172,18 +1172,29 @@ export interface Homepage {
         blockType: 'imageWithText';
       }
     | {
-        members?:
+        text: string;
+        tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        alignment: 'left' | 'center' | 'right';
+        showIcon?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'title';
+      }
+    | {
+        title: string;
+        products?:
           | {
               name: string;
-              role?: string | null;
-              photo?: (string | null) | Media;
-              bio?: string | null;
+              description?: string | null;
+              price: number;
+              image: string | Media;
+              buyLink: string;
               id?: string | null;
             }[]
           | null;
         id?: string | null;
         blockName?: string | null;
-        blockType: 'team';
+        blockType: 'products';
       }
   )[];
   meta?: {
@@ -1396,16 +1407,28 @@ export interface HomepageSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        team?:
+        title?:
           | T
           | {
-              members?:
+              text?: T;
+              tag?: T;
+              alignment?: T;
+              showIcon?: T;
+              id?: T;
+              blockName?: T;
+            };
+        products?:
+          | T
+          | {
+              title?: T;
+              products?:
                 | T
                 | {
                     name?: T;
-                    role?: T;
-                    photo?: T;
-                    bio?: T;
+                    description?: T;
+                    price?: T;
+                    image?: T;
+                    buyLink?: T;
                     id?: T;
                   };
               id?: T;

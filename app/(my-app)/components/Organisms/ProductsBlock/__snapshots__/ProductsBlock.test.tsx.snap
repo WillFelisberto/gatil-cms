@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductsBlock /> renders section and title 1`] = `
+<div>
+  <section
+    class="w-full px-4 py-16 bg-gray-50"
+    data-testid="products-block"
+  >
+    <div
+      class="max-w-7xl mx-auto"
+    >
+      <h2
+        class="text-3xl md:text-4xl font-bold text-center text-[#013274] mb-12"
+        data-testid="products-title"
+      >
+        Produtos Solidários
+      </h2>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10"
+      >
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col"
+          data-testid="product-card"
+        >
+          <div
+            class="relative w-full h-64"
+          >
+            <img
+              alt="Caneca solidária"
+              class="object-cover"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              src="/_next/image?url=%2Fcaneca.jpg&w=3840&q=75"
+              srcset="/_next/image?url=%2Fcaneca.jpg&w=256&q=75 256w, /_next/image?url=%2Fcaneca.jpg&w=384&q=75 384w, /_next/image?url=%2Fcaneca.jpg&w=640&q=75 640w, /_next/image?url=%2Fcaneca.jpg&w=750&q=75 750w, /_next/image?url=%2Fcaneca.jpg&w=828&q=75 828w, /_next/image?url=%2Fcaneca.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fcaneca.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fcaneca.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fcaneca.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fcaneca.jpg&w=3840&q=75 3840w"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
+          <div
+            class="p-6 flex-1 flex flex-col justify-between gap-4"
+          >
+            <div>
+              <h3
+                class="text-xl font-semibold text-[#013274] mb-1"
+                data-testid="product-name"
+              >
+                Caneca do Gatil
+              </h3>
+              <p
+                class="text-sm text-gray-700"
+                data-testid="product-description"
+              >
+                Ajude um resgatado com essa caneca linda.
+              </p>
+            </div>
+            <div
+              class="flex flex-col gap-2"
+            >
+              <span
+                class="text-lg font-bold text-pink-600"
+                data-testid="product-price"
+              >
+                R$ 39,90
+              </span>
+              <a
+                class="inline-block text-center bg-pink-600 hover:bg-pink-700 text-white font-medium py-2 px-4 rounded-xl transition-all"
+                data-testid="product-cta"
+                href="https://www.mercadopago.com.br/caneca"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Comprar
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col"
+          data-testid="product-card"
+        >
+          <div
+            class="relative w-full h-64"
+          >
+            <img
+              alt="Chaveiro solidário"
+              class="object-cover"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              src="/_next/image?url=%2Fchaveiro.jpg&w=3840&q=75"
+              srcset="/_next/image?url=%2Fchaveiro.jpg&w=256&q=75 256w, /_next/image?url=%2Fchaveiro.jpg&w=384&q=75 384w, /_next/image?url=%2Fchaveiro.jpg&w=640&q=75 640w, /_next/image?url=%2Fchaveiro.jpg&w=750&q=75 750w, /_next/image?url=%2Fchaveiro.jpg&w=828&q=75 828w, /_next/image?url=%2Fchaveiro.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fchaveiro.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fchaveiro.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fchaveiro.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fchaveiro.jpg&w=3840&q=75 3840w"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
+          <div
+            class="p-6 flex-1 flex flex-col justify-between gap-4"
+          >
+            <div>
+              <h3
+                class="text-xl font-semibold text-[#013274] mb-1"
+                data-testid="product-name"
+              >
+                Chaveiro Fofo
+              </h3>
+              <p
+                class="text-sm text-gray-700"
+                data-testid="product-description"
+              >
+                Leve um pedacinho do Gatil com você.
+              </p>
+            </div>
+            <div
+              class="flex flex-col gap-2"
+            >
+              <span
+                class="text-lg font-bold text-pink-600"
+                data-testid="product-price"
+              >
+                R$ 19,90
+              </span>
+              <a
+                class="inline-block text-center bg-pink-600 hover:bg-pink-700 text-white font-medium py-2 px-4 rounded-xl transition-all"
+                data-testid="product-cta"
+                href="https://www.mercadopago.com.br/chaveiro"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Comprar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;
