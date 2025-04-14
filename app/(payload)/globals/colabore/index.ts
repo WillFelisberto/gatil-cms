@@ -1,6 +1,7 @@
 import { GlobalConfig } from 'payload';
 import { checkRole } from '../../access/utils';
 import { GlobalTriggerVercelIfChanged } from '../../hooks/afterChange/globalTriggerVercelIfChanged';
+import { PageBlocks } from '../../blocks';
 
 const Colabore: GlobalConfig = {
   slug: 'colabore',
@@ -21,17 +22,10 @@ const Colabore: GlobalConfig = {
   },
   fields: [
     {
-      name: 'imagem',
-      label: 'Imagem',
-      type: 'upload',
-      relationTo: 'media',
-      required: true
-    },
-    {
-      name: 'descricao',
-      label: 'Descrição',
-      type: 'richText',
-      required: true
+      name: 'layout',
+      type: 'blocks',
+      required: true,
+      blocks: PageBlocks
     },
     {
       name: 'logobanco',
