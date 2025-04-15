@@ -11,7 +11,7 @@ export const HeroComponent = (props: BlockProps<'hero'>) => {
   return (
     <section
       data-testid="hero-block"
-      className="relative flex items-center justify-center text-white h-[80vh] min-h-[500px] w-full overflow-hidden"
+      className="flex items-center justify-center text-white w-full min-h-screen h-screen overflow-hidden"
     >
       {/* Background Image */}
       {bgImage && (
