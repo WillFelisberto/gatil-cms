@@ -62,6 +62,9 @@ export default async function ApadrinhePage({ searchParams }: ApadrinhePageProps
       <RenderBlocks blocks={apadrinhe.layout} />
 
       <section aria-labelledby="gatinhos-disponiveis" className="mt-12">
+        <h2 id="gatinhos-disponiveis" className="sr-only">
+          Gatinhos disponíveis para apadrinhamento
+        </h2>
         {cats.length === 0 ? (
           <div className="text-center text-gray-500 text-lg min-h-[300px] flex items-center justify-center">
             😿 Nenhum gatinho disponível para apadrinhamento no momento. Volte em breve!
