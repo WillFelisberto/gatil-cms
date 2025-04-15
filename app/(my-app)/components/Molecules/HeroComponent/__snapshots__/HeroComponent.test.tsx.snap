@@ -3,7 +3,7 @@
 exports[`<HeroComponent /> Should renders the title and subtitle 1`] = `
 <div>
   <section
-    class="relative flex items-center justify-center text-white h-[80vh] min-h-[500px] w-full overflow-hidden"
+    class="flex items-center justify-center text-white w-full min-h-screen h-screen overflow-hidden"
     data-testid="hero-block"
   >
     <div
