@@ -49,6 +49,17 @@ Para cadastrar um novo usuário no sistema, siga os passos abaixo. Esse processo
 
 ---
 
+## 🔑 Senha e Acesso
+
+Agora, ao cadastrar um novo usuário, **não é necessário definir uma senha manualmente**. Após o cadastro:
+
+- O sistema envia automaticamente um e-mail para o endereço fornecido.
+- Esse e-mail contém um link para que o usuário crie sua própria senha e ative o acesso ao painel.
+
+> 💡 Você pode inserir qualquer valor no campo de senha durante o cadastro, pois ele será sobrescrito quando o usuário definir sua própria senha.
+
+---
+
 ## ✔️ Salvando
 
 Depois de preencher todos os dados:
@@ -62,6 +73,3 @@ Depois de preencher todos os dados:
 
 - Para **editar**, clique no nome do usuário desejado na lista e altere os campos.
 - Para **excluir**, clique em **Excluir** no final da página de edição.
-
-
- 

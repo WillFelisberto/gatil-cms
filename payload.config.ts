@@ -38,7 +38,7 @@ const defaultLogging = {
   enableUpdateLogging: true
 };
 
-const collectionsToLog = ['cats', 'adoptions', 'guardians', 'sponsorships', 'users'];
+const collectionsToLog = ['cats', 'adoptions', 'guardians', 'sponsorships'];
 const globalsToLog = [
   'site-config',
   'sobre',

@@ -286,6 +286,7 @@ export interface User {
   role: 'admin' | 'voluntario';
   show?: boolean | null;
   emailUpdates?: boolean | null;
+  firstLogin?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -644,6 +645,7 @@ export interface UsersSelect<T extends boolean = true> {
   role?: T;
   show?: T;
   emailUpdates?: T;
+  firstLogin?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

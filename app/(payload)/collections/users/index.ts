@@ -1,6 +1,9 @@
 import { checkRole } from 'app/(payload)/access/utils';
 import { CollectionConfig } from 'payload';
 import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
+import { firstLoginTemplate } from '../../utils/firstLoginTemplate';
+import { forgotPasswordTemplate } from '../../utils/forgotPasswordTemplate';
+import afterForgotPasswordHook from '../../hooks/afterForgotPasswordHook';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -9,14 +12,51 @@ const Users: CollectionConfig = {
     singular: 'Usuário'
   },
   auth: {
-    maxLoginAttempts: 0 // nunca bloqueia o usuário por erro de login
+    maxLoginAttempts: 0,
+    forgotPassword: {
+      generateEmailSubject: (args) => {
+        const { user } = args || {};
+
+        if (user?.firstLogin) {
+          return '🐱 Crie sua senha e ative seu acesso';
+        }
+
+        return '🔐 Redefinição de senha';
+      },
+      generateEmailHTML: (args) => {
+        const { token, user } = args || {};
+
+        const url = `${process.env.NEXT_PUBLIC_SITE_URL}/admin/reset/${token}`;
+        return user.firstLogin
+          ? firstLoginTemplate(user.name || '', url)
+          : forgotPasswordTemplate(user.name || '', url);
+      }
+    }
   },
   admin: {
     useAsTitle: 'name',
-    group: 'Conteúdo'
+    group: 'Conteúdo',
+    defaultColumns: ['name', 'email', 'role']
   },
   hooks: {
-    afterChange: [CollectionTriggerVercelIfChanged],
+    afterOperation: [
+      async ({ operation, result, req }) => {
+        if (operation === 'create') {
+          try {
+            await req.payload.forgotPassword({
+              collection: 'users',
+              data: {
+                email: result.email
+              },
+              req
+            });
+          } catch (error) {
+            console.error('Erro ao enviar e-mail de redefinição de senha:', error);
+          }
+        }
+      }
+    ],
+    afterForgotPassword: [afterForgotPasswordHook],
     beforeChange: [
       ({ data, operation }) => {
         if (operation === 'create') {
@@ -33,16 +73,14 @@ const Users: CollectionConfig = {
       type: 'text',
       required: true
     },
-
     {
       name: 'email',
       label: 'E-mail',
       type: 'email',
       required: true
     },
-
     {
-      type: 'row', // required
+      type: 'row',
       fields: [
         {
           name: 'telefone',
@@ -102,6 +140,15 @@ const Users: CollectionConfig = {
       label: 'Enviar e-mails sobre novos apadrinhamentos e atualizações',
       type: 'checkbox',
       defaultValue: false
+    },
+    {
+      name: 'firstLogin',
+      label: 'Primeiro acesso pendente?',
+      type: 'checkbox',
+      defaultValue: true,
+      admin: {
+        hidden: true
+      }
     }
   ]
 };
