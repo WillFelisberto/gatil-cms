@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
-	title: 'Gatil CMS',
-	description: 'Documentação oficial do Gatil CMS 🐱',
+	title: 'Sistema do Gatil',
+	description: 'Documentação oficial do Gatil dos Resgatados 🐱',
 	lang: 'pt-br',
 	ignoreDeadLinks: true,
 	head: [
@@ -30,6 +30,7 @@ export default defineConfig({
 				text: 'Conteúdo do site',
 				collapsed: false,
 				items: [
+					{ text: 'Página Inicial', link: '/site/pagina-inicial' },
 					{ text: 'Página Adote', link: '/site/editar-adote' },
 					{ text: 'Página Apadrinhe', link: '/site/pagina-apadrinhe' },
 					{ text: 'Página Sobre o projeto', link: '/site/pagina-sobre-o-projeto' },
