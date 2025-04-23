@@ -130,3 +130,56 @@ jobs:
         run: pnpm build-storybook
         env:
           CI: true
+
+  e2e-check:
+    name: Tests - Playwright E2E
+    needs: [test-check]
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:6
+        ports:
+          - 27017:27017
+
+    env:
+      DATABASE_URI: mongodb://localhost:27017/payload-e2e
+      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      CI: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.10.2
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run database seed
+        run: pnpm exec payload run scripts/seed.ts
+        env:
+          PAYLOAD_SECRET: ${{ env.PAYLOAD_SECRET }}
+          DATABASE_URI: ${{ env.DATABASE_URI }}
+
+      - name: Start application
+        run: pnpm start &
+        env:
+          PAYLOAD_SECRET: ${{ env.PAYLOAD_SECRET }}
+          DATABASE_URI: ${{ env.DATABASE_URI }}
+          NODE_ENV: test
+
+      - name: Wait for app to be ready
+        run: npx wait-on http://localhost:3000
+
+      - name: Run Playwright tests
+        run: npx playwright test

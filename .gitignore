@@ -48,3 +48,10 @@ exports
 docs/.vitepress/dist
 docs/dist
 docs/.vitepress/cache
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
