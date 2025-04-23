@@ -1,16 +1,11 @@
 import config from '@payload-config';
+import { fileTypeFromFile } from 'file-type';
 import { createWriteStream, promises as fs } from 'fs';
 import { get } from 'https';
 import os from 'os';
 import path from 'path';
 import { getPayload } from 'payload';
 
-/**
- * Faz o download de uma imagem por URL e a insere na collection `media` do PayloadCMS.
- * @param url URL da imagem (deve ser diretamente acessível via HTTPS)
- * @param alt Texto alternativo para a imagem
- * @returns ID da imagem criada no PayloadCMS
- */
 export const uploadImageFromUrl = async (
   url: string,
   alt: string = 'Imagem automática'
@@ -18,11 +13,12 @@ export const uploadImageFromUrl = async (
   const payload = await getPayload({ config });
 
   const timestamp = Date.now();
-  const tempPath = path.join(os.tmpdir(), `temp-${timestamp}.jpg`);
+  const rawTempPath = path.join(os.tmpdir(), `temp-${timestamp}`);
+  const rawFilePath = `${rawTempPath}.download`;
 
   // Download da imagem
   await new Promise<void>((resolve, reject) => {
-    const file = createWriteStream(tempPath);
+    const file = createWriteStream(rawFilePath);
     get(url, (res) => {
       if (res.statusCode !== 200) {
         return reject(new Error(`Erro ao baixar imagem: HTTP ${res.statusCode}`));
@@ -36,23 +32,26 @@ export const uploadImageFromUrl = async (
     }).on('error', reject);
   });
 
-  // Verificar se o arquivo baixado é válido
-  const stats = await fs.stat(tempPath);
-  if (stats.size < 1024) {
-    throw new Error(`Arquivo baixado está vazio ou corrompido: ${tempPath}`);
+  const fileType = await fileTypeFromFile(rawFilePath);
+  if (!fileType) {
+    throw new Error('Não foi possível detectar o tipo do arquivo.');
   }
 
-  // Criar a imagem na collection media (sem passar filename)
+  const finalPath = `${rawTempPath}.${fileType.ext}`;
+
+  await fs.rename(rawFilePath, finalPath);
+
+  const stats = await fs.stat(finalPath);
+  if (stats.size < 1024) {
+    throw new Error(`Arquivo baixado está vazio ou corrompido: ${finalPath}`);
+  }
+
   const image = await payload.create({
     collection: 'media',
-    filePath: tempPath,
-    data: {
-      alt
-    }
+    filePath: finalPath,
+    data: { alt }
   });
 
-  // Remover o arquivo temporário
-  await fs.unlink(tempPath);
-
+  await fs.unlink(finalPath);
   return image.id as string;
 };

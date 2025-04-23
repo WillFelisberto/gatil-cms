@@ -47,6 +47,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dotenv": "^16.5.0",
+    "file-type": "^20.4.1",
     "graphql": "^16.10.0",
     "lucide-react": "^0.486.0",
     "next": "latest",
