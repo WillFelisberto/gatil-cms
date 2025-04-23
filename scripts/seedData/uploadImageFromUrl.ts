@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 export const uploadImageFromUrl = async (
   url: string,
   alt: string = 'Imagem automática'
@@ -14,30 +15,32 @@ export const uploadImageFromUrl = async (
   const payload = await getPayload({ config });
 
   const timestamp = Date.now();
-  const tempPath = path.resolve(__dirname, `temp-${timestamp}.jpg`);
+  const fileName = `gatil-${timestamp}.jpg`;
+  const tempPath = path.resolve(__dirname, fileName);
 
-  // Baixar imagem com https + stream
   await new Promise<void>((resolve, reject) => {
     const file = createWriteStream(tempPath);
     get(url, (res) => {
+      if (res.statusCode !== 200) {
+        return reject(new Error(`Erro ao baixar imagem: ${res.statusCode}`));
+      }
       res.pipe(file);
       file.on('finish', () => {
         file.close();
         resolve();
       });
-    }).on('error', (err) => {
-      reject(err);
-    });
+    }).on('error', reject);
   });
 
-  // Criar imagem na collection media
   const image = await payload.create({
     collection: 'media',
     filePath: tempPath,
-    data: { alt }
+    data: {
+      alt,
+      filename: fileName // <- Aqui o fix
+    }
   });
 
-  // Deletar imagem local
   await fs.unlink(tempPath);
 
   return image.id as string;

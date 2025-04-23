@@ -170,6 +170,7 @@ jobs:
         env:
           PAYLOAD_SECRET: ${{ env.PAYLOAD_SECRET }}
           DATABASE_URI: ${{ env.DATABASE_URI }}
+          NODE_ENV: test
 
       - name: Start application
         run: pnpm start &
