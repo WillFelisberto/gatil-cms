@@ -1,7 +1,6 @@
 import config from '@payload-config';
-import { fileTypeFromFile } from 'file-type';
-import { createWriteStream, promises as fs } from 'fs';
-import { get } from 'https';
+import { fileTypeFromBuffer } from 'file-type';
+import { stat, unlink, writeFile } from 'fs/promises';
 import os from 'os';
 import path from 'path';
 import { getPayload } from 'payload';
@@ -12,46 +11,27 @@ export const uploadImageFromUrl = async (
 ): Promise<string> => {
   const payload = await getPayload({ config });
 
-  const timestamp = Date.now();
-  const rawTempPath = path.join(os.tmpdir(), `temp-${timestamp}`);
-  const rawFilePath = `${rawTempPath}.download`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Erro ao baixar imagem: HTTP ${res.status}`);
 
-  // Download da imagem
-  await new Promise<void>((resolve, reject) => {
-    const file = createWriteStream(rawFilePath);
-    get(url, (res) => {
-      if (res.statusCode !== 200) {
-        return reject(new Error(`Erro ao baixar imagem: HTTP ${res.statusCode}`));
-      }
+  const arrayBuffer = await res.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
 
-      res.pipe(file);
-      file.on('finish', () => {
-        file.close();
-        resolve();
-      });
-    }).on('error', reject);
-  });
+  const fileType = await fileTypeFromBuffer(buffer);
+  if (!fileType) throw new Error('Tipo de arquivo não identificado.');
 
-  const fileType = await fileTypeFromFile(rawFilePath);
-  if (!fileType) {
-    throw new Error('Não foi possível detectar o tipo do arquivo.');
-  }
+  const tempPath = path.join(os.tmpdir(), `image-${Date.now()}.${fileType.ext}`);
+  await writeFile(tempPath, buffer);
 
-  const finalPath = `${rawTempPath}.${fileType.ext}`;
-
-  await fs.rename(rawFilePath, finalPath);
-
-  const stats = await fs.stat(finalPath);
-  if (stats.size < 1024) {
-    throw new Error(`Arquivo baixado está vazio ou corrompido: ${finalPath}`);
-  }
+  const fileStats = await stat(tempPath);
+  if (fileStats.size < 1024) throw new Error('Arquivo corrompido ou muito pequeno');
 
   const image = await payload.create({
     collection: 'media',
-    filePath: finalPath,
+    filePath: tempPath,
     data: { alt }
   });
 
-  await fs.unlink(finalPath);
+  await unlink(tempPath);
   return image.id as string;
 };
