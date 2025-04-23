@@ -1,12 +1,9 @@
 import config from '@payload-config';
 import { createWriteStream, promises as fs } from 'fs';
 import { get } from 'https';
+import os from 'os';
 import path from 'path';
 import { getPayload } from 'payload';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 /**
  * Faz o download de uma imagem por URL e a insere na collection `media` do PayloadCMS.
@@ -21,8 +18,7 @@ export const uploadImageFromUrl = async (
   const payload = await getPayload({ config });
 
   const timestamp = Date.now();
-  const tempFilename = `temp-${timestamp}.jpg`;
-  const tempPath = path.resolve(__dirname, tempFilename);
+  const tempPath = path.join(os.tmpdir(), `temp-${timestamp}.jpg`);
 
   // Download da imagem
   await new Promise<void>((resolve, reject) => {
