@@ -107,7 +107,7 @@ jobs:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
       - name: Upload Next.js build
-        uses: actions/upload-artifact@v3.x
+        uses: actions/upload-artifact@v4
         with:
           name: next-build
           path: .next
@@ -171,7 +171,7 @@ jobs:
         run: pnpm install
 
       - name: Download Next.js build
-        uses: actions/download-artifact@v3.x
+        uses: actions/download-artifact@v4
         with:
           name: next-build
           path: .next
