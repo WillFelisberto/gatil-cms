@@ -106,6 +106,11 @@ jobs:
           DATABASE_URI: ${{ secrets.DATABASE_URI }}
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      - name: Upload Next.js build
+        uses: actions/upload-artifact@v3
+        with:
+          name: next-build
+          path: .next
 
   storybook-build-check:
     name: Build Storybook
@@ -165,6 +170,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Download Next.js build
+        uses: actions/download-artifact@v3
+        with:
+          name: next-build
+          path: .next
+
+      - name: Debug .next contents
+        run: ls -la .next && ls -la .next/server
+
       - name: Run database seed
         run: pnpm exec payload run scripts/seed.ts
         env:
@@ -174,13 +188,14 @@ jobs:
 
       - name: Start application
         run: pnpm start &
+        shell: bash
         env:
           PAYLOAD_SECRET: ${{ env.PAYLOAD_SECRET }}
           DATABASE_URI: ${{ env.DATABASE_URI }}
           NODE_ENV: test
 
       - name: Wait for app to be ready
-        run: npx wait-on http://localhost:3000
+        run: npx wait-on http://localhost:3000 --timeout 60000
 
       - name: Run Playwright tests
         run: npx playwright test
