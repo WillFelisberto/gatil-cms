@@ -106,11 +106,21 @@ jobs:
           DATABASE_URI: ${{ secrets.DATABASE_URI }}
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+
+      - name: Verificar existência do diretório .next
+        run: |
+          if [ ! -d ".next" ]; then
+            echo "Erro: Diretório .next não encontrado após o build."
+            exit 1
+          fi
+
+      - name: Listar arquivos no diretório após o build
+        run: ls -la
       - name: Upload Next.js build
         uses: actions/upload-artifact@v4
         with:
           name: next-build
-          run-id: ${{ github.event.workflow_run.id }}
+          include-hidden-files: true
           path: .next
 
   storybook-build-check:
@@ -175,7 +185,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: next-build
-          run-id: ${{ github.event.workflow_run.id }}
           path: .next
 
       - name: Debug .next contents
