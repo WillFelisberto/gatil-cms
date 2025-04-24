@@ -1,22 +1,15 @@
 import { expect, test } from '@playwright/test';
 
+import { checkFooter, checkHeader } from '../utils/layoutChecks';
+
 test.describe('Should render the home page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
-  test('Should render the header', async ({ page }) => {
-    const header = page.locator('[data-testid="header"]');
-    await expect(header).toBeVisible();
-    await expect(header).toHaveCount(1);
-
-    const logo = header.locator('[data-testid="logo"]');
-    await expect(logo).toBeVisible();
-    await expect(logo).toHaveCount(1);
-
-    const menu = header.getByRole('navigation');
-    await expect(menu).toBeVisible();
-    await expect(menu).toHaveCount(1);
+  test('Should render the layout', async ({ page }) => {
+    await checkHeader(page);
+    await checkFooter(page);
   });
 
   test('Should render the image with text blocks', async ({ page }) => {
@@ -49,36 +42,6 @@ test.describe('Should render the home page', () => {
     for (let i = 0; i < 3; i++) {
       const href = await ctas.nth(i).getAttribute('href');
       expect(href).toContain(expectedHrefs[i]);
-    }
-  });
-
-  test('Should render the footer', async ({ page }) => {
-    const footer = page.locator('[data-testid="footer"]');
-    await expect(footer).toBeVisible();
-    await expect(footer).toHaveCount(1);
-
-    const logo = footer.locator('[data-testid="footer-social"]');
-    await expect(logo).toBeVisible();
-    await expect(logo).toHaveCount(1);
-
-    const menu = page.locator('[data-testid="footer-menu"]');
-    await expect(menu).toBeVisible();
-    await expect(menu).toHaveCount(1);
-
-    const items = await menu.locator('ul > li > a').all();
-
-    const expectedLinks = [
-      { href: '/', text: 'Início' },
-      { href: '/apadrinhe', text: 'Apadrinhe' },
-      { href: '/colabore', text: 'Colabore' },
-      { href: '/contate-nos', text: 'Contato' },
-      { href: '/sobre-o-projeto', text: 'Sobre o Projeto' },
-      { href: '/adote', text: 'Adote' }
-    ];
-
-    for (let i = 0; i < expectedLinks.length; i++) {
-      await expect(items[i]).toHaveAttribute('href', expectedLinks[i].href);
-      await expect(items[i]).toHaveText(expectedLinks[i].text);
     }
   });
 });
