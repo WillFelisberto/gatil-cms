@@ -12,7 +12,7 @@ Tudo isso integrado com um CMS moderno e flexível utilizando **Payload CMS**, *
 
 ## 📚 Documentação
 
-Acesse a [Wiki do Gatil CMS](https://github.com/WillFelisberto/gatil-cms/wiki) para entender facilmente como gerenciar o conteúdo do seu site, incluindo adoções, apadrinhamentos, cadastro de animais, usuários, tutores e textos institucionais.
+Acesse a [Wiki do Gatil CMS](https://docs-gatil-cms.vercel.app/) para entender facilmente como gerenciar o conteúdo do seu site, incluindo adoções, apadrinhamentos, cadastro de animais, usuários, tutores e textos institucionais.
 
 ## 🚀 Tecnologias utilizadas
 
@@ -48,23 +48,29 @@ cp .env.example .env.local
 
 ## 💻 Scripts disponíveis
 
-| Comando                   | Descrição                                |
-| ------------------------- | ---------------------------------------- |
-| `pnpm dev`                | Inicia o ambiente de desenvolvimento     |
-| `pnpm build`              | Cria a versão de produção                |
-| `pnpm start`              | Inicia o app em modo produção            |
-| `pnpm test`               | Executa os testes com Jest               |
-| `pnpm test:watch`         | Executa testes em modo observador        |
-| `pnpm test:ci`            | Executa testes em ambiente CI            |
-| `pnpm lint`               | Verifica problemas com ESLint            |
-| `pnpm lint:fix`           | Corrige automaticamente os erros de lint |
-| `pnpm prettier:format`    | Formata o código com Prettier            |
-| `pnpm generate:types`     | Gera os tipos do Payload CMS             |
-| `pnpm generate:importmap` | Gera o importmap para o Payload          |
-| `pnpm storybook`          | Inicia o Storybook                       |
-| `pnpm build-storybook`    | Gera a build do Storybook                |
-| `pnpm generate`           | Gera novos componentes com Hygen         |
-| `pnpm prepare`            | Setup do Husky                           |
+| Comando                   | Descrição                                 |
+| ------------------------- | ----------------------------------------- |
+| `pnpm dev`                | Inicia o ambiente de desenvolvimento      |
+| `pnpm build`              | Cria a versão de produção                 |
+| `pnpm start`              | Inicia o app em modo produção             |
+| `pnpm test`               | Executa os testes com Jest                |
+| `pnpm test:watch`         | Executa testes em modo observador         |
+| `pnpm test:ci`            | Executa testes em ambiente CI             |
+| `pnpm test:e2e`           | Testes end-to-end com Playwright          |
+| `pnpm test:e2e:ui	`       | Interface gráfica dos testes E2E          |
+| `pnpm lint`               | Verifica problemas com ESLint             |
+| `pnpm lint:fix`           | Corrige automaticamente os erros de lint  |
+| `pnpm prettier:format`    | Formata o código com Prettier             |
+| `pnpm generate:types`     | Gera os tipos do Payload CMS              |
+| `pnpm generate:importmap` | Gera o importmap para o Payload           |
+| `pnpm storybook`          | Inicia o Storybook                        |
+| `pnpm build-storybook`    | Gera a build do Storybook                 |
+| `pnpm generate`           | Gera novos componentes com Hygen          |
+| `pnpm prepare`            | Setup do Husky                            |
+| `pnpm docs:dev`           | Inicia documentação local com VitePress   |
+| `pnpm docs:build`         | Gera documentação para produção           |
+| `pnpm docs:serve`         | Serve a documentação localmente           |
+| `pnpm seed`               | Popula o CMS com dados de exemplo para CI |
 
 ## 📁 Estrutura de pastas
 
@@ -72,6 +78,9 @@ cp .env.example .env.local
 ├── app/(my-app)              # Aplicação Next.js
 ├── app/(payload)             # Configurações do Payload CMS
 ├── app/(my-app)/components/  # Componentes React reutilizáveis
+├── docs/                     # Documentação técnica (VitePress)
+├── scripts/                  # Seeds e tarefas automáticas
+├── tests/                    # E2E e integração
 ├── public/                   # Assets públicos
 ├── styles/                   # Estilos (Tailwind)
 ├── .env.example              # Arquivo de exemplo para variáveis
