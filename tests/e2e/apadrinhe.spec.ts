@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { checkFooter, checkHeader } from '../utils/layoutChecks';
 
-test.describe('Should render the home page', () => {
+test.describe('Should render the apadrinhe page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/apadrinhe');
   });
