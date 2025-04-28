@@ -34,6 +34,7 @@ export default defineConfig([
       '**/docs/',
       '**/.jest/',
       '**/build/**',
+      '**/playwright-report/**',
       '**/.next/**',
       'app/\\(payload\\)/**',
       'payload.config.ts',

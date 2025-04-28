@@ -79,13 +79,12 @@ export default async function AdotePage({ searchParams }: AdotePageProps) {
           <>
             <div className="flex flex-wrap justify-center gap-8">
               {cats.map((cat) => {
-                const foto = (cat.foto as Media)?.url || null;
                 return (
                   <div
                     key={cat.id}
                     className="flex-grow max-w-sm min-w-[300px] flex justify-center"
                   >
-                    <CatCard whatsappNumber={whatsapp} cat={{ ...cat, foto }} />
+                    <CatCard whatsappNumber={whatsapp} cat={{ ...cat }} />
                   </div>
                 );
               })}
