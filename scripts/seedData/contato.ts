@@ -1,9 +1,11 @@
+import { Payload } from 'payload';
+
 import { Contato } from '@/payload-types';
 
 import { uploadImageFromUrl } from './uploadImageFromUrl';
 
-async function createContato() {
-  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
+async function createContato(payload: Payload) {
+  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
 
   const contato: Partial<Contato> = {
     layout: [
@@ -130,4 +132,4 @@ async function createContato() {
   return contato;
 }
 
-export default await createContato();
+export default await createContato;

@@ -1,9 +1,11 @@
+import { Payload } from 'payload';
+
 import { Apadrinhe } from '@/payload-types';
 
 import { uploadImageFromUrl } from './uploadImageFromUrl';
 
-async function createApadrinhe() {
-  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
+async function createApadrinhe(payload: Payload) {
+  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
 
   const apadrinhamento: Partial<Apadrinhe> = {
     layout: [
@@ -136,4 +138,4 @@ async function createApadrinhe() {
   return apadrinhamento;
 }
 
-export default await createApadrinhe();
+export default await createApadrinhe;

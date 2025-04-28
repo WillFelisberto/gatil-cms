@@ -1,9 +1,11 @@
+import { Payload } from 'payload';
+
 import { PoliticaAdocao } from '@/payload-types';
 
 import { uploadImageFromUrl } from './uploadImageFromUrl';
 
-async function createPoliticaAdocao() {
-  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
+async function createPoliticaAdocao(payload: Payload) {
+  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
 
   const termosApadrinhamento: Partial<PoliticaAdocao> = {
     layout: [
@@ -1290,4 +1292,4 @@ async function createPoliticaAdocao() {
   return termosApadrinhamento;
 }
 
-export default await createPoliticaAdocao();
+export default await createPoliticaAdocao;

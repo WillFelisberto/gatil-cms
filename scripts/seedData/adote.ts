@@ -1,9 +1,11 @@
+import { Payload } from 'payload';
+
 import { Adote } from '@/payload-types';
 
 import { uploadImageFromUrl } from './uploadImageFromUrl';
 
-async function createAdote() {
-  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
+async function createAdote(payload: Payload) {
+  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
 
   const adote: Partial<Adote> = {
     layout: [
@@ -186,4 +188,4 @@ async function createAdote() {
   return adote;
 }
 
-export default await createAdote();
+export default await createAdote;

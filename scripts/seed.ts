@@ -33,24 +33,44 @@ const seed = async () => {
     log('Created guardian');
 
     log('=== Criando gatos ===');
-    const cat1Data = await cat1();
+    const cat1Data = await cat1(payload);
     await payload.create({ collection: 'cats', data: cat1Data });
     log('Created cat1');
-    const cat2Data = await cat2();
 
+    const cat2Data = await cat2(payload);
     await payload.create({ collection: 'cats', data: cat2Data });
     log('Created cat2');
 
     log('=== Criando páginas globais ===');
-    await payload.updateGlobal({ slug: 'homepage', data: home });
-    await payload.updateGlobal({ slug: 'politicaApadrinhamento', data: termosApadrinhamento });
-    await payload.updateGlobal({ slug: 'politicaAdocao', data: politicaAdocao });
-    await payload.updateGlobal({ slug: 'apadrinhe', data: apadrinhe });
-    await payload.updateGlobal({ slug: 'colabore', data: colabore });
-    await payload.updateGlobal({ slug: 'contato', data: contato });
-    await payload.updateGlobal({ slug: 'adote', data: adote });
-    await payload.updateGlobal({ slug: 'sobre', data: sobre });
+
+    await payload.db.drizzle.$client.execute('PRAGMA foreign_keys = OFF;');
+
+    const homeData = await home(payload);
+    await payload.updateGlobal({ slug: 'homepage', data: homeData });
+
+    const termosApadrinhamentoData = await termosApadrinhamento(payload);
+    await payload.updateGlobal({ slug: 'politicaApadrinhamento', data: termosApadrinhamentoData });
+
+    const politicaAdocaoData = await politicaAdocao(payload);
+    await payload.updateGlobal({ slug: 'politicaAdocao', data: politicaAdocaoData });
+
+    const apadrinheData = await apadrinhe(payload);
+    await payload.updateGlobal({ slug: 'apadrinhe', data: apadrinheData });
+
+    const colaboreData = await colabore(payload);
+    await payload.updateGlobal({ slug: 'colabore', data: colaboreData });
+
+    const contatoData = await contato(payload);
+    await payload.updateGlobal({ slug: 'contato', data: contatoData });
+
+    const adoteData = await adote(payload);
+    await payload.updateGlobal({ slug: 'adote', data: adoteData });
+
+    const sobreData = await sobre(payload);
+    await payload.updateGlobal({ slug: 'sobre', data: sobreData });
+
     await payload.updateGlobal({ slug: 'site-config', data: siteConfig });
+    await payload.db.drizzle.$client.execute('PRAGMA foreign_keys = ON;');
 
     log('All globals updated!');
 

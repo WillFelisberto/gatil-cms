@@ -1,9 +1,11 @@
+import { Payload } from 'payload';
+
 import { Sobre } from '@/payload-types';
 
 import { uploadImageFromUrl } from './uploadImageFromUrl';
 
-async function createSobre() {
-  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
+async function createSobre(payload: Payload) {
+  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
 
   const sobre: Partial<Sobre> = {
     imagem: image1,
@@ -410,4 +412,4 @@ async function createSobre() {
   return sobre;
 }
 
-export default await createSobre();
+export default await createSobre;

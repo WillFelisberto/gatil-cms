@@ -1,7 +1,9 @@
+import { Payload } from 'payload';
+
 import { uploadImageFromUrl } from './uploadImageFromUrl';
 
-async function cat2() {
-  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
+async function cat2(payload: Payload) {
+  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
 
   const cat = {
     nome: 'Gato Teste 2',

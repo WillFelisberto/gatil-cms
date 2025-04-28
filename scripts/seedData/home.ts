@@ -1,11 +1,15 @@
+import { Payload } from 'payload';
+
 import { Homepage } from '@/payload-types';
 
 import { uploadImageFromUrl } from './uploadImageFromUrl';
 
-async function createHomeData() {
-  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
-  const image2 = await uploadImageFromUrl('https://placecats.com/700/700', 'Imagem 2');
-  const image3 = await uploadImageFromUrl('https://placecats.com/600/500', 'Imagem 3');
+async function createHomeData(payload: Payload) {
+  const [image1, image2, image3] = await Promise.all([
+    uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload),
+    uploadImageFromUrl('https://placecats.com/700/700', 'Imagem 2', payload),
+    uploadImageFromUrl('https://placecats.com/600/500', 'Imagem 3', payload)
+  ]);
 
   const home: Partial<Homepage> = {
     layout: [
@@ -33,6 +37,7 @@ async function createHomeData() {
         imagePosition: 'left',
         backgroundColor: 'light',
         image: image3.id,
+
         text: 'Sua colaboração pode fazer toda a diferença! Ao contribuir com nossa causa, você nos ajuda a oferecer cuidados essenciais, tratamentos veterinários e abrigo para os gatinhos resgatados. Cada doação, por menor que seja, tem um impacto enorme na vida desses animais, permitindo que continuemos a salvá-los e a proporcionar uma nova chance de felicidade. Junte-se a nós e seja parte dessa transformação!',
         ctaText: 'Colabore',
         ctaLink: 'colabore'
@@ -42,11 +47,11 @@ async function createHomeData() {
       title: 'Gatil dos Resgatados | Adoção de Gatinhos Resgatados ',
       description:
         'Transforme vidas adotando um gatinho! O Gatil dos Resgatados resgata, cuida e prepara felinos para encontrar um novo lar cheio de amor. ',
-      image: image1.id
+      image: image2.id
     }
   };
 
   return home;
 }
 
-export default await createHomeData();
+export default await createHomeData;

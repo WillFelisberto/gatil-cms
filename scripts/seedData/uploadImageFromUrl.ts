@@ -1,18 +1,16 @@
-import config from '@payload-config';
 import { fileTypeFromBuffer } from 'file-type';
 import { stat, unlink, writeFile } from 'fs/promises';
 import os from 'os';
 import path from 'path';
-import { getPayload } from 'payload';
+import { Payload } from 'payload';
 
 import { Media } from '@/payload-types';
 
 export const uploadImageFromUrl = async (
   url: string,
-  alt: string = 'Imagem automática'
+  alt: string = 'Imagem automática',
+  payload: Payload
 ): Promise<Media> => {
-  const payload = await getPayload({ config });
-
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Erro ao baixar imagem: HTTP ${res.status}`);
 
@@ -35,5 +33,6 @@ export const uploadImageFromUrl = async (
   });
 
   await unlink(tempPath);
+
   return image;
 };

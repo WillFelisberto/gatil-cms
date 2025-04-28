@@ -1,9 +1,11 @@
+import { Payload } from 'payload';
+
 import { PoliticaApadrinhamento } from '@/payload-types';
 
 import { uploadImageFromUrl } from './uploadImageFromUrl';
 
-async function createTermosApadrinhamento() {
-  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
+async function createTermosApadrinhamento(payload: Payload) {
+  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
 
   const termosApadrinhamento: Partial<PoliticaApadrinhamento> = {
     layout: [
@@ -1266,4 +1268,4 @@ async function createTermosApadrinhamento() {
   return termosApadrinhamento;
 }
 
-export default await createTermosApadrinhamento();
+export default await createTermosApadrinhamento;

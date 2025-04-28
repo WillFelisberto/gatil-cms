@@ -1,11 +1,13 @@
+import { Payload } from 'payload';
+
 import { Colabore } from '@/payload-types';
 
 import { uploadImageFromUrl } from './uploadImageFromUrl';
 
-async function createColabore() {
-  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
-  const logoBanco = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
-  const qrCode = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1');
+async function createColabore(payload: Payload) {
+  const image1 = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
+  const logoBanco = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
+  const qrCode = await uploadImageFromUrl('https://placecats.com/800/800', 'Imagem 1', payload);
 
   const colabore: Partial<Colabore> = {
     logobanco: logoBanco,
@@ -251,4 +253,4 @@ async function createColabore() {
   return colabore;
 }
 
-export default await createColabore();
+export default await createColabore;
