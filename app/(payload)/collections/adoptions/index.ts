@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload';
-import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
+// import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
 
 const Adoptions: CollectionConfig = {
   slug: 'adoptions',
@@ -13,7 +13,7 @@ const Adoptions: CollectionConfig = {
     hideAPIURL: true
   },
   hooks: {
-    afterChange: [CollectionTriggerVercelIfChanged]
+    // afterChange: [CollectionTriggerVercelIfChanged]
   },
   fields: [
     {

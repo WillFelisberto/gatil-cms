@@ -1,6 +1,5 @@
 import { checkRole } from 'app/(payload)/access/utils';
 import { CollectionConfig } from 'payload';
-import { CollectionTriggerVercelIfChanged } from '../../hooks/afterChange/collectionTriggerVercelIfChanged';
 import { firstLoginTemplate } from '../../utils/firstLoginTemplate';
 import { forgotPasswordTemplate } from '../../utils/forgotPasswordTemplate';
 import afterForgotPasswordHook from '../../hooks/afterForgotPasswordHook';
