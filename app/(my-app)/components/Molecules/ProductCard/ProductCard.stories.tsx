@@ -19,7 +19,7 @@ export const Default: Story = {
     image: {
       createdAt: '2023-01-01',
       updatedAt: '2023-01-01',
-      id: '1',
+      id: 1,
       url: '/gato.jpg',
       alt: 'Caneca solidária'
     },

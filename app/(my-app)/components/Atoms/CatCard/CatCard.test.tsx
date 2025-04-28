@@ -4,7 +4,7 @@ import { CatCard } from './CatCard';
 
 describe('<CatCard />', () => {
   const baseCat = {
-    id: '1',
+    id: 1,
     nome: 'Gato Teste',
     sexo: 'M' as const,
     createdAt: '2025-04-02T21:24:52.909Z',
@@ -50,7 +50,7 @@ describe('<CatCard />', () => {
           url: null
         }
       },
-      id: '67eda2b3b852bb6b7ae49216',
+      id: 67,
       url: '/api/media/file/gato3.png',
       thumbnailURL: '/api/media/file/gato3-400x300.png'
     },
@@ -128,7 +128,7 @@ describe('<CatCard />', () => {
       idade: '2 anos',
       descricao: 'Gato muito brincalhão',
       foto: {
-        id: 'test-id',
+        id: 123,
         createdAt: '2025-04-02T20:48:51.116Z',
         updatedAt: '2025-04-02T20:48:51.116Z',
         url: '/test.jpg',
@@ -195,11 +195,31 @@ describe('<CatCard />', () => {
   });
 
   it('handles different image types correctly', () => {
-    const stringPhotoCat = { ...baseCat, foto: '/string-photo.jpg' };
+    const stringPhotoCat = {
+      ...baseCat,
+      foto: {
+        id: 123,
+        createdAt: '2025-04-02T20:48:51.116Z',
+        updatedAt: '2025-04-02T20:48:51.116Z',
+        url: '/string-photo.jpg',
+        alt: 'String Photo',
+        mimeType: 'image/jpeg',
+        filesize: 12345,
+        width: 800,
+        height: 800,
+        focalX: 50,
+        focalY: 50,
+        sizes: {
+          thumbnail: undefined,
+          card: undefined,
+          tablet: undefined
+        }
+      }
+    };
     const objectPhotoCat = {
       ...baseCat,
       foto: {
-        id: 'test-id',
+        id: 123,
         createdAt: '2025-04-02T20:48:51.116Z',
         updatedAt: '2025-04-02T20:48:51.116Z',
         url: '/object-photo.jpg',

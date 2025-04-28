@@ -15,7 +15,7 @@ const mockProductsBlock: BlockProps<'products'> = {
       image: {
         createdAt: '2023-01-01',
         updatedAt: '2023-01-01',
-        id: '1',
+        id: 1,
         url: '/caneca.jpg',
         alt: 'Caneca solidária'
       }
@@ -28,7 +28,7 @@ const mockProductsBlock: BlockProps<'products'> = {
       image: {
         createdAt: '2023-01-01',
         updatedAt: '2023-01-01',
-        id: '2',
+        id: 2,
         url: '/chaveiro.jpg',
         alt: 'Chaveiro solidário'
       }

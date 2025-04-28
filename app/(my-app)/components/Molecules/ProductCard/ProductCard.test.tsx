@@ -11,7 +11,7 @@ describe('<ProductCard />', () => {
     image: {
       createdAt: '2023-01-01',
       updatedAt: '2023-01-01',
-      id: '1',
+      id: 1,
       url: '/chaveiro.jpg',
       alt: 'Chaveiro solidário'
     }

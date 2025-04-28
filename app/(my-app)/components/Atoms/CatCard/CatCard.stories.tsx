@@ -19,7 +19,6 @@ export const Default: Story = {
   args: {
     whatsappNumber,
     cat: {
-      id: 'gato-1',
       nome: 'Luna',
       idade: '3 meses',
       descricao: 'Muito carinhosa, adora brincar com bolinhas de papel.',
@@ -32,7 +31,10 @@ export const Default: Story = {
       vermifugacoes: [{ nome: 'Vermivet' }],
       castrado: true,
       doencas: 'Nenhuma conhecida',
-      observacoesSaude: 'Completamente saudável após resgate.'
+
+      observacoesSaude: 'Completamente saudável após resgate.',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
     } as Cat
   }
 };
@@ -41,7 +43,6 @@ export const SemVacinaOuVermifugo: Story = {
   args: {
     whatsappNumber,
     cat: {
-      id: 'gato-2',
       nome: 'Biscoito',
       idade: '2 anos',
       sexo: 'M',
@@ -68,7 +69,6 @@ export const ComDoencas: Story = {
   args: {
     whatsappNumber,
     cat: {
-      id: 'gato-3',
       nome: 'Tigrinho',
       sexo: 'M',
       idade: '1 ano e meio',
@@ -92,7 +92,7 @@ export const SemFoto: Story = {
   args: {
     whatsappNumber,
     cat: {
-      id: 'gato-4',
+      id: 1,
       nome: 'Noir',
       idade: '6 meses',
       sexo: 'M',
@@ -113,7 +113,6 @@ export const ApenasComNome: Story = {
   args: {
     whatsappNumber,
     cat: {
-      id: 'gato-5',
       nome: 'Fantasma',
       sexo: 'F',
       foto: null
