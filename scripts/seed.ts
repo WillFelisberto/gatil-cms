@@ -28,20 +28,21 @@ const seed = async () => {
     await payload.create({ collection: 'users', data: user });
     log(`Created admin: ${user.email} / ${user.password}`);
 
-    log('=== Criando gatos ===');
-    await payload.create({ collection: 'cats', data: cat1 });
-    log('Created cat1');
-    await payload.create({ collection: 'cats', data: cat2 });
-    log('Created cat2');
-
     log('=== Criando tutor ===');
     await payload.create({ collection: 'guardians', data: guardian });
     log('Created guardian');
 
+    log('=== Criando gatos ===');
+    const cat1Data = await cat1();
+    await payload.create({ collection: 'cats', data: cat1Data });
+    log('Created cat1');
+    const cat2Data = await cat2();
+
+    await payload.create({ collection: 'cats', data: cat2Data });
+    log('Created cat2');
+
     log('=== Criando páginas globais ===');
     await payload.updateGlobal({ slug: 'homepage', data: home });
-    log('Updated homepage');
-
     await payload.updateGlobal({ slug: 'politicaApadrinhamento', data: termosApadrinhamento });
     await payload.updateGlobal({ slug: 'politicaAdocao', data: politicaAdocao });
     await payload.updateGlobal({ slug: 'apadrinhe', data: apadrinhe });

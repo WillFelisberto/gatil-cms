@@ -9,7 +9,7 @@ const meta: Meta<typeof SponsorForm> = {
 };
 
 const baseCat = {
-  id: '1',
+  id: 1,
   nome: 'Gato Teste',
   sexo: 'M' as const,
   createdAt: '2025-04-02T21:24:52.909Z',
@@ -55,7 +55,7 @@ const baseCat = {
         url: null
       }
     },
-    id: '67eda2b3b852bb6b7ae49216',
+    id: 67,
     url: '/api/media/file/gato3.png',
     thumbnailURL: '/api/media/file/gato3-400x300.png'
   },

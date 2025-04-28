@@ -30,7 +30,12 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
     birthDate
   } = cat;
 
-  const imageUrl = typeof foto === 'string' ? foto : foto?.url;
+  const imageUrl =
+    typeof foto === 'string'
+      ? foto
+      : typeof foto === 'object' && 'url' in foto!
+        ? foto.url
+        : undefined;
   const altText = typeof foto === 'object' && foto?.alt ? foto.alt : `Foto de ${nome}`;
 
   const renderCastrado = sexo === 'F' ? '✂️ Castrada' : '✂️ Castrado';

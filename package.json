@@ -27,7 +27,6 @@
     "migrate:create": "payload migrate:create",
     "postinstall": "if [ \"$VERCEL\" = \"1\" ]; then pnpm migrate; else echo 'Skipping migration on local'; fi"
   },
-  
   "lint-staged": {
     "app/[(]my-app[)]/**/*": [
       "pnpm prettier:format",

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPayload } from 'payload';
 import config from '@payload-config';
+import { Guardian } from '@/payload-types';
 
 export async function GET(req: NextRequest) {
   const expected = process.env.CRON_SECRET;
@@ -35,7 +36,7 @@ export async function GET(req: NextRequest) {
   if (atrasados.length > 0) {
     const padrinhos = atrasados
       .map((doc) => {
-        const padrinho = doc.padrinho;
+        const padrinho = doc.padrinho as Guardian;
 
         if (!padrinho || typeof padrinho === 'string') return null;
 

@@ -6,7 +6,7 @@ import { Cat } from '@/payload-types';
 import { SponsorModal } from './SponsorModal';
 
 const mockCat: Cat = {
-  id: '1',
+  id: 1,
   nome: 'Gato Teste',
   sexo: 'M',
   idade: '1 ano',
@@ -50,7 +50,7 @@ const mockCat: Cat = {
         url: null
       }
     },
-    id: '67eda2b3b852bb6b7ae49216',
+    id: 23121,
     url: '/api/media/file/gato3.png',
     thumbnailURL: '/api/media/file/gato3-400x300.png'
   },

@@ -5,10 +5,12 @@ import os from 'os';
 import path from 'path';
 import { getPayload } from 'payload';
 
+import { Media } from '@/payload-types';
+
 export const uploadImageFromUrl = async (
   url: string,
   alt: string = 'Imagem automática'
-): Promise<string> => {
+): Promise<Media> => {
   const payload = await getPayload({ config });
 
   const res = await fetch(url);
@@ -33,5 +35,5 @@ export const uploadImageFromUrl = async (
   });
 
   await unlink(tempPath);
-  return image.id as string;
+  return image;
 };

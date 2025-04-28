@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@/tests/test-utils';
 import { SponsorModal } from './SponsorModal';
 
 const mockCatWithImage: Cat = {
-  id: '1',
+  id: 1,
   nome: 'Gato Teste',
   sexo: 'M',
   createdAt: '2025-04-02T21:24:52.909Z',
@@ -12,7 +12,7 @@ const mockCatWithImage: Cat = {
   idade: '1 ano',
   descricao: 'maluca doidinha',
   foto: {
-    id: '123',
+    id: 2312,
     url: '/gato.jpg',
     alt: 'Foto linda',
     filename: 'gato.jpg',
@@ -77,7 +77,7 @@ const mockCatWithStringImage = {
         url: null
       }
     },
-    id: '67eda2b3b852bb6b7ae49216',
+    id: 67,
     url: '/gato.jpg',
     thumbnailURL: 'gato3-400x300.png'
   }

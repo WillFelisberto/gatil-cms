@@ -5,7 +5,7 @@ import { render, screen } from '@/tests/test-utils';
 import { ImageWithTextBlock } from './ImageWithTextBlock';
 
 const mockImage: Media = {
-  id: 'mock-image-id',
+  id: 123,
   url: 'https://placekitten.com/800/600',
   alt: 'Gatinho fofo',
   filename: 'gatinho.jpg',
