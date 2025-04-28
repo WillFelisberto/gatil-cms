@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaMars, FaVenus } from 'react-icons/fa';
 
-import { Cat } from '@/payload-types';
+import { Cat, Media } from '@/payload-types';
 
 type Props = {
   cat: Cat;
@@ -30,12 +30,7 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
     birthDate
   } = cat;
 
-  const imageUrl =
-    typeof foto === 'string'
-      ? foto
-      : typeof foto === 'object' && 'url' in foto!
-        ? foto.url
-        : undefined;
+  const imageUrl = (foto && (foto as Media).url) || undefined;
   const altText = typeof foto === 'object' && foto?.alt ? foto.alt : `Foto de ${nome}`;
 
   const renderCastrado = sexo === 'F' ? '✂️ Castrada' : '✂️ Castrado';
