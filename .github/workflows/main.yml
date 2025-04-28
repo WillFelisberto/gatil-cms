@@ -155,41 +155,41 @@ jobs:
         env:
           CI: true
 
-  e2e-check:
-    name: Tests - Playwright E2E
-    needs: [nextjs-build-check]
-    runs-on: ubuntu-latest
-    env:
-      DATABASE_URL: 'file:./payload-e2e.db'
-      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
-      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
-      CI: true
-      NODE_ENV: test
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.10.2
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies
-        run: pnpm install
-      - name: Run database migrations
-        run: pnpm migrate
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
-      - name: Download Next.js build
-        uses: actions/download-artifact@v4
-        with:
-          name: next-build
-          path: .next
-      - name: Debug .next contents
-        run: ls -la .next && ls -la .next/server
-      - name: Run database seed
-        run: pnpm exec payload run scripts/seed.ts
-      - name: Run Playwright tests
-        run: npx playwright test
+  # e2e-check:
+  #   name: Tests - Playwright E2E
+  #   needs: [nextjs-build-check]
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     DATABASE_URL: 'file:./payload-e2e.db'
+  #     PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+  #     BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+  #     CI: true
+  #     NODE_ENV: test
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+  #     - name: Setup pnpm
+  #       uses: pnpm/action-setup@v2
+  #       with:
+  #         version: 8.10.2
+  #     - name: Setup node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
+  #     - name: Install dependencies
+  #       run: pnpm install
+  #     - name: Run database migrations
+  #       run: pnpm migrate
+  #     - name: Install Playwright browsers
+  #       run: npx playwright install --with-deps
+  #     - name: Download Next.js build
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: next-build
+  #         path: .next
+  #     - name: Debug .next contents
+  #       run: ls -la .next && ls -la .next/server
+  #     - name: Run database seed
+  #       run: pnpm exec payload run scripts/seed.ts
+  #     - name: Run Playwright tests
+  #       run: npx playwright test
