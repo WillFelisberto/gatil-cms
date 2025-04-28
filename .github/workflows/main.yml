@@ -103,6 +103,10 @@ jobs:
         run: pnpm install
       - name: Run database migrations
         run: pnpm migrate
+        env:
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+          DATABASE_URL: 'file:./payload-e2e.db'
+
       - name: Build Next.js
         run: pnpm build
         env:
