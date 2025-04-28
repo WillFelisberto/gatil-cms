@@ -75,7 +75,6 @@ export interface Config {
     sponsorships: Sponsorship;
     cronLogs: CronLog;
     exports: Export;
-    'activity-log': ActivityLog;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -91,7 +90,6 @@ export interface Config {
     sponsorships: SponsorshipsSelect<false> | SponsorshipsSelect<true>;
     cronLogs: CronLogsSelect<false> | CronLogsSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
-    'activity-log': ActivityLogSelect<false> | ActivityLogSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -371,33 +369,6 @@ export interface Export {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "activity-log".
- */
-export interface ActivityLog {
-  id: string;
-  user?: {
-    relationTo: 'users';
-    value: string | User;
-  } | null;
-  operation?: ('create' | 'read' | 'update' | 'delete') | null;
-  timestamp?: string | null;
-  ipAddress?: string | null;
-  deviceInfo?: string | null;
-  locale?: string | null;
-  resource?: string | null;
-  documentId?: string | null;
-  data?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
@@ -526,10 +497,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'exports';
         value: string | Export;
-      } | null)
-    | ({
-        relationTo: 'activity-log';
-        value: string | ActivityLog;
       } | null)
     | ({
         relationTo: 'payload-jobs';
@@ -778,21 +745,6 @@ export interface ExportsSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "activity-log_select".
- */
-export interface ActivityLogSelect<T extends boolean = true> {
-  user?: T;
-  operation?: T;
-  timestamp?: T;
-  ipAddress?: T;
-  deviceInfo?: T;
-  locale?: T;
-  resource?: T;
-  documentId?: T;
-  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

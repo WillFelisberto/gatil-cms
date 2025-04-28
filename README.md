@@ -57,7 +57,7 @@ cp .env.example .env.local
 | `pnpm test:watch`         | Executa testes em modo observador         |
 | `pnpm test:ci`            | Executa testes em ambiente CI             |
 | `pnpm test:e2e`           | Testes end-to-end com Playwright          |
-| `pnpm test:e2e:ui	`       | Interface gráfica dos testes E2E          |
+| `pnpm test:e2e:ui	`        | Interface gráfica dos testes E2E          |
 | `pnpm lint`               | Verifica problemas com ESLint             |
 | `pnpm lint:fix`           | Corrige automaticamente os erros de lint  |
 | `pnpm prettier:format`    | Formata o código com Prettier             |

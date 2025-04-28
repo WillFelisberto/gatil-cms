@@ -2,6 +2,7 @@ import { Block } from 'payload';
 
 export const ImageWithText: Block = {
   slug: 'imageWithText',
+  dbName: 'img_pos',
   labels: { singular: 'Imagem com texto', plural: 'Imagens com texto' },
   fields: [
     {

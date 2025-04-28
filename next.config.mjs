@@ -5,6 +5,13 @@ const nextConfig = {
   // Your Next.js config here
   experimental: {
     reactCompiler: false
+  },
+  webpack(config, { isServer }) {
+    if (isServer) {
+      if (!config.externals) config.externals = [];
+      config.externals.push('@libsql/win32-x64-msvc');
+    }
+    return config;
   }
   // webpack(config) {
   //   // Remove o loader padrão de SVG
