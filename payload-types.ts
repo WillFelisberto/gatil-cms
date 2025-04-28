@@ -96,7 +96,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {
     'site-config': SiteConfig;
@@ -158,16 +158,16 @@ export interface UserAuthOperations {
  * via the `definition` "cats".
  */
 export interface Cat {
-  id: string;
+  id: number;
   nome: string;
   birthDate?: string | null;
   idade?: string | null;
   descricao?: string | null;
   sexo: 'M' | 'F';
-  foto?: (string | null) | Media;
+  foto?: (number | null) | Media;
   galeria?:
     | {
-        imagem?: (string | null) | Media;
+        imagem?: (number | null) | Media;
         legenda?: string | null;
         id?: string | null;
       }[]
@@ -203,7 +203,7 @@ export interface Cat {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -248,9 +248,9 @@ export interface Media {
  * via the `definition` "adoptions".
  */
 export interface Adoption {
-  id: string;
-  gato: string | Cat;
-  tutor: string | Guardian;
+  id: number;
+  gato: number | Cat;
+  tutor: number | Guardian;
   dataAdocao: string;
   observacoes?: string | null;
   updatedAt: string;
@@ -261,7 +261,7 @@ export interface Adoption {
  * via the `definition` "guardians".
  */
 export interface Guardian {
-  id: string;
+  id: number;
   nome: string;
   email: string;
   telefone: string;
@@ -276,11 +276,11 @@ export interface Guardian {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   name: string;
   telefone?: string | null;
   showPhone?: boolean | null;
-  photo?: (string | null) | Media;
+  photo?: (number | null) | Media;
   role: 'admin' | 'voluntario';
   show?: boolean | null;
   emailUpdates?: boolean | null;
@@ -299,10 +299,10 @@ export interface User {
  * via the `definition` "sponsorships".
  */
 export interface Sponsorship {
-  id: string;
-  gato?: (string | Cat)[] | null;
+  id: number;
+  gato?: (number | Cat)[] | null;
   apadrinhaProjeto?: boolean | null;
-  padrinho: string | Guardian;
+  padrinho: number | Guardian;
   formaPagamento?: ('Pix' | 'Cartão' | 'Dinheiro') | null;
   valorMensal: 'R$ 29,90 (Básico)' | 'R$ 59,90 (Premium)' | 'R$ 99,90 (Master)';
   certificadoDigital?: boolean | null;
@@ -323,7 +323,7 @@ export interface Sponsorship {
  * via the `definition` "cronLogs".
  */
 export interface CronLog {
-  id: string;
+  id: number;
   executadoEm?: string | null;
   totalVencidos?: number | null;
   emailEnviado?: boolean | null;
@@ -336,7 +336,7 @@ export interface CronLog {
  * via the `definition` "exports".
  */
 export interface Export {
-  id: string;
+  id: number;
   name?: string | null;
   format: 'csv' | 'json';
   limit?: number | null;
@@ -372,7 +372,7 @@ export interface Export {
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
-  id: string;
+  id: number;
   /**
    * Input data provided to the job
    */
@@ -464,48 +464,48 @@ export interface PayloadJob {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'cats';
-        value: string | Cat;
+        value: number | Cat;
       } | null)
     | ({
         relationTo: 'adoptions';
-        value: string | Adoption;
+        value: number | Adoption;
       } | null)
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'guardians';
-        value: string | Guardian;
+        value: number | Guardian;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'sponsorships';
-        value: string | Sponsorship;
+        value: number | Sponsorship;
       } | null)
     | ({
         relationTo: 'cronLogs';
-        value: string | CronLog;
+        value: number | CronLog;
       } | null)
     | ({
         relationTo: 'exports';
-        value: string | Export;
+        value: number | Export;
       } | null)
     | ({
         relationTo: 'payload-jobs';
-        value: string | PayloadJob;
+        value: number | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -515,10 +515,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -538,7 +538,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -814,7 +814,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "site-config".
  */
 export interface SiteConfig {
-  id: string;
+  id: number;
   /**
    * Número do WhatsApp utilizado no site para adoção/contato no geral
    */
@@ -834,8 +834,8 @@ export interface SiteConfig {
  * via the `definition` "sobre".
  */
 export interface Sobre {
-  id: string;
-  imagem?: (string | null) | Media;
+  id: number;
+  imagem?: (number | null) | Media;
   descricao?: {
     root: {
       type: string;
@@ -857,7 +857,7 @@ export interface Sobre {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -867,12 +867,12 @@ export interface Sobre {
  * via the `definition` "adote".
  */
 export interface Adote {
-  id: string;
+  id: number;
   layout: (
     | {
         title: string;
         subtitle?: string | null;
-        backgroundImage: string | Media;
+        backgroundImage: number | Media;
         ctaText?: string | null;
         ctaLink?: string | null;
         id?: string | null;
@@ -882,7 +882,7 @@ export interface Adote {
     | {
         images?:
           | {
-              image: string | Media;
+              image: number | Media;
               caption?: string | null;
               id?: string | null;
             }[]
@@ -914,7 +914,7 @@ export interface Adote {
     | {
         imagePosition?: ('left' | 'right') | null;
         backgroundColor?: ('dark' | 'light') | null;
-        image: string | Media;
+        image: number | Media;
         title?: string | null;
         text?: string | null;
         ctaText?: string | null;
@@ -939,7 +939,7 @@ export interface Adote {
               name: string;
               description?: string | null;
               price: number;
-              image: string | Media;
+              image: number | Media;
               buyLink: string;
               id?: string | null;
             }[]
@@ -967,7 +967,7 @@ export interface Adote {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -977,12 +977,12 @@ export interface Adote {
  * via the `definition` "contato".
  */
 export interface Contato {
-  id: string;
+  id: number;
   layout: (
     | {
         title: string;
         subtitle?: string | null;
-        backgroundImage: string | Media;
+        backgroundImage: number | Media;
         ctaText?: string | null;
         ctaLink?: string | null;
         id?: string | null;
@@ -992,7 +992,7 @@ export interface Contato {
     | {
         images?:
           | {
-              image: string | Media;
+              image: number | Media;
               caption?: string | null;
               id?: string | null;
             }[]
@@ -1024,7 +1024,7 @@ export interface Contato {
     | {
         imagePosition?: ('left' | 'right') | null;
         backgroundColor?: ('dark' | 'light') | null;
-        image: string | Media;
+        image: number | Media;
         title?: string | null;
         text?: string | null;
         ctaText?: string | null;
@@ -1049,7 +1049,7 @@ export interface Contato {
               name: string;
               description?: string | null;
               price: number;
-              image: string | Media;
+              image: number | Media;
               buyLink: string;
               id?: string | null;
             }[]
@@ -1077,7 +1077,7 @@ export interface Contato {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1087,12 +1087,12 @@ export interface Contato {
  * via the `definition` "colabore".
  */
 export interface Colabore {
-  id: string;
+  id: number;
   layout: (
     | {
         title: string;
         subtitle?: string | null;
-        backgroundImage: string | Media;
+        backgroundImage: number | Media;
         ctaText?: string | null;
         ctaLink?: string | null;
         id?: string | null;
@@ -1102,7 +1102,7 @@ export interface Colabore {
     | {
         images?:
           | {
-              image: string | Media;
+              image: number | Media;
               caption?: string | null;
               id?: string | null;
             }[]
@@ -1134,7 +1134,7 @@ export interface Colabore {
     | {
         imagePosition?: ('left' | 'right') | null;
         backgroundColor?: ('dark' | 'light') | null;
-        image: string | Media;
+        image: number | Media;
         title?: string | null;
         text?: string | null;
         ctaText?: string | null;
@@ -1159,7 +1159,7 @@ export interface Colabore {
               name: string;
               description?: string | null;
               price: number;
-              image: string | Media;
+              image: number | Media;
               buyLink: string;
               id?: string | null;
             }[]
@@ -1181,15 +1181,15 @@ export interface Colabore {
         blockType: 'faq';
       }
   )[];
-  logobanco: string | Media;
-  qrcode: string | Media;
+  logobanco: number | Media;
+  qrcode: number | Media;
   meta?: {
     title?: string | null;
     description?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1199,12 +1199,12 @@ export interface Colabore {
  * via the `definition` "apadrinhe".
  */
 export interface Apadrinhe {
-  id: string;
+  id: number;
   layout: (
     | {
         title: string;
         subtitle?: string | null;
-        backgroundImage: string | Media;
+        backgroundImage: number | Media;
         ctaText?: string | null;
         ctaLink?: string | null;
         id?: string | null;
@@ -1214,7 +1214,7 @@ export interface Apadrinhe {
     | {
         images?:
           | {
-              image: string | Media;
+              image: number | Media;
               caption?: string | null;
               id?: string | null;
             }[]
@@ -1246,7 +1246,7 @@ export interface Apadrinhe {
     | {
         imagePosition?: ('left' | 'right') | null;
         backgroundColor?: ('dark' | 'light') | null;
-        image: string | Media;
+        image: number | Media;
         title?: string | null;
         text?: string | null;
         ctaText?: string | null;
@@ -1271,7 +1271,7 @@ export interface Apadrinhe {
               name: string;
               description?: string | null;
               price: number;
-              image: string | Media;
+              image: number | Media;
               buyLink: string;
               id?: string | null;
             }[]
@@ -1299,7 +1299,7 @@ export interface Apadrinhe {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1309,12 +1309,12 @@ export interface Apadrinhe {
  * via the `definition` "politicaAdocao".
  */
 export interface PoliticaAdocao {
-  id: string;
+  id: number;
   layout: (
     | {
         title: string;
         subtitle?: string | null;
-        backgroundImage: string | Media;
+        backgroundImage: number | Media;
         ctaText?: string | null;
         ctaLink?: string | null;
         id?: string | null;
@@ -1324,7 +1324,7 @@ export interface PoliticaAdocao {
     | {
         images?:
           | {
-              image: string | Media;
+              image: number | Media;
               caption?: string | null;
               id?: string | null;
             }[]
@@ -1356,7 +1356,7 @@ export interface PoliticaAdocao {
     | {
         imagePosition?: ('left' | 'right') | null;
         backgroundColor?: ('dark' | 'light') | null;
-        image: string | Media;
+        image: number | Media;
         title?: string | null;
         text?: string | null;
         ctaText?: string | null;
@@ -1381,7 +1381,7 @@ export interface PoliticaAdocao {
               name: string;
               description?: string | null;
               price: number;
-              image: string | Media;
+              image: number | Media;
               buyLink: string;
               id?: string | null;
             }[]
@@ -1409,7 +1409,7 @@ export interface PoliticaAdocao {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1419,12 +1419,12 @@ export interface PoliticaAdocao {
  * via the `definition` "politicaApadrinhamento".
  */
 export interface PoliticaApadrinhamento {
-  id: string;
+  id: number;
   layout: (
     | {
         title: string;
         subtitle?: string | null;
-        backgroundImage: string | Media;
+        backgroundImage: number | Media;
         ctaText?: string | null;
         ctaLink?: string | null;
         id?: string | null;
@@ -1434,7 +1434,7 @@ export interface PoliticaApadrinhamento {
     | {
         images?:
           | {
-              image: string | Media;
+              image: number | Media;
               caption?: string | null;
               id?: string | null;
             }[]
@@ -1466,7 +1466,7 @@ export interface PoliticaApadrinhamento {
     | {
         imagePosition?: ('left' | 'right') | null;
         backgroundColor?: ('dark' | 'light') | null;
-        image: string | Media;
+        image: number | Media;
         title?: string | null;
         text?: string | null;
         ctaText?: string | null;
@@ -1491,7 +1491,7 @@ export interface PoliticaApadrinhamento {
               name: string;
               description?: string | null;
               price: number;
-              image: string | Media;
+              image: number | Media;
               buyLink: string;
               id?: string | null;
             }[]
@@ -1519,7 +1519,7 @@ export interface PoliticaApadrinhamento {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1529,12 +1529,12 @@ export interface PoliticaApadrinhamento {
  * via the `definition` "homepage".
  */
 export interface Homepage {
-  id: string;
+  id: number;
   layout: (
     | {
         title: string;
         subtitle?: string | null;
-        backgroundImage: string | Media;
+        backgroundImage: number | Media;
         ctaText?: string | null;
         ctaLink?: string | null;
         id?: string | null;
@@ -1544,7 +1544,7 @@ export interface Homepage {
     | {
         images?:
           | {
-              image: string | Media;
+              image: number | Media;
               caption?: string | null;
               id?: string | null;
             }[]
@@ -1576,7 +1576,7 @@ export interface Homepage {
     | {
         imagePosition?: ('left' | 'right') | null;
         backgroundColor?: ('dark' | 'light') | null;
-        image: string | Media;
+        image: number | Media;
         title?: string | null;
         text?: string | null;
         ctaText?: string | null;
@@ -1601,7 +1601,7 @@ export interface Homepage {
               name: string;
               description?: string | null;
               price: number;
-              image: string | Media;
+              image: number | Media;
               buyLink: string;
               id?: string | null;
             }[]
@@ -1629,7 +1629,7 @@ export interface Homepage {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;

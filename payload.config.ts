@@ -1,7 +1,6 @@
 import sharp from 'sharp';
 import { buildConfig } from 'payload';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { pt } from '@payloadcms/translations/languages/pt';
@@ -42,16 +41,6 @@ const globalsToLog = [
 ];
 
 const globalsWithSeo = globalsToLog.filter((name) => name !== 'site-config');
-
-const isDevOrTest = process.env.NODE_ENV !== 'production';
-
-if (isDevOrTest && !process.env.DATABASE_URI) {
-  throw new Error('Missing DATABASE_URI for MongoDB in development/test environment');
-}
-
-if (!isDevOrTest && !process.env.DATABASE_URL) {
-  throw new Error('Missing DATABASE_URL for Turso in production environment');
-}
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -103,18 +92,13 @@ export default buildConfig({
 
   secret: process.env.PAYLOAD_SECRET || '',
 
-  db: isDevOrTest
-    ? mongooseAdapter({
-        migrationDir: './app/(payload)/migrations',
-        url: process.env.DATABASE_URI || ''
-      })
-    : sqliteAdapter({
-        migrationDir: './app/(payload)/migrations',
-        client: {
-          url: process.env.DATABASE_URL || '',
-          authToken: process.env.DATABASE_AUTH_TOKEN
-        }
-      }),
+  db: sqliteAdapter({
+    migrationDir: './app/(payload)/migrations',
+    client: {
+      url: process.env.DATABASE_URL || '',
+      authToken: process.env.DATABASE_AUTH_TOKEN
+    }
+  }),
 
   ...(process.env.PAYLOAD_SMTP_USER && {
     email: nodemailerAdapter({

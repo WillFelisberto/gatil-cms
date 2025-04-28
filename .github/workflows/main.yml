@@ -101,22 +101,23 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: pnpm install
+      - name: Run database migrations
+        run: pnpm migrate
       - name: Build Next.js
         run: pnpm build
         env:
           CI: true
+          NODE_ENV: test
           PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
-          DATABASE_URI: ${{ secrets.DATABASE_URI }}
+          DATABASE_URL: 'file:./payload-e2e.db'
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
-
       - name: Verificar existência do diretório .next
         run: |
           if [ ! -d ".next" ]; then
             echo "Erro: Diretório .next não encontrado após o build."
             exit 1
           fi
-
       - name: Listar arquivos no diretório após o build
         run: ls -la
       - name: Upload Next.js build
@@ -154,51 +155,37 @@ jobs:
     name: Tests - Playwright E2E
     needs: [nextjs-build-check]
     runs-on: ubuntu-latest
-
-    services:
-      mongo:
-        image: mongo:6
-        ports:
-          - 27017:27017
-
     env:
-      DATABASE_URI: mongodb://localhost:27017/payload-e2e
+      DATABASE_URL: 'file:./payload-e2e.db'
       PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
       BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
       CI: true
       NODE_ENV: test
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8.10.2
-
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 18
-
       - name: Install dependencies
         run: pnpm install
-
+      - name: Run database migrations
+        run: pnpm migrate
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
-
       - name: Download Next.js build
         uses: actions/download-artifact@v4
         with:
           name: next-build
           path: .next
-
       - name: Debug .next contents
         run: ls -la .next && ls -la .next/server
-
       - name: Run database seed
         run: pnpm exec payload run scripts/seed.ts
-
       - name: Run Playwright tests
         run: npx playwright test
