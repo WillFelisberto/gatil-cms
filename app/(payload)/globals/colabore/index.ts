@@ -1,6 +1,5 @@
 import { GlobalConfig } from 'payload';
 import { checkRole } from '../../access/utils';
-import { GlobalTriggerVercelIfChanged } from '../../hooks/afterChange/globalTriggerVercelIfChanged';
 import { PageBlocks } from '../../blocks';
 
 const Colabore: GlobalConfig = {
@@ -9,9 +8,7 @@ const Colabore: GlobalConfig = {
   admin: {
     group: 'Site'
   },
-  hooks: {
-    afterChange: [GlobalTriggerVercelIfChanged]
-  },
+  hooks: {},
   access: {
     read: ({ req: { user } }) => {
       return user ? checkRole('admin', user) : false;
