@@ -2,7 +2,7 @@ import config from '@payload-config';
 import { Metadata } from 'next';
 import { getPayload } from 'payload';
 
-import { Media } from '@/payload-types';
+import { Homepage, Media } from '@/payload-types';
 
 import { RenderBlocks } from './utils/RenderBlocks';
 
@@ -11,9 +11,9 @@ export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
 export default async function Page() {
   const payload = await getPayload({ config });
 
-  const homepage = await payload.findGlobal({ slug: 'homepage' });
+  const homepageData = await payload.findGlobal({ slug: 'homepage' });
 
-  return <RenderBlocks blocks={homepage.layout} />;
+  return <RenderBlocks<Homepage> blocks={homepageData.layout} />;
 }
 
 // 🔥 SEO dinâmico com o plugin de SEO

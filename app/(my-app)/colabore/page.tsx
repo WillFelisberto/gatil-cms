@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { getPayload } from 'payload';
 
-import { Media } from '@/payload-types';
+import { Colabore, Media } from '@/payload-types';
 
 import { RenderBlocks } from '../utils/RenderBlocks';
 
@@ -37,7 +37,7 @@ export default async function AboutPage() {
 
   return (
     <article className="px-4 py-8 max-w-4xl mx-auto text-justify">
-      <RenderBlocks blocks={colabore.layout} />
+      <RenderBlocks<Colabore> blocks={colabore.layout} />
 
       {(logobanco?.url || qrcode?.url) && (
         <section

@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { getPayload } from 'payload';
 import { FaWhatsapp } from 'react-icons/fa';
 
-import { Media } from '@/payload-types';
+import { Contato, Media } from '@/payload-types';
 
 import { RenderBlocks } from '../utils/RenderBlocks';
 
@@ -44,7 +44,7 @@ export default async function AboutPage() {
 
   return (
     <article className="px-4 py-8 max-w-4xl mx-auto">
-      <RenderBlocks blocks={contato.layout} />
+      <RenderBlocks<Contato> blocks={contato.layout} />
 
       {whatsapp && (
         <section className="mb-12 text-center">

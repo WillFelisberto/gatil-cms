@@ -1,6 +1,4 @@
-import React, { Fragment } from 'react';
-
-import type { Homepage } from '@/payload-types';
+import { Fragment } from 'react';
 
 import { FAQAccordion } from '../components/Atoms/FaqAccordion';
 import { GalleryComponent } from '../components/Atoms/GalleryComponent';
@@ -20,9 +18,16 @@ const blockComponents = {
   faq: FAQAccordion
 };
 
-export const RenderBlocks: React.FC<{
-  blocks: Homepage['layout'][0][];
-}> = ({ blocks }) => {
+type Block = {
+  blockType: keyof typeof blockComponents;
+  [key: string]: unknown;
+};
+
+export const RenderBlocks = <T extends { layout: Block[] }>({
+  blocks
+}: {
+  blocks: T['layout'];
+}) => {
   const hasBlocks = Array.isArray(blocks) && blocks.length > 0;
 
   if (!hasBlocks) return null;
@@ -33,13 +38,11 @@ export const RenderBlocks: React.FC<{
         const { blockType } = block;
 
         if (blockType && blockType in blockComponents) {
-          if (blockType in blockComponents) {
-            const Block = blockComponents[blockType as keyof typeof blockComponents];
+          const BlockComponent = blockComponents[blockType as keyof typeof blockComponents];
 
-            if (Block) {
-              // @ts-expect-error there may be some mismatch between the expected types here */
-              return <Block key={index} {...block} disableInnerContainer={true} />;
-            }
+          if (BlockComponent) {
+            // @ts-expect-error there may be some mismatch between the expected types here */
+            return <BlockComponent key={index} {...block} disableInnerContainer={true} />;
           }
         }
 

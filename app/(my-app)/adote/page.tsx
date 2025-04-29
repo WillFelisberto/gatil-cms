@@ -1,7 +1,7 @@
 import config from '@payload-config';
 import { Metadata } from 'next';
 import { getPayload } from 'payload';
-import { Media } from 'payload-types';
+import { Adote, Media } from 'payload-types';
 
 import { CatCard } from '../components/Atoms/CatCard';
 import { Pagination } from '../components/Molecules/Pagination';
@@ -68,7 +68,7 @@ export default async function AdotePage({ searchParams }: AdotePageProps) {
 
   return (
     <div className="max-w-[1300px] mx-auto px-4 py-12">
-      <RenderBlocks blocks={adote.layout} />
+      <RenderBlocks<Adote> blocks={adote.layout} />
 
       <section aria-labelledby="gatinhos-disponiveis" className="mt-12">
         {cats.length === 0 ? (

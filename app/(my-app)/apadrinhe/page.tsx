@@ -2,7 +2,7 @@ import config from '@payload-config';
 import { Metadata } from 'next';
 import { getPayload } from 'payload';
 
-import { Media } from '@/payload-types';
+import { Apadrinhe, Media } from '@/payload-types';
 
 import { Pagination } from '../components/Molecules/Pagination';
 import { RenderBlocks } from '../utils/RenderBlocks';
@@ -59,7 +59,7 @@ export default async function ApadrinhePage({ searchParams }: ApadrinhePageProps
 
   return (
     <div className="max-w-[1300px] mx-auto px-4 py-12">
-      <RenderBlocks blocks={apadrinhe.layout} />
+      <RenderBlocks<Apadrinhe> blocks={apadrinhe.layout} />
 
       <section aria-labelledby="gatinhos-disponiveis" className="mt-12">
         <h2 id="gatinhos-disponiveis" className="sr-only">

@@ -2,7 +2,7 @@ import config from '@payload-config';
 import type { Metadata } from 'next';
 import { getPayload } from 'payload';
 
-import { Media } from '@/payload-types';
+import { Apadrinhe, Media } from '@/payload-types';
 
 import { RenderBlocks } from '../utils/RenderBlocks';
 
@@ -35,7 +35,7 @@ export default async function TermosDeApadrinhamentoPage() {
       aria-labelledby="politica-de-apadrinhamento"
       aria-describedby="descricao-politica-apadrinhamento"
     >
-      <RenderBlocks blocks={politica.layout} />
+      <RenderBlocks<Apadrinhe> blocks={politica.layout} />
     </article>
   );
 }

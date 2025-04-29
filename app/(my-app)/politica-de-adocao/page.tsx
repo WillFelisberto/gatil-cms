@@ -2,7 +2,7 @@ import config from '@payload-config';
 import type { Metadata } from 'next';
 import { getPayload } from 'payload';
 
-import { Media } from '@/payload-types';
+import { Media, PoliticaAdocao } from '@/payload-types';
 
 import { RenderBlocks } from '../utils/RenderBlocks';
 
@@ -36,7 +36,7 @@ export default async function PoliticaAdocaoPage() {
       aria-labelledby="politica-adocao"
       aria-describedby="descricao-politica"
     >
-      <RenderBlocks blocks={politica.layout} />
+      <RenderBlocks<PoliticaAdocao> blocks={politica.layout} />
     </article>
   );
 }
