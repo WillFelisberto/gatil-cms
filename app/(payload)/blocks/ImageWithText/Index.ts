@@ -2,7 +2,10 @@ import { Block } from 'payload';
 
 export const ImageWithText: Block = {
   slug: 'imageWithText',
-  dbName: 'img_pos',
+  dbName: ({ tableName }) => {
+    console.log('🚀 ~ tableName:', tableName);
+    return tableName ? `${tableName}_img_pos` : 'img_pos';
+  },
   labels: { singular: 'Imagem com texto', plural: 'Imagens com texto' },
   fields: [
     {
