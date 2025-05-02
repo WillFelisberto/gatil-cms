@@ -5,8 +5,17 @@ import pluginReact from 'eslint-plugin-react';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import { FlatCompat } from '@eslint/eslintrc';
+import path from 'path';
+
+const compat = new FlatCompat({
+  baseDirectory: path.resolve()
+});
+
+const nextConfig = compat.extends('plugin:@next/next/recommended');
 
 export default defineConfig([
+  ...nextConfig,
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'], languageOptions: { globals: globals.browser } },
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'], plugins: { js }, extends: ['js/recommended'] },
