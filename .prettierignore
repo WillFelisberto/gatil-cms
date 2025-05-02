@@ -8,3 +8,4 @@ coverage
 payload-types.ts
 docs
 app/(payload)/admin/importMap.js
+app/(payload)/migrations
