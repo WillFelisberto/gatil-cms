@@ -82,7 +82,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           theme="light"
         />
       </body>
-      <GoogleAnalytics gaId="G-XYZG-CVEQLYNEPP" />
+      <GoogleAnalytics gaId="G-CVEQLYNEPP" />
     </html>
   );
 }
