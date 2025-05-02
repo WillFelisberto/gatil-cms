@@ -1,5 +1,6 @@
 import '@/styles/global.css';
 
+import { GoogleAnalytics } from '@next/third-parties/google';
 import config from '@payload-config';
 import { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
@@ -81,6 +82,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           theme="light"
         />
       </body>
+      <GoogleAnalytics gaId="G-XYZG-CVEQLYNEPP" />
     </html>
   );
 }
