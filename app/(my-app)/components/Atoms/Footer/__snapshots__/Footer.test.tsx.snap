@@ -23,8 +23,15 @@ exports[`<Footer /> should render the footer container 1`] = `
           >
             <img
               alt="Logo do Gatil dos Resgatados"
-              class="w-20 h-20 object-contain"
-              src="/logo-rodape.webp"
+              class="object-contain"
+              data-nimg="1"
+              decoding="async"
+              height="80"
+              loading="lazy"
+              src="/_next/image?url=%2Flogo-rodape.webp&w=256&q=75"
+              srcset="/_next/image?url=%2Flogo-rodape.webp&w=96&q=75 1x, /_next/image?url=%2Flogo-rodape.webp&w=256&q=75 2x"
+              style="color: transparent;"
+              width="80"
             />
           </div>
           <p

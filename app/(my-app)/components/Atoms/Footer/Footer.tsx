@@ -1,6 +1,7 @@
 'use client';
 
 import { Facebook, Instagram, Music2 } from 'lucide-react';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const iconMap = {
@@ -40,10 +41,12 @@ export const Footer = ({ socialLinks, menuItems }: FooterProps) => {
           {/* Redes sociais e texto */}
           <div className="flex-1 justify-center" data-testid="footer-social">
             <div className="flex justify-center mb-4">
-              <img
+              <Image
                 src="/logo-rodape.webp"
                 alt="Logo do Gatil dos Resgatados"
-                className="w-20 h-20 object-contain"
+                width={80}
+                height={80}
+                className="object-contain"
               />
             </div>
             <p className="text-base text-gray-700 max-w-md mx-auto text-center font-poppins">

@@ -13,10 +13,11 @@ describe('<VolunteerCard />', () => {
     const { container } = render(<VolunteerCard {...baseProps} showPhone />);
 
     expect(screen.getByTestId('volunteer-card')).toBeInTheDocument();
-    expect(screen.getByAltText(`Foto de ${baseProps.name}`)).toHaveAttribute(
-      'src',
-      baseProps.photo
-    );
+    const imgSrc = screen.getByAltText(`Foto de ${baseProps.name}`).getAttribute('src');
+    const urlParams = new URLSearchParams(imgSrc?.split('?')[1]);
+    const originalUrl = urlParams.get('url');
+
+    expect(originalUrl).toBe('https://example.com/photo.jpg');
     expect(screen.getByText(baseProps.name)).toBeInTheDocument();
 
     expect(container).toMatchSnapshot();

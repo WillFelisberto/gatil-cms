@@ -9,7 +9,14 @@ exports[`<VolunteerCard /> should render the photo and name correctly 1`] = `
     <img
       alt="Foto de João Vítor"
       class="w-24 h-24 rounded-full object-cover border-4 border-blue-950 mb-3"
-      src="https://example.com/photo.jpg"
+      data-nimg="1"
+      decoding="async"
+      height="96"
+      loading="lazy"
+      src="/_next/image?url=https%3A%2F%2Fexample.com%2Fphoto.jpg&w=256&q=75"
+      srcset="/_next/image?url=https%3A%2F%2Fexample.com%2Fphoto.jpg&w=96&q=75 1x, /_next/image?url=https%3A%2F%2Fexample.com%2Fphoto.jpg&w=256&q=75 2x"
+      style="color: transparent;"
+      width="96"
     />
     <h3
       class="text-lg font-semibold text-zinc-800"

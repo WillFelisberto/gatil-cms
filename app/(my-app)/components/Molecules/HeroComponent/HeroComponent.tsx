@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { BlockProps } from '@/app/(my-app)/types/block-props';
@@ -16,7 +17,7 @@ export const HeroComponent = (props: BlockProps<'hero'>) => {
       {/* Background Image */}
       {bgImage && (
         <div className="absolute inset-0 -z-10">
-          <img
+          <Image
             src={bgImage}
             alt="Imagem de fundo"
             className="w-full h-full object-cover object-center"

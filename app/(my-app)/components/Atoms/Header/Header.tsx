@@ -1,6 +1,8 @@
 'use client';
 
 import { Menu } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -20,16 +22,22 @@ export const Header = ({ menuItems }: HeaderProps) => {
   return (
     <header className="bg-[#013274] text-white" role="banner" data-testid="header">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-16 md:h-[91px]">
-        <a href="/" aria-label="Ir para a página inicial" className="flex items-center space-x-2">
-          <img
+        <Link
+          href="/"
+          aria-label="Ir para a página inicial"
+          className="flex items-center space-x-2"
+        >
+          <Image
             src="/logo-gatil.webp"
             alt="Gatil dos Resgatados - Logo"
             className="w-[230px] h-auto"
+            width={230}
+            height={100}
             loading="eager"
             fetchPriority="high"
             data-testid="logo"
           />
-        </a>
+        </Link>
 
         <nav
           className="hidden md:flex w-full justify-around text-sm font-semibold"

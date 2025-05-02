@@ -17,10 +17,16 @@ exports[`<Header /> Should render the logo with correct alt text 1`] = `
       <img
         alt="Gatil dos Resgatados - Logo"
         class="w-[230px] h-auto"
+        data-nimg="1"
         data-testid="logo"
+        decoding="async"
         fetchpriority="high"
+        height="100"
         loading="eager"
-        src="/logo-gatil.webp"
+        src="/_next/image?url=%2Flogo-gatil.webp&w=640&q=75"
+        srcset="/_next/image?url=%2Flogo-gatil.webp&w=256&q=75 1x, /_next/image?url=%2Flogo-gatil.webp&w=640&q=75 2x"
+        style="color: transparent;"
+        width="230"
       />
     </a>
     <nav
