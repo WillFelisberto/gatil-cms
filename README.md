@@ -1,33 +1,34 @@
+
 # 🐾 Gatil CMS
 
-Este sistema permite que você gerencie facilmente o conteúdo do site de seu gatil, incluindo:
+This system allows you to easily manage the content of your cat shelter's website, including:
 
-- Cadastro de animais para adoção
-- Sistema de apadrinhamento
-- Controle de usuários e tutores
-- Gerenciamento de adoções
-- Edição de textos institucionais do site
+- Pet registration for adoption
+- Sponsorship system
+- User and guardian management
+- Adoption management
+- Editing of institutional site texts
 
-Tudo isso integrado com um CMS moderno e flexível utilizando **Payload CMS**, **Next.js** e tecnologias de ponta.
+All integrated with a modern and flexible CMS using **Payload CMS**, **Next.js**, and cutting-edge technologies.
 
-## 📚 Documentação
+## 📚 Documentation
 
-Acesse a [Wiki do Gatil CMS](https://docs-gatil-cms.vercel.app/) para entender facilmente como gerenciar o conteúdo do seu site, incluindo adoções, apadrinhamentos, cadastro de animais, usuários, tutores e textos institucionais.
+Access the [Gatil CMS Wiki](https://docs-gatil-cms.vercel.app/) to easily learn how to manage your website content, including adoptions, sponsorships, pet registration, users, guardians, and institutional texts.
 
-## 🚀 Tecnologias utilizadas
+## 🚀 Technologies Used
 
-- **Next.js** com Turbopack
+- **Next.js** with Turbopack
 - **React 19**
 - **Payload CMS 3**
 - **Tailwind CSS 4**
 - **MongoDB (via @payloadcms/db-mongodb)**
-- **Storybook** para desenvolvimento de componentes isolados
-- **Husky + lint-staged** para Git hooks e formatação automática
-- **Jest + Testing Library + Vitest + Playwright** para testes
+- **Storybook** for isolated component development
+- **Husky + lint-staged** for Git hooks and auto formatting
+- **Jest + Testing Library + Vitest + Playwright** for testing
 - **GraphQL**
-- **Hygen** para geração de componentes
+- **Hygen** for component generation
 
-### Plugins úteis
+### Useful Plugins
 
 - `@payloadcms/plugin-import-export`
 - `@payload-bites/activity-log`
@@ -35,7 +36,7 @@ Acesse a [Wiki do Gatil CMS](https://docs-gatil-cms.vercel.app/) para entender f
 - `payload-mask-plugin`
 - `@nouance/payload-better-fields-plugin`
 
-## 📦 Instalação
+## 📦 Installation
 
 ```bash
 git clone https://github.com/WillFelisberto/gatil-cms
@@ -44,73 +45,73 @@ pnpm install
 cp .env.example .env.local
 ```
 
-> Configure suas variáveis de ambiente no `.env.local`.
+> Set your environment variables in `.env.local`.
 
-## 💻 Scripts disponíveis
+## 💻 Available Scripts
 
-| Comando                   | Descrição                                 |
-| ------------------------- | ----------------------------------------- |
-| `pnpm dev`                | Inicia o ambiente de desenvolvimento      |
-| `pnpm build`              | Cria a versão de produção                 |
-| `pnpm start`              | Inicia o app em modo produção             |
-| `pnpm test`               | Executa os testes com Jest                |
-| `pnpm test:watch`         | Executa testes em modo observador         |
-| `pnpm test:ci`            | Executa testes em ambiente CI             |
-| `pnpm test:e2e`           | Testes end-to-end com Playwright          |
-| `pnpm test:e2e:ui	`        | Interface gráfica dos testes E2E          |
-| `pnpm lint`               | Verifica problemas com ESLint             |
-| `pnpm lint:fix`           | Corrige automaticamente os erros de lint  |
-| `pnpm prettier:format`    | Formata o código com Prettier             |
-| `pnpm generate:types`     | Gera os tipos do Payload CMS              |
-| `pnpm generate:importmap` | Gera o importmap para o Payload           |
-| `pnpm storybook`          | Inicia o Storybook                        |
-| `pnpm build-storybook`    | Gera a build do Storybook                 |
-| `pnpm generate`           | Gera novos componentes com Hygen          |
-| `pnpm prepare`            | Setup do Husky                            |
-| `pnpm docs:dev`           | Inicia documentação local com VitePress   |
-| `pnpm docs:build`         | Gera documentação para produção           |
-| `pnpm docs:serve`         | Serve a documentação localmente           |
-| `pnpm seed`               | Popula o CMS com dados de exemplo para CI |
+| Command                   | Description                                 |
+| ------------------------- | ------------------------------------------- |
+| `pnpm dev`                | Starts development environment              |
+| `pnpm build`              | Builds the production version               |
+| `pnpm start`              | Starts the app in production mode           |
+| `pnpm test`               | Runs tests with Jest                        |
+| `pnpm test:watch`         | Runs tests in watch mode                    |
+| `pnpm test:ci`            | Runs tests in CI environment                |
+| `pnpm test:e2e`           | End-to-end tests with Playwright            |
+| `pnpm test:e2e:ui`        | UI interface for E2E tests                  |
+| `pnpm lint`               | Checks code with ESLint                     |
+| `pnpm lint:fix`           | Automatically fixes lint errors             |
+| `pnpm prettier:format`    | Formats code with Prettier                  |
+| `pnpm generate:types`     | Generates types for Payload CMS             |
+| `pnpm generate:importmap` | Generates importmap for Payload             |
+| `pnpm storybook`          | Starts Storybook                            |
+| `pnpm build-storybook`    | Builds Storybook for production             |
+| `pnpm generate`           | Generates new components with Hygen         |
+| `pnpm prepare`            | Sets up Husky                               |
+| `pnpm docs:dev`           | Starts local docs with VitePress            |
+| `pnpm docs:build`         | Builds documentation for production         |
+| `pnpm docs:serve`         | Serves local documentation                  |
+| `pnpm seed`               | Seeds CMS with sample data for CI           |
 
-## 📁 Estrutura de pastas
+## 📁 Folder Structure
 
 ```
-├── app/(my-app)              # Aplicação Next.js
-├── app/(payload)             # Configurações do Payload CMS
-├── app/(my-app)/components/  # Componentes React reutilizáveis
-├── docs/                     # Documentação técnica (VitePress)
-├── scripts/                  # Seeds e tarefas automáticas
-├── tests/                    # E2E e integração
-├── public/                   # Assets públicos
-├── styles/                   # Estilos (Tailwind)
-├── .env.example              # Arquivo de exemplo para variáveis
-├── .env.local                # (Você deve criar a partir do .env.example)
+├── app/(my-app)              # Next.js application
+├── app/(payload)             # Payload CMS settings
+├── app/(my-app)/components/  # Reusable React components
+├── docs/                     # Technical documentation (VitePress)
+├── scripts/                  # Seeds and automation tasks
+├── tests/                    # E2E and integration tests
+├── public/                   # Public assets
+├── styles/                   # Tailwind styles
+├── .env.example              # Sample env file
+├── .env.local                # (You must create this from .env.example)
 ├── package.json
 ├── README.md
 ```
 
-## 🧪 Testes
+## 🧪 Testing
 
-- **Jest** para testes unitários
-- **Testing Library** para testes de UI
-- **Vitest** e **Playwright** para testes end-to-end e browser-based
-- **Storybook Test** para testes visuais de componentes
+- **Jest** for unit testing
+- **Testing Library** for UI testing
+- **Vitest** and **Playwright** for end-to-end and browser-based testing
+- **Storybook Test** for visual component testing
 
-## ✅ Boas práticas
+## ✅ Best Practices
 
-- Utiliza **husky** e **lint-staged** para garantir qualidade nos commits
-- Use `pnpm generate` para manter padrão nos componentes
-- Rode `pnpm generate:types` após alterações no CMS
+- Uses **husky** and **lint-staged** to ensure commit quality
+- Use `pnpm generate` to maintain consistent component structure
+- Run `pnpm generate:types` after any changes to the CMS
 
-## 📃 Licença
+## 📃 License
 
-Este projeto é de código aberto, mas **a revenda é proibida**.  
-Consulte o arquivo [LICENSE.md](./LICENSE.md) para mais detalhes.
+This project is open-source, but **resale is prohibited**.  
+See [LICENSE.md](./LICENSE.md) for more details.
 
-## 🙋 Contribuindo
+## 🙋 Contributing
 
-Contribuições são bem-vindas! Abra uma issue ou pull request com sugestões, correções ou novos recursos.
+Contributions are welcome! Open an issue or pull request with suggestions, bug fixes, or new features.
 
 ---
 
-🐱 Feito com amor para nossos gatinhos. 💜
+🐱 Made with love for our little cats. 💜
