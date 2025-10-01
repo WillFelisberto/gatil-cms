@@ -1,10 +1,12 @@
 'use client';
 
+import clsx from 'clsx';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaMars, FaVenus } from 'react-icons/fa';
+import { LuPawPrint } from 'react-icons/lu';
 
 import { Cat, Media } from '@/payload-types';
 
@@ -31,7 +33,8 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
   } = cat;
 
   const imageUrl = (foto && (foto as Media).url) || undefined;
-  const altText = typeof foto === 'object' && foto?.alt ? foto.alt : `Foto de ${nome}`;
+  const altText =
+    typeof foto === 'object' && (foto as Media)?.alt ? (foto as Media).alt : `Foto de ${nome}`;
 
   const renderCastrado = sexo === 'F' ? '✂️ Castrada' : '✂️ Castrado';
   const renderVacina = sexo === 'F' ? '💉 Vacinada' : '💉 Vacinado';
@@ -44,57 +47,67 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
 
   const content = (
     <>
+      {/* sticker de ação */}
       <span
-        className="absolute top-2 left-2 bg-green-100 text-green-900 text-xs font-semibold px-2 py-1 rounded-full shadow-sm z-10 group-hover:scale-105 transition"
+        className={clsx(
+          'absolute top-3 left-3 z-10 flex items-center gap-1 rounded-full   text-[#013274] text-xs font-semibold px-3 py-1 shadow-sm transition-transform duration-200 group-hover:scale-[1.04]',
+          sexo === 'M' ? 'text-[#013274] bg-[#EFF4FF] ' : 'text-pink-600 bg-[#FFF3F8]'
+        )}
         data-testid="contact-badge"
       >
-        {mode === 'adotar' ? 'Clique aqui para saber mais 🐾' : 'Clique aqui para apadrinhar 🐾'}
+        <LuPawPrint size={14} aria-hidden="true" />
+        {mode === 'adotar' ? 'Saber mais' : 'Apadrinhar'}
       </span>
 
-      <div className="relative h-60 w-full shrink-0">
-        <Image
-          src={imageUrl || '/no-image.jpg'}
-          alt={altText}
-          fill
-          sizes="(max-width: 768px) 100vw, 384px"
-          className="object-cover"
-          priority
-          data-testid="cat-image"
-        />
+      {/* imagem */}
+      {/* imagem (fade/inner-shadow branco que acompanha o hover) */}
+      <div className="relative h-60 w-full shrink-0 overflow-hidden">
+        {/* Wrapper que escala junto com o hover da card .group */}
+        <div className="absolute inset-0 transition-transform duration-300  will-change-transform">
+          <Image
+            src={imageUrl || '/no-image.jpg'}
+            alt={altText || 'Imagem indisponível'}
+            fill
+            sizes="(max-width: 768px) 100vw, 384px"
+            className="object-cover bg-gray-100"
+            priority
+            data-testid="cat-image"
+          />
+        </div>
       </div>
 
-      <div className="p-4 h-full flex flex-col gap-2">
+      {/* corpo */}
+      <div className="p-4 flex flex-col gap-2 flex-1 relative overflow-hidden">
         <h2
-          className={`text-xl font-bold flex items-center gap-2 ${sexo === 'M' ? 'text-blue-700' : 'text-pink-600'}`}
+          className={`text-xl font-bold flex items-center gap-2 ${
+            sexo === 'M' ? 'text-[#013274]' : 'text-pink-600'
+          }`}
           data-testid="cat-name"
         >
           {sexo === 'M' ? (
-            <FaMars className="text-blue-700" title="Macho" aria-label="Macho" />
+            <FaMars className="text-[#013274]" title="Macho" aria-label="Macho" />
           ) : (
             <FaVenus className="text-pink-600" title="Fêmea" aria-label="Fêmea" />
           )}
           {nome}
         </h2>
+
         {descricao && (
-          <p
-            className="text-sm font-medium font-poppins text-gray-600"
-            data-testid="cat-description"
-          >
+          <p className="text-sm font-medium text-gray-600" data-testid="cat-description">
             {descricao}
           </p>
         )}
 
-        <div className="mt-2 space-y-1 text-sm font-medium text-gray-600" data-testid="cat-details">
-          {!birthDate && idade && <p className="text-sm text-gray-700">🎂 {idade}</p>}
+        <div
+          className="mt-1 space-y-1 text-sm font-medium text-gray-700 flex-1 relative z-10"
+          data-testid="cat-details"
+        >
+          {!birthDate && idade && <p>🎂 {idade}</p>}
           {birthDate && (
-            <p className="text-sm text-gray-700">
+            <p>
               🎂 Nascido em{' '}
               {format(new Date(birthDate), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })} (
-              {formatDistanceToNow(new Date(birthDate), {
-                locale: ptBR,
-                addSuffix: true
-              })}
-              )
+              {formatDistanceToNow(new Date(birthDate), { locale: ptBR, addSuffix: true })})
             </p>
           )}
           {vacinas && vacinas.length > 0 && <p>{renderVacina}</p>}
@@ -102,6 +115,33 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
           {vermifugacoes && vermifugacoes.length > 0 && <p>{renderVermifugo}</p>}
           {doencas && <p>⚠️ Doenças: {doencas}</p>}
           {observacoesSaude && <p>📝 {observacoesSaude}</p>}
+        </div>
+
+        {/* Decoração de patinhas flutuantes */}
+        <div className="absolute bottom-3 right-3 z-20">
+          <LuPawPrint
+            size={40}
+            className={clsx(
+              'drop-shadow-lg animate-bounce',
+              sexo === 'M' ? 'text-[#4960a9]/15' : 'text-pink-600/15'
+            )}
+            style={{
+              animationDelay: '-0.5s',
+              animationDuration: '1.4s',
+              animationFillMode: 'both'
+            }}
+          />
+        </div>
+
+        <div className="absolute bottom-10 right-11 z-20">
+          <LuPawPrint
+            size={36}
+            className={clsx(
+              'drop-shadow-lg animate-bounce',
+              sexo === 'M' ? 'text-[#4960a9]/10' : 'text-pink-600/10'
+            )}
+            style={{ animationDelay: '-1s', animationDuration: '1.8s', animationFillMode: 'both' }}
+          />
         </div>
       </div>
     </>
@@ -115,7 +155,10 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Saber mais sobre ${nome}`}
-          className="bg-stone-50 h-full flex flex-col justify-between rounded-2xl shadow-md overflow-hidden w-full border border-gray-200 hover:shadow-lg transition-all duration-200 group relative"
+          className={clsx(
+            'bg-white h-full flex hover:scale-102 flex-col rounded-3xl  overflow-hidden w-full border   transition-all duration-200 group relative border-r-4 border-b-4',
+            sexo === 'M' ? 'border-[#8b9ddb]' : 'border-pink-600/15'
+          )}
         >
           {content}
         </Link>
@@ -124,7 +167,10 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
           onClick={onClick}
           role="button"
           aria-label={`Apadrinhar ${nome}`}
-          className="bg-stone-50 cursor-pointer h-full flex flex-col justify-between rounded-2xl shadow-md overflow-hidden w-full border border-gray-200 hover:shadow-lg transition-all duration-200 group relative"
+          className={clsx(
+            'bg-white cursor-pointer h-full hover:scale-102 flex flex-col rounded-3xl  overflow-hidden w-full border transition-all duration-200 group relative',
+            sexo === 'M' ? 'border-[#8b9ddb]' : 'border-pink-600/15'
+          )}
         >
           {content}
         </div>

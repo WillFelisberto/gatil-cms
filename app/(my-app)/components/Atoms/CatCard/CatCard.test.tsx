@@ -88,7 +88,7 @@ describe('<CatCard />', () => {
       'href',
       expect.stringContaining(expectedMessage)
     );
-    expect(screen.getByTestId('contact-badge')).toHaveTextContent('Clique aqui para saber mais 🐾');
+    expect(screen.getByTestId('contact-badge')).toHaveTextContent('Saber mais');
   });
 
   it('renders correctly in "apadrinhar" mode and triggers onClick', () => {
@@ -105,7 +105,7 @@ describe('<CatCard />', () => {
 
     const card = screen.getByRole('button', { name: /Apadrinhar Gato Teste/i });
     expect(card).toBeInTheDocument();
-    expect(screen.getByTestId('contact-badge')).toHaveTextContent('Clique aqui para apadrinhar 🐾');
+    expect(screen.getByTestId('contact-badge')).toHaveTextContent('Apadrinhar');
 
     fireEvent.click(card);
     expect(handleClick).toHaveBeenCalled();
