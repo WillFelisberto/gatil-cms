@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import clsx from 'clsx';
@@ -41,7 +42,9 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
   const renderVermifugo = sexo === 'F' ? '🪱 Vermifugada' : '🪱 Vermifugado';
 
   const whatsappMessage = encodeURIComponent(
-    `Olá! Tenho interesse em adotar ${sexo === 'F' ? 'a' : 'o'} ${nome}. Poderia me passar mais informações?`
+    mode === 'adotar'
+      ? `Olá! Tenho interesse em adotar ${sexo === 'F' ? 'a' : 'o'} ${nome}. Poderia me passar mais informações?`
+      : `Olá! Tenho interesse em apadrinhar ${sexo === 'F' ? 'a' : 'o'} ${nome}. Poderia me passar mais informações?`
   );
   const whatsappLink = `https://wa.me/55${whatsappNumber.replace(/\D/g, '')}?text=${whatsappMessage}`;
 
@@ -149,32 +152,32 @@ export const CatCard = ({ cat, whatsappNumber, mode = 'adotar', onClick }: Props
 
   return (
     <article role="article" className="h-full w-full max-w-96" data-testid={`cat-card-${cat.id}`}>
-      {mode === 'adotar' ? (
-        <Link
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Saber mais sobre ${nome}`}
+      {/* {mode === 'adotar' ? ( */}
+      <Link
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={mode === 'adotar' ? `Saber mais sobre ${nome}` : `Apadrinhar ${nome}`}
+        className={clsx(
+          'bg-white h-full flex hover:scale-102 flex-col rounded-3xl  overflow-hidden w-full border   transition-all duration-200 group relative border-r-4 border-b-4',
+          sexo === 'M' ? 'border-[#8b9ddb]' : 'border-pink-600/15'
+        )}
+      >
+        {content}
+      </Link>
+      {/* ) : (
+        <div
+          onClick={onClick}
+          role="button"
+          aria-label={`Apadrinhar ${nome}`}
           className={clsx(
             'bg-white h-full flex hover:scale-102 flex-col rounded-3xl  overflow-hidden w-full border   transition-all duration-200 group relative border-r-4 border-b-4',
             sexo === 'M' ? 'border-[#8b9ddb]' : 'border-pink-600/15'
           )}
         >
           {content}
-        </Link>
-      ) : (
-        <div
-          onClick={onClick}
-          role="button"
-          aria-label={`Apadrinhar ${nome}`}
-          className={clsx(
-            'bg-white cursor-pointer h-full hover:scale-102 flex flex-col rounded-3xl  overflow-hidden w-full border transition-all duration-200 group relative',
-            sexo === 'M' ? 'border-[#8b9ddb]' : 'border-pink-600/15'
-          )}
-        >
-          {content}
         </div>
-      )}
+      )}*/}
     </article>
   );
 };

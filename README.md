@@ -1,4 +1,3 @@
-
 # 🐾 Gatil CMS
 
 This system allows you to easily manage the content of your cat shelter's website, including:
@@ -49,29 +48,29 @@ cp .env.example .env.local
 
 ## 💻 Available Scripts
 
-| Command                   | Description                                 |
-| ------------------------- | ------------------------------------------- |
-| `pnpm dev`                | Starts development environment              |
-| `pnpm build`              | Builds the production version               |
-| `pnpm start`              | Starts the app in production mode           |
-| `pnpm test`               | Runs tests with Jest                        |
-| `pnpm test:watch`         | Runs tests in watch mode                    |
-| `pnpm test:ci`            | Runs tests in CI environment                |
-| `pnpm test:e2e`           | End-to-end tests with Playwright            |
-| `pnpm test:e2e:ui`        | UI interface for E2E tests                  |
-| `pnpm lint`               | Checks code with ESLint                     |
-| `pnpm lint:fix`           | Automatically fixes lint errors             |
-| `pnpm prettier:format`    | Formats code with Prettier                  |
-| `pnpm generate:types`     | Generates types for Payload CMS             |
-| `pnpm generate:importmap` | Generates importmap for Payload             |
-| `pnpm storybook`          | Starts Storybook                            |
-| `pnpm build-storybook`    | Builds Storybook for production             |
-| `pnpm generate`           | Generates new components with Hygen         |
-| `pnpm prepare`            | Sets up Husky                               |
-| `pnpm docs:dev`           | Starts local docs with VitePress            |
-| `pnpm docs:build`         | Builds documentation for production         |
-| `pnpm docs:serve`         | Serves local documentation                  |
-| `pnpm seed`               | Seeds CMS with sample data for CI           |
+| Command                   | Description                         |
+| ------------------------- | ----------------------------------- |
+| `pnpm dev`                | Starts development environment      |
+| `pnpm build`              | Builds the production version       |
+| `pnpm start`              | Starts the app in production mode   |
+| `pnpm test`               | Runs tests with Jest                |
+| `pnpm test:watch`         | Runs tests in watch mode            |
+| `pnpm test:ci`            | Runs tests in CI environment        |
+| `pnpm test:e2e`           | End-to-end tests with Playwright    |
+| `pnpm test:e2e:ui`        | UI interface for E2E tests          |
+| `pnpm lint`               | Checks code with ESLint             |
+| `pnpm lint:fix`           | Automatically fixes lint errors     |
+| `pnpm prettier:format`    | Formats code with Prettier          |
+| `pnpm generate:types`     | Generates types for Payload CMS     |
+| `pnpm generate:importmap` | Generates importmap for Payload     |
+| `pnpm storybook`          | Starts Storybook                    |
+| `pnpm build-storybook`    | Builds Storybook for production     |
+| `pnpm generate`           | Generates new components with Hygen |
+| `pnpm prepare`            | Sets up Husky                       |
+| `pnpm docs:dev`           | Starts local docs with VitePress    |
+| `pnpm docs:build`         | Builds documentation for production |
+| `pnpm docs:serve`         | Serves local documentation          |
+| `pnpm seed`               | Seeds CMS with sample data for CI   |
 
 ## 📁 Folder Structure
 

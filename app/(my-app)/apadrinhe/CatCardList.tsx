@@ -26,7 +26,7 @@ export const CatCardList = ({ cats, whatsapp }: CatListProps) => {
               cat={cat}
               whatsappNumber={whatsapp}
               mode="apadrinhar"
-              onClick={() => setSelectedCat(cat)}
+              // onClick={() => setSelectedCat(cat)}
             />
           </div>
         ))}
