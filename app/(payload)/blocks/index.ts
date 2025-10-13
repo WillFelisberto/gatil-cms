@@ -3,6 +3,7 @@ import { Gallery } from './Gallery/Index';
 import { Hero } from './Hero/Index';
 import { ImageWithText } from './ImageWithText/Index';
 import { ProductsBlock } from './ProductsBlock/Index';
+import { SliderBlock } from './SliderBlock/Index';
 import { TextBlock } from './TextBlock/Index';
 import { TitleBlock } from './TitleBlock/Index';
 
@@ -13,5 +14,6 @@ export const PageBlocks = [
   ImageWithText,
   TitleBlock,
   ProductsBlock,
-  FAQBlock
+  FAQBlock,
+  SliderBlock
 ];
