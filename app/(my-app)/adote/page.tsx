@@ -67,36 +67,49 @@ export default async function AdotePage({ searchParams }: AdotePageProps) {
   const whatsapp = global?.whatsapp || '';
 
   return (
-    <div className="max-w-[1300px] mx-auto px-4 py-12">
-      <RenderBlocks<Adote> blocks={adote.layout} />
+    <>
+      <div
+        className="fixed inset-0 bg-repeat"
+        style={{
+          backgroundImage: 'url("/cat-pattern.png")',
+          backgroundSize: '150px',
+          opacity: 0.05,
+          zIndex: -3
+        }}
+      />
+      <div className="max-w-[1300px] w-full mx-auto px-4 py-12 pb-0">
+        <RenderBlocks<Adote> blocks={adote.layout} />
+      </div>
 
-      <section aria-labelledby="gatinhos-disponiveis" className="mt-12">
-        {cats.length === 0 ? (
-          <div className="min-h-[300px] flex items-center justify-center text-center text-gray-500 text-lg">
-            😿 Nenhum gatinho disponível para adoção no momento. Volte em breve!
-          </div>
-        ) : (
-          <>
-            <div className="flex flex-wrap justify-center gap-8">
-              {cats.map((cat) => {
-                return (
-                  <div
-                    key={cat.id}
-                    className="flex-grow max-w-sm min-w-[300px] flex justify-center"
-                  >
-                    <CatCard whatsappNumber={whatsapp} cat={{ ...cat }} />
-                  </div>
-                );
-              })}
+      <div className="max-w-[1300px] mx-auto px-4 py-12 pt-0">
+        <section aria-labelledby="gatinhos-disponiveis" className="mt-12">
+          {cats.length === 0 ? (
+            <div className="min-h-[300px] flex items-center justify-center text-center text-gray-500 text-lg">
+              😿 Nenhum gatinho disponível para adoção no momento. Volte em breve!
             </div>
-            {totalPages > 1 && (
-              <div className="mt-12 flex justify-center">
-                <Pagination currentPage={page} totalPages={totalPages} />
+          ) : (
+            <>
+              <div className="flex flex-wrap justify-center gap-8">
+                {cats.map((cat) => {
+                  return (
+                    <div
+                      key={cat.id}
+                      className="flex-grow max-w-sm min-w-[300px] flex justify-center"
+                    >
+                      <CatCard whatsappNumber={whatsapp} cat={{ ...cat }} />
+                    </div>
+                  );
+                })}
               </div>
-            )}
-          </>
-        )}
-      </section>
-    </div>
+              {totalPages > 1 && (
+                <div className="mt-12 flex justify-center">
+                  <Pagination currentPage={page} totalPages={totalPages} />
+                </div>
+              )}
+            </>
+          )}
+        </section>
+      </div>
+    </>
   );
 }
