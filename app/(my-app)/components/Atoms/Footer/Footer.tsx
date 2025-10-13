@@ -33,7 +33,7 @@ export const Footer = ({ socialLinks, menuItems }: FooterProps) => {
       role="contentinfo"
       data-testid="footer"
     >
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center bg-white">
         <div
           className="w-full max-w-7xl px-6 py-10 flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left gap-10 md:gap-20"
           data-testid="footer-container"
