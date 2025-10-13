@@ -34,7 +34,8 @@ const config: Config = {
   transformIgnorePatterns: ['/node_modules/(?!(.*@payloadcms/richtext-lexical.*)/)'],
   moduleNameMapper: {
     '^@/tests/(.*)$': '<rootDir>/.jest/$1',
-    '^@/(.*)$': '<rootDir>/$1'
+    '^@/(.*)$': '<rootDir>/$1',
+    '\\.(css|less|sass|scss)$': 'identity-obj-proxy'
   },
   moduleDirectories: ['node_modules', '<rootDir>'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],

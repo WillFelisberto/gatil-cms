@@ -54,6 +54,7 @@
     "dotenv": "^16.5.0",
     "file-type": "^20.4.1",
     "graphql": "^16.10.0",
+    "identity-obj-proxy": "^3.0.0",
     "libsql": "^0.5.8",
     "lucide-react": "^0.486.0",
     "next": "latest",
@@ -70,6 +71,7 @@
     "react-toastify": "^11.0.5",
     "server-only": "^0.0.1",
     "sharp": "^0.33.5",
+    "swiper": "^12.0.2",
     "tailwindcss": "^4.0.17"
   },
   "devDependencies": {

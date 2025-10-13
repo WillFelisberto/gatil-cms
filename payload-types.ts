@@ -292,6 +292,13 @@ export interface User {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
 }
 /**
@@ -338,9 +345,11 @@ export interface CronLog {
 export interface Export {
   id: number;
   name?: string | null;
-  format: 'csv' | 'json';
+  format?: ('csv' | 'json') | null;
   limit?: number | null;
+  page?: number | null;
   sort?: string | null;
+  sortOrder?: ('asc' | 'desc') | null;
   locale?: ('all' | 'pt') | null;
   drafts?: ('yes' | 'no') | null;
   selectionToUse?: ('currentSelection' | 'currentFilters' | 'all') | null;
@@ -620,6 +629,13 @@ export interface UsersSelect<T extends boolean = true> {
   resetPasswordExpiration?: T;
   salt?: T;
   hash?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -727,7 +743,9 @@ export interface ExportsSelect<T extends boolean = true> {
   name?: T;
   format?: T;
   limit?: T;
+  page?: T;
   sort?: T;
+  sortOrder?: T;
   locale?: T;
   drafts?: T;
   selectionToUse?: T;
@@ -840,7 +858,7 @@ export interface Sobre {
     root: {
       type: string;
       children: {
-        type: string;
+        type: any;
         version: number;
         [k: string]: unknown;
       }[];
@@ -896,7 +914,7 @@ export interface Adote {
           root: {
             type: string;
             children: {
-              type: string;
+              type: any;
               version: number;
               [k: string]: unknown;
             }[];
@@ -959,6 +977,36 @@ export interface Adote {
         id?: string | null;
         blockName?: string | null;
         blockType: 'faq';
+      }
+    | {
+        title: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        slides?:
+          | {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'sliderBlock';
       }
   )[];
   meta?: {
@@ -1006,7 +1054,7 @@ export interface Contato {
           root: {
             type: string;
             children: {
-              type: string;
+              type: any;
               version: number;
               [k: string]: unknown;
             }[];
@@ -1069,6 +1117,36 @@ export interface Contato {
         id?: string | null;
         blockName?: string | null;
         blockType: 'faq';
+      }
+    | {
+        title: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        slides?:
+          | {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'sliderBlock';
       }
   )[];
   meta?: {
@@ -1116,7 +1194,7 @@ export interface Colabore {
           root: {
             type: string;
             children: {
-              type: string;
+              type: any;
               version: number;
               [k: string]: unknown;
             }[];
@@ -1179,6 +1257,36 @@ export interface Colabore {
         id?: string | null;
         blockName?: string | null;
         blockType: 'faq';
+      }
+    | {
+        title: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        slides?:
+          | {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'sliderBlock';
       }
   )[];
   logobanco: number | Media;
@@ -1228,7 +1336,7 @@ export interface Apadrinhe {
           root: {
             type: string;
             children: {
-              type: string;
+              type: any;
               version: number;
               [k: string]: unknown;
             }[];
@@ -1291,6 +1399,36 @@ export interface Apadrinhe {
         id?: string | null;
         blockName?: string | null;
         blockType: 'faq';
+      }
+    | {
+        title: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        slides?:
+          | {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'sliderBlock';
       }
   )[];
   meta?: {
@@ -1338,7 +1476,7 @@ export interface PoliticaAdocao {
           root: {
             type: string;
             children: {
-              type: string;
+              type: any;
               version: number;
               [k: string]: unknown;
             }[];
@@ -1401,6 +1539,36 @@ export interface PoliticaAdocao {
         id?: string | null;
         blockName?: string | null;
         blockType: 'faq';
+      }
+    | {
+        title: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        slides?:
+          | {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'sliderBlock';
       }
   )[];
   meta?: {
@@ -1448,7 +1616,7 @@ export interface PoliticaApadrinhamento {
           root: {
             type: string;
             children: {
-              type: string;
+              type: any;
               version: number;
               [k: string]: unknown;
             }[];
@@ -1511,6 +1679,36 @@ export interface PoliticaApadrinhamento {
         id?: string | null;
         blockName?: string | null;
         blockType: 'faq';
+      }
+    | {
+        title: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        slides?:
+          | {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'sliderBlock';
       }
   )[];
   meta?: {
@@ -1558,7 +1756,7 @@ export interface Homepage {
           root: {
             type: string;
             children: {
-              type: string;
+              type: any;
               version: number;
               [k: string]: unknown;
             }[];
@@ -1621,6 +1819,36 @@ export interface Homepage {
         id?: string | null;
         blockName?: string | null;
         blockType: 'faq';
+      }
+    | {
+        title: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        slides?:
+          | {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'sliderBlock';
       }
   )[];
   meta?: {
@@ -1761,6 +1989,23 @@ export interface AdoteSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        sliderBlock?:
+          | T
+          | {
+              title?: T;
+              content?: T;
+              slides?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -1865,6 +2110,23 @@ export interface ContatoSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        sliderBlock?:
+          | T
+          | {
+              title?: T;
+              content?: T;
+              slides?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -1966,6 +2228,23 @@ export interface ColaboreSelect<T extends boolean = true> {
                     resposta?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        sliderBlock?:
+          | T
+          | {
+              title?: T;
+              content?: T;
+              slides?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaLink?: T;
               id?: T;
               blockName?: T;
             };
@@ -2075,6 +2354,23 @@ export interface ApadrinheSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        sliderBlock?:
+          | T
+          | {
+              title?: T;
+              content?: T;
+              slides?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -2176,6 +2472,23 @@ export interface PoliticaAdocaoSelect<T extends boolean = true> {
                     resposta?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        sliderBlock?:
+          | T
+          | {
+              title?: T;
+              content?: T;
+              slides?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaLink?: T;
               id?: T;
               blockName?: T;
             };
@@ -2283,6 +2596,23 @@ export interface PoliticaApadrinhamentoSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        sliderBlock?:
+          | T
+          | {
+              title?: T;
+              content?: T;
+              slides?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -2387,6 +2717,23 @@ export interface HomepageSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        sliderBlock?:
+          | T
+          | {
+              title?: T;
+              content?: T;
+              slides?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -2406,9 +2753,11 @@ export interface HomepageSelect<T extends boolean = true> {
 export interface TaskCreateCollectionExport {
   input: {
     name?: string | null;
-    format: 'csv' | 'json';
+    format?: ('csv' | 'json') | null;
     limit?: number | null;
+    page?: number | null;
     sort?: string | null;
+    sortOrder?: ('asc' | 'desc') | null;
     locale?: ('all' | 'pt') | null;
     drafts?: ('yes' | 'no') | null;
     selectionToUse?: ('currentSelection' | 'currentFilters' | 'all') | null;
@@ -2427,9 +2776,7 @@ export interface TaskCreateCollectionExport {
     userCollection?: string | null;
     exportsCollection?: string | null;
   };
-  output: {
-    success?: boolean | null;
-  };
+  output?: unknown;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
