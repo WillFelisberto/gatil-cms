@@ -82,6 +82,6 @@ describe('<Header />', () => {
     expect(activeLink).toHaveAttribute('aria-current', 'page');
 
     const span = activeLink.querySelector('span');
-    expect(span).toHaveClass('text-blue-300');
+    expect(span).toHaveClass('text-[#013274]');
   });
 });
