@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 // app/components/GatilAdoptionSwiper.tsx
 'use client';
 

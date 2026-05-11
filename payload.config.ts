@@ -1,5 +1,5 @@
 import sharp from 'sharp';
-import { buildConfig } from 'payload';
+import { buildConfig, CollectionSlug } from 'payload';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
@@ -128,7 +128,12 @@ export default buildConfig({
       : []),
 
     importExportPlugin({
-      collections: ['cats', 'adoptions', 'guardians', 'sponsorships']
+      collections: [
+        { slug: Cats.slug as CollectionSlug },
+        { slug: Adoptions.slug as CollectionSlug },
+        { slug: Guardians.slug as CollectionSlug },
+        { slug: Sponsorships.slug as CollectionSlug }
+      ]
     }),
 
     seoPlugin({
