@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* === Tokens do Tailwind v4 mapeando suas CSS vars === */
 @theme {
