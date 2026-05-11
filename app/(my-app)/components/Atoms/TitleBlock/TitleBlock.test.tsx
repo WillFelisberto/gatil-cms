@@ -13,7 +13,7 @@ const defaultProps: BlockProps<'title'> = {
 describe('<TitleBlock />', () => {
   it('Should renders with default h2 tag and text', () => {
     const { container } = render(<TitleBlock {...defaultProps} />);
-    const el = screen.getByTestId('title-block');
+    const el = screen.getByTestId('title-text');
     expect(el).toBeInTheDocument();
     expect(el.tagName.toLowerCase()).toBe('h2');
     expect(el).toHaveTextContent('Título Teste');
@@ -23,13 +23,13 @@ describe('<TitleBlock />', () => {
 
   it('Should renders with custom tag (h3)', () => {
     render(<TitleBlock {...defaultProps} tag="h3" />);
-    const el = screen.getByTestId('title-block');
+    const el = screen.getByTestId('title-text');
     expect(el.tagName.toLowerCase()).toBe('h3');
   });
 
   it('Should applies correct alignment classes', () => {
     render(<TitleBlock {...defaultProps} alignment="right" />);
-    const el = screen.getByTestId('title-block');
+    const el = screen.getByTestId('title-text');
     expect(el).toHaveClass('text-right');
     expect(el).toHaveClass('justify-end');
   });
@@ -48,5 +48,12 @@ describe('<TitleBlock />', () => {
     render(<TitleBlock {...defaultProps} id="titulo-id" />);
     const el = screen.getByTestId('title-block');
     expect(el).toHaveAttribute('id', 'titulo-id');
+  });
+
+  it('Should render subtext attribute if provided', () => {
+    render(<TitleBlock {...defaultProps} subtitle="subtitulo" id="titulo-id" />);
+    const el = screen.getByTestId('title-subtitle');
+    expect(el).toHaveClass('leading-relaxed');
+    expect(el).toHaveClass('text-center');
   });
 });

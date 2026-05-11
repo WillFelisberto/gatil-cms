@@ -943,6 +943,10 @@ export interface Adote {
       }
     | {
         text: string;
+        /**
+         * Texto corrido exibido abaixo do título principal.
+         */
+        subtitle?: string | null;
         tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         alignment: 'left' | 'center' | 'right';
         showIcon?: boolean | null;
@@ -1083,6 +1087,10 @@ export interface Contato {
       }
     | {
         text: string;
+        /**
+         * Texto corrido exibido abaixo do título principal.
+         */
+        subtitle?: string | null;
         tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         alignment: 'left' | 'center' | 'right';
         showIcon?: boolean | null;
@@ -1223,6 +1231,10 @@ export interface Colabore {
       }
     | {
         text: string;
+        /**
+         * Texto corrido exibido abaixo do título principal.
+         */
+        subtitle?: string | null;
         tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         alignment: 'left' | 'center' | 'right';
         showIcon?: boolean | null;
@@ -1289,8 +1301,21 @@ export interface Colabore {
         blockType: 'sliderBlock';
       }
   )[];
-  logobanco: number | Media;
   qrcode: number | Media;
+  chavesPix?:
+    | {
+        tipo?: ('cnpj' | 'email' | 'bank' | 'phone' | 'cpf' | 'other') | null;
+        valor?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  logobanco: number | Media;
+  dadosBancarios?: {
+    banco?: string | null;
+    agencia?: string | null;
+    contaCorrente?: string | null;
+    favorecido?: string | null;
+  };
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1365,6 +1390,10 @@ export interface Apadrinhe {
       }
     | {
         text: string;
+        /**
+         * Texto corrido exibido abaixo do título principal.
+         */
+        subtitle?: string | null;
         tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         alignment: 'left' | 'center' | 'right';
         showIcon?: boolean | null;
@@ -1505,6 +1534,10 @@ export interface PoliticaAdocao {
       }
     | {
         text: string;
+        /**
+         * Texto corrido exibido abaixo do título principal.
+         */
+        subtitle?: string | null;
         tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         alignment: 'left' | 'center' | 'right';
         showIcon?: boolean | null;
@@ -1645,6 +1678,10 @@ export interface PoliticaApadrinhamento {
       }
     | {
         text: string;
+        /**
+         * Texto corrido exibido abaixo do título principal.
+         */
+        subtitle?: string | null;
         tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         alignment: 'left' | 'center' | 'right';
         showIcon?: boolean | null;
@@ -1785,6 +1822,10 @@ export interface Homepage {
       }
     | {
         text: string;
+        /**
+         * Texto corrido exibido abaixo do título principal.
+         */
+        subtitle?: string | null;
         tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         alignment: 'left' | 'center' | 'right';
         showIcon?: boolean | null;
@@ -1953,6 +1994,7 @@ export interface AdoteSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              subtitle?: T;
               tag?: T;
               alignment?: T;
               showIcon?: T;
@@ -2074,6 +2116,7 @@ export interface ContatoSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              subtitle?: T;
               tag?: T;
               alignment?: T;
               showIcon?: T;
@@ -2195,6 +2238,7 @@ export interface ColaboreSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              subtitle?: T;
               tag?: T;
               alignment?: T;
               showIcon?: T;
@@ -2249,8 +2293,23 @@ export interface ColaboreSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
-  logobanco?: T;
   qrcode?: T;
+  chavesPix?:
+    | T
+    | {
+        tipo?: T;
+        valor?: T;
+        id?: T;
+      };
+  logobanco?: T;
+  dadosBancarios?:
+    | T
+    | {
+        banco?: T;
+        agencia?: T;
+        contaCorrente?: T;
+        favorecido?: T;
+      };
   meta?:
     | T
     | {
@@ -2318,6 +2377,7 @@ export interface ApadrinheSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              subtitle?: T;
               tag?: T;
               alignment?: T;
               showIcon?: T;
@@ -2439,6 +2499,7 @@ export interface PoliticaAdocaoSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              subtitle?: T;
               tag?: T;
               alignment?: T;
               showIcon?: T;
@@ -2560,6 +2621,7 @@ export interface PoliticaApadrinhamentoSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              subtitle?: T;
               tag?: T;
               alignment?: T;
               showIcon?: T;
@@ -2681,6 +2743,7 @@ export interface HomepageSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              subtitle?: T;
               tag?: T;
               alignment?: T;
               showIcon?: T;

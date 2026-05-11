@@ -47,7 +47,7 @@ export default async function AboutPage() {
       <RenderBlocks<Contato> blocks={contato.layout} />
 
       {whatsapp && (
-        <section className="mb-12 text-center">
+        <section className="mb-12 text-center pt-4">
           <a
             href={whatsappLink}
             target="_blank"
@@ -56,7 +56,7 @@ export default async function AboutPage() {
             data-testid="whatsapp-button"
             aria-label="Abrir conversa no WhatsApp"
           >
-            <FaWhatsapp className="w-7 h-7" />
+            <FaWhatsapp className="w-7 h-7 " />
           </a>
         </section>
       )}
