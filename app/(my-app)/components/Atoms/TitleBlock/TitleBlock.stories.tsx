@@ -18,6 +18,9 @@ const meta: Meta<typeof TitleBlock> = {
     showIcon: {
       control: 'boolean'
     },
+    subtitle: {
+      control: 'text'
+    },
     text: {
       control: 'text'
     },
@@ -61,5 +64,13 @@ export const H1Tag: Story = {
     ...Default.args,
     text: 'Título H1',
     tag: 'h1'
+  }
+};
+
+export const WithSubtitle: Story = {
+  args: {
+    ...Default.args,
+    text: 'Título com Subtítulo',
+    subtitle: 'Subtítulo padrão'
   }
 };

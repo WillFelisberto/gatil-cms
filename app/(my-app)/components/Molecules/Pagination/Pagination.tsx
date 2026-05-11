@@ -23,7 +23,7 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
   };
 
   const baseButtonClasses =
-    'p-2 rounded-full border border-[#013274] text-[#013274] transition disabled:opacity-30';
+    'p-2 rounded-full border !bg-white border-[#013274] text-[#013274] transition disabled:opacity-30';
   const interactiveClasses = 'hover:bg-[#013274]/10 cursor-pointer';
 
   return (
@@ -47,9 +47,9 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
         <button
           key={page}
           onClick={() => goToPage(page)}
-          className={`w-9 h-9 rounded-full border flex items-center justify-center transition font-medium ${
+          className={`w-9 h-9 rounded-full border flex items-center bg-white justify-center transition font-medium ${
             page === currentPage
-              ? 'bg-[#013274] text-white border-[#013274] shadow-md'
+              ? '!bg-[#013274] text-white border-[#013274] shadow-md'
               : 'border-[#013274] text-[#013274] hover:bg-[#013274]/10 cursor-pointer'
           }`}
           aria-current={page === currentPage ? 'page' : undefined}

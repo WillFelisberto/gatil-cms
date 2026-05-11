@@ -128,8 +128,7 @@ export default buildConfig({
       : []),
 
     importExportPlugin({
-      collections: ['cats', 'adoptions', 'guardians', 'sponsorships'],
-      disableJobsQueue: true
+      collections: ['cats', 'adoptions', 'guardians', 'sponsorships']
     }),
 
     seoPlugin({

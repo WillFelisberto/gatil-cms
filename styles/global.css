@@ -1,7 +1,158 @@
 @import 'tailwindcss';
 
+/* === Tokens do Tailwind v4 mapeando suas CSS vars === */
+@theme {
+  /* cores base */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  /* sidebar (opcional — caso use utilitários como bg-sidebar, text-sidebar-foreground, etc.) */
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* radius como token de tema (usado no tailwind.config.ts) */
+  --radius: 1rem;
+}
+
+/* === Variáveis de design (light/dark) === */
+@layer base {
+  :root {
+    --background: 35 40% 98%;
+    --foreground: 213 98% 23%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 213 98% 23%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 98% 23%;
+
+    --primary: 213 98% 23%;
+    --primary-foreground: 0 0% 100%;
+
+    --primary-light: 213 80% 45%;
+    --primary-lighter: 213 70% 70%;
+
+    --secondary: 340 70% 85%;
+    --secondary-foreground: 213 98% 23%;
+
+    --secondary-dark: 340 75% 70%;
+
+    --accent: 28 90% 75%;
+    --accent-foreground: 213 98% 23%;
+
+    --accent-dark: 28 85% 60%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 213 98% 23%;
+
+    --radius: 1rem;
+
+    /* Gradientes e sombras utilitárias (usadas direto via var()) */
+    --gradient-primary: linear-gradient(135deg, hsl(213 98% 23%), hsl(213 80% 45%));
+    --gradient-soft: linear-gradient(135deg, hsl(340 70% 90%), hsl(28 90% 85%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(35 40% 98%));
+
+    --shadow-soft: 0 4px 20px -2px hsl(213 98% 23% / 0.1);
+    --shadow-card: 0 8px 30px -4px hsl(213 98% 23% / 0.15);
+    --shadow-hover: 0 12px 40px -6px hsl(213 98% 23% / 0.2);
+
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ====== Sidebar vars (adicionei defaults coerentes) ====== */
+    --sidebar-background: 213 98% 12%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 213 70% 70%;
+    --sidebar-primary-foreground: 213 98% 23%;
+    --sidebar-accent: 28 70% 50%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 213 70% 70%;
+  }
+
+  .dark {
+    --background: 213 98% 8%;
+    --foreground: 0 0% 100%;
+
+    --card: 213 80% 12%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 213 80% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 213 70% 70%;
+    --primary-foreground: 213 98% 23%;
+
+    --secondary: 340 50% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 28 70% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 213 70% 70%;
+
+    /* Sidebar no dark pode herdar ou ajustar */
+    --sidebar-background: 213 98% 6%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 213 70% 70%;
+    --sidebar-primary-foreground: 213 98% 23%;
+    --sidebar-accent: 28 70% 50%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 213 70% 70%;
+  }
+}
+
+/* === Estilos globais (usam as vars via hsl()) === */
 html,
 body {
+  background-color: hsl(30deg 40% 98.04%);
+  color: hsl(var(--foreground));
   padding: 0;
   margin: 0;
   font-family:
@@ -46,14 +197,52 @@ code {
     monospace;
 }
 
+/* Helpers de lista */
 .list-number li {
   list-style: auto;
   margin-left: 1rem;
 }
+
 .list-bullet li {
   list-style: inside;
 }
 
 .nestedListItem {
   margin-left: 2rem;
+}
+
+/* Utilitários opcionais para usar as sombras/transições via var() */
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.transition-smooth {
+  transition: var(--transition-smooth);
+}
+
+/* Utilitários de gradiente opcionais */
+.bg-gradient-primary {
+  background-image: var(--gradient-primary);
+}
+
+.bg-gradient-soft {
+  background-image: var(--gradient-soft);
+}
+
+.bg-gradient-card {
+  background-image: var(--gradient-card);
+}
+
+@layer components {
+  .card-colabore {
+    @apply rounded-3xl bg-card shadow-[var(--shadow-card)] transition-[var(--transition-smooth)] hover:shadow-[var(--shadow-hover)] hover:-translate-y-1 border-2 border-transparent hover:border-accent/20;
+  }
 }

@@ -3,7 +3,7 @@
 exports[`<Button /> Should renders with default props 1`] = `
 <div>
   <button
-    class="flex items-center justify-center gap-2 cursor-pointer px-6 py-2 rounded-full font-bold transition-colors duration-200 text-sm md:text-base bg-blue-950 text-white hover:bg-blue-950/90"
+    class="flex items-center justify-center gap-2 cursor-pointer px-6 py-2 rounded-full font-bold transition-colors duration-200 text-sm md:text-base bg-blue-950 text-white hover:bg-blue-950/90 h-10 px-4 py-2"
     type="button"
   >
     <span>

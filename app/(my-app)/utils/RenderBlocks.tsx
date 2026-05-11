@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 
 import { FAQAccordion } from '../components/Atoms/FaqAccordion';
 import { GalleryComponent } from '../components/Atoms/GalleryComponent';
+import { AdoptionSwiper } from '../components/Atoms/Timeline';
 import { TitleBlock } from '../components/Atoms/TitleBlock';
 import { HeroComponent } from '../components/Molecules/HeroComponent';
 import { ImageWithTextBlock } from '../components/Molecules/ImageWithTextBlock';
@@ -15,7 +16,9 @@ const blockComponents = {
   textBlock: TextBlock,
   hero: HeroComponent,
   products: ProductsBlock,
-  faq: FAQAccordion
+  faq: FAQAccordion,
+  adote: AdoptionSwiper,
+  sliderBlock: AdoptionSwiper
 };
 
 type Block = {

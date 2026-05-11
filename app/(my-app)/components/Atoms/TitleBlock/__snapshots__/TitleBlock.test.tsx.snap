@@ -2,11 +2,16 @@
 
 exports[`<TitleBlock /> Should renders with default h2 tag and text 1`] = `
 <div>
-  <h2
-    class="text-3xl md:text-4xl font-bold text-[#013274] mb-12 mt-6 flex items-center gap-2 text-left justify-start"
+  <div
+    class=" mb-16 animate-fade-in"
     data-testid="title-block"
   >
-    Título Teste
-  </h2>
+    <h2
+      class="text-5xl md:text-6xl font-bold text-[#013274] mb-6 text-left justify-start"
+      data-testid="title-text"
+    >
+      Título Teste
+    </h2>
+  </div>
 </div>
 `;

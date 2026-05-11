@@ -14,6 +14,15 @@ export const TitleBlock: Block = {
       label: 'Texto do título'
     },
     {
+      name: 'subtitle',
+      type: 'textarea',
+      label: 'Texto complementar',
+      admin: {
+        description: 'Texto corrido exibido abaixo do título principal.'
+      }
+    },
+
+    {
       name: 'tag',
       type: 'select',
       label: 'Tag HTML',

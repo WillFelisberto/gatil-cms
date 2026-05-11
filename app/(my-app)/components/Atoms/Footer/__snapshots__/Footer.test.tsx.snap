@@ -3,187 +3,239 @@
 exports[`<Footer /> should render the footer container 1`] = `
 <div>
   <footer
-    class="flex flex-col border-t border-gray-200 bg-white"
+    class="bg-[#013274] text-white mt-20"
     data-testid="footer"
-    role="contentinfo"
   >
     <div
-      class="w-full flex justify-center"
+      class="container mx-auto px-4 py-12 w-full max-w-7xl"
+      data-testid="footer-container"
     >
       <div
-        class="w-full max-w-7xl px-6 py-10 flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left gap-10 md:gap-20"
-        data-testid="footer-container"
+        class="grid md:grid-cols-3 gap-8"
       >
-        <div
-          class="flex-1 justify-center"
-          data-testid="footer-social"
-        >
+        <div>
           <div
-            class="flex justify-center mb-4"
+            class="mb-4 "
           >
-            <img
-              alt="Logo do Gatil dos Resgatados"
-              class="object-contain"
-              data-nimg="1"
-              decoding="async"
-              height="80"
-              loading="lazy"
-              src="/_next/image?url=%2Flogo-rodape.webp&w=256&q=75"
-              srcset="/_next/image?url=%2Flogo-rodape.webp&w=96&q=75 1x, /_next/image?url=%2Flogo-rodape.webp&w=256&q=75 2x"
-              style="color: transparent;"
-              width="80"
-            />
+            <div
+              class="inline-block  p-2"
+            >
+              <div
+                class="relative h-20 w-[82px]"
+              >
+                <img
+                  alt="Gatil dos Resgatados"
+                  class="object-contain bg-white border-1 rounded-full"
+                  data-nimg="fill"
+                  decoding="async"
+                  sizes="200px"
+                  src="/_next/image?url=%2Flogo-rodape.webp&w=3840&q=75"
+                  srcset="/_next/image?url=%2Flogo-rodape.webp&w=16&q=75 16w, /_next/image?url=%2Flogo-rodape.webp&w=32&q=75 32w, /_next/image?url=%2Flogo-rodape.webp&w=48&q=75 48w, /_next/image?url=%2Flogo-rodape.webp&w=64&q=75 64w, /_next/image?url=%2Flogo-rodape.webp&w=96&q=75 96w, /_next/image?url=%2Flogo-rodape.webp&w=128&q=75 128w, /_next/image?url=%2Flogo-rodape.webp&w=256&q=75 256w, /_next/image?url=%2Flogo-rodape.webp&w=384&q=75 384w, /_next/image?url=%2Flogo-rodape.webp&w=640&q=75 640w, /_next/image?url=%2Flogo-rodape.webp&w=750&q=75 750w, /_next/image?url=%2Flogo-rodape.webp&w=828&q=75 828w, /_next/image?url=%2Flogo-rodape.webp&w=1080&q=75 1080w, /_next/image?url=%2Flogo-rodape.webp&w=1200&q=75 1200w, /_next/image?url=%2Flogo-rodape.webp&w=1920&q=75 1920w, /_next/image?url=%2Flogo-rodape.webp&w=2048&q=75 2048w, /_next/image?url=%2Flogo-rodape.webp&w=3840&q=75 3840w"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+            </div>
           </div>
           <p
-            class="text-base text-gray-700 max-w-md mx-auto text-center font-poppins"
+            class="text-white/80 leading-relaxed"
           >
-            Siga-nos nas redes sociais e acompanhe de perto as histórias dos nossos gatinhos resgatados, eventos e novidades! Junte-se à nossa comunidade e ajude a espalhar essa causa
+            Resgatando, cuidando e encontrando lares amorosos para gatinhos que precisam de uma segunda chance. Cada vida importa! 💝
           </p>
+        </div>
+        <div>
+          <h3
+            class="font-bold text-lg mb-4"
+          >
+            Links Rápidos
+          </h3>
           <div
-            aria-label="Redes sociais"
-            class="flex justify-center gap-4 mt-4 text-blue-950 text-xl"
+            class="space-y-2"
           >
             <a
-              class="hover:text-blue-600 hover:scale-110 active:text-blue-700 transition-colors duration-200"
-              data-testid="footer-social-link-0"
-              href="https://facebook.com"
-              rel="noopener noreferrer"
-              target="_blank"
+              class="block hover:text-accent transition-colors text-accent"
+              data-testid="footer-menu-link-0"
+              href="/"
             >
-              <svg
-                class="lucide lucide-facebook"
-                fill="none"
-                height="20"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                />
-              </svg>
+              Início
             </a>
             <a
-              class="hover:text-blue-600 hover:scale-110 active:text-blue-700 transition-colors duration-200"
-              data-testid="footer-social-link-1"
-              href="https://instagram.com"
-              rel="noopener noreferrer"
-              target="_blank"
+              class="block hover:text-accent transition-colors "
+              data-testid="footer-menu-link-1"
+              href="/apadrinhe"
             >
-              <svg
-                class="lucide lucide-instagram"
-                fill="none"
-                height="20"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  height="20"
-                  rx="5"
-                  ry="5"
-                  width="20"
-                  x="2"
-                  y="2"
-                />
-                <path
-                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                />
-                <line
-                  x1="17.5"
-                  x2="17.51"
-                  y1="6.5"
-                  y2="6.5"
-                />
-              </svg>
+              Apadrinhe
             </a>
             <a
-              class="hover:text-blue-600 hover:scale-110 active:text-blue-700 transition-colors duration-200"
-              data-testid="footer-social-link-2"
-              href="https://tiktok.com"
-              rel="noopener noreferrer"
-              target="_blank"
+              class="block hover:text-accent transition-colors "
+              data-testid="footer-menu-link-2"
+              href="/contato"
             >
-              <svg
-                class="lucide lucide-music2 lucide-music-2"
-                fill="none"
-                height="20"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="18"
-                  r="4"
-                />
-                <path
-                  d="M12 18V2l7 4"
-                />
-              </svg>
+              Contato
             </a>
           </div>
         </div>
-        <nav
-          aria-label="Menu Rápido"
-          class="flex-1 justify-center text-center"
-          data-testid="footer-menu"
-        >
-          <h4
-            class="font-semibold text-base mb-4 text-blue-950"
+        <div>
+          <h3
+            class="font-bold text-lg mb-4"
           >
-            Menu Rápido
-          </h4>
-          <ul
-            class="space-y-2 text-sm text-gray-800"
+            Contato
+          </h3>
+          <div
+            class="space-y-3 text-white/80"
           >
-            <li>
-              <a
-                class="transition-colors duration-200 hover:text-blue-600 hover:font-bold text-primary-blue font-semibold underline"
-                data-testid="footer-menu-link-0"
-                href="/"
+            <div
+              class="flex items-center gap-2"
+            >
+              <svg
+                class="lucide lucide-phone w-5 h-5"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Início
-              </a>
-            </li>
-            <li>
-              <a
-                class="transition-colors duration-200 hover:text-blue-600 hover:font-bold "
-                data-testid="footer-menu-link-1"
-                href="/apadrinhe"
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+              <span>
+                <a
+                  href="https://wa.me/5548996118451"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  (48) 99611-8451
+                </a>
+              </span>
+            </div>
+            <div
+              class="flex items-center gap-2"
+            >
+              <svg
+                class="lucide lucide-map-pin w-5 h-5"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Apadrinhe
-              </a>
-            </li>
-            <li>
+                <path
+                  d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                />
+                <circle
+                  cx="12"
+                  cy="10"
+                  r="3"
+                />
+              </svg>
+              <span>
+                Sombrio, SC
+              </span>
+            </div>
+            <div
+              class="flex gap-4 mt-4"
+            >
               <a
-                class="transition-colors duration-200 hover:text-blue-600 hover:font-bold "
-                data-testid="footer-menu-link-2"
-                href="/contato"
+                class="hover:text-accent hover:scale-110 transitions transition-colors"
+                data-testid="footer-social-link-0"
+                href="https://facebook.com"
+                rel="noopener noreferrer"
+                target="_blank"
               >
-                Contato
+                <svg
+                  class="lucide lucide-facebook w-6 h-6"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  />
+                </svg>
               </a>
-            </li>
-          </ul>
-        </nav>
+              <a
+                class="hover:text-accent hover:scale-110 transitions transition-colors"
+                data-testid="footer-social-link-1"
+                href="https://instagram.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg
+                  class="lucide lucide-instagram w-6 h-6"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    height="20"
+                    rx="5"
+                    ry="5"
+                    width="20"
+                    x="2"
+                    y="2"
+                  />
+                  <path
+                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                  />
+                  <line
+                    x1="17.5"
+                    x2="17.51"
+                    y1="6.5"
+                    y2="6.5"
+                  />
+                </svg>
+              </a>
+              <a
+                class="hover:text-accent hover:scale-110 transitions transition-colors"
+                data-testid="footer-social-link-2"
+                href="https://tiktok.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div
-      class="bg-blue-950 text-white text-center py-4 w-full text-sm"
-    >
-      Feito com 😻 por Gatil dos Resgatados
+      <div
+        class="border-t border-white/80 mt-8 pt-8 text-center text-white/60"
+      >
+        <p>
+          © 
+          2026
+           Gatil dos Resgatados. Feito com muito amor para os gatinhos. 🐱❤️✨
+        </p>
+      </div>
     </div>
   </footer>
 </div>

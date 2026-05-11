@@ -57,12 +57,14 @@ export default defineConfig([
       'next.config.mjs',
       'tailwind.config.js',
       'vitest.config.ts',
-      '_templates/**'
+      '_templates/**',
+      'next-env.d.ts'
     ]
   },
   {
     rules: {
       'no-console': 'warn',
+      '@typescript-eslint/triple-slash-reference': 'off',
       'no-debugger': 'warn',
       'no-alert': 'warn',
       'simple-import-sort/imports': 'error',

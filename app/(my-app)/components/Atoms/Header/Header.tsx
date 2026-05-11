@@ -1,6 +1,5 @@
 'use client';
-
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -16,104 +15,80 @@ type HeaderProps = {
 };
 
 export const Header = ({ menuItems }: HeaderProps) => {
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="bg-[#013274] text-white" role="banner" data-testid="header">
-      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-16 md:h-[91px]">
-        <Link
-          href="/"
-          aria-label="Ir para a página inicial"
-          className="flex items-center space-x-2"
-        >
-          <Image
-            src="/logo-gatil.webp"
-            alt="Gatil dos Resgatados - Logo"
-            className="w-[230px] h-auto"
-            width={230}
-            height={100}
-            loading="eager"
-            fetchPriority="high"
-            data-testid="logo"
-          />
-        </Link>
+    <nav
+      className="bg-[#013274] text-white shadow-[var(--shadow-soft)] sticky top-0 z-50"
+      data-testid="header"
+    >
+      <div className="container mx-auto  w-full max-w-7xl px-4">
+        <div className="flex justify-between items-center h-16">
+          <Link href="/" className="flex items-center hover:scale-105 transition-transform">
+            <Image
+              src="/logo-gatil.webp"
+              alt="Gatil dos Resgatados - Logo"
+              width={160}
+              height={48}
+              className="h-12 w-auto object-contain"
+              data-testid="logo"
+              priority
+            />
+          </Link>
 
-        <nav
-          className="hidden md:flex w-full justify-around text-sm font-semibold"
-          role="navigation"
-          aria-label="Menu principal"
-        >
-          {menuItems.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <a
-                key={link.label}
-                href={link.href}
-                aria-current={isActive ? 'page' : undefined}
-                aria-label={`Ir para ${link.label}`}
-                className="relative text-center pt-2 w-full text-base group"
-                data-testid={`nav-link-${link.label.toLowerCase()}`}
-              >
-                <span
-                  className={`transition-colors duration-300 ${
-                    isActive ? 'text-blue-300' : 'text-white group-hover:text-blue-300'
-                  }`}
-                >
-                  {link.label}
-                </span>
-                <span
-                  className={`absolute left-0 top-0 h-[2px] bg-blue-300 transition-all duration-300 origin-left scale-x-0 group-hover:scale-x-100 ${
-                    isActive ? 'scale-x-100' : ''
-                  }`}
-                  style={{ width: '100%' }}
-                ></span>
-              </a>
-            );
-          })}
-        </nav>
-
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden"
-          aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
-          aria-expanded={isOpen}
-          aria-controls="mobile-menu"
-          data-testid="menu-button"
-        >
-          <Menu className="h-6 w-6 text-white" />
-        </button>
-      </div>
-
-      {isOpen && (
-        <div
-          id="mobile-menu"
-          className="md:hidden px-4 pt-0 pb-4 space-y-2 bg-[#002f6c] animate-fade-slide-down"
-          role="menu"
-          aria-label="Menu mobile"
-        >
-          {menuItems.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <a
-                key={link.label}
-                href={link.href}
-                role="menuitem"
-                aria-current={isActive ? 'page' : undefined}
-                aria-label={`Ir para ${link.label}`}
-                className={`block font-medium border-l-4 pl-2 ${
-                  isActive
-                    ? 'text-blue-300 border-blue-300'
-                    : 'text-white border-transparent hover:text-blue-300 hover:border-blue-300'
+          {/* Menu Desktop */}
+          <div className="hidden md:flex gap-6 items-center">
+            {menuItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                data-testid={`nav-link-${item.label.toLowerCase()}`}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                className={`px-3 py-2 rounded-full transition-[var(--transition-smooth)] font-medium ${
+                  isActive(item.href) ? 'bg-white text-[#013274]' : 'hover:bg-white/10'
                 }`}
-                data-testid={`mobile-link-${link.label.toLowerCase()}`}
               >
-                {link.label}
-              </a>
-            );
-          })}
+                <span className={isActive(item.href) ? 'text-[#013274]' : 'text-white'}>
+                  {item.label}
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          {/* Botão Mobile */}
+          <button
+            data-testid="menu-button"
+            className="md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={isOpen ? 'true' : 'false'}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-      )}
-    </header>
+
+        {/* Menu Mobile */}
+        {isOpen && (
+          <div className="md:hidden pb-4 animate-fade-in" role="menu" data-testid="mobile-menu">
+            {menuItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                data-testid={`mobile-link-${item.label.toLowerCase()}`}
+                className={`block px-4 py-3 rounded-lg transition-[var(--transition-smooth)] font-medium ${
+                  isActive(item.href) ? 'bg-white text-[#013274]' : 'hover:bg-white/10'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </nav>
   );
 };

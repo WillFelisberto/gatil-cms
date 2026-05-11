@@ -1,14 +1,20 @@
 // tailwind.config.js
+
+import type { Config } from 'tailwindcss';
+
 export default {
   content: ['./app/**/*.{js,jsx,tsx}'],
   theme: {
     extend: {
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)'
+      },
       fontFamily: {
         poppins: ['var(--font-poppins)', 'sans-serif']
       },
-      colors: {
-        'gatil-blue': '#013274'
-      },
+
       animation: {
         'fade-slide-down': 'fadeSlideDown 300ms ease-out'
       },
@@ -20,4 +26,4 @@ export default {
       }
     }
   }
-};
+} satisfies Config;
