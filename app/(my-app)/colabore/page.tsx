@@ -1,7 +1,7 @@
 import config from '@payload-config';
 import { Gift, Heart } from 'lucide-react';
 import { Metadata } from 'next';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { getPayload } from 'payload';
 
 import { Colabore, Media } from '@/payload-types';
@@ -141,7 +141,7 @@ export default async function AboutPage() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mt-12">
+        {/* <div className="grid md:grid-cols-2 gap-8 mt-12">
           <div className="rounded-3xl overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-hover)] transition-[var(--transition-smooth)] hover:-translate-y-2">
             <Image
               src="/gato.jpg"
@@ -161,7 +161,7 @@ export default async function AboutPage() {
               className="w-full h-auto object-cover"
             />
           </div>
-        </div>
+        </div> */}
         {/* Thank You Message */}
         <div className="mt-12 bg-gradient-to-br from-secondary/30 to-accent/30 p-8 rounded-3xl text-center border-4 border-accent/30">
           <div className="text-5xl mb-4">🐱💝✨</div>
