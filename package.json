@@ -57,7 +57,7 @@
     "identity-obj-proxy": "^3.0.0",
     "libsql": "^0.5.8",
     "lucide-react": "^0.486.0",
-    "next": "latest",
+    "next": "15.5.8",
     "path": "^0.12.7",
     "payload": "^3.32.0",
     "payload-mask-plugin": "^1.0.2",
