@@ -41,7 +41,7 @@ export const Footer = ({ socialLinks, menuItems }: FooterProps) => {
   const year = new Date().getFullYear();
 
   return (
-    <footer data-testid="footer" className="bg-[#013274] text-white mt-20">
+    <footer data-testid="footer" className="bg-[#013274] text-white">
       <div data-testid="footer-container" className="container mx-auto px-4 py-12 w-full max-w-7xl">
         <div className="grid md:grid-cols-3 gap-8">
           <div>

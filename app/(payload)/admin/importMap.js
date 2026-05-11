@@ -1,5 +1,7 @@
 import { default as default_90e8aa74c62642e26d871e31d2c13135 } from 'app/(payload)/components/fields/GetPreviewField'
 import { default as default_1cb102a2e8197d0ee296dd865a737d97 } from 'app/(payload)/components/fields/AgeCell'
+import { ExportListMenuItem as ExportListMenuItem_cdf7e044479f899a31f804427d568b36 } from '@payloadcms/plugin-import-export/rsc'
+import { ImportListMenuItem as ImportListMenuItem_cdf7e044479f899a31f804427d568b36 } from '@payloadcms/plugin-import-export/rsc'
 import { default as default_b3e4521ef75cf16b9e7186ff1fb22dba } from 'app/(payload)/components/fields/PhoneCell'
 import { default as default_4cb0fbf82810f7f3ce7d4ab65b90f4b6 } from 'app/(payload)/components/fields/MaskedPhoneField'
 import { default as default_e7e5d17443f3bc05374a8ed690ddb287 } from 'app/(payload)/components/fields/CPFCell'
@@ -59,6 +61,8 @@ import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } f
 export const importMap = {
   "app/(payload)/components/fields/GetPreviewField#default": default_90e8aa74c62642e26d871e31d2c13135,
   "app/(payload)/components/fields/AgeCell#default": default_1cb102a2e8197d0ee296dd865a737d97,
+  "@payloadcms/plugin-import-export/rsc#ExportListMenuItem": ExportListMenuItem_cdf7e044479f899a31f804427d568b36,
+  "@payloadcms/plugin-import-export/rsc#ImportListMenuItem": ImportListMenuItem_cdf7e044479f899a31f804427d568b36,
   "app/(payload)/components/fields/PhoneCell#default": default_b3e4521ef75cf16b9e7186ff1fb22dba,
   "app/(payload)/components/fields/MaskedPhoneField#default": default_4cb0fbf82810f7f3ce7d4ab65b90f4b6,
   "app/(payload)/components/fields/CPFCell#default": default_e7e5d17443f3bc05374a8ed690ddb287,

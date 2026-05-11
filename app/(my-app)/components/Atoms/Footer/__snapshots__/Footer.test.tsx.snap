@@ -3,7 +3,7 @@
 exports[`<Footer /> should render the footer container 1`] = `
 <div>
   <footer
-    class="bg-[#013274] text-white mt-20"
+    class="bg-[#013274] text-white"
     data-testid="footer"
   >
     <div
