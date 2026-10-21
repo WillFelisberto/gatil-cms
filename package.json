@@ -24,7 +24,11 @@
     "test:e2e:ui": "playwright test --ui",
     "seed": "npx payload run scripts/seed.ts",
     "migrate": "payload migrate",
-    "migrate:create": "payload migrate:create"
+    "migrate:create": "payload migrate:create",
+    "migrate:landing": "tsx scripts/migrate-landing-content.ts --apply",
+    "migrate:landing:check": "tsx scripts/migrate-landing-content.ts",
+    "test:migration": "node --experimental-strip-types --test tests/migration/*.test.mjs",
+    "test:migration:sqlite": "python3 -m unittest discover -s tests/migration -p test_*.py"
   },
   "lint-staged": {
     "app/[(]my-app[)]/**/*": [

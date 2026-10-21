@@ -81,6 +81,8 @@ export const landingDefaults = {
 export type LandingContent = {
   [K in keyof typeof landingDefaults]?: Partial<{ [P in keyof (typeof landingDefaults)[K]]: string | null }> | null
 } & {
+  showComplementaryContent?: boolean | null;
+  legacyMigrationCompleted?: boolean | null;
   heroImage?: unknown;
   aboutImage?: unknown;
   aboutDescription?: unknown;

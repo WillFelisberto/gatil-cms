@@ -1,55 +1,59 @@
-# Landing page com conteúdo gerenciado pelo Payload CMS
+# Gatil dos Resgatados — migração editorial para landing única
 
-## O que foi corrigido
+## Arquitetura e administração
 
-Na versão anterior do redesign, parte dos textos ficou fixa no JSX. Agora **os textos editoriais da landing são campos do Payload**, não valores programados diretamente em `page.tsx`.
+A página pública `/` é uma landing com **um único catálogo de gatos**. Não existe um segundo cadastro ou um segundo catálogo de apadrinhamento. Os gatos vêm da collection `cats`, e as opções de adoção e apadrinhamento seguem os campos `show`, `adotado` e `disponivelParaApadrinhamento` do cadastro.
 
-### Como editar no `/admin`
+- **Conteúdo do site → Conteúdo da Landing Page** (`homepage`): hero, três atalhos, catálogo, história, apadrinhamento, doação, adoção responsável, equipe e contato; fotos editoriais; textos de botões; complementos importados.
+- **Conteúdo do site → Configurações do Site** (`site-config`): WhatsApp, redes sociais, rótulos de menu e rodapé.
+- **Conteúdo do site → Doações · PIX e dados bancários** (`colabore`): dados financeiros, QR Code e PIX. **Nunca copiar PIX para textos estáticos**.
+- **Gatos** (`cats`): fotos, perfil e disponibilidade.
+- **Usuários** (`users`): voluntários públicos.
+- **Política de adoção / Termos de apadrinhamento**: permanecem como documentos separados e editáveis.
 
-| Local do painel | Edita o quê? |
-| --- | --- |
-| **Conteúdo do site → Conteúdo da Landing Page** | Hero, atalhos, catálogo, história, apadrinhamento, doações, adoção responsável, equipe, encerramento e imagens |
-| **Conteúdo do site → Configurações do Site** | Menu, cabeçalho, rodapé, WhatsApp e redes sociais |
-| **Conteúdo do site → Doações · PIX e dados bancários** | Chaves PIX, QR Code e conta bancária |
-| **Gatos** | Nome, fotos, descrição, saúde, adoção/apadrinhamento e status de cada gato |
-| **Usuários** | Voluntários marcados para exibição pública |
-| **Conteúdo do site → Página Política de Adoção** | Documento completo da política de adoção |
-| **Conteúdo do site → Página Termos de Apadrinhamento** | Documento completo de apadrinhamento |
+O layout é feito no frontend; **textos e imagens são editados no Payload**. A opção "Conteúdos complementares" é o lugar dos blocos migrados das páginas antigas.
 
-A homepage renderiza 12 gatos por página, com `?page=N` e `?filtro=adocao` / `?filtro=apadrinhamento`, sem duplicar perfis. Alterar os textos no painel não exige recompilar o frontend; o dado é buscado novamente no servidor (`force-dynamic`).
+## Migração completa em dois estágios
 
-## Conteúdo antigo: como foi preservado
-
-- A migration copia o hero (título, subtítulo e imagem), a história (imagem e rich text) e a introdução do apadrinhamento do modelo antigo para as novas áreas da landing.
-- Os blocos antigos continuam armazenados e **não são apagados**; os layouts legados ficam ocultos no painel. Isso evita apagar conteúdo antes de um backup/avaliação.
-- Outros blocos personalizados das antigas páginas Adote, Apadrinhe, Contato e Colabore **não são migrados automaticamente** nem exibidos na landing nova. Caso contenham informações exclusivas que você queira publicar, reescreva-as nos novos campos editoriais após conferir os dados antigos; um backup ou restauração permite consultar o conteúdo original.
-- A descrição de Sobre o Projeto tem fallback ao antigo Global até ser preenchida na área nova.
-- PIX, termos legais, gatos, media e patrocinadores não foram excluídos nem convertidos para conteúdo estático.
-
-## Migração no banco
-
-O banco é SQLite/libSQL. Foi incluída a migration `20261020_220000_landing_editorial` com snapshot do Payload, adicionando os campos às tabelas `homepage` e `site_config`, sem remover dados existentes.
-
-Em ambiente de homologação (com as variáveis de ambiente preenchidas e um backup do banco):
+**Não há acesso ao banco de produção dentro deste pacote ZIP.** Os comandos a seguir executam a migração no banco apontado por `DATABASE_URL` **no seu ambiente**. Migração de schema e importação são passos distintos:
 
 ```bash
 npm ci
-npm run migrate
+npm run migrate               # evolui o schema SQLite/libSQL
+npm run migrate:landing:check # prévia sem gravar: quantidade por página e campos mapeados
+npm run migrate:landing       # grava conteúdo dos Globals antigos na homepage
 npm run generate:types
 npm run generate:importmap
+npm run test:migration
+npm run test:migration:sqlite
+npm run test:ci
+npm run lint
 npm run build
 ```
 
-**IMPORTANTE:** não execute `npm run migrate` na produção antes de realizar backup do banco e validar os dados de homologação. As dependências não puderam ser instaladas neste ambiente por indisponibilidade de DNS para `registry.npmjs.org`, portanto `build` e testes integrados ainda precisam ser confirmados.
+1. **Schema**: `20261020_220000_landing_editorial` acrescenta os campos editoriais e copia hero, história e introdução ao apadrinhamento. `20261020_230000_complete_landing_migration` acrescenta a chave de exibição de complementos.
+2. **Conteúdo**: `scripts/migrate-landing-content.ts` lê `adote`, `apadrinhe`, `colabore` e `contato` via Payload Local API. Transfere os *hero texts* para os campos editoriais correspondentes quando ainda não personalizados. Copia **todos os blocos dessas páginas** para o campo `homepage.layout`: texto rico, títulos, imagens, galeria, FAQs, produtos, slider e heros. Os blocos são editáveis no painel.
+3. **Backup**: faça um backup consistente do banco SQLite/libSQL **e de suas mídias externas (por exemplo Vercel Blob)** antes de qualquer operação em produção. Teste a cópia do banco em homologação primeiro.
+4. **Reexecução**: os blocos migrados recebem IDs determinísticos, permanecem nas tabelas antigas e não são importados novamente em uma segunda execução. Um marcador interno de conclusão impede reimportar blocos que o editor excluir posteriormente. Os campos que já foram modificados pelo editor não são sobrescritos.
+5. **Exibição**: por padrão, `showComplementaryContent=false` evita apresentar informações duplicadas. No painel `Conteúdo da Landing Page > Conteúdos complementares`, revise, reorganize e remova duplicações se quiser, depois marque "Exibir os blocos complementares na landing". Heros antigos são preservados, mas não renderizados duas vezes.
 
-## Arquitetura
+**Não há exclusão de dados originais.** Os Globals antigos continuam no banco e ocultos na navegação do admin. O importador não mexe em gatos, adoções, apadrinhamentos, PIX, usuários, mídia ou documentos legais.
 
-- `lib/landingContent.ts`: defaults e resolução de textos; facilita casos antigos e não força alterações no React a cada edição.
-- `app/(payload)/globals/home/index.ts`: novos campos da landing, divididos em abas editoriais.
-- `app/(payload)/globals/siteConfig/index.ts`: rótulos da navegação e do rodapé.
-- `app/(my-app)/page.tsx`: utiliza o conteúdo gerenciado, mantendo as consultas reais de gatos, voluntários e dados bancários.
-- `app/(payload)/migrations/20261020_220000_landing_editorial.ts`: evolução do schema e cópia de alguns dados legados.
+**Importante sobre URLs antigas**: `/adote` e `/apadrinhe` redirecionam ao catálogo da landing preservando os filtros e `?page=...`. `?filtro=adocao` e `?filtro=apadrinhamento` utilizam a mesma consulta de `cats`, em lotes de **12**.
 
-## Dependências
+## Como verificar no painel
 
-Nenhum novo pacote foi necessário. Preservamos as versões do projeto para evitar atualizações desnecessárias sem testes de compatibilidade.
+1. Abra `/admin/globals/homepage`: confirme cada uma das seções e a quantidade de blocos complementares importados.
+2. Edite um título e salve; atualize a home e confira a alteração sem modificar o código.
+3. Confira as imagens e o RichText; o importador preserva relacionamentos com `media`, galerias, FAQs e produtos.
+4. Confirme os links e dados do PIX em `/admin/globals/colabore` e os documentos em suas configurações próprias.
+5. Teste `/`, `/?page=2#gatinhos`, `/?filtro=apadrinhamento#gatinhos` e a navegação por páginas seguintes.
+6. Rode `npm run migrate:landing:check` novamente: a quantidade de novos blocos deve ser zero.
+
+## Testes
+
+`npm run test:migration` executa testes da importação sem dependências externas: preservação dos blocos aninhados, mídia, mapeamento de hero, repetição sem duplicação e prioridade dos textos modificados. `python3 -m unittest discover -s tests/migration -p 'test_*.py'` verifica as migrations SQLite em uma base temporária e dados de exemplo. Jest, ESLint e build dependem de `npm ci` com acesso ao registro dos pacotes; são obrigatórios no CI/homologação antes da publicação.
+
+## Limites
+
+Esta versão **não executou comandos contra o banco remoto de produção**. Uma versão do ZIP não carrega os conteúdos inseridos depois no painel. Mesmo com o código de migração completo, é necessário executar os comandos acima **no ambiente com os dados reais** e revisar os blocos complementares, pois alguns textos legados podem se repetir no novo layout.

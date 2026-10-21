@@ -1,3 +1,5 @@
+> **Atenção:** este guia registra o redesign original. A landing e as migrations atuais são documentadas em [CMS-LANDING-README.md](./CMS-LANDING-README.md).
+
 # Gatil dos Resgatados — Redesign (azul oficial)
 
 ## O que foi alterado

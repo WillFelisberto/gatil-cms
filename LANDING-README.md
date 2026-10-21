@@ -1,3 +1,5 @@
+> **Atenção:** este guia registra o redesign original. Para os procedimentos atuais de importação completa e CMS editável, consulte [CMS-LANDING-README.md](./CMS-LANDING-README.md).
+
 # Gatil dos Resgatados — landing única (Payload CMS)
 
 ## Conceito

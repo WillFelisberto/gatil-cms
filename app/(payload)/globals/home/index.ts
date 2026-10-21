@@ -73,15 +73,15 @@ const Homepage: GlobalConfig = {
         { label: 'Doações', fields: [editorialGroups[5], {
           name: 'donationImage', label: 'Fotografia da chamada para doação', type: 'upload', relationTo: 'media'
         }, editorialGroups[6]] },
-        { label: 'Adoção, equipe e contato', fields: [editorialGroups[7], editorialGroups[8], editorialGroups[9]] }
+        { label: 'Adoção, equipe e contato', fields: [editorialGroups[7], editorialGroups[8], editorialGroups[9]] },
+        { label: 'Conteúdos complementares', fields: [
+          { name: 'showComplementaryContent', type: 'checkbox', label: 'Exibir os blocos complementares na landing', defaultValue: false, admin: { description: 'Revise o material importado antes de ativar. Heros antigos não são exibidos para evitar seções duplicadas.' } },
+          { name: 'legacyMigrationCompleted', type: 'checkbox', defaultValue: false, admin: { hidden: true, readOnly: true, description: 'Controle interno: importação do conteúdo das páginas antigas realizada.' } },
+          { name: 'layout', label: 'Blocos importados e complementares', type: 'blocks', required: false, blocks: PageBlocks, admin: { description: 'Edite, reorganize ou exclua blocos migrados. Conteúdo das antigas páginas Adote, Apadrinhe, Contato e Colabore é importado por script sem apagar as fontes.' } }
+        ] }
       ]
     },
-    // Mantido no schema para não perder a imagem/SEO da homepage já publicada.
-    // Oculto no painel: não pode mais ser usado para compor novas páginas.
-    {
-      name: 'layout', type: 'blocks', required: false, blocks: PageBlocks,
-      admin: { condition: () => false, description: 'Conteúdo antigo, preservado temporariamente para migração.' }
-    }
+
   ]
 };
 

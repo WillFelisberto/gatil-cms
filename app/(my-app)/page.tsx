@@ -13,6 +13,7 @@ import { RichTextComponent } from './components/Atoms/RichText';
 import { VolunteerCard } from './components/Atoms/VolunteerCard';
 import { Pagination } from './components/Molecules/Pagination';
 import { getBankById } from './utils/Banks';
+import { RenderBlocks } from './utils/RenderBlocks';
 import { CAT_PAGE_SIZE, catalogWhere, normalizeCatalogFilter, normalizeCatalogPage } from './utils/catCatalog';
 import PixComponent from './colabore/PixComponent';
 
@@ -128,6 +129,11 @@ export default async function Home({ searchParams }: Props) {
     <section className="gd-steps-section gd-container" id="adocao-responsavel"><div className="gd-section-heading"><div><span className="gd-kicker">{copy.adoption.eyebrow}</span><h2>{copy.adoption.title} <em>{copy.adoption.titleEmphasis}</em></h2><p>{copy.adoption.description}</p></div></div><div className="gd-steps-grid"><div><span>01</span><Heart size={28}/><h3>{copy.adoption.firstTitle}</h3><p>{copy.adoption.firstDescription}</p></div><div><span>02</span><PawPrint size={28}/><h3>{copy.adoption.secondTitle}</h3><p>{copy.adoption.secondDescription}</p></div><div><span>03</span><ShieldCheck size={28}/><h3>{copy.adoption.thirdTitle}</h3><p>{copy.adoption.thirdDescription}</p></div></div><div className="gd-center"><Link href="/politica-de-adocao" className="gd-link-inline">{copy.adoption.policyButton} <ArrowUpRight size={19}/></Link></div></section>
 
     {volunteers.docs.length > 0 && <section className="gd-container gd-volunteers gd-home-volunteers" aria-labelledby="gd-volunteers-title"><div className="gd-section-heading"><div><span className="gd-kicker">{copy.volunteers.eyebrow}</span><h2 id="gd-volunteers-title">{copy.volunteers.title}</h2><p>{copy.volunteers.description}</p></div></div><div className="gd-volunteers-grid">{volunteers.docs.map(user => <VolunteerCard key={user.id} name={user.name} photo={typeof user.photo === 'object' && user.photo?.url ? user.photo.url : '/no-image.jpg'} phone={user.telefone || ''} showPhone={!!user.showPhone}/>)}</div></section>}
+    {landing.showComplementaryContent && Array.isArray(landing.layout) && (
+      <section className="gd-section gd-container gd-complementary-content" id="conteudos-complementares" aria-label="Mais informações sobre o Gatil">
+        <RenderBlocks blocks={landing.layout.filter(block => block.blockType !== 'hero') as Parameters<typeof RenderBlocks>[0]['blocks']}/>
+      </section>
+    )}
     <section className="gd-final-cta" id="contato"><div className="gd-container gd-final-inner"><span className="gd-kicker">{copy.contact.eyebrow}</span><h2>{copy.contact.title}<br/>{copy.contact.titleEmphasis}</h2><p>{copy.contact.description}</p><div><Link href="/#gatinhos" className="gd-button gd-button-light">{copy.contact.catalogButton} <Heart size={18}/></Link>{contactHref && <a href={contactHref} target="_blank" rel="noopener noreferrer" className="gd-button gd-button-glass">{copy.contact.whatsappButton} <MessageCircle size={18}/></a>}</div><span className="gd-final-location"><MapPin size={15}/> {copy.contact.location}</span></div></section>
   </div>;
 }

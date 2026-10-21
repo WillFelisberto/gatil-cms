@@ -1,3 +1,5 @@
+> **Nova landing + Payload CMS:** consulte [CMS-LANDING-README.md](./CMS-LANDING-README.md) para migrar todos os conteúdos antigos, manter o catálogo único paginado e editar a landing no painel.
+
 # 🐾 Gatil CMS
 
 This system allows you to easily manage the content of your cat shelter's website, including:
