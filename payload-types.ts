@@ -212,6 +212,7 @@ export interface Cat {
 export interface Media {
   id: number;
   alt?: string | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -299,6 +300,7 @@ export interface User {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
   sessions?:
     | {
         id: string;
@@ -683,6 +685,7 @@ export interface UsersSelect<T extends boolean = true> {
   resetPasswordExpiration?: T;
   salt?: T;
   hash?: T;
+  resetPasswordRequestedAt?: T;
   sessions?:
     | T
     | {
@@ -711,6 +714,7 @@ export interface GuardiansSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -925,6 +929,29 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface SiteConfig {
   id: number;
+  navigation?: {
+    home?: string | null;
+    cats?: string | null;
+    about?: string | null;
+    sponsorship?: string | null;
+    donate?: string | null;
+    contact?: string | null;
+    donateButton?: string | null;
+  };
+  footer?: {
+    about?: string | null;
+    exploreTitle?: string | null;
+    infoTitle?: string | null;
+    contactTitle?: string | null;
+    contactDescription?: string | null;
+    location?: string | null;
+    adoptionPolicyLabel?: string | null;
+    sponsorshipTermsLabel?: string | null;
+    contactLabel?: string | null;
+    contactButton?: string | null;
+    copyright?: string | null;
+    closingPhrase?: string | null;
+  };
   /**
    * Número do WhatsApp utilizado no site para adoção/contato no geral
    */
@@ -1266,134 +1293,7 @@ export interface Contato {
  */
 export interface Colabore {
   id: number;
-  layout: (
-    | {
-        title: string;
-        subtitle?: string | null;
-        backgroundImage: number | Media;
-        ctaText?: string | null;
-        ctaLink?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'hero';
-      }
-    | {
-        images?:
-          | {
-              image: number | Media;
-              caption?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'gallery';
-      }
-    | {
-        content: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'textBlock';
-      }
-    | {
-        imagePosition?: ('left' | 'right') | null;
-        backgroundColor?: ('dark' | 'light') | null;
-        image: number | Media;
-        title?: string | null;
-        text?: string | null;
-        ctaText?: string | null;
-        ctaLink?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'imageWithText';
-      }
-    | {
-        text: string;
-        /**
-         * Texto corrido exibido abaixo do título principal.
-         */
-        subtitle?: string | null;
-        tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-        alignment: 'left' | 'center' | 'right';
-        showIcon?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'title';
-      }
-    | {
-        title: string;
-        products?:
-          | {
-              name: string;
-              description?: string | null;
-              price: number;
-              image: number | Media;
-              buyLink: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'products';
-      }
-    | {
-        faq?:
-          | {
-              pergunta: string;
-              resposta: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'faq';
-      }
-    | {
-        title: string;
-        content: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        slides?:
-          | {
-              title: string;
-              description?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        ctaText?: string | null;
-        ctaLink?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'sliderBlock';
-      }
-  )[];
-  qrcode: number | Media;
+  qrcode?: (number | null) | Media;
   chavesPix?:
     | {
         tipo?: ('cnpj' | 'email' | 'bank' | 'phone' | 'cpf' | 'other') | null;
@@ -1416,6 +1316,138 @@ export interface Colabore {
      */
     image?: (number | null) | Media;
   };
+  /**
+   * Conteúdo antigo conservado no banco, não usado na landing.
+   */
+  layout?:
+    | (
+        | {
+            title: string;
+            subtitle?: string | null;
+            backgroundImage: number | Media;
+            ctaText?: string | null;
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            images?:
+              | {
+                  image: number | Media;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gallery';
+          }
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textBlock';
+          }
+        | {
+            imagePosition?: ('left' | 'right') | null;
+            backgroundColor?: ('dark' | 'light') | null;
+            image: number | Media;
+            title?: string | null;
+            text?: string | null;
+            ctaText?: string | null;
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageWithText';
+          }
+        | {
+            text: string;
+            /**
+             * Texto corrido exibido abaixo do título principal.
+             */
+            subtitle?: string | null;
+            tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+            alignment: 'left' | 'center' | 'right';
+            showIcon?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'title';
+          }
+        | {
+            title: string;
+            products?:
+              | {
+                  name: string;
+                  description?: string | null;
+                  price: number;
+                  image: number | Media;
+                  buyLink: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'products';
+          }
+        | {
+            faq?:
+              | {
+                  pergunta: string;
+                  resposta: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            title: string;
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            slides?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaText?: string | null;
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'sliderBlock';
+          }
+      )[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1852,138 +1884,342 @@ export interface PoliticaApadrinhamento {
   createdAt?: string | null;
 }
 /**
+ * Edite aqui todos os textos e imagens editoriais da página única. Gatos são cadastrados em Gatos; PIX em Doações.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "homepage".
  */
 export interface Homepage {
   id: number;
-  layout: (
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  hero?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    primaryButton?: string | null;
+    secondaryButton?: string | null;
+    note?: string | null;
+    noteHighlight?: string | null;
+    floatTitle?: string | null;
+    floatSubtitle?: string | null;
+    bottomText?: string | null;
+    scrollText?: string | null;
+    imageAlt?: string | null;
+  };
+  /**
+   * Substitui a imagem do hero. Se vazio, aproveita a imagem do layout antigo.
+   */
+  heroImage?: (number | null) | Media;
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  shortcuts?: {
+    firstTitle?: string | null;
+    firstDescription?: string | null;
+    secondTitle?: string | null;
+    secondDescription?: string | null;
+    thirdTitle?: string | null;
+    thirdDescription?: string | null;
+  };
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  catalog?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    titleEmphasis?: string | null;
+    description?: string | null;
+    allLabel?: string | null;
+    adoptionLabel?: string | null;
+    sponsorLabel?: string | null;
+    singularResult?: string | null;
+    pluralResult?: string | null;
+    emptyMessage?: string | null;
+    caption?: string | null;
+    adoptButton?: string | null;
+    sponsorButton?: string | null;
+    adoptionBadge?: string | null;
+    sponsorBadge?: string | null;
+  };
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  about?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    titleEmphasis?: string | null;
+    fallbackDescription?: string | null;
+    featureOne?: string | null;
+    featureTwo?: string | null;
+    button?: string | null;
+    sticker?: string | null;
+    imageAlt?: string | null;
+  };
+  aboutImage?: (number | null) | Media;
+  /**
+   * Texto rico desta seção. Enquanto estiver vazio, usa a descrição anterior de Sobre o projeto.
+   */
+  aboutDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  sponsorship?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    titleEmphasis?: string | null;
+    description?: string | null;
+    button?: string | null;
+    termsButton?: string | null;
+    firstTitle?: string | null;
+    firstDescription?: string | null;
+    secondTitle?: string | null;
+    secondDescription?: string | null;
+    thirdTitle?: string | null;
+    thirdDescription?: string | null;
+  };
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  donationBanner?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    titleEmphasis?: string | null;
+    description?: string | null;
+    button?: string | null;
+    note?: string | null;
+    sticker?: string | null;
+    imageAlt?: string | null;
+  };
+  donationImage?: (number | null) | Media;
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  donations?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    titleEmphasis?: string | null;
+    description?: string | null;
+    bankTitle?: string | null;
+    bankDescription?: string | null;
+    emptyMessage?: string | null;
+    materialsTitle?: string | null;
+    materialsDescription?: string | null;
+    volunteersTitle?: string | null;
+    volunteersDescription?: string | null;
+  };
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  adoption?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    titleEmphasis?: string | null;
+    description?: string | null;
+    firstTitle?: string | null;
+    firstDescription?: string | null;
+    secondTitle?: string | null;
+    secondDescription?: string | null;
+    thirdTitle?: string | null;
+    thirdDescription?: string | null;
+    policyButton?: string | null;
+  };
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  volunteers?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  contact?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    titleEmphasis?: string | null;
+    description?: string | null;
+    catalogButton?: string | null;
+    whatsappButton?: string | null;
+    location?: string | null;
+    whatsappMessage?: string | null;
+  };
+  /**
+   * Os textos desta seção são exibidos diretamente na landing page.
+   */
+  faq?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    titleEmphasis?: string | null;
+    description?: string | null;
+    button?: string | null;
+  };
+  /**
+   * Estas perguntas aparecem na última seção da landing page, no formato de acordeão.
+   */
+  faqItems?:
     | {
-        title: string;
-        subtitle?: string | null;
-        backgroundImage: number | Media;
-        ctaText?: string | null;
-        ctaLink?: string | null;
+        pergunta: string;
+        resposta: string;
         id?: string | null;
-        blockName?: string | null;
-        blockType: 'hero';
-      }
-    | {
-        images?:
-          | {
-              image: number | Media;
-              caption?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'gallery';
-      }
-    | {
-        content: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
+      }[]
+    | null;
+  /**
+   * Revise o material importado antes de ativar. Heros antigos não são exibidos para evitar seções duplicadas.
+   */
+  showComplementaryContent?: boolean | null;
+  /**
+   * Controle interno: importação do conteúdo das páginas antigas realizada.
+   */
+  legacyMigrationCompleted?: boolean | null;
+  /**
+   * Edite, reorganize ou exclua blocos migrados. Conteúdo das antigas páginas Adote, Apadrinhe, Contato e Colabore é importado por script sem apagar as fontes.
+   */
+  layout?:
+    | (
+        | {
+            title: string;
+            subtitle?: string | null;
+            backgroundImage: number | Media;
+            ctaText?: string | null;
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            images?:
+              | {
+                  image: number | Media;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gallery';
+          }
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'textBlock';
-      }
-    | {
-        imagePosition?: ('left' | 'right') | null;
-        backgroundColor?: ('dark' | 'light') | null;
-        image: number | Media;
-        title?: string | null;
-        text?: string | null;
-        ctaText?: string | null;
-        ctaLink?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'imageWithText';
-      }
-    | {
-        text: string;
-        /**
-         * Texto corrido exibido abaixo do título principal.
-         */
-        subtitle?: string | null;
-        tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-        alignment: 'left' | 'center' | 'right';
-        showIcon?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'title';
-      }
-    | {
-        title: string;
-        products?:
-          | {
-              name: string;
-              description?: string | null;
-              price: number;
-              image: number | Media;
-              buyLink: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'products';
-      }
-    | {
-        faq?:
-          | {
-              pergunta: string;
-              resposta: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'faq';
-      }
-    | {
-        title: string;
-        content: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textBlock';
+          }
+        | {
+            imagePosition?: ('left' | 'right') | null;
+            backgroundColor?: ('dark' | 'light') | null;
+            image: number | Media;
+            title?: string | null;
+            text?: string | null;
+            ctaText?: string | null;
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageWithText';
+          }
+        | {
+            text: string;
+            /**
+             * Texto corrido exibido abaixo do título principal.
+             */
+            subtitle?: string | null;
+            tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+            alignment: 'left' | 'center' | 'right';
+            showIcon?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'title';
+          }
+        | {
+            title: string;
+            products?:
+              | {
+                  name: string;
+                  description?: string | null;
+                  price: number;
+                  image: number | Media;
+                  buyLink: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'products';
+          }
+        | {
+            faq?:
+              | {
+                  pergunta: string;
+                  resposta: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            title: string;
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        slides?:
-          | {
-              title: string;
-              description?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        ctaText?: string | null;
-        ctaLink?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'sliderBlock';
-      }
-  )[];
+            };
+            slides?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaText?: string | null;
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'sliderBlock';
+          }
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -2000,6 +2236,33 @@ export interface Homepage {
  * via the `definition` "site-config_select".
  */
 export interface SiteConfigSelect<T extends boolean = true> {
+  navigation?:
+    | T
+    | {
+        home?: T;
+        cats?: T;
+        about?: T;
+        sponsorship?: T;
+        donate?: T;
+        contact?: T;
+        donateButton?: T;
+      };
+  footer?:
+    | T
+    | {
+        about?: T;
+        exploreTitle?: T;
+        infoTitle?: T;
+        contactTitle?: T;
+        contactDescription?: T;
+        location?: T;
+        adoptionPolicyLabel?: T;
+        sponsorshipTermsLabel?: T;
+        contactLabel?: T;
+        contactButton?: T;
+        copyright?: T;
+        closingPhrase?: T;
+      };
   whatsapp?: T;
   links?:
     | T
@@ -2279,6 +2542,30 @@ export interface ContatoSelect<T extends boolean = true> {
  * via the `definition` "colabore_select".
  */
 export interface ColaboreSelect<T extends boolean = true> {
+  qrcode?: T;
+  chavesPix?:
+    | T
+    | {
+        tipo?: T;
+        valor?: T;
+        id?: T;
+      };
+  logobanco?: T;
+  dadosBancarios?:
+    | T
+    | {
+        banco?: T;
+        agencia?: T;
+        contaCorrente?: T;
+        favorecido?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   layout?:
     | T
     | {
@@ -2384,30 +2671,6 @@ export interface ColaboreSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-      };
-  qrcode?: T;
-  chavesPix?:
-    | T
-    | {
-        tipo?: T;
-        valor?: T;
-        id?: T;
-      };
-  logobanco?: T;
-  dadosBancarios?:
-    | T
-    | {
-        banco?: T;
-        agencia?: T;
-        contaCorrente?: T;
-        favorecido?: T;
-      };
-  meta?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -2784,6 +3047,163 @@ export interface PoliticaApadrinhamentoSelect<T extends boolean = true> {
  * via the `definition` "homepage_select".
  */
 export interface HomepageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        subtitle?: T;
+        primaryButton?: T;
+        secondaryButton?: T;
+        note?: T;
+        noteHighlight?: T;
+        floatTitle?: T;
+        floatSubtitle?: T;
+        bottomText?: T;
+        scrollText?: T;
+        imageAlt?: T;
+      };
+  heroImage?: T;
+  shortcuts?:
+    | T
+    | {
+        firstTitle?: T;
+        firstDescription?: T;
+        secondTitle?: T;
+        secondDescription?: T;
+        thirdTitle?: T;
+        thirdDescription?: T;
+      };
+  catalog?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        titleEmphasis?: T;
+        description?: T;
+        allLabel?: T;
+        adoptionLabel?: T;
+        sponsorLabel?: T;
+        singularResult?: T;
+        pluralResult?: T;
+        emptyMessage?: T;
+        caption?: T;
+        adoptButton?: T;
+        sponsorButton?: T;
+        adoptionBadge?: T;
+        sponsorBadge?: T;
+      };
+  about?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        titleEmphasis?: T;
+        fallbackDescription?: T;
+        featureOne?: T;
+        featureTwo?: T;
+        button?: T;
+        sticker?: T;
+        imageAlt?: T;
+      };
+  aboutImage?: T;
+  aboutDescription?: T;
+  sponsorship?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        titleEmphasis?: T;
+        description?: T;
+        button?: T;
+        termsButton?: T;
+        firstTitle?: T;
+        firstDescription?: T;
+        secondTitle?: T;
+        secondDescription?: T;
+        thirdTitle?: T;
+        thirdDescription?: T;
+      };
+  donationBanner?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        titleEmphasis?: T;
+        description?: T;
+        button?: T;
+        note?: T;
+        sticker?: T;
+        imageAlt?: T;
+      };
+  donationImage?: T;
+  donations?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        titleEmphasis?: T;
+        description?: T;
+        bankTitle?: T;
+        bankDescription?: T;
+        emptyMessage?: T;
+        materialsTitle?: T;
+        materialsDescription?: T;
+        volunteersTitle?: T;
+        volunteersDescription?: T;
+      };
+  adoption?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        titleEmphasis?: T;
+        description?: T;
+        firstTitle?: T;
+        firstDescription?: T;
+        secondTitle?: T;
+        secondDescription?: T;
+        thirdTitle?: T;
+        thirdDescription?: T;
+        policyButton?: T;
+      };
+  volunteers?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        description?: T;
+      };
+  contact?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        titleEmphasis?: T;
+        description?: T;
+        catalogButton?: T;
+        whatsappButton?: T;
+        location?: T;
+        whatsappMessage?: T;
+      };
+  faq?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        titleEmphasis?: T;
+        description?: T;
+        button?: T;
+      };
+  faqItems?:
+    | T
+    | {
+        pergunta?: T;
+        resposta?: T;
+        id?: T;
+      };
+  showComplementaryContent?: T;
+  legacyMigrationCompleted?: T;
   layout?:
     | T
     | {

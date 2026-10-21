@@ -1,41 +1,51 @@
 import config from '@payload-config';
+import { HandHeart } from 'lucide-react';
 import type { Metadata } from 'next';
 import { getPayload } from 'payload';
 
-import { Apadrinhe, Media } from '@/payload-types';
+import type { Apadrinhe } from '@/payload-types';
 
 import { RenderBlocks } from '../utils/RenderBlocks';
-
-export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
-
+export const dynamic = 'force-dynamic';
 export async function generateMetadata(): Promise<Metadata> {
   const payload = await getPayload({ config });
-
-  const politicaApadrinhamentoPage = await payload.findGlobal({ slug: 'politicaApadrinhamento' });
-
+  const page = await payload.findGlobal({ slug: 'politicaApadrinhamento' });
+  const img = page.meta?.image;
   return {
-    title: politicaApadrinhamentoPage?.meta?.title || undefined,
-    description: politicaApadrinhamentoPage?.meta?.description || undefined,
-    openGraph: {
-      title: politicaApadrinhamentoPage?.meta?.title || undefined,
-      description: politicaApadrinhamentoPage?.meta?.description || undefined,
-      images: (politicaApadrinhamentoPage?.meta?.image as Media)?.url
-        ? [{ url: (politicaApadrinhamentoPage?.meta?.image as Media).url! }]
-        : undefined
-    }
+    title: page.meta?.title || 'Termos de apadrinhamento | Gatil dos Resgatados',
+    description: page.meta?.description || 'Entenda como funciona o apadrinhamento dos gatinhos.',
+    openGraph: { images: typeof img === 'object' && img?.url ? [{ url: img.url }] : undefined }
   };
 }
-export default async function TermosDeApadrinhamentoPage() {
+export default async function TermosPage() {
   const payload = await getPayload({ config });
-  const politica = await payload.findGlobal({ slug: 'politicaApadrinhamento' });
-
+  const page = await payload.findGlobal({ slug: 'politicaApadrinhamento' });
+  const cmsHero = page.layout.find((block) => block.blockType === 'hero');
   return (
-    <article
-      className="mb-4 pt-12 w-full flex flex-col max-w-6xl mx-auto px-4"
-      aria-labelledby="politica-de-apadrinhamento"
-      aria-describedby="descricao-politica-apadrinhamento"
-    >
-      <RenderBlocks<Apadrinhe> blocks={politica.layout} />
-    </article>
+    <div className="gd-inner-page">
+      <section className="gd-page-hero gd-page-hero-peach">
+        <div className="gd-container">
+          <span className="gd-kicker">APADRINHAMENTO RESPONSÁVEL</span>
+          <h1>
+            {cmsHero?.title || (
+              <>
+                Um gesto de amor <em>que permanece.</em>
+              </>
+            )}
+          </h1>
+          <p>
+            {cmsHero?.subtitle || 'Veja as informações sobre o nosso programa de apadrinhamento.'}
+          </p>
+          <span className="gd-page-deco">
+            <HandHeart size={66} />
+          </span>
+        </div>
+      </section>
+      <article className="gd-content-panel" aria-label="Termos de apadrinhamento">
+        <RenderBlocks<Apadrinhe>
+          blocks={page.layout.filter((block) => block.blockType !== 'hero')}
+        />
+      </article>
+    </div>
   );
 }

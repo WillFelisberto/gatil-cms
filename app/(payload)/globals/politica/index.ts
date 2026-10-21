@@ -6,7 +6,7 @@ const PoliticaAdocao: GlobalConfig = {
   slug: 'politicaAdocao',
   label: 'Página Política de Adoção',
   admin: {
-    group: 'Site'
+    group: 'Conteúdo do site'
   },
   hooks: {},
   access: {

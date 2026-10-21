@@ -1,88 +1,94 @@
 import '@/styles/global.css';
+import '@/styles/gatil-redesign.css';
 
 import { GoogleAnalytics } from '@next/third-parties/google';
 import config from '@payload-config';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import { getPayload } from 'payload';
+import { FaWhatsapp } from 'react-icons/fa';
 import { ToastContainer } from 'react-toastify';
+
+import { footerDefaults, navigationDefaults, resolveLabelGroup } from '@/lib/landingContent';
 
 import { Footer } from './components/Atoms/Footer';
 import { Header } from './components/Atoms/Header';
-
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
   variable: '--font-poppins'
 });
 
 export const metadata: Metadata = {
-  title: 'Gatil dos Resgatados | Adoção de Gatinhos Resgatados com Amor',
+  title: 'Gatil dos Resgatados | Todo amor merece um lar',
   description:
-    'Transforme vidas adotando um gatinho! O Gatil dos Resgatados resgata, cuida e prepara felinos para encontrar um novo lar cheio de amor. Conheça os gatinhos disponíveis para adoção e saiba como colaborar.',
-  keywords:
-    'adoção de gatos, gatos para adoção, gatil dos resgatados, resgate animal, apadrinhar gatos, adotar gatos SC, adotar gato sombrio, adotar gato araranguá, adotar gato torres',
+    'O Gatil dos Resgatados acolhe e cuida de gatinhos que precisam de uma nova chance. Conheça nossos resgatados, adote, apadrinhe ou colabore.',
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://gatildosresgatados.com/',
-    title: 'Gatil dos Resgatados | Adoção de Gatinhos Resgatados com Amor',
-    description:
-      'O Gatil dos Resgatados cuida de felinos abandonados e busca um lar amoroso para cada um. Adote, apadrinhe ou colabore com nosso projeto.',
-    siteName: 'Gatil dos Resgatados',
-    images: [
-      {
-        url: 'https://gatildosresgatados.com/og-image.jpg', // substitua por uma imagem real
-        width: 1200,
-        height: 630,
-        alt: 'Gatil dos Resgatados'
-      }
-    ]
-  },
-  twitter: {
-    card: 'summary_large_image',
     title: 'Gatil dos Resgatados',
-    description:
-      'Adote um gatinho resgatado e ajude a transformar vidas. Conheça nossos peludos e saiba como apoiar o projeto!',
-    site: '@gatildosresgatados', // substitua se tiver Twitter
-    images: ['https://gatildosresgatados.com/og-image.jpg']
+    description: 'Adote, apadrinhe e transforme a vida de um gatinho resgatado.',
+    images: [{ url: '/logo-gatil.webp' }]
   }
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const payload = await getPayload({ config });
   const global = await payload.findGlobal({ slug: 'site-config' });
-  const socialLinks = global?.links || [];
-
+  const whatsapp = global?.whatsapp?.replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, '');
+  const links = global?.links || [];
+  const nav = resolveLabelGroup(
+    navigationDefaults,
+    (global as unknown as { navigation?: unknown }).navigation
+  );
+  const footer = resolveLabelGroup(
+    footerDefaults,
+    (global as unknown as { footer?: unknown }).footer
+  );
   const menuItems = [
-    { label: 'Início', href: '/' },
-    { label: 'Apadrinhe', href: '/apadrinhe' },
-    { label: 'Colabore', href: '/colabore' },
-    { label: 'Contato', href: '/contate-nos' },
-    { label: 'Sobre o Projeto', href: '/sobre-o-projeto' },
-    { label: 'Adote', href: '/adote' }
+    { label: nav.home, href: '/#inicio' },
+    { label: nav.cats, href: '/#gatinhos' },
+    { label: nav.about, href: '/#sobre' },
+    { label: nav.sponsorship, href: '/#apadrinhamento' },
+    { label: nav.donate, href: '/#colabore' },
+    { label: nav.contact, href: '/#contato' }
   ];
-
   return (
     <html lang="pt-BR" className={poppins.variable}>
-      <body>
-        <Header menuItems={menuItems} />
-        <main>{children}</main>
-        <Footer menuItems={menuItems} socialLinks={socialLinks} />
-        <ToastContainer
-          position="bottom-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
+      <body className="gd-site">
+        <div className="bg-[#023274] px-4 py-[10px] text-center text-[11px] font-bold tracking-[0.11em] text-[#f5f9ff] max-[680px]:text-[9px]">
+          PEQUENOS RESGATES, GRANDES RECOMEÇOS <span>✦</span> SOMBRIO • SANTA CATARINA
+        </div>
+        <Header menuItems={menuItems} donateButtonLabel={nav.donateButton} />
+        <main id="conteudo-principal" className="gd-main">
+          {children}
+        </main>
+        <Footer
+          menuItems={menuItems}
+          socialLinks={links}
+          whatsapp={global?.whatsapp || ''}
+          labels={footer}
         />
+
+        {whatsapp && (
+          <a
+            href={`https://wa.me/55${whatsapp}?text=${encodeURIComponent(
+              'Olá! Gostaria de saber mais sobre o Gatil dos Resgatados.'
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Conversar pelo WhatsApp"
+            title="Fale conosco pelo WhatsApp"
+            className="fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform duration-200 hover:scale-110 hover:bg-[#1ebe5d]"
+          >
+            <FaWhatsapp size={32} aria-hidden="true" />
+          </a>
+        )}
+
+        <ToastContainer position="bottom-center" autoClose={5000} theme="light" />
+        <GoogleAnalytics gaId="G-CVEQLYNEPP" />
       </body>
-      <GoogleAnalytics gaId="G-CVEQLYNEPP" />
     </html>
   );
 }

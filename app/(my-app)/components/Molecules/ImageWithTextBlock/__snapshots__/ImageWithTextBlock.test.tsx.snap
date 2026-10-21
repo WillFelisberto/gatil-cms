@@ -3,21 +3,13 @@
 exports[`<ImageWithTextBlock /> renders the section wrapper with test id 1`] = `
 <div>
   <section
-    aria-label="Seção com informações sobre gatos disponíveis para adoção"
-    class="
-        relative w-full
-        flex items-center
-        overflow-hidden
-        bg-bottom bg-no-repeat bg-contain
-        bg-white text-[#013274]
-      "
+    aria-label="Informações do Gatil dos Resgatados"
+    class="gd-cms-feature gd-cms-feature-light"
     data-testid="section-cat-background"
-    id="adoptable-cats-section"
     role="region"
-    style="background-image: url(/gatoazulrodape.webp); background-repeat: no-repeat; background-position: bottom center; background-size: inherit; height: 80vh;"
   >
     <div
-      class="w-full max-w-6xl mx-auto px-6 py-12"
+      class="gd-container"
     >
       <section
         aria-labelledby="image-with-text-title-adote-um-gatinho"

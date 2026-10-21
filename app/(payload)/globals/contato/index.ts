@@ -6,7 +6,8 @@ const Contato: GlobalConfig = {
   slug: 'contato',
   label: 'Página de contato',
   admin: {
-    group: 'Site'
+    group: 'Legado',
+    hidden: true
   },
   hooks: {},
   access: {

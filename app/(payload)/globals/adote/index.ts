@@ -6,7 +6,8 @@ const Adote: GlobalConfig = {
   slug: 'adote',
   label: 'Página Adote',
   admin: {
-    group: 'Site'
+    group: 'Legado',
+    hidden: true
   },
   hooks: {},
   access: {

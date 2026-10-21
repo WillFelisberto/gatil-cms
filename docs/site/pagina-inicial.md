@@ -1,55 +1,23 @@
-# 🏠 Página Inicial
+# 🐾 Landing Page — painel do site
 
-A **Página Inicial** é a porta de entrada do site e tem como objetivo apresentar de forma clara e atrativa a proposta do gatil. Ela pode conter destaques visuais, mensagens institucionais, chamadas para ação, campanhas e links para outras seções importantes.
+O site agora é uma **landing única**; gatos para adoção e apadrinhamento aparecem no mesmo catálogo e não são duplicados.
 
-Essa página é estruturada com blocos dinâmicos, o que permite flexibilidade total na organização do conteúdo.
+## Onde editar
 
----
+Abra **Conteúdo do site → Conteúdo da Landing Page** no Payload (`/admin/globals/homepage`). Ali existem abas editoriais:
 
-## 📍 Onde editar
+- **Destaque e catálogo**: hero, imagem principal, chamadas, atalhos e textos dos cards dos gatos.
+- **História e apadrinhamento**: história com texto rico, foto e textos de apadrinhamento.
+- **Doações**: chamada para doação, imagem e orientação sobre como contribuir. As chaves PIX ficam em **Doações · PIX e dados bancários**.
+- **Adoção, equipe e contato**: política, voluntários e CTAs.
+- **Conteúdos complementares**: blocos vindos das páginas antigas (FAQ, galerias, textos ricos e produtos). A exibição é opcional para evitar repetição.
 
-No painel administrativo, vá até: `Site > Página Inicial`
+Salve no Payload e recarregue o site. O conteúdo é lido no servidor; não precisa alterar os componentes.
 
----
+## Catálogo e paginação
 
-## 🧱 Blocos de Conteúdo
+A collection `cats` alimenta um **único catálogo de 12 gatos por página**. A opção "Apadrinhar" só aparece quando habilitada no cadastro do gato. Filtros: `/?filtro=adocao#gatinhos`, `/?filtro=apadrinhamento#gatinhos`; para a segunda página, use `/?page=2#gatinhos`.
 
-A homepage é construída a partir de blocos reutilizáveis, configurados no campo `layout`. Você pode adicionar, remover ou reorganizar blocos para montar a estrutura ideal.
+## Documentação de migração
 
-Exemplos de blocos recomendados:
-
-- **Hero**: destaque principal com imagem, texto e botão
-- **Texto**: para mensagens institucionais
-- **Galeria de Imagens** ou **Cards de Destaque**
-- **Chamada para Ação** (ex: Adote, Apadrinhe, Colabore)
-- **Depoimentos**, **Estatísticas**, **Posts Recentes**
-
-> ℹ️ A lista completa de blocos disponíveis depende da configuração dos `PageBlocks` do projeto.
-
----
-
-## ✏️ Sugestões de conteúdo
-
-- Apresentação breve do projeto
-- Links ou botões para ações principais (Adote, Apadrinhe, etc.)
-- Destaque de gatinhos recentes ou histórias de sucesso
-- Depoimentos de adotantes ou padrinhos
-- Campanhas vigentes ou metas do mês
-
----
-
-## 🧑‍💻 Como editar
-
-1. No campo **Layout**, clique em **Adicionar bloco**
-2. Selecione o tipo de bloco desejado
-3. Preencha os campos conforme a necessidade
-4. Reorganize os blocos conforme o fluxo desejado
-5. Clique em **Salvar** no canto inferior direito
-
----
-
-## 🔒 Permissões
-
-Apenas usuários com cargo **admin** podem visualizar ou editar essa página.
-
----
+Consulte [Migrar conteúdo das páginas antigas](./migrar-conteudo-legado.md) e `CMS-LANDING-README.md` na raiz do repositório.

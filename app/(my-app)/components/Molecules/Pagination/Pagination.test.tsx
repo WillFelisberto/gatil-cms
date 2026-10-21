@@ -1,73 +1,177 @@
-import * as nextNavigation from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
-import { fireEvent, render, screen } from '@/tests/test-utils';
+import { render, screen } from '@/tests/test-utils';
 
 import { Pagination } from './Pagination';
 
-// mock de router.push
 jest.mock('next/navigation', () => ({
-  useRouter: jest.fn(),
+  usePathname: jest.fn(),
   useSearchParams: jest.fn()
 }));
 
+const mockedUsePathname = usePathname as jest.Mock;
+const mockedUseSearchParams = useSearchParams as jest.Mock;
+
+const mockNavigation = (pathname = '/', search = 'page=2') => {
+  mockedUsePathname.mockReturnValue(pathname);
+  mockedUseSearchParams.mockReturnValue(new URLSearchParams(search));
+};
+
 describe('<Pagination />', () => {
-  const pushMock = jest.fn();
   beforeEach(() => {
     jest.clearAllMocks();
-
-    (nextNavigation.useRouter as jest.Mock).mockReturnValue({
-      push: pushMock
-    });
-
-    (nextNavigation.useSearchParams as jest.Mock).mockReturnValue(new URLSearchParams('page=2'));
+    mockNavigation();
   });
 
-  it('should render pagination with correct buttons', () => {
-    const { container } = render(<Pagination currentPage={2} totalPages={4} />);
+  it('Should render pagination with correct links', () => {
+    render(<Pagination currentPage={2} totalPages={4} />);
 
     expect(screen.getByTestId('pagination')).toBeInTheDocument();
     expect(screen.getByTestId('prev-button')).toBeInTheDocument();
     expect(screen.getByTestId('next-button')).toBeInTheDocument();
 
-    for (let i = 1; i <= 4; i++) {
-      expect(screen.getByTestId(`page-button-${i}`)).toBeInTheDocument();
+    for (let page = 1; page <= 4; page++) {
+      expect(screen.getByTestId(`page-button-${page}`)).toBeInTheDocument();
     }
 
-    expect(container).toMatchSnapshot();
+    expect(
+      screen.getByRole('navigation', {
+        name: 'Paginação de gatinhos'
+      })
+    ).toBeInTheDocument();
   });
 
-  it('should disable previous button when on first page', () => {
+  it('Should not render pagination when totalPages is 1 or less', () => {
+    const { rerender } = render(<Pagination currentPage={1} totalPages={1} />);
+
+    expect(screen.queryByTestId('pagination')).not.toBeInTheDocument();
+
+    rerender(<Pagination currentPage={1} totalPages={0} />);
+
+    expect(screen.queryByTestId('pagination')).not.toBeInTheDocument();
+  });
+
+  it('Should hide previous link on first page', () => {
     render(<Pagination currentPage={1} totalPages={3} />);
-    expect(screen.getByTestId('prev-button')).toBeDisabled();
-    expect(screen.getByTestId('next-button')).not.toBeDisabled();
+
+    expect(screen.queryByTestId('prev-button')).not.toBeInTheDocument();
+
+    expect(screen.getByTestId('next-button')).toBeInTheDocument();
+
+    expect(document.querySelector('.gd-page-disabled')).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('should disable next button when on last page', () => {
+  it('Should hide next link on last page', () => {
     render(<Pagination currentPage={3} totalPages={3} />);
-    expect(screen.getByTestId('next-button')).toBeDisabled();
-    expect(screen.getByTestId('prev-button')).not.toBeDisabled();
+
+    expect(screen.queryByTestId('next-button')).not.toBeInTheDocument();
+
+    expect(screen.getByTestId('prev-button')).toBeInTheDocument();
+
+    expect(document.querySelector('.gd-page-disabled')).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('should highlight current page', () => {
+  it('Should highlight the current page', () => {
     render(<Pagination currentPage={2} totalPages={5} />);
-    expect(screen.getByTestId('page-button-2')).toHaveAttribute('aria-current', 'page');
+
+    const activePage = screen.getByTestId('page-button-2');
+
+    expect(activePage).toHaveAttribute('aria-current', 'page');
+    expect(activePage).toHaveClass('gd-page-current');
+
+    const inactivePage = screen.getByTestId('page-button-3');
+
+    expect(inactivePage).not.toHaveAttribute('aria-current');
+    expect(inactivePage).not.toHaveClass('gd-page-current');
   });
 
-  it('should navigate to next page on next button click', () => {
+  it('Should generate the correct next page link', () => {
     render(<Pagination currentPage={2} totalPages={5} />);
-    fireEvent.click(screen.getByTestId('next-button'));
-    expect(pushMock).toHaveBeenCalledWith('?page=3');
+
+    const nextLink = screen.getByTestId('next-button');
+
+    expect(nextLink).toHaveAttribute('href', '/?page=3#gatinhos');
+    expect(nextLink).toHaveAttribute('aria-label', 'Próxima página');
   });
 
-  it('should navigate to previous page on previous button click', () => {
+  it('Should generate the correct previous page link', () => {
     render(<Pagination currentPage={2} totalPages={5} />);
-    fireEvent.click(screen.getByTestId('prev-button'));
-    expect(pushMock).toHaveBeenCalledWith('?');
+
+    const prevLink = screen.getByTestId('prev-button');
+
+    expect(prevLink).toHaveAttribute('href', '/#gatinhos');
+    expect(prevLink).toHaveAttribute('aria-label', 'Página anterior');
   });
 
-  it('should navigate to specific page on page button click', () => {
-    render(<Pagination currentPage={1} totalPages={5} />);
-    fireEvent.click(screen.getByTestId('page-button-4'));
-    expect(pushMock).toHaveBeenCalledWith('?page=4');
+  it('Should generate the correct link for a specific page', () => {
+    render(<Pagination currentPage={2} totalPages={5} />);
+
+    const pageLink = screen.getByTestId('page-button-4');
+
+    expect(pageLink).toHaveAttribute('href', '/?page=4#gatinhos');
+    expect(pageLink).toHaveAttribute('aria-label', 'Página 4');
+  });
+
+  it('Should preserve existing filters when changing pages', () => {
+    mockNavigation('/', 'page=2&filter=adocao');
+
+    render(<Pagination currentPage={2} totalPages={5} />);
+
+    expect(screen.getByTestId('next-button')).toHaveAttribute(
+      'href',
+      '/?page=3&filter=adocao#gatinhos'
+    );
+
+    expect(screen.getByTestId('prev-button')).toHaveAttribute('href', '/?filter=adocao#gatinhos');
+  });
+
+  it('Should support custom pathname and anchor', () => {
+    mockNavigation('/gatos', 'page=2');
+
+    render(<Pagination currentPage={2} totalPages={5} anchor="catalogo" />);
+
+    expect(screen.getByTestId('next-button')).toHaveAttribute('href', '/gatos?page=3#catalogo');
+
+    expect(screen.getByTestId('prev-button')).toHaveAttribute('href', '/gatos#catalogo');
+  });
+
+  it('Should render ellipsis when there are many pages', () => {
+    mockNavigation('/', 'page=6');
+
+    render(<Pagination currentPage={6} totalPages={10} />);
+
+    for (let page = 4; page <= 8; page++) {
+      expect(screen.getByTestId(`page-button-${page}`)).toBeInTheDocument();
+    }
+
+    expect(screen.getByRole('link', { name: 'Página 1' })).toHaveAttribute('href', '/#gatinhos');
+
+    expect(screen.getByRole('link', { name: 'Página 10' })).toHaveAttribute(
+      'href',
+      '/?page=10#gatinhos'
+    );
+
+    expect(document.querySelectorAll('.gd-page-dots')).toHaveLength(2);
+
+    expect(screen.queryByTestId('page-button-3')).not.toBeInTheDocument();
+
+    expect(screen.queryByTestId('page-button-9')).not.toBeInTheDocument();
+  });
+
+  it('Should show only the last ellipsis near the beginning', () => {
+    mockNavigation('/', 'page=3');
+
+    render(<Pagination currentPage={3} totalPages={10} />);
+
+    for (let page = 1; page <= 5; page++) {
+      expect(screen.getByTestId(`page-button-${page}`)).toBeInTheDocument();
+    }
+
+    expect(document.querySelectorAll('.gd-page-dots')).toHaveLength(1);
+
+    expect(screen.getByRole('link', { name: 'Página 10' })).toHaveAttribute(
+      'href',
+      '/?page=10#gatinhos'
+    );
   });
 });
