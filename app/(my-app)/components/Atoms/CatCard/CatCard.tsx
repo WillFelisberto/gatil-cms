@@ -8,10 +8,10 @@ import Link from 'next/link';
 
 import type { Cat, Media } from '@/payload-types';
 
-type Props = { cat: Cat; whatsappNumber: string; mode?: 'adotar' | 'apadrinhar'; onClick?: () => void };
+type Props = { cat: Cat; whatsappNumber: string; mode?: 'adotar' | 'apadrinhar'; onClick?: () => void; labels?: { adoptButton?: string; sponsorButton?: string; adoptionBadge?: string; sponsorBadge?: string } };
 
 /** Um card por gato: ações derivadas das flags existentes no Payload CMS. */
-export const CatCard = ({ cat, whatsappNumber }: Props) => {
+export const CatCard = ({ cat, whatsappNumber, labels }: Props) => {
   const photo = typeof cat.foto === 'object' && cat.foto !== null ? cat.foto as Media : null;
   const imageSrc = photo?.url || '/no-image.jpg';
   const phone = whatsappNumber.replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, '');
@@ -32,7 +32,7 @@ export const CatCard = ({ cat, whatsappNumber }: Props) => {
   return <article className="gd-cat-card" data-testid={`cat-card-${cat.id}`}>
     <div className="gd-cat-photo">
       <Image src={imageSrc} alt={photo?.alt || `Fotografia de ${cat.nome}`} fill sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw" className="gd-cat-image" data-testid="cat-image" />
-      <span className="gd-cat-badge" data-testid="contact-badge"><Heart size={13} fill="currentColor" /> {canAdopt ? 'À espera de um lar' : 'Recebendo padrinhos'}</span>
+      <span className="gd-cat-badge" data-testid="contact-badge"><Heart size={13} fill="currentColor" /> {canAdopt ? labels?.adoptionBadge || 'À espera de um lar' : labels?.sponsorBadge || 'Recebendo padrinhos'}</span>
     </div>
     <div className="gd-cat-body">
       <div className="gd-cat-name-row"><h3 data-testid="cat-name">{cat.nome}</h3><span>{cat.sexo === 'F' ? 'Fêmea' : cat.sexo === 'M' ? 'Macho' : 'Gatinho'}</span></div>
@@ -44,8 +44,8 @@ export const CatCard = ({ cat, whatsappNumber }: Props) => {
       </div>
       {(cat.doencas || cat.observacoesSaude) && <p className="gd-cat-health">{cat.doencas || cat.observacoesSaude}</p>}
       <div className="gd-cat-actions">
-        {canAdopt && <Link href={actionHref('adotar')} target={phone ? '_blank' : undefined} rel={phone ? 'noopener noreferrer' : undefined} className="gd-cat-adopt" aria-label={`Quero adotar ${cat.nome}`}><Heart size={16}/> Quero adotar <ArrowUpRight size={16}/></Link>}
-        {canSponsor && <Link href={actionHref('apadrinhar')} target={phone ? '_blank' : undefined} rel={phone ? 'noopener noreferrer' : undefined} className="gd-cat-sponsor" aria-label={`Apadrinhar ${cat.nome}`}><HandHeart size={16}/> Apadrinhar <ArrowUpRight size={16}/></Link>}
+        {canAdopt && <Link href={actionHref('adotar')} target={phone ? '_blank' : undefined} rel={phone ? 'noopener noreferrer' : undefined} className="gd-cat-adopt" aria-label={`Quero adotar ${cat.nome}`}><Heart size={16}/> {labels?.adoptButton || 'Quero adotar'} <ArrowUpRight size={16}/></Link>}
+        {canSponsor && <Link href={actionHref('apadrinhar')} target={phone ? '_blank' : undefined} rel={phone ? 'noopener noreferrer' : undefined} className="gd-cat-sponsor" aria-label={`Apadrinhar ${cat.nome}`}><HandHeart size={16}/> {labels?.sponsorButton || 'Apadrinhar'} <ArrowUpRight size={16}/></Link>}
       </div>
     </div>
   </article>;

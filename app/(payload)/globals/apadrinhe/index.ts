@@ -6,7 +6,8 @@ const Apadrinhe: GlobalConfig = {
   slug: 'apadrinhe',
   label: 'Página Apadrinhe',
   admin: {
-    group: 'Site'
+    group: 'Legado',
+    hidden: true
   },
   hooks: {},
   access: {

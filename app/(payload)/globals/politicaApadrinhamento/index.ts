@@ -6,7 +6,7 @@ const PoliticaApadrinhamento: GlobalConfig = {
   slug: 'politicaApadrinhamento',
   label: 'Página Termos de Apadrinhamento',
   admin: {
-    group: 'Site'
+    group: 'Conteúdo do site'
   },
   hooks: {},
   access: {

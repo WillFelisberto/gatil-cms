@@ -5,7 +5,8 @@ const Sobre: GlobalConfig = {
   slug: 'sobre',
   label: 'Página Sobre o Projeto',
   admin: {
-    group: 'Site'
+    group: 'Legado',
+    hidden: true
   },
   access: {
     read: ({ req: { user } }) => {

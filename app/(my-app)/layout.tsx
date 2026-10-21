@@ -9,6 +9,7 @@ import { getPayload } from 'payload';
 import { ToastContainer } from 'react-toastify';
 
 import { Footer } from './components/Atoms/Footer';
+import { navigationDefaults, footerDefaults, resolveLabelGroup } from '@/lib/landingContent';
 import { Header } from './components/Atoms/Header';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400','500','600','700','800'], display: 'swap', variable: '--font-poppins' });
@@ -23,18 +24,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const payload = await getPayload({ config });
   const global = await payload.findGlobal({ slug: 'site-config' });
   const links = global?.links || [];
+  const nav = resolveLabelGroup(navigationDefaults, (global as unknown as { navigation?: unknown }).navigation);
+  const footer = resolveLabelGroup(footerDefaults, (global as unknown as { footer?: unknown }).footer);
   const menuItems = [
-    { label: 'Início', href: '/#inicio' },
-    { label: 'Gatinhos', href: '/#gatinhos' },
-    { label: 'Sobre nós', href: '/#sobre' },
-    { label: 'Apadrinhamento', href: '/#apadrinhamento' },
-    { label: 'Como ajudar', href: '/#colabore' },
-    { label: 'Contato', href: '/#contato' }
+    { label: nav.home, href: '/#inicio' },
+    { label: nav.cats, href: '/#gatinhos' },
+    { label: nav.about, href: '/#sobre' },
+    { label: nav.sponsorship, href: '/#apadrinhamento' },
+    { label: nav.donate, href: '/#colabore' },
+    { label: nav.contact, href: '/#contato' }
   ];
   return <html lang="pt-BR" className={poppins.variable}><body className="gd-site">
-    <Header menuItems={menuItems}/>
+    <Header menuItems={menuItems} donateButtonLabel={nav.donateButton}/>
     <main id="conteudo-principal" className="gd-main">{children}</main>
-    <Footer menuItems={menuItems} socialLinks={links} whatsapp={global?.whatsapp || ''}/>
+    <Footer menuItems={menuItems} socialLinks={links} whatsapp={global?.whatsapp || ''} labels={footer}/>
     <ToastContainer position="bottom-center" autoClose={5000} theme="light" />
     <GoogleAnalytics gaId="G-CVEQLYNEPP"/>
   </body></html>;

@@ -4,9 +4,9 @@ import { PageBlocks } from '../../blocks';
 
 const Colabore: GlobalConfig = {
   slug: 'colabore',
-  label: 'Página Colabore',
+  label: 'Doações · PIX e dados bancários',
   admin: {
-    group: 'Site'
+    group: 'Conteúdo do site'
   },
   hooks: {},
   access: {
@@ -18,17 +18,6 @@ const Colabore: GlobalConfig = {
       type: 'tabs',
       tabs: [
         {
-          label: 'Conteúdo',
-          fields: [
-            {
-              name: 'layout',
-              type: 'blocks',
-              required: true,
-              blocks: PageBlocks
-            }
-          ]
-        },
-        {
           label: 'PIX',
           fields: [
             {
@@ -36,7 +25,7 @@ const Colabore: GlobalConfig = {
               label: 'QR code do PIX',
               type: 'upload',
               relationTo: 'media',
-              required: true
+              required: false
             },
             {
               name: 'chavesPix',
@@ -109,6 +98,10 @@ const Colabore: GlobalConfig = {
           ]
         }
       ]
+    },
+    {
+      name: 'layout', type: 'blocks', required: false, blocks: PageBlocks,
+      admin: { condition: () => false, description: 'Conteúdo antigo conservado no banco, não usado na landing.' }
     }
   ]
 };

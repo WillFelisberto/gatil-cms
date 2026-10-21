@@ -7,9 +7,9 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 type MenuItem = { label: string; href: string };
-type HeaderProps = { menuItems: MenuItem[] };
+type HeaderProps = { menuItems: MenuItem[]; donateButtonLabel?: string };
 
-export const Header = ({ menuItems }: HeaderProps) => {
+export const Header = ({ menuItems, donateButtonLabel = 'Fazer uma doação' }: HeaderProps) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   return (
@@ -29,7 +29,7 @@ export const Header = ({ menuItems }: HeaderProps) => {
           ))}
         </nav>
         <div className="gd-header-actions">
-          <Link href="/#colabore" className="gd-button gd-button-primary gd-header-donate"><Heart size={16} fill="currentColor" /> Fazer uma doação <ArrowUpRight size={16}/></Link>
+          <Link href="/#colabore" className="gd-button gd-button-primary gd-header-donate"><Heart size={16} fill="currentColor" /> {donateButtonLabel} <ArrowUpRight size={16}/></Link>
           <button className="gd-menu-toggle" type="button" aria-label={open ? 'Fechar menu' : 'Abrir menu'}
             aria-controls="gd-mobile-menu" aria-expanded={open} onClick={() => setOpen((v) => !v)} data-testid="menu-button">
             {open ? <X size={25}/> : <Menu size={25}/>}
