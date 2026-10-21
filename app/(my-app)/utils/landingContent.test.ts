@@ -1,4 +1,10 @@
-import { footerDefaults, landingDefaults, navigationDefaults, resolveLandingContent, resolveLabelGroup } from '@/lib/landingContent';
+import {
+  footerDefaults,
+  landingDefaults,
+  navigationDefaults,
+  resolveLabelGroup,
+  resolveLandingContent
+} from '@/lib/landingContent';
 
 describe('editorial da landing no Payload', () => {
   it('carrega os textos publicados no painel sem precisar alterar o JSX', () => {
@@ -14,7 +20,9 @@ describe('editorial da landing no Payload', () => {
 
   it('preserva o hero antigo quando a nova área editorial ainda não foi preenchida', () => {
     const content = resolveLandingContent({
-      layout: [{ blockType: 'hero', title: 'Texto já publicado no CMS', subtitle: 'Descrição anterior' }]
+      layout: [
+        { blockType: 'hero', title: 'Texto já publicado no CMS', subtitle: 'Descrição anterior' }
+      ]
     });
     expect(content.hero.title).toBe('Texto já publicado no CMS');
     expect(content.hero.subtitle).toBe('Descrição anterior');
@@ -30,7 +38,11 @@ describe('editorial da landing no Payload', () => {
   });
 
   it('permite administrar o menu e rodapé no mesmo painel', () => {
-    expect(resolveLabelGroup(navigationDefaults, { cats: 'Conheça os gatos' }).cats).toBe('Conheça os gatos');
-    expect(resolveLabelGroup(footerDefaults, { contactTitle: 'Entre em contato' }).contactTitle).toBe('Entre em contato');
+    expect(resolveLabelGroup(navigationDefaults, { cats: 'Conheça os gatos' }).cats).toBe(
+      'Conheça os gatos'
+    );
+    expect(
+      resolveLabelGroup(footerDefaults, { contactTitle: 'Entre em contato' }).contactTitle
+    ).toBe('Entre em contato');
   });
 });

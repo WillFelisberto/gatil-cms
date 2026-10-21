@@ -116,3 +116,10 @@ Contributions are welcome! Open an issue or pull request with suggestions, bug f
 ---
 
 🐱 Made with love for our little cats. 💜
+
+
+## FAQ na landing
+
+- A home agora possui uma seção final de FAQ com layout editorial em duas colunas.
+- As perguntas e respostas são administradas no Global **Conteúdo da Landing Page**.
+- Apenas **Política de adoção** e **Termos de apadrinhamento** permanecem como páginas próprias; as demais rotas públicas antigas redirecionam para a landing.

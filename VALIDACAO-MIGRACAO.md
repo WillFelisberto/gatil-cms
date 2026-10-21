@@ -4,17 +4,17 @@ Data da revisão: 2026-10-20/21.
 
 ## Execuções realizadas neste ambiente
 
-| Validação | Resultado | Observações |
-| --- | --- | --- |
-| `npm run test:migration` | **6 testes OK** | Catálogo único, filtros, paginação e importação de blocos, com mídia e nested arrays |
-| `npm run test:migration:sqlite` | **2 testes OK** | DDL das quatro migrations em SQLite temporário com registros legados; verificou cópia, preservação de gatos e rollback da migration nova |
-| Parse/transpilação TypeScript com TypeScript global | **6 arquivos OK** | Confere sintaxe de TS/TSX nos arquivos afetados, **não** equivale ao `tsc --noEmit` completo |
-| `git diff --check` | **OK** | Sem problemas de whitespace |
-| `npm ci --offline` | **Não disponível** | Cache sem `@babel/preset-env`; sem dependências instaladas |
-| Jest (`npm run test:ci`) | **Pendente** | Requer instalação de dependências |
-| ESLint (`npm run lint`) | **Pendente** | Requer instalação de dependências |
-| Build Next.js (`npm run build`) | **Pendente** | Requer instalação de dependências e configuração de ambiente |
-| Payload real + banco de homologação | **Pendente** | Sem `DATABASE_URL`/credenciais de banco fornecidas |
+| Validação                                           | Resultado          | Observações                                                                                                                              |
+| --------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run test:migration`                            | **6 testes OK**    | Catálogo único, filtros, paginação e importação de blocos, com mídia e nested arrays                                                     |
+| `npm run test:migration:sqlite`                     | **2 testes OK**    | DDL das quatro migrations em SQLite temporário com registros legados; verificou cópia, preservação de gatos e rollback da migration nova |
+| Parse/transpilação TypeScript com TypeScript global | **6 arquivos OK**  | Confere sintaxe de TS/TSX nos arquivos afetados, **não** equivale ao `tsc --noEmit` completo                                             |
+| `git diff --check`                                  | **OK**             | Sem problemas de whitespace                                                                                                              |
+| `npm ci --offline`                                  | **Não disponível** | Cache sem `@babel/preset-env`; sem dependências instaladas                                                                               |
+| Jest (`npm run test:ci`)                            | **Pendente**       | Requer instalação de dependências                                                                                                        |
+| ESLint (`npm run lint`)                             | **Pendente**       | Requer instalação de dependências                                                                                                        |
+| Build Next.js (`npm run build`)                     | **Pendente**       | Requer instalação de dependências e configuração de ambiente                                                                             |
+| Payload real + banco de homologação                 | **Pendente**       | Sem `DATABASE_URL`/credenciais de banco fornecidas                                                                                       |
 
 ## O que deve ser testado antes de produção
 

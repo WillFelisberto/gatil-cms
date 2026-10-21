@@ -100,8 +100,14 @@ const Colabore: GlobalConfig = {
       ]
     },
     {
-      name: 'layout', type: 'blocks', required: false, blocks: PageBlocks,
-      admin: { condition: () => false, description: 'Conteúdo antigo conservado no banco, não usado na landing.' }
+      name: 'layout',
+      type: 'blocks',
+      required: false,
+      blocks: PageBlocks,
+      admin: {
+        condition: () => false,
+        description: 'Conteúdo antigo conservado no banco, não usado na landing.'
+      }
     }
   ]
 };

@@ -15,8 +15,12 @@ export function normalizeCatalogPage(value: string | undefined): number {
 export function catalogWhere(filter: CatalogFilter) {
   const active = { adotado: { equals: false } };
   if (filter === 'adocao') return { and: [active, { show: { equals: true } }] };
-  if (filter === 'apadrinhamento') return { and: [active, { disponivelParaApadrinhamento: { equals: true } }] };
+  if (filter === 'apadrinhamento')
+    return { and: [active, { disponivelParaApadrinhamento: { equals: true } }] };
   return {
-    and: [active, { or: [{ show: { equals: true } }, { disponivelParaApadrinhamento: { equals: true } }] }]
+    and: [
+      active,
+      { or: [{ show: { equals: true } }, { disponivelParaApadrinhamento: { equals: true } }] }
+    ]
   };
 }

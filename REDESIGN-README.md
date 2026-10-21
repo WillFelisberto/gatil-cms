@@ -6,7 +6,7 @@
 
 O site público foi atualizado com a identidade visual do Gatil (azul `#023274`, azul-claro, branco e pêssego). O painel Payload CMS não foi alterado. Os novos estilos estão isolados em `styles/gatil-redesign.css` e são carregados exclusivamente por `app/(my-app)/layout.tsx`.
 
-Páginas públicas redesenhadas: início (`/`), adoção (`/adote`), apadrinhamento (`/apadrinhe`), doações (`/colabore`), história (`/sobre-o-projeto`), contato, política de adoção e termos de apadrinhamento. O conteúdo das páginas continua alimentado pelos *Globals* do Payload e pelo construtor de blocos de conteúdo. Os novos textos editoriais fixos da landing podem ser posteriormente convertidos em campos de CMS, se necessário.
+Páginas públicas redesenhadas: início (`/`), adoção (`/adote`), apadrinhamento (`/apadrinhe`), doações (`/colabore`), história (`/sobre-o-projeto`), contato, política de adoção e termos de apadrinhamento. O conteúdo das páginas continua alimentado pelos _Globals_ do Payload e pelo construtor de blocos de conteúdo. Os novos textos editoriais fixos da landing podem ser posteriormente convertidos em campos de CMS, se necessário.
 
 ### Gatos e paginação
 

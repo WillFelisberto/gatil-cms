@@ -1,0 +1,1 @@
+export { LandingFaqSection } from './LandingFaqSection';

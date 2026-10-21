@@ -1,11 +1,20 @@
-import { render, screen } from '@/tests/test-utils';
-import { CatCard } from './CatCard';
 import type { Cat } from '@/payload-types';
+import { render, screen } from '@/tests/test-utils';
+
+import { CatCard } from './CatCard';
 
 const cat = {
-  id: 42, nome: 'Luna', sexo: 'F', descricao: 'Muito carinhosa', idade: '2 anos',
-  adotado: false, show: true, disponivelParaApadrinhamento: true, castrado: true,
-  createdAt: '2026-01-01T00:00:00Z', updatedAt: '2026-01-01T00:00:00Z'
+  id: 42,
+  nome: 'Luna',
+  sexo: 'F',
+  descricao: 'Muito carinhosa',
+  idade: '2 anos',
+  adotado: false,
+  show: true,
+  disponivelParaApadrinhamento: true,
+  castrado: true,
+  createdAt: '2026-01-01T00:00:00Z',
+  updatedAt: '2026-01-01T00:00:00Z'
 } as Cat;
 
 describe('CatCard — catálogo unificado', () => {
@@ -21,7 +30,10 @@ describe('CatCard — catálogo unificado', () => {
   it('não oferece adoção quando o CMS só permite apadrinhamento', () => {
     render(<CatCard cat={{ ...cat, show: false }} whatsappNumber="" />);
     expect(screen.queryByRole('link', { name: 'Quero adotar Luna' })).not.toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Apadrinhar Luna' })).toHaveAttribute('href', '/#contato');
+    expect(screen.getByRole('link', { name: 'Apadrinhar Luna' })).toHaveAttribute(
+      'href',
+      '/#contato'
+    );
   });
 
   it('não oferece apadrinhamento quando a flag está desligada', () => {

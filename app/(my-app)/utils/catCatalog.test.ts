@@ -1,9 +1,17 @@
-import { CAT_PAGE_SIZE, catalogWhere, normalizeCatalogFilter, normalizeCatalogPage } from './catCatalog';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  CAT_PAGE_SIZE,
+  catalogWhere,
+  normalizeCatalogFilter,
+  normalizeCatalogPage
+} from './catCatalog';
 
 function matches(cat: Record<string, boolean>, clause: any): boolean {
   if (clause.and) return clause.and.every((part: any) => matches(cat, part));
   if (clause.or) return clause.or.some((part: any) => matches(cat, part));
-  return Object.entries(clause).every(([field, value]) => cat[field] === (value as { equals: boolean }).equals);
+  return Object.entries(clause).every(
+    ([field, value]) => cat[field] === (value as { equals: boolean }).equals
+  );
 }
 
 const cases = [
@@ -14,7 +22,7 @@ const cases = [
   { nome: 'oculto', adotado: false, show: false, disponivelParaApadrinhamento: false }
 ];
 const list = (filtro: 'todos' | 'adocao' | 'apadrinhamento') =>
-  cases.filter(cat => matches(cat, catalogWhere(filtro))).map(cat => cat.nome);
+  cases.filter((cat) => matches(cat, catalogWhere(filtro))).map((cat) => cat.nome);
 
 describe('catálogo paginado da landing', () => {
   it('lista a união sem duplicar um gato que aceita ambas as ações', () => {
