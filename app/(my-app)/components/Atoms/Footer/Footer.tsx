@@ -1,133 +1,40 @@
-'use client';
-import { Facebook, Instagram, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, Facebook, Heart, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
-const TikTokIcon = () => (
-  <svg
-    className="w-6 h-6"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-  </svg>
-);
+const TikTokIcon = ({ size = 19 }: { size?: number }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>;
+const icons = { facebook: Facebook, instagram: Instagram, tiktok: TikTokIcon };
+type SocialLink = { type: 'facebook' | 'instagram' | 'tiktok'; url: string };
+type MenuItem = { label: string; href: string };
+type FooterProps = { socialLinks: SocialLink[]; menuItems: MenuItem[]; whatsapp?: string };
 
-const iconMap = {
-  facebook: Facebook,
-  instagram: Instagram,
-  tiktok: TikTokIcon
-};
-
-type SocialLink = {
-  type: 'facebook' | 'instagram' | 'tiktok';
-  url: string;
-};
-
-type MenuItem = {
-  label: string;
-  href: string;
-};
-
-type FooterProps = {
-  socialLinks: SocialLink[];
-  menuItems: MenuItem[];
-};
-
-export const Footer = ({ socialLinks, menuItems }: FooterProps) => {
-  const pathname = usePathname();
-  const year = new Date().getFullYear();
-
-  return (
-    <footer data-testid="footer" className="bg-[#013274] text-white mt-20">
-      <div data-testid="footer-container" className="container mx-auto px-4 py-12 w-full max-w-7xl">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div>
-            <div className="mb-4 ">
-              <div className="inline-block  p-2">
-                <div className="relative h-20 w-[82px]">
-                  <Image
-                    src="/logo-rodape.webp"
-                    alt="Gatil dos Resgatados"
-                    fill
-                    className="object-contain bg-white border-1 rounded-full"
-                    sizes="200px"
-                    priority
-                  />
-                </div>
-              </div>
-            </div>
-
-            <p className="text-white/80 leading-relaxed">
-              Resgatando, cuidando e encontrando lares amorosos para gatinhos que precisam de uma
-              segunda chance. Cada vida importa! 💝
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-lg mb-4">Links Rápidos</h3>
-            <div className="space-y-2">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  data-testid={`footer-menu-link-${menuItems.indexOf(item)}`}
-                  className={`block hover:text-accent transition-colors ${
-                    pathname === item.href ? 'text-accent' : ''
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-lg mb-4">Contato</h3>
-            <div className="space-y-3 text-white/80">
-              <div className="flex items-center gap-2">
-                <Phone className="w-5 h-5" />
-                <span>
-                  <Link
-                    href="https://wa.me/5548996118451"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    (48) 99611-8451
-                  </Link>
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <span>Sombrio, SC</span>
-              </div>
-              <div className="flex gap-4 mt-4">
-                {socialLinks.map(({ type, url }, index) => {
-                  const Icon = iconMap[type];
-                  return (
-                    <Link
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-testid={`footer-social-link-${index}`}
-                      href={url}
-                      key={index}
-                      className="hover:text-accent hover:scale-110 transitions transition-colors"
-                    >
-                      <Icon className="w-6 h-6" />
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-white/80 mt-8 pt-8 text-center text-white/60">
-          <p>© {year} Gatil dos Resgatados. Feito com muito amor para os gatinhos. 🐱❤️✨</p>
+export const Footer = ({ socialLinks, menuItems, whatsapp }: FooterProps) => {
+  const normalizedPhone = whatsapp?.replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, '') || '';
+  return <footer className="gd-footer" data-testid="footer">
+    <div className="gd-container gd-footer-grid" data-testid="footer-container">
+      <div className="gd-footer-intro">
+        <Link href="/" className="gd-footer-brand"><Image src="/logo-rodape.webp" width={86} height={86} alt="Gatil dos Resgatados" /><span>Gatil dos<br/><strong>Resgatados</strong></span></Link>
+        <p>Cada resgate é uma nova chance. Com cuidado e carinho, ajudamos gatinhos a encontrar o lar que merecem.</p>
+        <div className="gd-footer-socials">
+          {socialLinks.filter((s) => s.url && s.type in icons).map(({ type, url }, i) => {
+            const Icon = icons[type];
+            return <a href={url} key={`${type}-${i}`} target="_blank" rel="noopener noreferrer" aria-label={`Visitar ${type}`} data-testid={`footer-social-link-${i}`}><Icon size={19}/></a>;
+          })}
         </div>
       </div>
-    </footer>
-  );
+      <div className="gd-footer-links"><h3>Explore</h3>{menuItems.map((item, i) => <Link href={item.href} key={item.href} data-testid={`footer-menu-link-${i}`}>{item.label}<ArrowRight size={15}/></Link>)}</div>
+      <div className="gd-footer-links"><h3>Informações</h3>
+        <Link href="/politica-de-adocao">Política de adoção<ArrowRight size={15}/></Link>
+        <Link href="/termos-de-apadrinhamento">Termos de apadrinhamento<ArrowRight size={15}/></Link>
+        <Link href="/#contato">Fale com a gente<ArrowRight size={15}/></Link>
+      </div>
+      <div className="gd-footer-contact"><h3>Vamos conversar?</h3><p>Tem alguma dúvida ou quer ajudar? Estamos por aqui.</p>
+        <span><MapPin size={18}/> Sombrio, Santa Catarina</span>
+        {normalizedPhone && <a href={`https://wa.me/55${normalizedPhone}`} target="_blank" rel="noopener noreferrer"><Phone size={18}/> {whatsapp}</a>}
+        <Link href="/#contato"><Mail size={18}/> Entre em contato</Link>
+        <Link className="gd-button gd-button-light" href="/#colabore">Faça parte dessa história <Heart size={16}/></Link>
+      </div>
+    </div>
+    <div className="gd-container gd-footer-bottom"><span>© {new Date().getFullYear()} Gatil dos Resgatados. Feito com amor pelos animais.</span><span>Uma vida de cada vez. <Heart size={13} fill="currentColor"/></span></div>
+  </footer>;
 };

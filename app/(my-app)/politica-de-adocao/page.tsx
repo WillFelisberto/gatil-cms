@@ -1,42 +1,19 @@
 import config from '@payload-config';
 import type { Metadata } from 'next';
 import { getPayload } from 'payload';
-
-import { Media, PoliticaAdocao } from '@/payload-types';
-
+import { ShieldCheck } from 'lucide-react';
+import type { Media, PoliticaAdocao } from '@/payload-types';
 import { RenderBlocks } from '../utils/RenderBlocks';
-
-export const dynamic = 'force-dynamic'; // caso use dados dinâmicos do Payload
-
+export const dynamic = 'force-dynamic';
 export async function generateMetadata(): Promise<Metadata> {
-  const payload = await getPayload({ config });
-
-  const politicaAdocaoPage = await payload.findGlobal({ slug: 'politicaAdocao' });
-
-  return {
-    title: politicaAdocaoPage?.meta?.title || undefined,
-    description: politicaAdocaoPage?.meta?.description || undefined,
-    openGraph: {
-      title: politicaAdocaoPage?.meta?.title || undefined,
-      description: politicaAdocaoPage?.meta?.description || undefined,
-      images: (politicaAdocaoPage?.meta?.image as Media)?.url
-        ? [{ url: (politicaAdocaoPage?.meta?.image as Media).url! }]
-        : undefined
-    }
-  };
+ const payload = await getPayload({ config });
+ const page = await payload.findGlobal({ slug: 'politicaAdocao' });
+ const img = page.meta?.image;
+ return { title: page.meta?.title || 'Política de adoção | Gatil dos Resgatados', description: page.meta?.description || 'Conheça as condições de adoção responsável do Gatil dos Resgatados.', openGraph: { images: typeof img === 'object' && img?.url ? [{ url: img.url }] : undefined } };
 }
-
 export default async function PoliticaAdocaoPage() {
-  const payload = await getPayload({ config });
-  const politica = await payload.findGlobal({ slug: 'politicaAdocao' });
-
-  return (
-    <article
-      className="mb-4 pt-12 w-full flex flex-col max-w-6xl text-center mx-auto px-4"
-      aria-labelledby="politica-adocao"
-      aria-describedby="descricao-politica"
-    >
-      <RenderBlocks<PoliticaAdocao> blocks={politica.layout} />
-    </article>
-  );
+ const payload = await getPayload({ config });
+ const data = await payload.findGlobal({ slug: 'politicaAdocao' });
+  const cmsHero = data.layout.find(block => block.blockType === 'hero');
+ return <div className="gd-inner-page"><section className="gd-page-hero"><div className="gd-container"><span className="gd-kicker">ADOÇÃO CONSCIENTE</span><h1>{cmsHero?.title || <>Cuidar é um compromisso <em>para a vida.</em></>}</h1><p>{cmsHero?.subtitle || 'Conheça nossas orientações para uma adoção responsável.'}</p><span className="gd-page-deco"><ShieldCheck size={66}/></span></div></section><article className="gd-content-panel" aria-label="Política de adoção"><RenderBlocks<PoliticaAdocao> blocks={data.layout.filter(block => block.blockType !== 'hero')}/></article></div>;
 }

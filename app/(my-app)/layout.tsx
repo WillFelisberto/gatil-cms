@@ -1,8 +1,9 @@
 import '@/styles/global.css';
+import '@/styles/gatil-redesign.css';
 
 import { GoogleAnalytics } from '@next/third-parties/google';
 import config from '@payload-config';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import { getPayload } from 'payload';
 import { ToastContainer } from 'react-toastify';
@@ -10,79 +11,31 @@ import { ToastContainer } from 'react-toastify';
 import { Footer } from './components/Atoms/Footer';
 import { Header } from './components/Atoms/Header';
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  display: 'swap',
-  variable: '--font-poppins'
-});
+const poppins = Poppins({ subsets: ['latin'], weight: ['400','500','600','700','800'], display: 'swap', variable: '--font-poppins' });
 
 export const metadata: Metadata = {
-  title: 'Gatil dos Resgatados | Adoção de Gatinhos Resgatados com Amor',
-  description:
-    'Transforme vidas adotando um gatinho! O Gatil dos Resgatados resgata, cuida e prepara felinos para encontrar um novo lar cheio de amor. Conheça os gatinhos disponíveis para adoção e saiba como colaborar.',
-  keywords:
-    'adoção de gatos, gatos para adoção, gatil dos resgatados, resgate animal, apadrinhar gatos, adotar gatos SC, adotar gato sombrio, adotar gato araranguá, adotar gato torres',
-  openGraph: {
-    type: 'website',
-    locale: 'pt_BR',
-    url: 'https://gatildosresgatados.com/',
-    title: 'Gatil dos Resgatados | Adoção de Gatinhos Resgatados com Amor',
-    description:
-      'O Gatil dos Resgatados cuida de felinos abandonados e busca um lar amoroso para cada um. Adote, apadrinhe ou colabore com nosso projeto.',
-    siteName: 'Gatil dos Resgatados',
-    images: [
-      {
-        url: 'https://gatildosresgatados.com/og-image.jpg', // substitua por uma imagem real
-        width: 1200,
-        height: 630,
-        alt: 'Gatil dos Resgatados'
-      }
-    ]
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Gatil dos Resgatados',
-    description:
-      'Adote um gatinho resgatado e ajude a transformar vidas. Conheça nossos peludos e saiba como apoiar o projeto!',
-    site: '@gatildosresgatados', // substitua se tiver Twitter
-    images: ['https://gatildosresgatados.com/og-image.jpg']
-  }
+  title: 'Gatil dos Resgatados | Todo amor merece um lar',
+  description: 'O Gatil dos Resgatados acolhe e cuida de gatinhos que precisam de uma nova chance. Conheça nossos resgatados, adote, apadrinhe ou colabore.',
+  openGraph: { type: 'website', locale: 'pt_BR', title: 'Gatil dos Resgatados', description: 'Adote, apadrinhe e transforme a vida de um gatinho resgatado.', images: [{ url: '/logo-gatil.webp' }] }
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const payload = await getPayload({ config });
   const global = await payload.findGlobal({ slug: 'site-config' });
-  const socialLinks = global?.links || [];
-
+  const links = global?.links || [];
   const menuItems = [
-    { label: 'Início', href: '/' },
-    { label: 'Apadrinhe', href: '/apadrinhe' },
-    { label: 'Colabore', href: '/colabore' },
-    { label: 'Contato', href: '/contate-nos' },
-    { label: 'Sobre o Projeto', href: '/sobre-o-projeto' },
-    { label: 'Adote', href: '/adote' }
+    { label: 'Início', href: '/#inicio' },
+    { label: 'Gatinhos', href: '/#gatinhos' },
+    { label: 'Sobre nós', href: '/#sobre' },
+    { label: 'Apadrinhamento', href: '/#apadrinhamento' },
+    { label: 'Como ajudar', href: '/#colabore' },
+    { label: 'Contato', href: '/#contato' }
   ];
-
-  return (
-    <html lang="pt-BR" className={poppins.variable}>
-      <body>
-        <Header menuItems={menuItems} />
-        <main>{children}</main>
-        <Footer menuItems={menuItems} socialLinks={socialLinks} />
-        <ToastContainer
-          position="bottom-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      </body>
-      <GoogleAnalytics gaId="G-CVEQLYNEPP" />
-    </html>
-  );
+  return <html lang="pt-BR" className={poppins.variable}><body className="gd-site">
+    <Header menuItems={menuItems}/>
+    <main id="conteudo-principal" className="gd-main">{children}</main>
+    <Footer menuItems={menuItems} socialLinks={links} whatsapp={global?.whatsapp || ''}/>
+    <ToastContainer position="bottom-center" autoClose={5000} theme="light" />
+    <GoogleAnalytics gaId="G-CVEQLYNEPP"/>
+  </body></html>;
 }
