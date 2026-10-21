@@ -3,12 +3,18 @@
 import { ChevronDown, Minus } from 'lucide-react';
 import { useState } from 'react';
 
-import { BlockProps } from '@/app/(my-app)/types/block-props';
+interface FaqItem {
+  question: string;
+  answer: string;
+}
 
-export const FAQAccordion = (props: BlockProps<'faq'>) => {
+interface FaqAccordionProps {
+  faq?: FaqItem[] | null;
+}
+
+// export const FAQAccordion = (props: BlockProps<'faq'>) => {
+export default function FaqAccordion({ faq }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const { faq } = props;
 
   const toggle = (index: number) => {
     setOpenIndex(index === openIndex ? null : index);
@@ -37,7 +43,7 @@ export const FAQAccordion = (props: BlockProps<'faq'>) => {
                   data-testid={`faq-question-${index}`}
                 >
                   <span className="font-medium text-base text-[#013274] group-hover:underline">
-                    {faq.pergunta}
+                    {faq.question}
                   </span>
                   {isOpen ? (
                     <Minus className="w-5 h-5 text-[#013274]" />
@@ -55,13 +61,11 @@ export const FAQAccordion = (props: BlockProps<'faq'>) => {
                 }`}
                 data-testid={`faq-answer-${index}`}
               >
-                <p className="text-gray-700 text-base text-justify leading-relaxed">
-                  {faq.resposta}
-                </p>
+                <p className="text-gray-700 text-base text-justify leading-relaxed">{faq.answer}</p>
               </dd>
             </div>
           );
         })}
     </dl>
   );
-};
+}
